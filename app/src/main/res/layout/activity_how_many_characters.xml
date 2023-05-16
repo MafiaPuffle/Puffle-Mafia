@@ -36,24 +36,24 @@
 
     <LinearLayout
         android:id="@+id/ChosenCharacterBox"
-        android:layout_width="370dp"
-        android:layout_height="254dp"
+        android:layout_width="381dp"
+        android:layout_height="322dp"
         android:background="@drawable/green_rectangle"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HowManyCharactersBox"
         app:layout_constraintVertical_bias="0.164">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/alien_puffle" />
 
         <SeekBar
             android:id="@+id/seekBar"
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Show Numeric Value for Characters"
-            android:textSize="30dp"/>
+            android:textSize="30dp" />
 
     </LinearLayout>
 

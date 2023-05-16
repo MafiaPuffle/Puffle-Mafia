@@ -2,7 +2,10 @@ package com.example.pufflemafia;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class HowManyCharacters extends AppCompatActivity {
 
@@ -11,6 +14,14 @@ public class HowManyCharacters extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_many_characters);
 
+        Button ReturnToChooseYourCharacterScreenWithNewValues = findViewById(R.id.NextBackToChooseYourCharacters);
+        ReturnToChooseYourCharacterScreenWithNewValues.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HowManyCharacters.this, CharacterSelectScreen.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
