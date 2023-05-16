@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         Roles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,Roles.class);
+                Intent intent = new Intent(MainActivity.this, RolesScreen.class);
                 startActivity(intent);
             }
         });

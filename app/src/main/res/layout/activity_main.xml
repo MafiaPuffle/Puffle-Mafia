@@ -8,21 +8,24 @@
 
     <LinearLayout
         android:id="@+id/PuffleMafiaBox"
-        android:layout_width="203dp"
-        android:layout_height="61dp"
-        android:background="@drawable/rounded_rectangle"
+        android:layout_width="254dp"
+        android:layout_height="72dp"
+        android:background="@drawable/Purple_Rectangles"
+        android:orientation="vertical"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@+id/StartButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269">
+        app:layout_constraintVertical_bias="0.264">
 
         <TextView
             android:id="@+id/PuffleMafia"
-            android:layout_width="262dp"
+            android:layout_width="244dp"
             android:layout_height="61dp"
             android:baselineAligned="false"
+            android:gravity="center"
             android:text="Puffle Mafia"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"

@@ -19,7 +19,7 @@
             android:name=".Start"
             android:exported="false" />
         <activity
-            android:name=".Roles"
+            android:name=".RolesScreen"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

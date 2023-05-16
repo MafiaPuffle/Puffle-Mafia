@@ -10,7 +10,7 @@
         android:id="@+id/HowManyPLayersBox"
         android:layout_width="312dp"
         android:layout_height="61dp"
-        android:background="@drawable/rounded_rectangle"
+        android:background="@drawable/Purple_Rectangles"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@+id/seekBar2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,10 +41,10 @@
         android:progress="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintVertical_bias="0.152" />
 
     <TextView
         android:id="@+id/textView"
