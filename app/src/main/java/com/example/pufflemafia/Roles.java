@@ -15,12 +15,12 @@ public class Roles extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roles);
 
-        ImageButton Alien=findViewById(R.id.imageView16);
+        ImageButton Alien = findViewById(R.id.imageView16);
 
         Alien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Roles.this,CharacterSelectScreen.class);
+                Intent intent = new Intent(Roles.this,CharacterSelectScreen.class);
                 startActivity(intent);
             }
         });
