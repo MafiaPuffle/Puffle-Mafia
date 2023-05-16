@@ -10,7 +10,7 @@
         android:id="@+id/PuffleMafiaBox"
         android:layout_width="254dp"
         android:layout_height="72dp"
-        android:background="@drawable/Purple_Rectangles"
+        android:background="@drawable/purple_rectangle"
         android:orientation="vertical"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@+id/StartButton"
