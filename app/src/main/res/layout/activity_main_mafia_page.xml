@@ -23,11 +23,11 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125">
+        app:layout_constraintVertical_bias="0.134">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/FinalAliveCharacterBox"
+            android:id="@+id/ActionerCharacterBox"
             android:layout_width="370dp"
             android:layout_height="55dp"
             android:background="@drawable/grey_rectangle"
@@ -53,7 +53,7 @@
                 app:layout_constraintVertical_bias="0.489" />
 
             <TextView
-                android:id="@+id/AliveCharacterName"
+                android:id="@+id/ActionerCharacterName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ALIVE CHARACTER NAME"
@@ -61,11 +61,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/AliveCharacter"
-                app:layout_constraintTop_toBottomOf="@+id/AliveCharacterRole"
+                app:layout_constraintTop_toBottomOf="@+id/ActionerCharacterRole"
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/AliveCharacterRole"
+                android:id="@+id/ActionerCharacterRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ALIVE CHARACTER ROLE"
@@ -114,7 +114,9 @@
         android:layout_width="390dp"
         android:layout_height="287dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/red_rectangle"
         android:gravity="center"
         android:orientation="vertical"
@@ -184,7 +186,8 @@
         android:id="@+id/DeadTitleBox"
         android:layout_width="110dp"
         android:layout_height="52dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/red_rectangle"
         android:gravity="center"
         android:orientation="vertical"
@@ -209,7 +212,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/DoneChoosingCharacters"
+        android:id="@+id/StartTheNight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
