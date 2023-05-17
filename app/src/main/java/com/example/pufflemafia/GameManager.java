@@ -18,8 +18,8 @@ public class GameManager {
     public Player getCurrentPlayerActiveAtNight(){ return currentPlayerActiveAtNight; }
 
     // Winning Team Properties
-    private static Role.Teams winningTeam;
-    public static Role.Teams getWinningTeam(){return winningTeam;}
+    private Role.Teams winningTeam;
+    public Role.Teams getWinningTeam(){return winningTeam;}
 
     // Managers
     public RolesManager rolesManager;
@@ -35,8 +35,12 @@ public class GameManager {
         this.rolesManager = new RolesManager();
         this.playerManager = new PlayerManager();
         currentState = GameState.MainMenu;
-        winningTeam = Role.Teams.TOWN;
+        this.winningTeam = Role.Teams.TOWN;
         currentPlayerActiveAtNight = new Player();
+        this.onStartDay = new Event<Integer>();
+        this.onStartNight = new Event<Integer>();
+        this.onGameWon = new Event<Role.Teams>();
+        this.currentPlayerActiveAtNight = new Player();
     }
 
     // Sets the current state to Role Selection
@@ -65,7 +69,7 @@ public class GameManager {
             }
             else{
                 // set player role as a selected role
-                player.setRole(this.rolesManager.selectedRoles.get(i));
+                player.setRole(this.rolesManager.selectedRoles.get(i - numberOfMafia));
             }
             this.playerManager.allAlive.setElementAt(player, i);
         }
@@ -101,6 +105,13 @@ public class GameManager {
         currentState = GameState.Day;
         this.onStartDay.Invoke();
 
+        CheckForWinningTeam();
+    }
+
+    // Handles killing a player
+    //      Use this instead of the KillPlayer function on PlayerManager to handle CheckingForWinningTeam
+    public void KillPlayer(Player player){
+        this.playerManager.KillPlayer(player);
         CheckForWinningTeam();
     }
 
@@ -140,17 +151,27 @@ public class GameManager {
             }
         }
 
+        /*
+        System.out.print("Number members of each team left:\n" +
+                "Mafia " + numberOfMafiaAlive + "\n" +
+                "Town " + numberOfTownAlive + "\n" +
+                "Self " + numberOfSelfAlive + "\n" +
+                "Rival " + numberOfRivalAlive + "\n" +
+                "Neutral " + numberOfNeutralAlive + "\n");
+         */
+
         // Town: are all MAFIA dead
         if(numberOfMafiaAlive == 0){
-            winningTeam = Role.Teams.TOWN;
-            this.onGameWon.Invoke(winningTeam);
+            this.winningTeam = Role.Teams.TOWN;
+            this.onGameWon.Invoke(this.winningTeam);
             return;
         }
 
+
         // MAFIA: are they equal to 50% or more of the alive players
-        if(numberOfMafiaAlive >= (numberOfTownAlive + numberOfSelfAlive + numberOfNeutralAlive)){
-            winningTeam = Role.Teams.MAFIA;
-            this.onGameWon.Invoke(winningTeam);
+        else if(numberOfMafiaAlive >= (numberOfTownAlive + numberOfSelfAlive + numberOfNeutralAlive)){
+            this.winningTeam = Role.Teams.MAFIA;
+            this.onGameWon.Invoke(this.winningTeam);
             return;
         }
 

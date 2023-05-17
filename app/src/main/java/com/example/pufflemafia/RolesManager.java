@@ -1,7 +1,5 @@
 package com.example.pufflemafia;
 
-import java.util.Dictionary;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -25,6 +23,7 @@ public class RolesManager {
     }
 
     public RolesManager(){
+        this.selectedRoles = new Vector<Role>();
         allRoles = new HashMap<String, Role>();
         this.LoadAllRoles();
     }
@@ -54,7 +53,7 @@ public class RolesManager {
         Role cupid = new Role(0,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
-                Power.PowerType.FISTNIGHT,
+                Power.PowerType.FIRSTNIGHT,
                 "link",
                 "Cupid",
                 R.drawable.cupid_puffle);
@@ -63,7 +62,7 @@ public class RolesManager {
         Role cyborg = new Role(0,
                 Role.Alliances.NEUTRAL,
                 Role.Teams.NEUTRAL,
-                Power.PowerType.FISTNIGHT,
+                Power.PowerType.FIRSTNIGHT,
                 "copy",
                 "Cyborg",
                 R.drawable.cyborg_puffle);
@@ -171,7 +170,7 @@ public class RolesManager {
         Role lovers = new Role(0,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
-                Power.PowerType.FISTNIGHT,
+                Power.PowerType.FIRSTNIGHT,
                 "???",
                 "Lovers",
                 R.drawable.lover_puffle);
@@ -216,7 +215,7 @@ public class RolesManager {
         Role terrorist = new Role(0,
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA,
-                Power.PowerType.FISTNIGHT,
+                Power.PowerType.FIRSTNIGHT,
                 "plant a bomb on",
                 "Terrorist",
                 R.drawable.terrorist_puffle);

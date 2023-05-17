@@ -2,7 +2,7 @@ package com.example.pufflemafia;
 
 // Handles all data and logic for a single power/ability of a playere
 public class Power {
-    enum PowerType {PASSIVE, ACTIVE, CONTINOUS, FISTNIGHT, SELFACTIVE};
+    enum PowerType {PASSIVE, ACTIVE, CONTINOUS, FIRSTNIGHT, SELFACTIVE};
     private PowerType type;
     public PowerType getType () { return type; }
     private String prompt;
@@ -14,7 +14,7 @@ public class Power {
     }
 
     public Power (PowerType type, String prompt){
-        Initialize(type, prompt);
+        this.Initialize(type, prompt);
     }
 
     public void Initialize (PowerType type, String prompt){

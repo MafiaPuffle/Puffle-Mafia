@@ -36,8 +36,9 @@ public class Player {
 
     // Fills a player with "blank" values
     public Player(){
-        name = "name";
-        role = new Role();
+        this.name = "name";
+        this.role = new Role();
+        this.tokensOnPlayer = new Vector<Integer>();
     }
 
     // adds the token to tokensOnPlayer

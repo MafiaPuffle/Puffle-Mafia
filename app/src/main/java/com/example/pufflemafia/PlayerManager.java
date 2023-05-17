@@ -16,7 +16,8 @@ public class PlayerManager {
     private int playerWithAbilityIndex;
 
     public PlayerManager (){
-
+        this.allAlive = new Vector<Player>();
+        this.allDead = new Vector<Player>();
     }
 
     // Run whenever we start a new game
@@ -35,18 +36,20 @@ public class PlayerManager {
     //      The vector playersWithAbilitesForThisNight is filled
     //      playerWithAbilityIndex is reset
     public void StartNight(){
-        playersWithAbilitiesForThisNight.clear();
-        playerWithAbilityIndex = -1;  // we will increment it everytime we access it,
+        this.playersWithAbilitiesForThisNight = new Vector<Player>();
+        this.playerWithAbilityIndex = -1;  // we will increment it everytime we access it,
                                       // so the first time it will be -1 + 1 = 0
 
         // filters out the alive players who have no abilities for this night
-        for(int i = 0; i < allAlive.size(); ++i){
-            Player player = allAlive.get(i);
+        for(int i = 0; i < this.allAlive.size(); ++i){
+            Player player = this.allAlive.get(i);
             Power power = new Power();
             power.Copy(player.getRole().getPower());
 
-            if(power.getType() != Power.PowerType.PASSIVE || power.getType() != Power.PowerType.SELFACTIVE){
-                if(GameManager.getNightNumber() > 1 && power.getType() != Power.PowerType.FISTNIGHT){
+            if(power.getType() != Power.PowerType.PASSIVE && power.getType() != Power.PowerType.SELFACTIVE){
+                if(GameManager.getNightNumber() == 1){
+                    playersWithAbilitiesForThisNight.add(player);
+                } else if (power.getType() != Power.PowerType.FIRSTNIGHT) {
                     playersWithAbilitiesForThisNight.add(player);
                 }
             }
