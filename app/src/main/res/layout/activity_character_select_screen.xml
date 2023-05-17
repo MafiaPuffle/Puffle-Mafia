@@ -23,7 +23,7 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.168">
+        app:layout_constraintVertical_bias="0.137">
 
         <ImageButton
             android:id="@+id/NonActiveCharacter"
@@ -80,7 +80,7 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ChooseYourCharactersTitleBox"
-        app:layout_constraintVertical_bias="0.826">
+        app:layout_constraintVertical_bias="0.88">
 
         <ImageButton
             android:id="@+id/ActiveCharacter"
@@ -125,7 +125,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/Next"
+        android:id="@+id/DoneChoosingCharacters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"

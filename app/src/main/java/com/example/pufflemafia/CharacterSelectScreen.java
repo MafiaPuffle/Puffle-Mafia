@@ -24,5 +24,14 @@ public class CharacterSelectScreen extends AppCompatActivity {
             }
         });
 
+        Button DoneChoosingCharacters = findViewById(R.id.DoneChoosingCharacters);
+        DoneChoosingCharacters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CharacterSelectScreen.this, MainMafiaPage.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
