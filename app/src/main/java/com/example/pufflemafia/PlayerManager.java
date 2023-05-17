@@ -11,8 +11,9 @@ public class PlayerManager {
     public Vector<Player> allAlive;
     public Vector<Player> allDead;
 
-    public Vector<Player> playersWithAbilitiesForThisNight;
-    public int playerWithAbilityIndex;
+    // values stored and used by the GetNextPlayerForNight() method
+    private Vector<Player> playersWithAbilitiesForThisNight;
+    private int playerWithAbilityIndex;
 
     public PlayerManager (){
 
@@ -45,7 +46,7 @@ public class PlayerManager {
             power.Copy(player.getRole().getPower());
 
             if(power.getType() != Power.PowerType.PASSIVE || power.getType() != Power.PowerType.SELFACTIVE){
-                if(GameManager.nightNumber > 1 && power.getType() != Power.PowerType.FISTNIGHT){
+                if(GameManager.getNightNumber() > 1 && power.getType() != Power.PowerType.FISTNIGHT){
                     playersWithAbilitiesForThisNight.add(player);
                 }
             }
@@ -80,7 +81,8 @@ public class PlayerManager {
         this.allDead.remove(player);
     }
 
-    public void UseAbilityOnPlayer(Player sourcePlayer, @NonNull Player targetPlayer){
-        targetPlayer.AddToken();
+    // Adds token from sourcePlayer onto targetPlayer
+    public void UseAbilityOnPlayer( @NonNull Player sourcePlayer, @NonNull Player targetPlayer){
+        targetPlayer.AddTokenOnToPlayer(sourcePlayer.getToken());
     }
 }

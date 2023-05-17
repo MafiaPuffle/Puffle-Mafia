@@ -6,17 +6,42 @@ import java.util.Collections;
 // Handles all the game logic
 // Should be the root program for all game logic
 public class GameManager {
+    // Game State Properties
     enum GameState {MainMenu, RoleSelection, Day, Night}
-    public static int nightNumber;
-    public static GameState currentState;
+    private static GameState currentState;
+    public static GameState getCurrentState(){ return currentState; }
+
+    // Night Properties
+    private static int nightNumber;
+    public static int getNightNumber(){ return nightNumber; }
+    private Player currentPlayerActiveAtNight;
+    public Player getCurrentPlayerActiveAtNight(){ return currentPlayerActiveAtNight; }
+
+    // Winning Team Properties
+    private static Role.Teams winningTeam;
+    public static Role.Teams getWinningTeam(){return winningTeam;}
+
+    // Managers
     public RolesManager rolesManager;
     public PlayerManager playerManager;
+
+    // Events
+    public Event<Integer> onStartDay;
+    public Event<Integer> onStartNight;
+    public Event<Role.Teams> onGameWon;
 
     // Initializes the managers for the game
     public GameManager(){
         this.rolesManager = new RolesManager();
         this.playerManager = new PlayerManager();
         currentState = GameState.MainMenu;
+        winningTeam = Role.Teams.TOWN;
+        currentPlayerActiveAtNight = new Player();
+    }
+
+    // Sets the current state to Role Selection
+    public void GoToRoleSelectScreen(){
+        currentState = GameState.RoleSelection;
     }
 
     // Once we have selected available roles and number of mafia we use this to set up a new game
@@ -49,16 +74,90 @@ public class GameManager {
     }
 
     // handle going from day to night
-    public void GoToNight(){
+    public void StartNight(){
 
         nightNumber++;
 
         currentState = GameState.Night;
+        this.onStartNight.Invoke();
 
         this.playerManager.StartNight();
     }
 
-    public void GoToDay(){
-        //TODO: figure out how to handle going from night to day
+    // if we are in a night this updates currentActivePlayerAtNight
+    //      or sets it to day if no more players are left
+    public void GoToNextEventAtNight(){
+        if(currentState != GameState.Night) return;
+
+        currentPlayerActiveAtNight = playerManager.GetNextPlayerForNight();
+
+        if (currentPlayerActiveAtNight == null) StartDay();
+    }
+
+    // handles logic for going to day
+    //      Is called by GoToNextEventAtNight() when all players have gone
+    public void StartDay(){
+
+        currentState = GameState.Day;
+        this.onStartDay.Invoke();
+
+        CheckForWinningTeam();
+    }
+
+    // handles logic for seeing if a team has won
+    //      Is called by StartDay()
+    //      Triggers the event onTeamWon with the winning team
+    private void CheckForWinningTeam(){
+        // TODO: find out and write win logic for the following teams: SELF, RIVAL_MAFIA, NEUTRAL
+
+        int numberOfMafiaAlive = 0;
+        int numberOfTownAlive = 0;
+        int numberOfSelfAlive = 0;
+        int numberOfRivalAlive = 0;
+        int numberOfNeutralAlive = 0;
+
+        // Finds out how many of each team is alive
+        for(int i = 0; i < playerManager.allAlive.size(); ++i){
+            Role role = new Role();
+            role.Copy(this.playerManager.allAlive.get(i).getRole());
+
+            switch (role.getTeam()){
+                case TOWN:
+                    numberOfTownAlive++;
+                    break;
+                case MAFIA:
+                    numberOfMafiaAlive++;
+                    break;
+                case SELF:
+                    numberOfSelfAlive++;
+                    break;
+                case RIVAL_MAFIA:
+                    numberOfRivalAlive++;
+                    break;
+                case NEUTRAL:
+                    numberOfNeutralAlive++;
+                    break;
+            }
+        }
+
+        // Town: are all MAFIA dead
+        if(numberOfMafiaAlive == 0){
+            winningTeam = Role.Teams.TOWN;
+            this.onGameWon.Invoke(winningTeam);
+            return;
+        }
+
+        // MAFIA: are they equal to 50% or more of the alive players
+        if(numberOfMafiaAlive >= (numberOfTownAlive + numberOfSelfAlive + numberOfNeutralAlive)){
+            winningTeam = Role.Teams.MAFIA;
+            this.onGameWon.Invoke(winningTeam);
+            return;
+        }
+
+        // SELF: ???
+
+        // RIVAL_MAFIA: ???
+
+        // NEUTRAL: ???
     }
 }
