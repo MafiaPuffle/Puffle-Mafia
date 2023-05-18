@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/HowManyPLayersBox"
-        android:layout_width="312dp"
-        android:layout_height="61dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/purple_rectangle"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,8 +21,8 @@
 
         <TextView
             android:id="@+id/HowManyPlayers"
-            android:layout_width="312dp"
-            android:layout_height="61dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:text="How Many Players"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -82,6 +82,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RandomCharactersButton"
         app:layout_constraintVertical_bias="0.201" />
+
+    <Button
+        android:id="@+id/BackToMainMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ChooseCharactersButton"
+        app:layout_constraintVertical_bias="0.942" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
