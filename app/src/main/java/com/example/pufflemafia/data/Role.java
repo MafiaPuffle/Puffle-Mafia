@@ -1,8 +1,8 @@
-package com.example.pufflemafia;
-
-import android.media.Image;
+package com.example.pufflemafia.data;
 
 import androidx.annotation.NonNull;
+
+import com.example.pufflemafia.R;
 
 import java.util.Comparator;
 
@@ -13,6 +13,13 @@ public class Role {
     enum Teams {TOWN, MAFIA, SELF, RIVAL_MAFIA, NEUTRAL}
 
     // properties
+
+    private String name;
+    public String getName (){ return name; }
+
+    private int imageResource;
+    public int getImageResource (){ return imageResource; }
+
     private float priority;
     public float getPriority (){ return priority; }
 
@@ -25,12 +32,6 @@ public class Role {
     private Power power = new Power();
     public Power getPower() { return power; }
 
-    private String name;
-    public String getName (){ return name; }
-
-    private int imageResource;
-    public int getImageResource (){ return imageResource; }
-
 
     public Role(){
         this.priority = 1;
@@ -40,30 +41,28 @@ public class Role {
         this.imageResource = R.drawable.alien_puffle;
     }
 
+    public Role(Role other){
+        this.Copy(other);
+    }
+
     // Constructor with Power class as an argument
-    public Role (float priority, Alliances alliance, Teams team, @NonNull Power power, String name, int imageResource){
-        Initialize(priority, alliance, team, power.getType(), power.getPrompt(), name, imageResource);
-    }
-
-    // Constructor taking Power in its components instead
-    public Role (float priority, Alliances alliance, Teams team, Power.PowerType powerType, String powerPrompt, String name, int imageResource){
-        Initialize(priority, alliance, team, powerType, powerPrompt, name, imageResource);
-
-    }
-
-    // Called by all constructors to set up this class
-    public void Initialize (float priority, Alliances alliance, Teams team, Power.PowerType powerType, String powerPrompt, String name, int imageResource){
+    public Role ( String name, int imageResource, float priority, Alliances alliance, Teams team, @NonNull Power power){
+        this.name = name;
+        this.imageResource = imageResource;
         this.priority = priority;
         this.alliance = alliance;
         this.team = team;
-        this.power.Initialize(powerType, powerPrompt);
-        this.name = name;
-        this.imageResource = imageResource;
+        this.power = new Power(power);
     }
 
     // Lets us copy values from another role into this
     public void Copy (@NonNull Role other){
-        this.Initialize(other.priority, other.alliance, other.team, other.getPower().getType(), other.getPower().getPrompt(), other.name, other.getImageResource());
+        this.name = other.getName();
+        this.imageResource = other.getImageResource();
+        this.priority = other.getImageResource();
+        this.alliance = other.getAlliance();
+        this.team = other.getTeam();
+        this.power = new Power(other.getPower());
     }
 }
 

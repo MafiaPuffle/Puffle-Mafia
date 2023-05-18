@@ -2,6 +2,8 @@ package com.example.pufflemafia;
 
 import androidx.annotation.NonNull;
 
+import com.example.pufflemafia.data.Power;
+
 import java.util.Collections;
 import java.util.Vector;
 

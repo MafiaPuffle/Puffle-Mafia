@@ -1,5 +1,8 @@
 package com.example.pufflemafia;
 
+import com.example.pufflemafia.data.Power;
+import com.example.pufflemafia.data.Role;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;

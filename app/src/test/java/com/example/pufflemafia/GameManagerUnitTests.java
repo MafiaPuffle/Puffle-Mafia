@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import com.example.pufflemafia.data.Role;
+
 public class GameManagerUnitTests {
 
     @Test

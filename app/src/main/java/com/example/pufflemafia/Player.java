@@ -2,6 +2,8 @@ package com.example.pufflemafia;
 
 import androidx.annotation.NonNull;
 
+import com.example.pufflemafia.data.Role;
+
 import java.util.Comparator;
 import java.util.Vector;
 

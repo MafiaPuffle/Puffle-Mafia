@@ -1,5 +1,7 @@
 package com.example.pufflemafia;
 
+import com.example.pufflemafia.data.Role;
+
 public class ListenForWinner implements IListener<Role.Teams>{
 
     public Role.Teams winningTeam;

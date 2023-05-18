@@ -1,5 +1,7 @@
 package com.example.pufflemafia;
 
+import com.example.pufflemafia.data.Role;
+
 import java.util.Collections;
 
 
