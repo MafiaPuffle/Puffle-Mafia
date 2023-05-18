@@ -14,7 +14,7 @@ public class HowManyCharacters extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_many_characters);
 
-        Button ReturnToChooseYourCharacterScreenWithNewValues = findViewById(R.id.NextBackToChooseYourCharacters);
+        Button ReturnToChooseYourCharacterScreenWithNewValues = findViewById(R.id.HowManyBackToChooseYourCharacters);
         ReturnToChooseYourCharacterScreenWithNewValues.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

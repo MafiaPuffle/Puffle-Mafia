@@ -16,6 +16,7 @@ public class CharacterSelectScreen extends AppCompatActivity {
         setContentView(R.layout.activity_character_select_screen);
 
         ImageButton ChosenCharacter = findViewById(R.id.NonActiveCharacter);
+
         ChosenCharacter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
