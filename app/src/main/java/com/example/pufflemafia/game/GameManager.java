@@ -5,97 +5,101 @@ import com.example.pufflemafia.RolesManager;
 import com.example.pufflemafia.data.Role;
 
 import java.util.Collections;
+import java.util.Random;
+import java.util.Vector;
 
 
 // Handles all the game logic
 // Should be the root program for all game logic
 public class GameManager {
     // Game State Properties
-    enum GameState {MainMenu, RoleSelection, Day, Night}
+    public enum GameState {Day, Night}
     private static GameState currentState;
     public static GameState getCurrentState(){ return currentState; }
 
     // Night Properties
     private static int nightNumber;
     public static int getNightNumber(){ return nightNumber; }
-    private Player currentPlayerActiveAtNight;
-    public Player getCurrentPlayerActiveAtNight(){ return currentPlayerActiveAtNight; }
+    private static Role currentRoleActiveAtNight;
+    private static int currentIndexOfEventsAtNight;
+    public static Role getCurrentRoleActiveAtNight(){ return currentRoleActiveAtNight; }
 
     // Managers
-    //public RolesManager rolesManager;
-    public PlayerManager playerManager;
+    public static ActiveRolesManager activeRolesManager;
+    public static PlayerManager playerManager;
 
     // Events
-    public Event<Integer> onStartDay;
-    public Event<Integer> onStartNight;
+    public static Event<Integer> onStartDay;
+    public static Event<Integer> onStartNight;
 
     // Initializes the managers for the game
     public GameManager(){
-        //this.rolesManager = new RolesManager();
-        this.playerManager = new PlayerManager();
+        activeRolesManager = new ActiveRolesManager();
+        playerManager = new PlayerManager();
         nightNumber = 0;
-        currentState = GameState.MainMenu;
-        //this.winningTeam = Role.Teams.TOWN;
-        currentPlayerActiveAtNight = new Player();
-        this.onStartDay = new Event<Integer>();
-        this.onStartNight = new Event<Integer>();
-        //this.onGameWon = new Event<Role.Teams>();
-        this.currentPlayerActiveAtNight = new Player();
+        currentState = GameState.Day;
+        currentRoleActiveAtNight = new Role();
+        onStartDay = new Event<Integer>();
+        onStartNight = new Event<Integer>();
     }
 
-    // Sets the current state to Role Selection
-    public void GoToRoleSelectScreen(){
-        currentState = GameState.RoleSelection;
-    }
-
-    // Once we have selected available roles and number of mafia we use this to set up a new game
-    public void StartNewGame(int numberOfPlayers, int numberOfMafia){
+    // Once we have selected number of players, set the player names, and chosen all the
+    // roles (duplicates allowed) we start a new game
+    public void StartNewGame(int numberOfPlayers, Vector<String> playerNames, Vector<Role> chosenRoles){
 
         // Resets the night number
         nightNumber = 0;
 
-        // Adds a bunch of empty players to the playerManager
-        this.playerManager.NewGame(numberOfPlayers);
+        PlayerManager.allAlive.clear();
+        PlayerManager.allDead.clear();
 
-        // Mixes up the selected roles, so we get randomized roles
-        Collections.shuffle(this.rolesManager.selectedRoles);
+        // Randomly shuffle the chosenRoles
+        Collections.shuffle(chosenRoles, new Random());
 
-        // Assigns the roles to the players
+        // Add players to PlayerManager with Roles and Names
         for(int i = 0; i < numberOfPlayers; ++i){
-            Player player = this.playerManager.allAlive.get(i);
-            if(i < numberOfMafia){
-                // set player role as mafia
-                player.setRole("Mafia");
-            }
-            else{
-                // set player role as a selected role
-                player.setRole(this.rolesManager.selectedRoles.get(i - numberOfMafia));
-            }
-            this.playerManager.allAlive.setElementAt(player, i);
+            PlayerManager.AddPlayer(new Player());
+            PlayerManager.EditPlayerName(PlayerManager.PlayerMangerListType.ALIVE, i, playerNames.get(i));
+            PlayerManager.EditPlayerRole(PlayerManager.PlayerMangerListType.ALIVE, i, chosenRoles.get(i));
         }
 
-        currentState = GameState.Day;
+
+        StartDay();
     }
 
     // handle going from day to night
     public void StartNight(){
 
         nightNumber++;
+        currentIndexOfEventsAtNight = 0;
 
         currentState = GameState.Night;
-        this.onStartNight.Invoke();
+        onStartNight.Invoke();
 
-        this.playerManager.StartNight();
+        // Gets all alive roles and sends the to the ActiveRolesManager
+        Vector<Role> allAliveRoles = new Vector<Role>();
+        for (Player player: PlayerManager.allAlive) {
+            allAliveRoles.add(player.getRole());
+        }
+
+        ActiveRolesManager.StartNight(allAliveRoles, nightNumber);
     }
 
-    // if we are in a night this updates currentActivePlayerAtNight
+    // if we are in a night this updates currentActiveRoleAtNight
     //      or sets it to day if no more players are left
+    public void GoToPreviousEventAtNight(){
+        if(currentState != GameState.Night) return;
+        currentIndexOfEventsAtNight--;
+        if(currentIndexOfEventsAtNight < 0) currentIndexOfEventsAtNight = 0;
+
+        currentRoleActiveAtNight = ActiveRolesManager.GetRoleForNight(currentIndexOfEventsAtNight);
+    }
     public void GoToNextEventAtNight(){
         if(currentState != GameState.Night) return;
+        currentIndexOfEventsAtNight++;
 
-        currentPlayerActiveAtNight = playerManager.GetNextPlayerForNight();
-
-        if (currentPlayerActiveAtNight == null) StartDay();
+        currentRoleActiveAtNight = ActiveRolesManager.GetRoleForNight(currentIndexOfEventsAtNight);
+        if(currentRoleActiveAtNight == null) StartDay();
     }
 
     // handles logic for going to day
@@ -103,12 +107,7 @@ public class GameManager {
     public void StartDay(){
 
         currentState = GameState.Day;
-        this.onStartDay.Invoke();
-    }
-
-    // Handles killing a player
-    public void KillPlayer(Player player){
-        this.playerManager.KillPlayer(player);
+        onStartDay.Invoke();
     }
 
 }

@@ -9,8 +9,8 @@ import java.util.Comparator;
 // Handles all data and logic for a single role
 public class Role {
     // Enums
-    enum Alliances {GOOD, EVIL, NEUTRAL}
-    enum Teams {TOWN, MAFIA, SELF, RIVAL_MAFIA, NEUTRAL}
+    public enum Alliances {GOOD, EVIL, NEUTRAL}
+    public enum Teams {TOWN, MAFIA, SELF, RIVAL_MAFIA, NEUTRAL}
 
     // properties
 
@@ -74,16 +74,6 @@ public class Role {
         this.power = new Power(other.getPower());
         this.minimumAllowed = other.minimumAllowed;
         this.maximumAllowed = other.maximumAllowed;
-    }
-}
-
-// Helper class used to sort roles by their priority
-class SortByPriority implements Comparator<Role> {
-    public int compare(Role a, Role b)
-    {
-        if(a.getPriority() < b.getPriority()) return -1;
-        else if (a.getPriority() == b.getPriority()) return 0;
-        else return 1;
     }
 }
 

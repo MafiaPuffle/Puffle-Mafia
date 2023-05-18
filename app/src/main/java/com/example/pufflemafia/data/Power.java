@@ -4,7 +4,7 @@ import com.example.pufflemafia.R;
 
 // Handles all data and logic for a single power/ability of a playere
 public class Power {
-    enum PowerType {PASSIVE, ACTIVE, CONTINOUS, FIRSTNIGHT, SELFACTIVE};
+    public enum PowerType {PASSIVE, ACTIVE, CONTINOUS, FIRSTNIGHT, SELFACTIVE};
 
     private String name;
     public String getName(){return name;}

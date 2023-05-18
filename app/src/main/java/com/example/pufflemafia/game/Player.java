@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.RolesManager;
 import com.example.pufflemafia.data.Role;
+import com.example.pufflemafia.data.Token;
 
 import java.util.Comparator;
 import java.util.Vector;
@@ -24,28 +25,32 @@ public class Player {
     }
 
     // the tokens applied to this player
-    private Vector<Integer> tokensOnPlayer;
-    public Integer getTokneOnPlayerAt(int index) {
+    private Vector<Token> tokensOnPlayer;
+    public Token getTokenOnPlayer(int index) {
         if(index < tokensOnPlayer.size())
             return tokensOnPlayer.get(index);
         else return null;
     }
-    public Vector<Integer> getAllTokensOnPlayer() { return tokensOnPlayer; }
+    public Vector<Token> getAllTokensOnPlayer() { return tokensOnPlayer; }
+    public void setTokenAt(int index, Token token){
+        tokensOnPlayer.removeElementAt(index);
+        tokensOnPlayer.insertElementAt(token, index);
+    }
 
     // the token this player applies to others
-    public int getToken(){
-        return this.role.getImageResource();
+    public Token getToken(){
+        return this.role.getPower().getToken();
     }
 
     // Fills a player with "blank" values
     public Player(){
         this.name = "name";
         this.role = new Role();
-        this.tokensOnPlayer = new Vector<Integer>();
+        this.tokensOnPlayer = new Vector<Token>();
     }
 
     // adds the token to tokensOnPlayer
-    public void AddTokenOnToPlayer(int token){
+    public void AddTokenOnToPlayer(Token token){
         tokensOnPlayer.add(token);
     }
 

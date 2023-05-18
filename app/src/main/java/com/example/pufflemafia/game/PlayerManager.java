@@ -3,97 +3,152 @@ package com.example.pufflemafia.game;
 import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.data.Power;
+import com.example.pufflemafia.data.Role;
+import com.example.pufflemafia.data.Token;
 import com.example.pufflemafia.game.GameManager;
 import com.example.pufflemafia.game.Player;
 import com.example.pufflemafia.game.SortPlayerByPriority;
 
 import java.util.Collections;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // Handles all data and logic for all player in the game
 public class PlayerManager {
+    public enum PlayerMangerListType {ALIVE, DEAD}
 
-    public Vector<Player> allAlive;
-    public int numberOfPlayersAlive() {return this.allDead.size();}
-    public Vector<Player> allDead;
-    public int numberOfPlayersDead() {return this.allDead.size();}
 
-    // values stored and used by the GetNextPlayerForNight() method
-    private Vector<Player> playersWithAbilitiesForThisNight;
-    private int playerWithAbilityIndex;
+    public static Vector<Player> allAlive;
+    public static int numberOfPlayersAlive() {return allAlive.size();}
+    public static Vector<Player> allDead;
+    public static int numberOfPlayersDead() {return allDead.size();}
+
+    // Used for sending warning messages for debugging
+    private static Logger logger;
 
     public PlayerManager (){
-        this.allAlive = new Vector<Player>();
-        this.allDead = new Vector<Player>();
-    }
+        allAlive = new Vector<Player>();
+        allDead = new Vector<Player>();
 
-    // Run whenever we start a new game
-    public void NewGame(int numberOfPlayers){
-        // resets vectors
-        this.allAlive.clear();
-        this.allDead.clear();
-
-        // adds players
-        for(int i = 0; i < numberOfPlayers; ++i){
-            this.AddPlayer(new Player());
-        }
-    }
-
-    // Run whenever we start a new night
-    //      The vector playersWithAbilitesForThisNight is filled
-    //      playerWithAbilityIndex is reset
-    public void StartNight(){
-        this.playersWithAbilitiesForThisNight = new Vector<Player>();
-        this.playerWithAbilityIndex = -1;  // we will increment it everytime we access it,
-                                      // so the first time it will be -1 + 1 = 0
-
-        // filters out the alive players who have no abilities for this night
-        for(int i = 0; i < this.allAlive.size(); ++i){
-            Player player = this.allAlive.get(i);
-            Power power = new Power();
-            power.Copy(player.getRole().getPower());
-
-            if(power.getType() != Power.PowerType.PASSIVE && power.getType() != Power.PowerType.SELFACTIVE){
-                if(GameManager.getNightNumber() == 1){
-                    playersWithAbilitiesForThisNight.add(player);
-                } else if (power.getType() != Power.PowerType.FIRSTNIGHT) {
-                    playersWithAbilitiesForThisNight.add(player);
-                }
-            }
-        }
-
-        // Sorts the all players with abilities for this night by priority
-        Collections.sort(this.playersWithAbilitiesForThisNight, new SortPlayerByPriority());
-    }
-
-    // Returns the next player with an ability for this night
-    // If no more players remains it returns null
-    public Player GetNextPlayerForNight(){
-        playerWithAbilityIndex++;
-        if(playerWithAbilityIndex < playersWithAbilitiesForThisNight.size()){
-            return playersWithAbilitiesForThisNight.get(playerWithAbilityIndex);
-        }
-        else return null;
+        Logger.getLogger(PlayerManager.class.getName());
     }
 
     // Adds a player to the game
-    public void AddPlayer(Player player){
-        this.allAlive.add(player);
+    public static void AddPlayer(Player player){
+        allAlive.add(player);
     }
 
-    public void KillPlayer(Player player){
-        this.allDead.add(player);
-        this.allAlive.remove(player);
+    public static void KillPlayer(Player player){
+        allDead.add(player);
+        allAlive.remove(player);
     }
 
-    public void RevivePlayer(Player player){
-        this.allAlive.add(player);
-        this.allDead.remove(player);
+    public static void RevivePlayer(Player player){
+        allAlive.add(player);
+        allDead.remove(player);
+    }
+
+    public static void EditPlayerName(PlayerMangerListType listType, int playerIndex, String newName){
+        if(listType == PlayerMangerListType.ALIVE){
+            if(playerIndex >= allAlive.size()){
+                // Set Logger level()
+                logger.setLevel(Level.WARNING);
+
+                // Call warning method
+                logger.warning("attempted to edit a player name outside of all alive");
+                return;
+            }
+
+            allAlive.elementAt(playerIndex).name = newName;
+        }
+        else{
+            if(playerIndex >= allDead.size()){
+                // Set Logger level()
+                logger.setLevel(Level.WARNING);
+
+                // Call warning method
+                logger.warning("attempted to edit a player name outside of all dead");
+                return;
+            }
+
+            allDead.elementAt(playerIndex).name = newName;
+        }
+    }
+
+    public static void EditPlayerRole(PlayerMangerListType listType, int playerIndex, Role newRole){
+        if(listType == PlayerMangerListType.ALIVE){
+            if(playerIndex >= allAlive.size()){
+                // Set Logger level()
+                logger.setLevel(Level.WARNING);
+
+                // Call warning method
+                logger.warning("attempted to edit a player role outside of all alive");
+                return;
+            }
+
+            allAlive.elementAt(playerIndex).setRole(newRole);
+        }
+        else{
+            if(playerIndex >= allDead.size()){
+                // Set Logger level()
+                logger.setLevel(Level.WARNING);
+
+                // Call warning method
+                logger.warning("attempted to edit a player role outside of all dead");
+                return;
+            }
+
+            allDead.elementAt(playerIndex).setRole(newRole);
+        }
+    }
+
+    public static void EditPlayerToken(PlayerMangerListType listType, int playerIndex, int tokenIndex, Token newToken){
+        if(listType == PlayerMangerListType.ALIVE){
+            if(playerIndex >= allAlive.size()){
+                // Set Logger level()
+                logger.setLevel(Level.WARNING);
+
+                // Call warning method
+                logger.warning("attempted to edit a player token outside of all alive");
+                return;
+            }
+            if(tokenIndex >= allAlive.elementAt(playerIndex).getAllTokensOnPlayer().size()){
+                // Set Logger level()
+                logger.setLevel(Level.WARNING);
+
+                // Call warning method
+                logger.warning("attempted to edit a player token outside to their current tokens");
+                return;
+            }
+
+            allAlive.elementAt(playerIndex).setTokenAt(tokenIndex, newToken);
+        }
+        else{
+            if(playerIndex >= allDead.size()){
+                // Set Logger level()
+                logger.setLevel(Level.WARNING);
+
+                // Call warning method
+                logger.warning("attempted to edit a player token outside of all dead");
+                return;
+            }
+            if(tokenIndex >= allDead.elementAt(playerIndex).getAllTokensOnPlayer().size()){
+                // Set Logger level()
+                logger.setLevel(Level.WARNING);
+
+                // Call warning method
+                logger.warning("attempted to edit a player token outside to their current tokens");
+                return;
+            }
+
+            allDead.elementAt(playerIndex).setTokenAt(tokenIndex, newToken);
+        }
     }
 
     // Adds token from sourcePlayer onto targetPlayer
-    public void UseAbilityOnPlayer( @NonNull Player sourcePlayer, @NonNull Player targetPlayer){
-        targetPlayer.AddTokenOnToPlayer(sourcePlayer.getToken());
+    public static void UseAbilityOnPlayer( @NonNull Role sourceRole, @NonNull Player targetPlayer){
+        targetPlayer.AddTokenOnToPlayer(sourceRole.getPower().getToken());
     }
 
 
