@@ -1,10 +1,10 @@
-package com.example.pufflemafia.game;
+package com.example.pufflemafia.app.game;
 
 import androidx.annotation.NonNull;
 
-import com.example.pufflemafia.RolesManager;
-import com.example.pufflemafia.data.Role;
-import com.example.pufflemafia.data.Token;
+import com.example.pufflemafia.app.data.DataManager;
+import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.data.Token;
 
 import java.util.Comparator;
 import java.util.Vector;
@@ -21,7 +21,7 @@ public class Player {
         this.role.Copy(role);
     }
     public void setRole (String name) {
-        this.role.Copy(RolesManager.getRoleFromAllRoles(name));
+        this.role.Copy(DataManager.GetRole(name));
     }
 
     // the tokens applied to this player

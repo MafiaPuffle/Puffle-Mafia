@@ -1,8 +1,8 @@
-package com.example.pufflemafia.game;
+package com.example.pufflemafia.app.game;
 
-import com.example.pufflemafia.Event;
-import com.example.pufflemafia.RolesManager;
-import com.example.pufflemafia.data.Role;
+import com.example.pufflemafia.app.Event;
+import com.example.pufflemafia.app.data.GameSetup;
+import com.example.pufflemafia.app.data.Role;
 
 import java.util.Collections;
 import java.util.Random;
@@ -45,7 +45,7 @@ public class GameManager {
 
     // Once we have selected number of players, set the player names, and chosen all the
     // roles (duplicates allowed) we start a new game
-    public void StartNewGame(int numberOfPlayers, Vector<String> playerNames, Vector<Role> chosenRoles){
+    public static void StartNewGame(GameSetup gameSetup){
 
         // Resets the night number
         nightNumber = 0;
@@ -54,13 +54,13 @@ public class GameManager {
         PlayerManager.allDead.clear();
 
         // Randomly shuffle the chosenRoles
-        Collections.shuffle(chosenRoles, new Random());
+        Collections.shuffle(gameSetup.chosenRoles, new Random());
 
         // Add players to PlayerManager with Roles and Names
-        for(int i = 0; i < numberOfPlayers; ++i){
+        for(int i = 0; i < gameSetup.numberOfPlayers; ++i){
             PlayerManager.AddPlayer(new Player());
-            PlayerManager.EditPlayerName(PlayerManager.PlayerMangerListType.ALIVE, i, playerNames.get(i));
-            PlayerManager.EditPlayerRole(PlayerManager.PlayerMangerListType.ALIVE, i, chosenRoles.get(i));
+            PlayerManager.EditPlayerName(PlayerManager.PlayerMangerListType.ALIVE, i, gameSetup.names.get(i));
+            PlayerManager.EditPlayerRole(PlayerManager.PlayerMangerListType.ALIVE, i, gameSetup.chosenRoles.get(i));
         }
 
 
@@ -68,7 +68,7 @@ public class GameManager {
     }
 
     // handle going from day to night
-    public void StartNight(){
+    public static void StartNight(){
 
         nightNumber++;
         currentIndexOfEventsAtNight = 0;
@@ -87,14 +87,14 @@ public class GameManager {
 
     // if we are in a night this updates currentActiveRoleAtNight
     //      or sets it to day if no more players are left
-    public void GoToPreviousEventAtNight(){
+    public static void GoToPreviousEventAtNight(){
         if(currentState != GameState.Night) return;
         currentIndexOfEventsAtNight--;
         if(currentIndexOfEventsAtNight < 0) currentIndexOfEventsAtNight = 0;
 
         currentRoleActiveAtNight = ActiveRolesManager.GetRoleForNight(currentIndexOfEventsAtNight);
     }
-    public void GoToNextEventAtNight(){
+    public static void GoToNextEventAtNight(){
         if(currentState != GameState.Night) return;
         currentIndexOfEventsAtNight++;
 
@@ -104,7 +104,7 @@ public class GameManager {
 
     // handles logic for going to day
     //      Is called by GoToNextEventAtNight() when all players have gone
-    public void StartDay(){
+    public static void StartDay(){
 
         currentState = GameState.Day;
         onStartDay.Invoke();

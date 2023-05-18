@@ -1,4 +1,4 @@
-package com.example.pufflemafia;
+package com.example.pufflemafia.app;
 
 public class Listener implements IListener<Integer>{
 

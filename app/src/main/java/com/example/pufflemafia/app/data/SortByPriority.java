@@ -1,4 +1,4 @@
-package com.example.pufflemafia.data;
+package com.example.pufflemafia.app.data;
 
 import java.util.Comparator;
 

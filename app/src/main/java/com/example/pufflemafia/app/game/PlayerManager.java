@@ -1,15 +1,10 @@
-package com.example.pufflemafia.game;
+package com.example.pufflemafia.app.game;
 
 import androidx.annotation.NonNull;
 
-import com.example.pufflemafia.data.Power;
-import com.example.pufflemafia.data.Role;
-import com.example.pufflemafia.data.Token;
-import com.example.pufflemafia.game.GameManager;
-import com.example.pufflemafia.game.Player;
-import com.example.pufflemafia.game.SortPlayerByPriority;
+import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.data.Token;
 
-import java.util.Collections;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;

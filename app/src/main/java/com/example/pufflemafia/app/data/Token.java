@@ -1,8 +1,6 @@
-package com.example.pufflemafia.data;
+package com.example.pufflemafia.app.data;
 
 import androidx.annotation.NonNull;
-
-import com.example.pufflemafia.R;
 
 public class Token {
     enum TokenTypes {CLEAR_ON_NIGHT, CLEAR_ON_DEATH, CLEAR_NEVER}

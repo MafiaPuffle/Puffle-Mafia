@@ -1,4 +1,4 @@
-package com.example.pufflemafia;
+package com.example.pufflemafia.app;
 
 import java.util.ArrayList;
 import java.util.List;

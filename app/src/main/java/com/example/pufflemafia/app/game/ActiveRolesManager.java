@@ -1,17 +1,12 @@
-package com.example.pufflemafia.game;
+package com.example.pufflemafia.app.game;
 
 import androidx.annotation.Nullable;
 
-import com.example.pufflemafia.Event;
-import com.example.pufflemafia.data.DataManager;
-import com.example.pufflemafia.data.Power;
-import com.example.pufflemafia.data.Role;
-import com.example.pufflemafia.data.SortByPriority;
+import com.example.pufflemafia.app.Event;
+import com.example.pufflemafia.app.data.Power;
+import com.example.pufflemafia.app.data.Role;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.Map;
 import java.util.Vector;
 
 public class ActiveRolesManager {
@@ -61,7 +56,6 @@ public class ActiveRolesManager {
 
 
     public ActiveRolesManager(){
-        //TODO: figure out ActiveRolesManager
         rolesWithAbilitiesForTheNight = new Vector<Role>();
     }
 }
