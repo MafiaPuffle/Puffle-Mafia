@@ -32,6 +32,11 @@ public class Role {
     private Power power = new Power();
     public Power getPower() { return power; }
 
+    private int minimumAllowed;
+    public int getMinimumAllowed(){return minimumAllowed;}
+    private int maximumAllowed;
+    public int getMaximumAllowed(){return maximumAllowed;}
+
 
     public Role(){
         this.priority = 1;
@@ -39,6 +44,8 @@ public class Role {
         this.team = Teams.TOWN;
         this.name = "PuffleName";
         this.imageResource = R.drawable.alien_puffle;
+        this.minimumAllowed = 1;
+        this.maximumAllowed = 3;
     }
 
     public Role(Role other){
@@ -46,13 +53,15 @@ public class Role {
     }
 
     // Constructor with Power class as an argument
-    public Role ( String name, int imageResource, float priority, Alliances alliance, Teams team, @NonNull Power power){
+    public Role ( String name, int imageResource, float priority, Alliances alliance, Teams team, @NonNull Power power, int minimumAllowed, int maximumAllowed){
         this.name = name;
         this.imageResource = imageResource;
         this.priority = priority;
         this.alliance = alliance;
         this.team = team;
         this.power = new Power(power);
+        this.minimumAllowed = minimumAllowed;
+        this.maximumAllowed = maximumAllowed;
     }
 
     // Lets us copy values from another role into this
@@ -63,6 +72,8 @@ public class Role {
         this.alliance = other.getAlliance();
         this.team = other.getTeam();
         this.power = new Power(other.getPower());
+        this.minimumAllowed = other.minimumAllowed;
+        this.maximumAllowed = other.maximumAllowed;
     }
 }
 

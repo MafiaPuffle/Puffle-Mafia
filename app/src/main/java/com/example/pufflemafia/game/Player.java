@@ -1,7 +1,8 @@
-package com.example.pufflemafia;
+package com.example.pufflemafia.game;
 
 import androidx.annotation.NonNull;
 
+import com.example.pufflemafia.RolesManager;
 import com.example.pufflemafia.data.Role;
 
 import java.util.Comparator;

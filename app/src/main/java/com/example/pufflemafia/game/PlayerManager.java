@@ -1,8 +1,11 @@
-package com.example.pufflemafia;
+package com.example.pufflemafia.game;
 
 import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.data.Power;
+import com.example.pufflemafia.game.GameManager;
+import com.example.pufflemafia.game.Player;
+import com.example.pufflemafia.game.SortPlayerByPriority;
 
 import java.util.Collections;
 import java.util.Vector;

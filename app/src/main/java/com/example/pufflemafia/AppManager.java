@@ -1,6 +1,7 @@
 package com.example.pufflemafia;
 
 import com.example.pufflemafia.data.DataManager;
+import com.example.pufflemafia.game.GameManager;
 
 public class AppManager {
     public GameManager gameManager;

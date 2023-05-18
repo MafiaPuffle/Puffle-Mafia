@@ -1,5 +1,7 @@
-package com.example.pufflemafia;
+package com.example.pufflemafia.game;
 
+import com.example.pufflemafia.Event;
+import com.example.pufflemafia.RolesManager;
 import com.example.pufflemafia.data.Role;
 
 import java.util.Collections;
@@ -19,30 +21,25 @@ public class GameManager {
     private Player currentPlayerActiveAtNight;
     public Player getCurrentPlayerActiveAtNight(){ return currentPlayerActiveAtNight; }
 
-    // Winning Team Properties
-    private Role.Teams winningTeam;
-    public Role.Teams getWinningTeam(){return winningTeam;}
-
     // Managers
-    public RolesManager rolesManager;
+    //public RolesManager rolesManager;
     public PlayerManager playerManager;
 
     // Events
     public Event<Integer> onStartDay;
     public Event<Integer> onStartNight;
-    public Event<Role.Teams> onGameWon;
 
     // Initializes the managers for the game
     public GameManager(){
-        this.rolesManager = new RolesManager();
+        //this.rolesManager = new RolesManager();
         this.playerManager = new PlayerManager();
         nightNumber = 0;
         currentState = GameState.MainMenu;
-        this.winningTeam = Role.Teams.TOWN;
+        //this.winningTeam = Role.Teams.TOWN;
         currentPlayerActiveAtNight = new Player();
         this.onStartDay = new Event<Integer>();
         this.onStartNight = new Event<Integer>();
-        this.onGameWon = new Event<Role.Teams>();
+        //this.onGameWon = new Event<Role.Teams>();
         this.currentPlayerActiveAtNight = new Player();
     }
 
@@ -107,81 +104,11 @@ public class GameManager {
 
         currentState = GameState.Day;
         this.onStartDay.Invoke();
-
-        CheckForWinningTeam();
     }
 
     // Handles killing a player
-    //      Use this instead of the KillPlayer function on PlayerManager to handle CheckingForWinningTeam
     public void KillPlayer(Player player){
         this.playerManager.KillPlayer(player);
-        CheckForWinningTeam();
     }
 
-    // handles logic for seeing if a team has won
-    //      Is called by StartDay()
-    //      Triggers the event onTeamWon with the winning team
-    private void CheckForWinningTeam(){
-        // TODO: find out and write win logic for the following teams: SELF, RIVAL_MAFIA, NEUTRAL
-
-        int numberOfMafiaAlive = 0;
-        int numberOfTownAlive = 0;
-        int numberOfSelfAlive = 0;
-        int numberOfRivalAlive = 0;
-        int numberOfNeutralAlive = 0;
-
-        // Finds out how many of each team is alive
-        for(int i = 0; i < playerManager.allAlive.size(); ++i){
-            Role role = new Role();
-            role.Copy(this.playerManager.allAlive.get(i).getRole());
-
-            switch (role.getTeam()){
-                case TOWN:
-                    numberOfTownAlive++;
-                    break;
-                case MAFIA:
-                    numberOfMafiaAlive++;
-                    break;
-                case SELF:
-                    numberOfSelfAlive++;
-                    break;
-                case RIVAL_MAFIA:
-                    numberOfRivalAlive++;
-                    break;
-                case NEUTRAL:
-                    numberOfNeutralAlive++;
-                    break;
-            }
-        }
-
-        /*
-        System.out.print("Number members of each team left:\n" +
-                "Mafia " + numberOfMafiaAlive + "\n" +
-                "Town " + numberOfTownAlive + "\n" +
-                "Self " + numberOfSelfAlive + "\n" +
-                "Rival " + numberOfRivalAlive + "\n" +
-                "Neutral " + numberOfNeutralAlive + "\n");
-         */
-
-        // Town: are all MAFIA dead
-        if(numberOfMafiaAlive == 0){
-            this.winningTeam = Role.Teams.TOWN;
-            this.onGameWon.Invoke(this.winningTeam);
-            return;
-        }
-
-
-        // MAFIA: are they equal to 50% or more of the alive players
-        else if(numberOfMafiaAlive >= (numberOfTownAlive + numberOfSelfAlive + numberOfNeutralAlive)){
-            this.winningTeam = Role.Teams.MAFIA;
-            this.onGameWon.Invoke(this.winningTeam);
-            return;
-        }
-
-        // SELF: ???
-
-        // RIVAL_MAFIA: ???
-
-        // NEUTRAL: ???
-    }
 }
