@@ -34,7 +34,8 @@ public class GameManagerUnitTests {
             testUsingAbilitesAtNight(gameManager);
             testKillPlayer(gameManager);
             testThatItWentToDay(gameManager);
-            printOutAliveAndDead(gameManager);
+            //testKillPlayer(gameManager);
+            //printOutAliveAndDead(gameManager);
         }
 
         System.out.print(listenForWinner.winningTeam + " won\n");
@@ -48,27 +49,33 @@ public class GameManagerUnitTests {
 
     public void testStartingNewGame(GameManager gameManager){
 
+        // Selecting roles
         gameManager.rolesManager.SelectRole("Cupid");
         gameManager.rolesManager.SelectRole("Cyborg");
         gameManager.rolesManager.SelectRole("Doggie");
         gameManager.rolesManager.SelectRole("Lovers");
         gameManager.rolesManager.SelectRole("Veteran");
 
+        // Starting game
         gameManager.StartNewGame(5,1);
 
-        assertEquals(5,gameManager.playerManager.allAlive.size());
 
+        //DEBUGGING
+        // printing out roles for debugging
         System.out.print("\nAll roles in this game: \n");
         for(int i = 0; i < gameManager.playerManager.allAlive.size(); ++i){
             System.out.print(gameManager.playerManager.allAlive.get(i).getRole().getName() + "\n");
         }
-
+        // testing if the right amount of players were added
         assertEquals(5,gameManager.playerManager.allAlive.size());
     }
 
 
     public void testStartingNewNight(GameManager gameManager){
         gameManager.StartNight();
+
+        // DEBUGGING
+        //  Making sure the current game state switched to night
         assertEquals(GameManager.GameState.Night, GameManager.getCurrentState());
     }
 
@@ -79,7 +86,7 @@ public class GameManagerUnitTests {
 
     public void testGoingToNextEventAtNight(GameManager gameManager){
 
-        System.out.print("\nStarting turns at night\n");
+        System.out.print("\nStarting turns on night " + GameManager.getNightNumber() + "\n");
 
         for(int i = 0; i < gameManager.playerManager.allAlive.size(); ++i) {
             gameManager.GoToNextEventAtNight();
@@ -93,7 +100,7 @@ public class GameManagerUnitTests {
     }
 
     public void testUsingAbilitesAtNight(GameManager gameManager){
-        System.out.print("\nStarting turns at night\n");
+        System.out.print("\nStarting turns on night " + GameManager.getNightNumber() + "\n");
 
         int numberOfPlayersAlive = gameManager.playerManager.allAlive.size();
 
@@ -150,7 +157,7 @@ public class GameManagerUnitTests {
             System.out.print(gameManager.playerManager.allAlive.get(i).getRole().getName() + "\n");
         }
 
-        System.out.print("Dead:\n");
+        System.out.print("\nDead:\n");
         for(int i = 0; i < gameManager.playerManager.allDead.size(); ++i){
             System.out.print(gameManager.playerManager.allDead.get(i).getRole().getName() + "\n");
         }

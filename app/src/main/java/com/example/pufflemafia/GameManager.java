@@ -34,6 +34,7 @@ public class GameManager {
     public GameManager(){
         this.rolesManager = new RolesManager();
         this.playerManager = new PlayerManager();
+        nightNumber = 0;
         currentState = GameState.MainMenu;
         this.winningTeam = Role.Teams.TOWN;
         currentPlayerActiveAtNight = new Player();

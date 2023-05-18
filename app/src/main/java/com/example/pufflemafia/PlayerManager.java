@@ -9,7 +9,9 @@ import java.util.Vector;
 public class PlayerManager {
 
     public Vector<Player> allAlive;
+    public int numberOfPlayersAlive() {return this.allDead.size();}
     public Vector<Player> allDead;
+    public int numberOfPlayersDead() {return this.allDead.size();}
 
     // values stored and used by the GetNextPlayerForNight() method
     private Vector<Player> playersWithAbilitiesForThisNight;
@@ -88,4 +90,6 @@ public class PlayerManager {
     public void UseAbilityOnPlayer( @NonNull Player sourcePlayer, @NonNull Player targetPlayer){
         targetPlayer.AddTokenOnToPlayer(sourcePlayer.getToken());
     }
+
+
 }
