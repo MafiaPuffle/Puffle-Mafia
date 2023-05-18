@@ -211,10 +211,10 @@ public class DataManager {
     public static Power GetPower(String name){
         return allPowers.get(name);
     }
-    public static Vector<Token> GetAllPowers(){
-        Vector<Token> output = new Vector<Token>();
+    public static Vector<Power> GetAllPowers(){
+        Vector<Power> output = new Vector<Power>();
 
-        for (Map.Entry<String,Token> entry: allTokens.entrySet()) {
+        for (Map.Entry<String,Power> entry: allPowers.entrySet()) {
             output.add(entry.getValue());
         }
 
@@ -223,5 +223,14 @@ public class DataManager {
     
     public static Role GetRole(String name){
         return allRoles.get(name);
+    }
+    public static Vector<Role> GetAllRoles(){
+        Vector<Role> output = new Vector<Role>();
+
+        for (Map.Entry<String,Role> entry: allRoles.entrySet()) {
+            output.add(entry.getValue());
+        }
+
+        return output;
     }
 }
