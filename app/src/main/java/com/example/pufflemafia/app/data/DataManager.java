@@ -80,7 +80,7 @@ public class DataManager {
         allPowers.put(doctor.getName(), doctor);
 
         Power doggie = new Power(
-                "doggie",
+                "Doggie",
                 Power.PowerType.PASSIVE,
                 "");
         allPowers.put(doggie.getName(), doggie);
@@ -131,12 +131,12 @@ public class DataManager {
                 3);
         allRoles.put(cupid.getName(), cupid);
 
-        Role detective = new Role("detective",
+        Role detective = new Role("Detective",
                 R.drawable.detective_puffle,
                 3,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
-                GetPower("detective"),
+                GetPower("Detective"),
                 1,
                 3);
         allRoles.put(detective.getName(), detective);
@@ -250,5 +250,11 @@ public class DataManager {
         }
 
         return output;
+    }
+
+    public static void PrintSummary(){
+        for (Map.Entry<String,Role> entry: allRoles.entrySet()) {
+            //TODO: Print summary
+        }
     }
 }

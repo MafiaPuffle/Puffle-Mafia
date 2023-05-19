@@ -47,7 +47,7 @@ public class GameManager {
         onStartDay = new Event<Integer>();
         onStartNight = new Event<Integer>();
 
-        Logger.getLogger(GameManager.class.getName());
+        logger = Logger.getLogger(GameManager.class.getName());
         // Set Logger level()
         logger.setLevel(Level.WARNING);
     }

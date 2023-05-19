@@ -28,6 +28,7 @@ public class Power {
         this.name = name;
         this.type = type;
         this.prompt = prompt;
+        this.token = new Token("Empty", 0, Token.TokenTypes.CLEAR_NEVER);
     }
 
     public Power (String name,PowerType type, String prompt, Token token){

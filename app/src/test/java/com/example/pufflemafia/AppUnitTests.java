@@ -4,12 +4,16 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import com.example.pufflemafia.app.AppManager;
+
 public class AppUnitTests {
     // TODO: App Unit Tests
 
+    AppManager appManager;
+
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void TestAppManager() {
+        appManager = new AppManager();
     }
 
 }

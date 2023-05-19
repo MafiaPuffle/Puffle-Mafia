@@ -26,7 +26,7 @@ public class PlayerManager {
         allAlive = new Vector<Player>();
         allDead = new Vector<Player>();
 
-        Logger.getLogger(PlayerManager.class.getName());
+        logger = Logger.getLogger(PlayerManager.class.getName());
         // Set Logger level()
         logger.setLevel(Level.WARNING);
     }
