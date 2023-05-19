@@ -73,5 +73,22 @@ public class Role {
         this.minimumAllowed = other.minimumAllowed;
         this.maximumAllowed = other.maximumAllowed;
     }
+
+    public void PrintSummary(){
+        System.out.print("Name: " + this.name + "\nPower:\n");
+        this.power.PrintSummary();
+    }
+
+    public void PrintDetailed(){
+        System.out.print("Name: " + this.name + "\n"
+                        + "ImageResource: " + this.imageResource + "\n"
+                        + "Priority: " + this.priority + "\n"
+                        + "Alliance: " + this.alliance + "\n"
+                        + "Team: " + this.team + "\n"
+                        + "Image Resource: " + this.imageResource + "\n"
+                        + "Minimum Allowed: " + this.minimumAllowed + "\n"
+                        + "Maximum Allowed: " + this.maximumAllowed + "\nPower:\n");
+        this.power.PrintDetailed();
+    }
 }
 

@@ -27,6 +27,8 @@ public class PlayerManager {
         allDead = new Vector<Player>();
 
         Logger.getLogger(PlayerManager.class.getName());
+        // Set Logger level()
+        logger.setLevel(Level.WARNING);
     }
 
     // Adds a player to the game
@@ -47,8 +49,6 @@ public class PlayerManager {
     public static void EditPlayerName(PlayerMangerListType listType, int playerIndex, String newName){
         if(listType == PlayerMangerListType.ALIVE){
             if(playerIndex >= allAlive.size()){
-                // Set Logger level()
-                logger.setLevel(Level.WARNING);
 
                 // Call warning method
                 logger.warning("attempted to edit a player name outside of all alive");
@@ -59,8 +59,6 @@ public class PlayerManager {
         }
         else{
             if(playerIndex >= allDead.size()){
-                // Set Logger level()
-                logger.setLevel(Level.WARNING);
 
                 // Call warning method
                 logger.warning("attempted to edit a player name outside of all dead");
@@ -74,8 +72,6 @@ public class PlayerManager {
     public static void EditPlayerRole(PlayerMangerListType listType, int playerIndex, Role newRole){
         if(listType == PlayerMangerListType.ALIVE){
             if(playerIndex >= allAlive.size()){
-                // Set Logger level()
-                logger.setLevel(Level.WARNING);
 
                 // Call warning method
                 logger.warning("attempted to edit a player role outside of all alive");
@@ -86,8 +82,6 @@ public class PlayerManager {
         }
         else{
             if(playerIndex >= allDead.size()){
-                // Set Logger level()
-                logger.setLevel(Level.WARNING);
 
                 // Call warning method
                 logger.warning("attempted to edit a player role outside of all dead");
@@ -101,16 +95,12 @@ public class PlayerManager {
     public static void EditPlayerToken(PlayerMangerListType listType, int playerIndex, int tokenIndex, Token newToken){
         if(listType == PlayerMangerListType.ALIVE){
             if(playerIndex >= allAlive.size()){
-                // Set Logger level()
-                logger.setLevel(Level.WARNING);
 
                 // Call warning method
                 logger.warning("attempted to edit a player token outside of all alive");
                 return;
             }
             if(tokenIndex >= allAlive.elementAt(playerIndex).getAllTokensOnPlayer().size()){
-                // Set Logger level()
-                logger.setLevel(Level.WARNING);
 
                 // Call warning method
                 logger.warning("attempted to edit a player token outside to their current tokens");
@@ -121,16 +111,12 @@ public class PlayerManager {
         }
         else{
             if(playerIndex >= allDead.size()){
-                // Set Logger level()
-                logger.setLevel(Level.WARNING);
 
                 // Call warning method
                 logger.warning("attempted to edit a player token outside of all dead");
                 return;
             }
             if(tokenIndex >= allDead.elementAt(playerIndex).getAllTokensOnPlayer().size()){
-                // Set Logger level()
-                logger.setLevel(Level.WARNING);
 
                 // Call warning method
                 logger.warning("attempted to edit a player token outside to their current tokens");

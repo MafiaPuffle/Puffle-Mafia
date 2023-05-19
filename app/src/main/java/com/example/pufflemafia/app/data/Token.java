@@ -32,4 +32,14 @@ public class Token {
         this.imageResource = other.getImageResource();
         this.type = other.getType();
     }
+
+    public void PrintSummary(){
+        System.out.print(this.name + "\n");
+    }
+
+    public void PrintDetailed(){
+        System.out.print(("Name: " + this.name + "\n"
+                        + "ImageResource: " + this.imageResource + "\n"
+                        + "Type: " + this.type + "\n"));
+    }
 }

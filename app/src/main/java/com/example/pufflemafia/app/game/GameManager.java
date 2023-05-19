@@ -7,6 +7,8 @@ import com.example.pufflemafia.app.data.Role;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 // Handles all the game logic
@@ -32,6 +34,9 @@ public class GameManager {
     public static Event<Integer> onStartDay;
     public static Event<Integer> onStartNight;
 
+    // Used for sending warning messages for debugging
+    private static Logger logger;
+
     // Initializes the managers for the game
     public GameManager(){
         activeRolesManager = new ActiveRolesManager();
@@ -41,11 +46,21 @@ public class GameManager {
         currentRoleActiveAtNight = new Role();
         onStartDay = new Event<Integer>();
         onStartNight = new Event<Integer>();
+
+        Logger.getLogger(GameManager.class.getName());
+        // Set Logger level()
+        logger.setLevel(Level.WARNING);
     }
 
     // Once we have selected number of players, set the player names, and chosen all the
     // roles (duplicates allowed) we start a new game
     public static void StartNewGame(GameSetup gameSetup){
+
+        if(!gameSetup.checkIfIsValid()){
+            logger.warning("Attempted to setup a game with an INVALID GameSetup class");
+
+            return;
+        }
 
         // Resets the night number
         nightNumber = 0;

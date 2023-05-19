@@ -54,6 +54,24 @@ public class Player {
         tokensOnPlayer.add(token);
     }
 
+    public void PrintSummary(){
+        System.out.print("Name: " + this.name + "\nRole:\n");
+        this.role.PrintSummary();
+        System.out.print("Tokens applied:\n");
+        for (Token token: this.tokensOnPlayer) {
+            token.PrintSummary();
+        }
+    }
+
+    public void PrintDetailed(){
+        System.out.print("Name: " + this.name + "\nRole:\n");
+        this.role.PrintDetailed();
+        System.out.print("Tokens applied:\n");
+        for (Token token: this.tokensOnPlayer) {
+            token.PrintDetailed();
+        }
+    }
+
 }
 
 // Helper class used to sort players by their role priority

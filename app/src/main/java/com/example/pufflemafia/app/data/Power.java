@@ -47,4 +47,16 @@ public class Power {
         this.prompt = other.getPrompt();
         this.token = new Token(other.getToken());
     }
+
+    public void PrintSummary(){
+        System.out.print("Name: " + this.name + "\nToken:\n");
+        this.token.PrintSummary();
+    }
+
+    public void PrintDetailed(){
+        System.out.print("Name: " + this.name + "\n"
+                        + "Type: " + this.type + "\n"
+                        + "Prompt: " + this.prompt + "\nToken:\n");
+        this.token.PrintDetailed();
+    }
 }
