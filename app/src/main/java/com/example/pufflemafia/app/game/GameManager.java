@@ -1,5 +1,7 @@
 package com.example.pufflemafia.app.game;
 
+import androidx.annotation.NonNull;
+
 import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.data.GameSetup;
 import com.example.pufflemafia.app.data.Role;
@@ -54,7 +56,7 @@ public class GameManager {
 
     // Once we have selected number of players, set the player names, and chosen all the
     // roles (duplicates allowed) we start a new game
-    public static void StartNewGame(GameSetup gameSetup){
+    public static void StartNewGame(@NonNull GameSetup gameSetup){
 
         if(!gameSetup.checkIfIsValid()){
             logger.warning("Attempted to setup a game with an INVALID GameSetup class");
@@ -97,7 +99,10 @@ public class GameManager {
             allAliveRoles.add(player.getRole());
         }
 
-        ActiveRolesManager.StartNight(allAliveRoles, nightNumber);
+        currentRoleActiveAtNight = ActiveRolesManager.StartNight(allAliveRoles, nightNumber);
+        if(currentRoleActiveAtNight == null){
+            StartDay();
+        }
     }
 
     // if we are in a night this updates currentActiveRoleAtNight
@@ -123,6 +128,19 @@ public class GameManager {
 
         currentState = GameState.Day;
         onStartDay.Invoke();
+    }
+
+    public static void PrintSummary(){
+        System.out.print("GameManager Current State\n" +
+                " currentState: " + currentState + "\n" +
+                " nightNumber: " + nightNumber + "\n" +
+                " currentIndexOfActiveRoleAtNight: " + currentIndexOfEventsAtNight + "\n");
+        if(currentRoleActiveAtNight == null){
+            System.out.print("  Role: NULL\n");
+        }
+        else{
+            currentRoleActiveAtNight.PrintSummary(" ");
+        }
     }
 
 }

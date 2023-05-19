@@ -50,14 +50,28 @@ public class Power {
     }
 
     public void PrintSummary(){
-        System.out.print("Name: " + this.name + "\nToken:\n");
-        this.token.PrintSummary();
+        System.out.print("Power: " + this.name + "\n");
+        this.token.PrintSummary("    ");
+    }
+
+    public void PrintSummary(String spacer){
+        System.out.print(spacer + "Power: " + this.name + "\n");
+        this.token.PrintSummary(spacer + "    ");
     }
 
     public void PrintDetailed(){
-        System.out.print("Name: " + this.name + "\n"
-                        + "Type: " + this.type + "\n"
-                        + "Prompt: " + this.prompt + "\nToken:\n");
-        this.token.PrintDetailed();
+        System.out.print("Power:\n");
+        System.out.print("    Name: " + this.name + "\n"
+                        + "    Type: " + this.type + "\n"
+                        + "    Prompt: " + this.prompt);
+        this.token.PrintDetailed("    ");
+    }
+
+    public void PrintDetailed(String spacer){
+        System.out.print(spacer + "Power:\n");
+        System.out.print(spacer + "    Name: " + this.name + "\n"
+                + spacer + "    Type: " + this.type + "\n"
+                + spacer + "    Prompt: " + this.prompt);
+        this.token.PrintDetailed(spacer + "    ");
     }
 }

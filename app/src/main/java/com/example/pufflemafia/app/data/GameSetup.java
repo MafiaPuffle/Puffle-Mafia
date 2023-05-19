@@ -41,5 +41,35 @@ public class GameSetup {
         return output;
     }
 
+    public void PrintSummary(){
+        System.out.print("GameSetup Current state");
+        System.out.print("  Number of Players: " + this.numberOfPlayers + "\n");
+        System.out.print("  Names: \n");
+        for (String name: this.names) {
+            System.out.print("      " + name + "\n");
+        }
+        System.out.print("  Chosen Roles: \n");
+        for (Role role: this.chosenRoles){
+            role.PrintSummary("        ");
+            System.out.print("\n");
+        }
+        System.out.print("  Is Valid: " + this.isValid + "\n");
+    }
+
+    public void PrintDetailed(){
+        System.out.print("GameSetup Current state");
+        System.out.print("  Number of Players: " + this.numberOfPlayers + "\n");
+        System.out.print("  Names: \n");
+        for (String name: this.names) {
+            System.out.print("      " + name + "\n");
+        }
+        System.out.print("  Chosen Roles: \n");
+        for (Role role: this.chosenRoles){
+            role.PrintDetailed("        ");
+            System.out.print("\n");
+        }
+        System.out.print("  Is Valid: " + this.isValid + "\n");
+    }
+
 
 }

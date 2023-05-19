@@ -133,4 +133,27 @@ public class PlayerManager {
     }
 
 
+    public static void PrintSummary(){
+        System.out.print("\nPlayerManager's State");
+        System.out.print("\nAlive:\n");
+        for(Player player : allAlive){
+            player.PrintSummary("    ");
+        }
+        System.out.print("\nDead:\n");
+        for(Player player : allDead){
+            player.PrintSummary("    ");
+        }
+    }
+
+    public static void PrintDetailed(){
+        System.out.print("\nPlayerManager's State");
+        System.out.print("\nAlive:\n");
+        for(Player player : allAlive){
+            player.PrintDetailed("    ");
+        }
+        System.out.print("\nDead:\n");
+        for(Player player : allDead){
+            player.PrintDetailed("    ");
+        }
+    }
 }

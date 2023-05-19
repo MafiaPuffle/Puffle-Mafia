@@ -75,20 +75,39 @@ public class Role {
     }
 
     public void PrintSummary(){
-        System.out.print("Name: " + this.name + "\nPower:\n");
-        this.power.PrintSummary();
+        System.out.print("Role: " + this.name + "\n");
+        this.power.PrintSummary("    ");
+    }
+
+    public void PrintSummary(String spacer){
+        System.out.print(spacer + "Role: " + this.name + "\n");
+        this.power.PrintSummary(spacer + "    ");
     }
 
     public void PrintDetailed(){
+        System.out.print("Role\n");
         System.out.print("Name: " + this.name + "\n"
-                        + "ImageResource: " + this.imageResource + "\n"
-                        + "Priority: " + this.priority + "\n"
-                        + "Alliance: " + this.alliance + "\n"
-                        + "Team: " + this.team + "\n"
-                        + "Image Resource: " + this.imageResource + "\n"
-                        + "Minimum Allowed: " + this.minimumAllowed + "\n"
-                        + "Maximum Allowed: " + this.maximumAllowed + "\nPower:\n");
-        this.power.PrintDetailed();
+                        + "     ImageResource: " + this.imageResource + "\n"
+                        + "     Priority: " + this.priority + "\n"
+                        + "     Alliance: " + this.alliance + "\n"
+                        + "     Team: " + this.team + "\n"
+                        + "     Image Resource: " + this.imageResource + "\n"
+                        + "     Minimum Allowed: " + this.minimumAllowed + "\n"
+                        + "     Maximum Allowed: " + this.maximumAllowed + "\nPower:\n");
+        this.power.PrintDetailed("    ");
+    }
+
+    public void PrintDetailed(String spacer){
+        System.out.print(spacer + "Role\n");
+        System.out.print(spacer + "     Name: " + this.name + "\n"
+                        + spacer + "     ImageResource: " + this.imageResource + "\n"
+                        + spacer + "     Priority: " + this.priority + "\n"
+                        + spacer + "     Alliance: " + this.alliance + "\n"
+                        + spacer + "     Team: " + this.team + "\n"
+                        + spacer + "     Image Resource: " + this.imageResource + "\n"
+                        + spacer + "     Minimum Allowed: " + this.minimumAllowed + "\n"
+                        + spacer + "     Maximum Allowed: " + this.maximumAllowed + "\nPower:\n");
+        this.power.PrintDetailed(spacer + "    ");
     }
 }
 

@@ -34,12 +34,24 @@ public class Token {
     }
 
     public void PrintSummary(){
-        System.out.print(this.name + "\n");
+        System.out.print("Token: " + this.name + "\n");
+    }
+
+    public void PrintSummary(String spacer){
+        System.out.print(spacer + "Token: " + this.name + "\n");
     }
 
     public void PrintDetailed(){
-        System.out.print(("Name: " + this.name + "\n"
-                        + "ImageResource: " + this.imageResource + "\n"
-                        + "Type: " + this.type + "\n"));
+        System.out.print("Token\n");
+        System.out.print(("    Name: " + this.name + "\n"
+                        + "     ImageResource: " + this.imageResource + "\n"
+                        + "     Type: " + this.type + "\n"));
+    }
+
+    public void PrintDetailed(String spacer){
+        System.out.print(spacer + "Token\n");
+        System.out.print((spacer + "    Name: " + this.name + "\n"
+                + spacer + "    ImageResource: " + this.imageResource + "\n"
+                + spacer + "    Type: " + this.type + "\n"));
     }
 }

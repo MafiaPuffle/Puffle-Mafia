@@ -55,20 +55,40 @@ public class Player {
     }
 
     public void PrintSummary(){
-        System.out.print("Name: " + this.name + "\nRole:\n");
-        this.role.PrintSummary();
-        System.out.print("Tokens applied:\n");
+        System.out.print("Player: " + this.name + "\n");
+        this.role.PrintSummary("    ");
+        System.out.print("  Tokens applied:\n");
         for (Token token: this.tokensOnPlayer) {
-            token.PrintSummary();
+            token.PrintSummary("        ");
+        }
+    }
+
+    public void PrintSummary(String spacer){
+        System.out.print(spacer + "Player: " + this.name + "\n");
+        this.role.PrintSummary(spacer + "    ");
+        System.out.print(spacer + "  Tokens applied:\n");
+        for (Token token: this.tokensOnPlayer) {
+            token.PrintSummary(spacer + "        ");
         }
     }
 
     public void PrintDetailed(){
-        System.out.print("Name: " + this.name + "\nRole:\n");
-        this.role.PrintDetailed();
-        System.out.print("Tokens applied:\n");
+        System.out.print("Player\n");
+        System.out.print("  Name: " + this.name + "\n");
+        this.role.PrintDetailed("    ");
+        System.out.print("  Tokens applied:\n");
         for (Token token: this.tokensOnPlayer) {
-            token.PrintDetailed();
+            token.PrintDetailed("        ");
+        }
+    }
+
+    public void PrintDetailed(String spacer){
+        System.out.print(spacer + "Player\n");
+        System.out.print(spacer + "  Name: " + this.name + "\n");
+        this.role.PrintDetailed(spacer + "    ");
+        System.out.print(spacer + "  Tokens applied:\n");
+        for (Token token: this.tokensOnPlayer) {
+            token.PrintDetailed(spacer + "        ");
         }
     }
 

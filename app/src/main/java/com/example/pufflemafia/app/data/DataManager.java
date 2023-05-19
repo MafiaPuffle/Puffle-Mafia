@@ -253,8 +253,44 @@ public class DataManager {
     }
 
     public static void PrintSummary(){
+
+        System.out.print("\nAll Roles:\n");
         for (Map.Entry<String,Role> entry: allRoles.entrySet()) {
-            //TODO: Print summary
+            entry.getValue().PrintSummary("    ");
+            System.out.print("\n");
+        }
+
+        System.out.print("\nAll Powers:\n");
+        for (Map.Entry<String,Power> entry: allPowers.entrySet()) {
+            entry.getValue().PrintSummary("    ");
+            System.out.print("\n");
+        }
+
+        System.out.print("\nAll Tokens:\n");
+        for (Map.Entry<String,Token> entry: allTokens.entrySet()) {
+            entry.getValue().PrintSummary("    ");
+            System.out.print("\n");
+        }
+    }
+
+    public static void PrintDetatiled(){
+
+        System.out.print("\nAll Roles:\n");
+        for (Map.Entry<String,Role> entry: allRoles.entrySet()) {
+            entry.getValue().PrintDetailed("    ");
+            System.out.print("\n");
+        }
+
+        System.out.print("\nAll Powers:\n");
+        for (Map.Entry<String,Power> entry: allPowers.entrySet()) {
+            entry.getValue().PrintDetailed("    ");
+            System.out.print("\n");
+        }
+
+        System.out.print("\nAll Tokens:\n");
+        for (Map.Entry<String,Token> entry: allTokens.entrySet()) {
+            entry.getValue().PrintDetailed("    ");
+            System.out.print("\n");
         }
     }
 }
