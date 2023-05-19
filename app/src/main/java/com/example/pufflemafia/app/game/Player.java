@@ -54,6 +54,11 @@ public class Player {
         tokensOnPlayer.add(token);
     }
 
+    public void RemoveTokenAt(int tokenIndex){
+        if(tokenIndex >= tokensOnPlayer.size()) return;
+        tokensOnPlayer.removeElementAt(tokenIndex);
+    }
+
     public void PrintSummary(){
         System.out.print("Player: " + this.name + "\n");
         this.role.PrintSummary("    ");

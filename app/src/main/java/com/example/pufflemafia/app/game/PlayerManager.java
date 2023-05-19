@@ -127,6 +127,65 @@ public class PlayerManager {
         }
     }
 
+    public static void AddTokenToPlayer(PlayerMangerListType listType, int playerIndex, Token newToken){
+        if(listType == PlayerMangerListType.ALIVE){
+            if(playerIndex >= allAlive.size()){
+
+                // Call warning method
+                logger.warning("attempted to edit a player token outside of all alive");
+                return;
+            }
+
+            allAlive.elementAt(playerIndex).AddTokenOnToPlayer(newToken);
+        }
+        else{
+            if(playerIndex >= allDead.size()){
+
+                // Call warning method
+                logger.warning("attempted to edit a player token outside of all dead");
+                return;
+            }
+
+            allDead.elementAt(playerIndex).AddTokenOnToPlayer(newToken);
+        }
+    }
+
+    public static void RemovePlayerToken(PlayerMangerListType listType, int playerIndex, int tokenIndex){
+        if(listType == PlayerMangerListType.ALIVE){
+            if(playerIndex >= allAlive.size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside of all alive");
+                return;
+            }
+            if(tokenIndex >= allAlive.elementAt(playerIndex).getAllTokensOnPlayer().size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside to their current tokens");
+                return;
+            }
+
+            allAlive.elementAt(playerIndex).RemoveTokenAt(tokenIndex);
+        }
+        else{
+            if(playerIndex >= allDead.size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside of all dead");
+                return;
+            }
+            if(tokenIndex >= allDead.elementAt(playerIndex).getAllTokensOnPlayer().size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside to their current tokens");
+                return;
+            }
+
+            allDead.elementAt(playerIndex).RemoveTokenAt(tokenIndex);
+        }
+    }
+
+
     // Adds token from sourcePlayer onto targetPlayer
     public static void UseAbilityOnPlayer( @NonNull Role sourceRole, @NonNull Player targetPlayer){
         targetPlayer.AddTokenOnToPlayer(sourceRole.getPower().getToken());

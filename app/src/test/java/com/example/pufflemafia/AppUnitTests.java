@@ -7,11 +7,14 @@ import static org.junit.Assert.*;
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.ActiveRolesManager;
 import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 
 import java.util.Arrays;
+import java.util.Vector;
 
 public class AppUnitTests {
     // TODO: App Unit Tests
@@ -22,7 +25,7 @@ public class AppUnitTests {
     public void TestAppManager() {
         Initialization();
         Valid_StartGame();
-        Test_Night();
+        Test_EditPlayer();
     }
 
 
@@ -291,21 +294,137 @@ public class AppUnitTests {
         System.out.print("PASSED: GoToPreviousEventAtNight\n");
     }
 
+    public void UseAbilityAtNight(int indexOfTargetPlayer){
+        if(indexOfTargetPlayer >= PlayerManager.allAlive.size()
+                || GameManager.getCurrentRoleActiveAtNight() == null)
+            return;
+
+        PlayerManager.UseAbilityOnPlayer(GameManager.getCurrentRoleActiveAtNight(),
+                PlayerManager.allAlive.elementAt(indexOfTargetPlayer));
+    }
+
+    public void UseAbilityAtNight_OnRandomPlayer(){
+        int max = PlayerManager.numberOfPlayersAlive() - 1;
+        int min = 0;
+        int indexOfTargetPlayer = (int) ((Math.random() * (max - min)) + min);
+        UseAbilityAtNight(indexOfTargetPlayer);
+    }
+
+    public void Test_UseAbilityAtNight(int indexOfTargetPlayer){
+        System.out.print("Testing: Using an ability at night\n");
+        if(indexOfTargetPlayer >= PlayerManager.numberOfPlayersAlive()){
+            System.out.print("WARNING: attempted to Test_UseAbilityAtNight on an invalid player\n");
+            return;
+        }
+        if(GameManager.getCurrentRoleActiveAtNight() == null){
+            System.out.print("WARNING: attempted to Test_UseAbilityAtNight when there was no active role for the night\n");
+            return;
+        }
+
+        int amountOfTokensAppliedBeforeAbilityUsed = PlayerManager.allAlive.elementAt(indexOfTargetPlayer).getAllTokensOnPlayer().size();
+
+        UseAbilityAtNight(indexOfTargetPlayer);
+
+        int expectedAmountOfTokensAppliedAfterAbilityUsed = amountOfTokensAppliedBeforeAbilityUsed + 1;
+
+        assertEquals(expectedAmountOfTokensAppliedAfterAbilityUsed, PlayerManager.allAlive.elementAt(indexOfTargetPlayer).getAllTokensOnPlayer().size());
+
+        //PlayerManager.PrintSummary();
+        String activeRoleName = GameManager.getCurrentRoleActiveAtNight().getName();
+        String targetPlayerName = PlayerManager.allAlive.elementAt(indexOfTargetPlayer).name;
+        System.out.print(activeRoleName + " used there ability on " + targetPlayerName + "\n");
+
+        System.out.print("PASSED: Using an ability at night\n");
+    }
+
+    public void Test_UseAbilityAtNight_OnRandomPlayer(){
+        int max = PlayerManager.numberOfPlayersAlive() - 1;
+        int min = 0;
+        int indexOfTargetPlayer = (int) ((Math.random() * (max - min)) + min);
+        Test_UseAbilityAtNight(indexOfTargetPlayer);
+    }
+
+    public void Night(){
+        StartNight();
+        for (int i = 0; i < PlayerManager.numberOfPlayersAlive(); i++) {
+            UseAbilityAtNight_OnRandomPlayer();
+            GoToNextEventAtNight();
+        }
+    }
+
     public void Test_Night(){
         System.out.print("Testing: Night=========\n");
 
-        //Test_StartNight();
-        StartNight();
-        Test_GoToPreviousEventAtNight();
-        Test_GoToPreviousEventAtNight();
-        Test_GoToPreviousEventAtNight();
-        Test_GoToNextEventAtNight();
-        Test_GoToNextEventAtNight();
-        Test_GoToNextEventAtNight();
-        Test_GoToNextEventAtNight();
-        Test_GoToNextEventAtNight();
+        Test_StartNight();
+        //StartNight();
+        for (int i = 0; i < (PlayerManager.numberOfPlayersAlive() + 1); i++) {
+            Test_UseAbilityAtNight_OnRandomPlayer();
+            Test_GoToNextEventAtNight();
+        }
+        PlayerManager.PrintSummary();
+
 
         System.out.print("PASSED: Night\n");
+    }
+
+    public void Test_EditPlayer(){
+        System.out.print("Testing: Editing A Player");
+
+        PlayerManager.PlayerMangerListType listType = PlayerManager.PlayerMangerListType.ALIVE;
+        int targetPlayerIndex = 0;
+        String newName = "NEW_NAME";
+        Role newRole = DataManager.GetRole("Terrorist");
+        Token newToken = DataManager.GetToken("Detective");
+        Token newToken1 = DataManager.GetToken("Mafia");
+
+        Player playerBefore = PlayerManager.allAlive.get(targetPlayerIndex);
+        String nameBefore = playerBefore.name;
+        Role roleBefore = new Role(playerBefore.getRole());
+        Vector<Token> tokensBefore = new Vector<Token>(playerBefore.getAllTokensOnPlayer());
+
+        System.out.print("Before\n");
+        playerBefore.PrintSummary();
+
+        PlayerManager.EditPlayerName(listType, targetPlayerIndex, newName);
+        PlayerManager.EditPlayerRole(listType, targetPlayerIndex, newRole);
+        PlayerManager.AddTokenToPlayer(listType, targetPlayerIndex, newToken);
+
+        Player playerAfter = PlayerManager.allAlive.get(targetPlayerIndex);
+        String nameAfter = playerAfter.name;
+        Role roleAfter = new Role(playerBefore.getRole());
+        Vector<Token> tokensAfter = new Vector<Token>(playerAfter.getAllTokensOnPlayer());
+
+
+        System.out.print("After editing: name, role and Adding on token\n");
+        playerAfter.PrintSummary();
+
+        assertNotNull(playerBefore);
+        assertNotNull(playerAfter);
+        assertNotEquals(nameBefore, nameAfter);
+        assertNotEquals(roleBefore, roleAfter);
+        assertNotEquals(tokensBefore.size(), tokensAfter.size());
+        assertEquals(newToken, playerAfter.getAllTokensOnPlayer().get(0));
+
+        PlayerManager.EditPlayerToken(listType, targetPlayerIndex, 0, newToken1);
+
+        System.out.print("After editing on token\n");
+        playerAfter.PrintSummary();
+
+        assertEquals(newToken1, playerAfter.getAllTokensOnPlayer().get(0));
+
+        PlayerManager.RemovePlayerToken(listType, targetPlayerIndex, 0);
+
+        System.out.print("After removing token\n");
+        playerAfter.PrintSummary();
+
+        assertEquals(0, playerAfter.getAllTokensOnPlayer().size());
+
+
+        System.out.print("PASSED: Editing A Player");
+    }
+
+    public void Test_TokenClearing(){
+
     }
 
 }
