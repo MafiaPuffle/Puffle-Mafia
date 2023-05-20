@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.Vector;
 
 public class AppUnitTests {
-    // TODO: App Unit Tests
 
     AppManager appManager;
 
@@ -25,9 +24,74 @@ public class AppUnitTests {
     public void TestAppManager() {
         Initialization();
         Valid_StartGame();
-        Test_EditPlayer();
-    }
 
+        System.out.print("\nStarting an example game with the following state\n");
+        GameManager.PrintSummary();
+        PlayerManager.PrintSummary();
+
+        String nameBefore = PlayerManager.allAlive.get(2).name;
+        PlayerManager.EditPlayerName(PlayerManager.PlayerMangerListType.ALIVE, 2, "Typhoon");
+
+        System.out.print("\nThe User changed " + nameBefore + "'s name to Typhoon\n");
+        PlayerManager.PrintSummary();
+
+        Role roleBefore = new Role(PlayerManager.allAlive.get(3).getRole());
+        Role newRole = DataManager.GetRole("Doggie");
+        PlayerManager.EditPlayerRole(PlayerManager.PlayerMangerListType.ALIVE, 3, newRole);
+
+        System.out.print("\nThe User changed " + PlayerManager.allAlive.get(3).name + "'s role from " + roleBefore.getName() + " to " + newRole.getName() + "\n");
+        PlayerManager.PrintSummary();
+
+
+        StartNight();
+        System.out.print("\nStarting Night " + GameManager.getNightNumber() + "\n");
+        while(GameManager.getCurrentRoleActiveAtNight() != null){
+            System.out.print(" " + GameManager.getCurrentRoleActiveAtNight().getName() + " who do you wanna " + GameManager.getCurrentRoleActiveAtNight().getPower().getPrompt() + "\n");
+
+            int max = PlayerManager.numberOfPlayersAlive() - 1;
+            int min = 0;
+            int indexOfTargetPlayer = (int) ((Math.random() * (max - min)) + min);
+            UseAbilityAtNight(indexOfTargetPlayer);
+
+            System.out.print("  The " + GameManager.getCurrentRoleActiveAtNight().getName() + " used their ability on " + PlayerManager.allAlive.get(indexOfTargetPlayer).name + "\n");
+            GameManager.GoToNextEventAtNight();
+        }
+
+        System.out.print("\nAfter Night " + GameManager.getNightNumber() + " the game is in this state\n");
+        GameManager.PrintSummary();
+        PlayerManager.PrintSummary();
+
+        PlayerManager.AddTokenToPlayer(PlayerManager.PlayerMangerListType.ALIVE, 0, DataManager.GetToken("Doctor"));
+        System.out.print("\nThe User gave " + PlayerManager.allAlive.get(0).name + " the Doctor Token\n");
+        PlayerManager.PrintSummary();
+
+        PlayerManager.KillPlayer(PlayerManager.allAlive.get(2));
+        System.out.print("\nThe User killed " + PlayerManager.allDead.get(0).name);
+        PlayerManager.PrintSummary();
+
+        StartNight();
+        System.out.print("\nStarting Night " + GameManager.getNightNumber() + "\n");
+        while(GameManager.getCurrentRoleActiveAtNight() != null){
+            System.out.print(" " + GameManager.getCurrentRoleActiveAtNight().getName() + " who do you wanna " + GameManager.getCurrentRoleActiveAtNight().getPower().getPrompt() + "\n");
+
+            int max = PlayerManager.numberOfPlayersAlive() - 1;
+            int min = 0;
+            int indexOfTargetPlayer = (int) ((Math.random() * (max - min)) + min);
+            UseAbilityAtNight(indexOfTargetPlayer);
+
+            System.out.print("  The " + GameManager.getCurrentRoleActiveAtNight().getName() + " used their ability on " + PlayerManager.allAlive.get(indexOfTargetPlayer).name + "\n");
+            GameManager.GoToNextEventAtNight();
+        }
+
+        System.out.print("\nAfter Night " + GameManager.getNightNumber() + " the game is in this state\n");
+        GameManager.PrintSummary();
+        PlayerManager.PrintSummary();
+
+        String nameOfRevived = PlayerManager.allDead.get(0).name;
+        PlayerManager.RevivePlayer(PlayerManager.allDead.get(0));
+        System.out.print("\nThe User revived " + nameOfRevived + "\n");
+        PlayerManager.PrintSummary();
+    }
 
     public void Initialization(){
         appManager = new AppManager();
@@ -85,15 +149,15 @@ public class AppUnitTests {
         AppManager.gameSetup.reset();
 
         AppManager.gameSetup.numberOfPlayers = 5;
-        String[] testValidNames = {"Hiccup", "Clipper", "Potion Bubble", "Stamper", "Panther Growl"};
-        AppManager.gameSetup.names.addAll(Arrays.asList(testValidNames));
-        Role[] testValidRoles = {DataManager.GetRole("Mafia"),
+        String[] ValidNames = {"Hiccup", "Clipper", "Potion Bubble", "Stamper", "Panther Growl"};
+        AppManager.gameSetup.names.addAll(Arrays.asList(ValidNames));
+        Role[] ValidRoles = {DataManager.GetRole("Mafia"),
                 DataManager.GetRole("Detective"),
                 DataManager.GetRole("Doctor"),
                 DataManager.GetRole("Cupid")};
-        AppManager.gameSetup.addMultipleRoles(2, testValidRoles[0]);
-        for(int i = 1; i < testValidRoles.length; ++i){
-            AppManager.gameSetup.chosenRoles.add(testValidRoles[i]);
+        AppManager.gameSetup.addMultipleRoles(2, ValidRoles[0]);
+        for(int i = 1; i < ValidRoles.length; ++i){
+            AppManager.gameSetup.chosenRoles.add(ValidRoles[i]);
         }
     }
 
@@ -114,16 +178,16 @@ public class AppUnitTests {
         AppManager.gameSetup.reset();
 
         AppManager.gameSetup.numberOfPlayers = 2;
-        String[] testInValidNames = {"Duthroles", "Thamheserlic", "Laalzuc", "Nagi", "Olipan"};
-        AppManager.gameSetup.names.addAll(Arrays.asList(testInValidNames));
-        Role[] testInValidRoles = {DataManager.GetRole("Mafia"),
+        String[] InValidNames = {"Duthroles", "Thamheserlic", "Laalzuc", "Nagi", "Olipan"};
+        AppManager.gameSetup.names.addAll(Arrays.asList(InValidNames));
+        Role[] InValidRoles = {DataManager.GetRole("Mafia"),
                 DataManager.GetRole("Detective"),
                 DataManager.GetRole("President"),
                 DataManager.GetRole("Village Idiot"),
                 DataManager.GetRole("Lovers")};
-        AppManager.gameSetup.addMultipleRoles(2, testInValidRoles[0]);
-        for(int i = 1; i < testInValidRoles.length; ++i){
-            AppManager.gameSetup.chosenRoles.add(testInValidRoles[i]);
+        AppManager.gameSetup.addMultipleRoles(2, InValidRoles[0]);
+        for(int i = 1; i < InValidRoles.length; ++i){
+            AppManager.gameSetup.chosenRoles.add(InValidRoles[i]);
         }
     }
 
@@ -424,7 +488,41 @@ public class AppUnitTests {
     }
 
     public void Test_TokenClearing(){
+        System.out.print("Testing: Token Clearing=======\n");
 
+        AppManager.gameSetup.numberOfPlayers = 1;
+        AppManager.gameSetup.names.add("TEST");
+        AppManager.gameSetup.chosenRoles.add(DataManager.GetRole("Detective"));
+
+        assertTrue(AppManager.gameSetup.checkIfIsValid());
+
+        GameManager.StartNewGame(AppManager.gameSetup);
+
+        System.out.print("Before doing anything\n");
+
+        PlayerManager.PrintSummary();
+
+        PlayerManager.AddTokenToPlayer(PlayerManager.PlayerMangerListType.ALIVE, 0, DataManager.GetToken("Mafia"));
+        PlayerManager.AddTokenToPlayer(PlayerManager.PlayerMangerListType.ALIVE, 0, DataManager.GetToken("Cupid"));
+        PlayerManager.AddTokenToPlayer(PlayerManager.PlayerMangerListType.ALIVE, 0, DataManager.GetToken("Test Clear On Death"));
+
+
+        System.out.print("After adding all test tokens\n");
+        PlayerManager.PrintSummary();
+
+        GameManager.StartNight();
+
+        System.out.print("After starting night\n");
+        PlayerManager.PrintSummary();
+
+        GameManager.GoToPreviousEventAtNight();
+
+        PlayerManager.KillPlayer(PlayerManager.allAlive.get(0));
+
+        System.out.print("After killing player\n");
+        PlayerManager.PrintSummary();
+
+        System.out.print("PASSED: Token Clearing\n");
     }
 
 }

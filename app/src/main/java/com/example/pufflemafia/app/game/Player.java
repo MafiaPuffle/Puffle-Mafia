@@ -8,6 +8,7 @@ import com.example.pufflemafia.app.data.Token;
 
 import java.util.Comparator;
 import java.util.Vector;
+import java.util.function.Predicate;
 
 // Handles all data and logic for a single player
 public class Player {
@@ -37,6 +38,12 @@ public class Player {
         tokensOnPlayer.insertElementAt(token, index);
     }
 
+    public void clearAlTokensOfType(Token.TokenTypes typeToCLear){
+        Predicate<Token> isTypeToClear = token -> (token.getType() == typeToCLear);
+
+        tokensOnPlayer.removeIf(isTypeToClear);
+    }
+
     // the token this player applies to others
     public Token getToken(){
         return this.role.getPower().getToken();
@@ -63,6 +70,9 @@ public class Player {
         System.out.print("Player: " + this.name + "\n");
         this.role.PrintSummary("    ");
         System.out.print("  Tokens applied:\n");
+        if(this.tokensOnPlayer.size() == 0){
+            System.out.print("        NONE\n");
+        }
         for (Token token: this.tokensOnPlayer) {
             token.PrintSummary("        ");
         }
@@ -72,6 +82,9 @@ public class Player {
         System.out.print(spacer + "Player: " + this.name + "\n");
         this.role.PrintSummary(spacer + "    ");
         System.out.print(spacer + "  Tokens applied:\n");
+        if(this.tokensOnPlayer.size() == 0){
+            System.out.print(spacer + "        NONE\n");
+        }
         for (Token token: this.tokensOnPlayer) {
             token.PrintSummary(spacer + "        ");
         }
@@ -82,6 +95,9 @@ public class Player {
         System.out.print("  Name: " + this.name + "\n");
         this.role.PrintDetailed("    ");
         System.out.print("  Tokens applied:\n");
+        if(this.tokensOnPlayer.size() == 0){
+            System.out.print("        NONE\n");
+        }
         for (Token token: this.tokensOnPlayer) {
             token.PrintDetailed("        ");
         }
@@ -92,6 +108,9 @@ public class Player {
         System.out.print(spacer + "  Name: " + this.name + "\n");
         this.role.PrintDetailed(spacer + "    ");
         System.out.print(spacer + "  Tokens applied:\n");
+        if(this.tokensOnPlayer.size() == 0){
+            System.out.print(spacer + "        NONE\n");
+        }
         for (Token token: this.tokensOnPlayer) {
             token.PrintDetailed(spacer + "        ");
         }

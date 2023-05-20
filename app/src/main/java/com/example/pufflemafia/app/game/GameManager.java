@@ -91,6 +91,7 @@ public class GameManager {
         currentIndexOfEventsAtNight = 0;
 
         currentState = GameState.Night;
+        PlayerManager.ClearAllNightTokens();
         onStartNight.Invoke();
 
         // Gets all alive roles and sends the to the ActiveRolesManager

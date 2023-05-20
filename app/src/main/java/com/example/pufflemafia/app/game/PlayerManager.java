@@ -36,7 +36,8 @@ public class PlayerManager {
         allAlive.add(player);
     }
 
-    public static void KillPlayer(Player player){
+    public static void KillPlayer(@NonNull Player player){
+        player.clearAlTokensOfType(Token.TokenTypes.CLEAR_ON_DEATH);
         allDead.add(player);
         allAlive.remove(player);
     }
@@ -44,6 +45,16 @@ public class PlayerManager {
     public static void RevivePlayer(Player player){
         allAlive.add(player);
         allDead.remove(player);
+    }
+
+    public static void ClearAllNightTokens(){
+        for (Player player: allAlive) {
+            player.clearAlTokensOfType(Token.TokenTypes.CLEAR_ON_NIGHT);
+        }
+
+        for (Player player: allDead) {
+            player.clearAlTokensOfType(Token.TokenTypes.CLEAR_ON_NIGHT);
+        }
     }
 
     public static void EditPlayerName(PlayerMangerListType listType, int playerIndex, String newName){

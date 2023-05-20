@@ -53,6 +53,12 @@ public class DataManager {
                 R.drawable.terrorist_puffle,
                 Token.TokenTypes.CLEAR_NEVER);
         allTokens.put(terrorist.getName(), terrorist);
+
+        Token testClearOnDeath = new Token(
+                "Test Clear On Death",
+                R.drawable.terrorist_puffle,
+                Token.TokenTypes.CLEAR_ON_DEATH);
+        allTokens.put(testClearOnDeath.getName(), testClearOnDeath);
     }
 
     private static void InitializeAllPowers(){

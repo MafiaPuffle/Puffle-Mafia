@@ -3,7 +3,7 @@ package com.example.pufflemafia.app.data;
 import androidx.annotation.NonNull;
 
 public class Token {
-    enum TokenTypes {CLEAR_ON_NIGHT, CLEAR_ON_DEATH, CLEAR_NEVER}
+    public enum TokenTypes {CLEAR_ON_NIGHT, CLEAR_ON_DEATH, CLEAR_NEVER}
 
     private String name;
     public String getName(){return name;}

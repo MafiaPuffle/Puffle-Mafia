@@ -31,11 +31,22 @@ public class GameSetup {
     public boolean checkIfIsValid(){
         boolean output = false;
 
+        boolean amountOfRolesEqualsAmountOfPlayers = false;
         if(this.numberOfPlayers == this.names.size()){
             if(this.names.size() == this.chosenRoles.size()){
-                output = true;
+                amountOfRolesEqualsAmountOfPlayers = true;
             }
         }
+
+        boolean foundAtleastOneMafia = false;
+        for (Role role: chosenRoles) {
+            if(role.getName() == "Mafia") {
+                foundAtleastOneMafia = true;
+                break;
+            }
+        }
+
+        if(amountOfRolesEqualsAmountOfPlayers && foundAtleastOneMafia) output = true;
 
         this.isValid = output;
         return output;

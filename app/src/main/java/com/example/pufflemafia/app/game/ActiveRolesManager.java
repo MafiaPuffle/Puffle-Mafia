@@ -41,10 +41,10 @@ public class ActiveRolesManager {
             // and FIRSTNIGHT if it is not the first night
             Power power = role.getPower();
             if(power.getType() != Power.PowerType.PASSIVE && power.getType() != Power.PowerType.SELFACTIVE){
-                if(nightNumber > 1 && power.getType() != Power.PowerType.FIRSTNIGHT){
+                if(nightNumber == 1 && power.getType() == Power.PowerType.FIRSTNIGHT){
                     rolesWithAbilitiesForTheNight.add(role);
                 }
-                else{
+                else if(power.getType() != Power.PowerType.FIRSTNIGHT){
                     rolesWithAbilitiesForTheNight.add(role);
                 }
             }
