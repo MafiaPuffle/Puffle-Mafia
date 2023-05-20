@@ -11,7 +11,6 @@
         android:layout_width="390dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/green_rectangle"
@@ -22,8 +21,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.134">
+        app:layout_constraintTop_toBottomOf="@+id/ChooseYourCharactersTitleBox"
+        app:layout_constraintVertical_bias="0.048">
 
         <ImageButton
             android:id="@+id/NonActiveCharacter"
@@ -43,17 +42,16 @@
         android:id="@+id/ChooseYourCharactersTitleBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/grey_rectangle"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/CharacterBox"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044">
+        app:layout_constraintVertical_bias="0.024">
 
         <TextView
             android:id="@+id/ChooseYourCharactersTitleText"
@@ -68,11 +66,10 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ChosenCharacterBox"
+        android:id="@+id/ChangeToPictureCharacterBox"
         android:layout_width="390dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/green_rectangle"
         android:gravity="center"
@@ -80,9 +77,10 @@
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ChooseYourCharactersTitleBox"
-        app:layout_constraintVertical_bias="0.425">
+        app:layout_constraintTop_toBottomOf="@+id/ChosenCharactersTitleBox"
+        app:layout_constraintVertical_bias="0.149">
 
         <ImageButton
             android:id="@+id/ActiveCharacter"
@@ -106,16 +104,15 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/grey_rectangle"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/ChosenCharacterBox"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CharacterBox"
-        app:layout_constraintVertical_bias="0.533">
+        app:layout_constraintVertical_bias="0.071">
 
         <TextView
             android:id="@+id/ChosenYourCharactersTitleText"
@@ -142,7 +139,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterBox"
+        app:layout_constraintTop_toBottomOf="@+id/ChangeToPictureCharacterBox"
         app:layout_constraintVertical_bias="0.878" />
 
     <Button
@@ -158,7 +155,7 @@
         app:layout_constraintEnd_toStartOf="@+id/DoneChoosingCharacters"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterBox"
+        app:layout_constraintTop_toBottomOf="@+id/ChangeToPictureCharacterBox"
         app:layout_constraintVertical_bias="0.878" />
 
 

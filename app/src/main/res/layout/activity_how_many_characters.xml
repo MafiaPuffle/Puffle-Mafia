@@ -7,7 +7,7 @@
     tools:context=".HowManyCharacters">
 
     <LinearLayout
-        android:id="@+id/HowManyCharactersBox"
+        android:id="@+id/ChangeToCharactersBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/purple_rectangle"
@@ -35,7 +35,7 @@
 
 
     <LinearLayout
-        android:id="@+id/ChosenCharacterBox"
+        android:id="@+id/ChangeToPictureCharacterBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/green_rectangle"
@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HowManyCharactersBox"
+        app:layout_constraintTop_toBottomOf="@+id/ChangeToCharactersBox"
         app:layout_constraintVertical_bias="0.164">
 
         <ImageView
@@ -82,7 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterBox"
+        app:layout_constraintTop_toBottomOf="@+id/ChangeToPictureCharacterBox"
         app:layout_constraintVertical_bias="0.095" />
 
     <Button
@@ -94,7 +94,7 @@
         app:layout_constraintEnd_toStartOf="@+id/HowManyNextToChooseYourCharacters"
         app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterBox"
+        app:layout_constraintTop_toBottomOf="@+id/ChangeToPictureCharacterBox"
         app:layout_constraintVertical_bias="0.095" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

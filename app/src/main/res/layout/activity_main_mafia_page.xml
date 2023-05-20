@@ -103,7 +103,7 @@
 
         <TextView
             android:id="@+id/AliveTitleText"
-            android:layout_width="133dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:gravity="center"
@@ -118,7 +118,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/red_rectangle"
@@ -127,10 +126,10 @@
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.297">
+        app:layout_constraintTop_toBottomOf="@+id/DeadTitleBox"
+        app:layout_constraintVertical_bias="0.091">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/FinalDeathCharacterBox"
@@ -195,12 +194,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/red_rectangle"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/DeadCharacterBox"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -209,7 +207,7 @@
 
         <TextView
             android:id="@+id/DeadTitleText"
-            android:layout_width="91dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:gravity="center"

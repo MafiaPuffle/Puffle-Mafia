@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChangeToThisCharacter">
+
+
+
+  <LinearLayout
+      android:id="@+id/ChangeToCharactersBox"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/purple_rectangle"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:padding="5dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.444"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.067">
+
+    <TextView
+        android:id="@+id/ChangeToCharactersText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:text="Change to -Insert Role-"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FEFAFD"
+        android:textSize="30dp" />
+  </LinearLayout>
+
+
+  <LinearLayout
+      android:id="@+id/ChangeToPictureCharacterBox"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/green_rectangle"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:padding="5dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.533"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/ChangeToCharactersBox"
+      app:layout_constraintVertical_bias="0.164">
+
+    <ImageView
+        android:id="@+id/ChangeToCharacter"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/alien_puffle" />
+
+
+  
+  </LinearLayout>
+
+  <Button
+      android:id="@+id/HowManyNextToChooseYourCharacters"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Next"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.931"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/ChangeToPictureCharacterBox"
+      app:layout_constraintVertical_bias="0.095" />
+
+  <Button
+      android:id="@+id/HowManyBackToChooseYourCharacters"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="BACK"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/HowManyNextToChooseYourCharacters"
+      app:layout_constraintHorizontal_bias="0.126"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/ChangeToPictureCharacterBox"
+      app:layout_constraintVertical_bias="0.095" />
+
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
