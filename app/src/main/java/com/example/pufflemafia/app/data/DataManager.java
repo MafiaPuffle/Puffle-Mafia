@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Vector;
 
 public class DataManager {
+    //TODO: Add all remaining Tokens, Powers, and Roles
     public static Map<String, Token> allTokens;
     public static Map<String, Power> allPowers;
     public static Map<String, Role> allRoles;
