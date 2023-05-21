@@ -16,7 +16,6 @@ public class AppManager {
 
     public static GameManager gameManager;
     public static DataManager dataManager;
-    public static ScreenManager screenManager;
 
     // Used for sending warning messages for debugging
     private static Logger logger;
@@ -27,7 +26,20 @@ public class AppManager {
 
         gameManager = new GameManager();
         dataManager = new DataManager();
-        screenManager = new ScreenManager();
+
+        logger = Logger.getLogger(AppManager.class.getName());
+        // Set Logger level()
+        logger.setLevel(Level.WARNING);
+
+        onMainMenu();
+    }
+
+    public static void setup(){
+        currentAppState = AppState.MaimMenu;
+        gameSetup = new GameSetup();
+
+        gameManager = new GameManager();
+        dataManager = new DataManager();
 
         logger = Logger.getLogger(AppManager.class.getName());
         // Set Logger level()

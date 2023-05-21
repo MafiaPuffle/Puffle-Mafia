@@ -94,7 +94,8 @@ public class AppUnitTests {
     }
 
     public void Initialization(){
-        appManager = new AppManager();
+        //appManager = new AppManager();
+        AppManager.setup();
     }
     public void Test_Initialization(){
         System.out.print("Testing: Initializing AppManager=========\n");
