@@ -4,356 +4,260 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Roles">
+    tools:context=".RolesScreen">
 
-    <ImageButton
-        android:id="@+id/imageView16"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/alien_puffle"
-        android:contentDescription="Alien"
+    <!--Roles Title Text Box-->
+    <LinearLayout
+        android:id="@+id/ChangeCharacterTitleBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_rectangle"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <ImageButton
-        android:id="@+id/imageView17"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Baker"
+        <TextView
+            android:id="@+id/ChangeCharacterTitleText"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:text="Roles"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FEFAFD"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <!--Roles Box-->
+    <GridLayout
+        android:id="@+id/EditAllCharacterBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/green_rectangle"
+        android:columnCount="8"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:rowCount="8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView16"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/baker_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView18"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Cupid"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView17"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/cupid_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView19"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Cyborg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView18"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/cyborg_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView20"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Dentist"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView19"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/dentist_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView21"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Detective"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView20"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/detective_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView22"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Doctor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView21"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/doctor_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView23"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Doggie"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView22"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/doggie_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView24"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Evil-Zombie"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView16"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/evil_zombie_puffle" />
+        app:layout_constraintTop_toBottomOf="@+id/ChangeCharacterTitleBox"
+        app:layout_constraintVertical_bias="0.146">
 
-    <ImageButton
-        android:id="@+id/imageView25"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Godfather"
+
+        <ImageButton
+            android:id="@+id/imageView16"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/alien_puffle"
+            android:contentDescription="Alien" />
+
+        <ImageButton
+            android:id="@+id/imageView17"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/baker_puffle"
+            android:contentDescription="Baker" />
+
+        <ImageButton
+            android:id="@+id/imageView18"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cupid_puffle"
+            android:contentDescription="Cupid" />
+
+        <ImageButton
+            android:id="@+id/imageView19"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cyborg_puffle"
+            android:contentDescription="Cyborg" />
+
+        <ImageButton
+            android:id="@+id/imageView20"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/dentist_puffle"
+            android:contentDescription="Dentist" />
+
+        <ImageButton
+            android:id="@+id/imageView21"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/detective_puffle"
+            android:contentDescription="Detective"/>
+
+        <ImageButton
+            android:id="@+id/imageView22"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/doctor_puffle"
+            android:contentDescription="Doctor"/>
+
+        <ImageButton
+            android:id="@+id/imageView23"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/doggie_puffle"
+            android:contentDescription="Doggie"/>
+
+        <ImageButton
+            android:id="@+id/imageView24"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/evil_zombie_puffle"
+            android:contentDescription="Evil-Zombie"/>
+
+        <ImageButton
+            android:id="@+id/imageView25"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/godfather_puffle"
+            android:contentDescription="Godfather"/>
+
+        <ImageButton
+            android:id="@+id/imageView26"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/good_zombie_puffle"
+            android:contentDescription="Good-Zombie"/>
+
+        <ImageButton
+            android:id="@+id/imageView27"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/holy_spirit_puffle"
+            android:contentDescription="Holy-Spitit"/>
+
+        <ImageButton
+            android:id="@+id/imageView28"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/jack_of_all_trades"
+            android:contentDescription="Jack-of-all-trades"/>
+
+        <ImageButton
+            android:id="@+id/imageView29"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/jailkeeper_puffle"
+            android:contentDescription="Jailkeeper"/>
+
+        <ImageButton
+            android:id="@+id/imageView30"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/jesus_puffle"
+            android:contentDescription="Jesus"/>
+
+        <ImageButton
+            android:id="@+id/imageView31"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/lawyer_puffle"
+            android:contentDescription="Lawyer"/>
+
+        <ImageButton
+            android:id="@+id/imageView32"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/lover_puffle"
+            android:contentDescription="Lovers"/>
+
+        <ImageButton
+            android:id="@+id/imageView33"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/mafia_puffle"
+            android:contentDescription="Mafia"/>
+
+        <ImageButton
+            android:id="@+id/imageView34"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/president_puffle"
+            android:contentDescription="President"/>
+
+        <ImageButton
+            android:id="@+id/imageView35"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/rival_puffle"
+            android:contentDescription="Rival-Mafia"/>
+
+        <ImageButton
+            android:id="@+id/imageView36"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/satan"
+            android:contentDescription="Satan"/>
+
+        <ImageButton
+            android:id="@+id/imageView37"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/terrorist_puffle"
+            android:contentDescription="Terrorist"/>
+
+        <ImageButton
+            android:id="@+id/imageView38"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/the_father_puffle"
+            android:contentDescription="The-Father"/>
+
+        <ImageButton
+            android:id="@+id/imageView39"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/veteran_puffle"
+            android:contentDescription="Veteran"/>
+
+        <ImageButton
+            android:id="@+id/imageView40"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/village_idiot_puffle"
+            android:contentDescription="Village-Idiot"/>
+
+        <ImageButton
+            android:id="@+id/imageView41"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/witness_puffle"
+            android:contentDescription="Witness"/>
+
+        <ImageButton
+            android:id="@+id/imageView42"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/wizard_puffle"
+            android:contentDescription="Wizard"/>
+    </GridLayout>
+
+    <!--Button-->
+    <Button
+        android:id="@+id/BackToMainMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView24"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/godfather_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView26"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Good-Zombie"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView25"
-        app:layout_constraintTop_toBottomOf="@+id/imageView18"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/good_zombie_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView27"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Holy-Spitit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView26"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/holy_spirit_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView28"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Jack-of-all-trades"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView27"
-        app:layout_constraintTop_toBottomOf="@+id/imageView20"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/jack_of_all_trades" />
-
-    <ImageButton
-        android:id="@+id/imageView29"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Jailkeeper"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView28"
-        app:layout_constraintTop_toBottomOf="@+id/imageView21"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/jailkeeper_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView30"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Jesus"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView29"
-        app:layout_constraintTop_toBottomOf="@+id/imageView22"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/jesus_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView31"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Lawyer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView30"
-        app:layout_constraintTop_toBottomOf="@+id/imageView23"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/lawyer_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView32"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Lovers"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView24"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/lover_puffle" />
+        app:layout_constraintTop_toBottomOf="@+id/EditAllCharacterBox"
+        app:layout_constraintVertical_bias="0.942" />
 
-    <ImageButton
-        android:id="@+id/imageView33"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Mafia"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView32"
-        app:layout_constraintTop_toBottomOf="@+id/imageView25"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/mafia_puffle" />
 
-    <ImageButton
-        android:id="@+id/imageView34"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="President"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView33"
-        app:layout_constraintTop_toBottomOf="@+id/imageView26"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/president_puffle" />
 
-    <ImageButton
-        android:id="@+id/imageView35"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Rival-Mafia"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView34"
-        app:layout_constraintTop_toBottomOf="@+id/imageView27"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/rival_puffle" />
 
-    <ImageButton
-        android:id="@+id/imageView36"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Satan"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView35"
-        app:layout_constraintTop_toBottomOf="@+id/imageView28"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/satan" />
-
-    <ImageButton
-        android:id="@+id/imageView37"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Terrorist"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView36"
-        app:layout_constraintTop_toBottomOf="@+id/imageView29"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/terrorist_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView38"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="The-Father"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView37"
-        app:layout_constraintTop_toBottomOf="@+id/imageView30"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/the_father_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView39"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Veteran"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView38"
-        app:layout_constraintTop_toBottomOf="@+id/imageView31"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/veteran_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView40"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Village-Idiot"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView32"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/village_idiot_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView41"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Witness"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView40"
-        app:layout_constraintTop_toBottomOf="@+id/imageView33"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/witness_puffle" />
-
-    <ImageButton
-        android:id="@+id/imageView42"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Wizard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView41"
-        app:layout_constraintTop_toBottomOf="@+id/imageView34"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/wizard_puffle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

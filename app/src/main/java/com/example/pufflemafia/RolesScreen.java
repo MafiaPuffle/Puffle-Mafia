@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
+
 
 public class RolesScreen extends AppCompatActivity {
 
@@ -14,15 +15,20 @@ public class RolesScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roles);
 
-        ImageButton Alien = findViewById(R.id.imageView16);
 
-        Alien.setOnClickListener(new View.OnClickListener() {
+    configureBackToMainMenu();
+    }
+
+    private void configureBackToMainMenu(){
+        Button BackToMainMenuButton = (Button) findViewById(R.id.BackToMainMenu);
+        BackToMainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RolesScreen.this,CharacterSelectScreen.class);
-                startActivity(intent);
+                finish();
             }
         });
-
     }
+
+
+
 }
