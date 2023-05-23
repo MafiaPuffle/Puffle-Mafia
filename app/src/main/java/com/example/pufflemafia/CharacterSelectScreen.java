@@ -19,8 +19,6 @@ public class CharacterSelectScreen extends AppCompatActivity {
         setContentView(R.layout.activity_character_select_screen);
 
 
-
-
         GridLayout ChosenCharacterBox = findViewById(R.id.ChosenCharacterBox);
         ImageButton bakerButton = findViewById(R.id.Baker);
         countTextView = findViewById(R.id.ChosenCharacterCountText);
