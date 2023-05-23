@@ -13,47 +13,51 @@ import android.util.TypedValue;
 import android.widget.TextView;
 
 import com.example.pufflemafia.app.data.DataManager;
+import com.example.pufflemafia.app.data.Role;
 
 public class CharacterSelectScreen extends AppCompatActivity {
+
+    private int buttonCount = 0;
+
+    private TextView countTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_select_screen);
 
-        Log.i("I Work", "I work");
-        Log.i("Data is valid", DataManager.GetRole("Mafia").getName());
+        Log.i("CharacterSelectScreen", "Starting CharacterSelectScreen");
 
-        
-
+        GridLayout allRolesCharacterBox = findViewById(R.id.CharacterBox);
 
         GridLayout ChosenCharacterBox = findViewById(R.id.ChosenCharacterBox);
-        ImageButton bakerButton = findViewById(R.id.Baker);
-        countTextView = findViewById(R.id.ChosenCharacterCountText);
-        bakerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addImageToGrid(ChosenCharacterBox, R.drawable.baker_puffle);
-            }
-        });
 
-        ImageButton cupidButton = findViewById(R.id.Cupid);
-        cupidButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addImageToGrid(ChosenCharacterBox, R.drawable.cupid_puffle);
-            }
-        });
+        countTextView = findViewById(R.id.ChosenCharacterCountText);
+
+        for(int i = 0; i < allRolesCharacterBox.getChildCount(); i++) {
+            ImageButton child = (ImageButton) allRolesCharacterBox.getChildAt(i);
+            //String roleAsString = child.getContentDescription().toString();
+            //Role role = DataManager.GetRole(roleAsString);
+
+            // do stuff with child view
+            child.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addImageToGrid(ChosenCharacterBox, R.drawable.alien_puffle);
+                }
+            });
+
+
+
+            //Log.i("CharacterSelectScreen", roleAsString + " should be setup");
+        }
 
         //Configure Buttons
         configureBackToStart();
         configureDoneChoosingCharactersButton();
-        configureNonActiveCharacter();
-        ImageButton ChosenCharacter = findViewById(R.id.NonActiveCharacter);
+        //configureNonActiveCharacter();
+        //ImageButton ChosenCharacter = findViewById(R.id.NonActiveCharacter);
     }
-
-    private int buttonCount = 0;
-    private TextView countTextView;
 
     private void addImageToGrid(GridLayout chosenCharacterBox, int drawableId) {
         ImageButton imageButton = new ImageButton(this);
