@@ -70,10 +70,11 @@
             android:contentDescription="Baker" />
 
         <ImageButton
-            android:id="@+id/imageView18"
+            android:id="@+id/Cupid"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/cupid_puffle"
+            android:onClick="addImageToGrid"
             android:contentDescription="Cupid" />
 
         <ImageButton
