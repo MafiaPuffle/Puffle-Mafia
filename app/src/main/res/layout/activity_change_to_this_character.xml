@@ -9,6 +9,8 @@
 
 
   <!--Change Role To Title Text Box-->
+
+  <!--Change Character To Box-->
   <LinearLayout
       android:id="@+id/ChangeToCharactersBox"
       android:layout_width="wrap_content"
@@ -19,10 +21,10 @@
       android:padding="5dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.444"
+      app:layout_constraintHorizontal_bias="0.604"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.067">
+      app:layout_constraintVertical_bias="0.066">
 
     <TextView
         android:id="@+id/ChangeToCharactersText"
@@ -36,7 +38,6 @@
         android:textSize="30dp" />
   </LinearLayout>
 
-  <!--Change Character To Box-->
   <LinearLayout
       android:id="@+id/ChosenCharacterBox"
       android:layout_width="wrap_content"
