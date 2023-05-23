@@ -6,85 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainMafiaPage">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/AliveCharacterBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/green_rectangle"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AliveTitleBox"
-        app:layout_constraintVertical_bias="0.051">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ActionerCharacterBox"
-            android:layout_width="370dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/grey_rectangle"
-            android:orientation="vertical"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.069">
-
-            <ImageButton
-                android:id="@+id/AliveCharacter"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/alien_puffle"
-                android:contentDescription="Alien"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.489" />
-
-            <TextView
-                android:id="@+id/ActionerCharacterName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ALIVE CHARACTER NAME"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/AliveCharacter"
-                app:layout_constraintTop_toBottomOf="@+id/ActionerCharacterRole"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <TextView
-                android:id="@+id/ActionerCharacterRole"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ALIVE CHARACTER ROLE"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/AliveCharacter"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.111" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <!--Alive Box-->
     <LinearLayout
         android:id="@+id/AliveTitleBox"
         android:layout_width="wrap_content"
@@ -113,82 +35,72 @@
             android:textSize="25sp" />
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/DeadCharacterBox"
+    <!--Alive Characters Box-->
+    <LinearLayout
+        android:id="@+id/AliveCharacterBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/red_rectangle"
+        android:background="@drawable/green_rectangle"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DeadTitleBox"
-        app:layout_constraintVertical_bias="0.091">
+        app:layout_constraintTop_toBottomOf="@+id/AliveTitleBox"
+        app:layout_constraintVertical_bias="0.057">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/FinalDeathCharacterBox"
-            android:layout_width="370dp"
+
+        <LinearLayout
+            android:id="@+id/FinalAliveCharacterBox"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/grey_rectangle"
-            android:orientation="vertical"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.069">
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <ImageButton
-                android:id="@+id/DeadCharacter"
+                android:id="@+id/AliveCharacter"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@drawable/alien_puffle"
-                android:contentDescription="Alien"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.489" />
+                android:contentDescription="Alien"/>
 
-            <TextView
-                android:id="@+id/DeadCharacterName"
+            <LinearLayout
+                android:id="@+id/AliveCharacterTextsBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="DEAD CHARACTER NAME"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.038"
-                app:layout_constraintStart_toEndOf="@+id/DeadCharacter"
-                app:layout_constraintTop_toBottomOf="@+id/DeadCharacterRole"
-                app:layout_constraintVertical_bias="0.916" />
+                android:orientation="vertical"
+                android:background="@drawable/grey_rectangle">
 
-            <TextView
-                android:id="@+id/DeadCharacterRole"
+                <TextView
+                    android:id="@+id/AliveCharacterRole"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ALIVE CHARACTER ROLE"/>
+
+                <EditText
+                android:id="@+id/AliveCharacterName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DEAD CHARACTER ROLE"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.038"
-                app:layout_constraintStart_toEndOf="@+id/DeadCharacter"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.111" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:text="ALIVE CHARACTER NAME"
+                    android:textSize="14dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--Dead Box-->
     <LinearLayout
         android:id="@+id/DeadTitleBox"
         android:layout_width="wrap_content"
@@ -217,8 +129,73 @@
             android:textSize="25sp" />
     </LinearLayout>
 
+    <!--Dead Characters Box-->
+    <LinearLayout
+        android:id="@+id/DeadCharacterBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/red_rectangle"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeadTitleBox"
+        app:layout_constraintVertical_bias="0.094">
+
+        <LinearLayout
+            android:id="@+id/FinalDeathCharacterBox"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/grey_rectangle"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageButton
+                android:id="@+id/DeadCharacter"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/alien_puffle"
+                android:contentDescription="Alien"/>
+
+            <LinearLayout
+                android:id="@+id/DeadCharacterTextsBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/grey_rectangle">
+
+                <TextView
+                    android:id="@+id/DeadCharacterRole"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DEAD CHARACTER ROLE"/>
+
+                <TextView
+                android:id="@+id/DeadCharacterName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="DEAD CHARACTER NAME"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--Buttons-->
     <Button
-        android:id="@+id/StartTheNight"
+        android:id="@+id/StartTheNightButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
@@ -230,12 +207,12 @@
         app:layout_constraintVertical_bias="0.969" />
 
     <Button
-        android:id="@+id/DayBacktoChooseYourCharacters"
+        android:id="@+id/DayBacktoChooseYourCharactersButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BACK"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/StartTheNight"
+        app:layout_constraintEnd_toStartOf="@+id/StartTheNightButton"
         app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DeadCharacterBox"

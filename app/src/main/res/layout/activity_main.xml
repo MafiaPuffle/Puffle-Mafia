@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--Title Text Box-->
     <LinearLayout
         android:id="@+id/PuffleMafiaBox"
         android:layout_width="254dp"
@@ -32,6 +33,7 @@
             android:textSize="36sp" />
     </LinearLayout>
 
+    <!--Buttons-->
     <Button
         android:id="@+id/RolesButton"
         android:layout_width="350dp"

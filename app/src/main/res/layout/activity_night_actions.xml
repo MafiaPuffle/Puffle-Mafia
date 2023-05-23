@@ -6,21 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".NightActions">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--Actioner Box-->
+    <LinearLayout
         android:id="@+id/ActionerCharacterBox"
-        android:layout_width="370dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/grey_rectangle"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02">
+        app:layout_constraintVertical_bias="0.012">
 
         <ImageButton
             android:id="@+id/ActionerCharacter"
@@ -35,34 +36,42 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.489" />
 
-        <TextView
-            android:id="@+id/ActionerCharacterName"
+
+        <LinearLayout
+            android:id="@+id/ActionerCharacterTextsBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="144dp"
-            android:text="NAME"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/ActionerCharacter"
-            app:layout_constraintTop_toBottomOf="@+id/ActionerCharacterRole"
-            app:layout_constraintVertical_bias="0.0" />
+            android:orientation="vertical"
+            android:background="@drawable/grey_rectangle">
 
-        <TextView
-            android:id="@+id/ActionerCharacterRole"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="148dp"
-            android:text="ROLE"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/ActionerCharacter"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.111" />
+            <TextView
+                android:id="@+id/ActionerCharacterName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/ActionerCharacter"
+                app:layout_constraintTop_toBottomOf="@+id/ActionerCharacterRole"
+                app:layout_constraintVertical_bias="0.0" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/ActionerCharacterRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ROLE"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/ActionerCharacter"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.111" />
+        </LinearLayout>
 
+    </LinearLayout>
+
+    <!--Action Box Text-->
     <LinearLayout
         android:id="@+id/NightActionBox"
         android:layout_width="wrap_content"
@@ -93,8 +102,8 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--Actionee Boxes-->
+    <LinearLayout
         android:id="@+id/ActioneeCharacterBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,21 +117,20 @@
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NightActionBox"
-        app:layout_constraintVertical_bias="0.037">
+        app:layout_constraintVertical_bias="0.054">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/ActioneeCharacterINBox"
-            android:layout_width="370dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/grey_rectangle"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -142,6 +150,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.489" />
+
+            <LinearLayout
+                android:id="@+id/ActioneeCharacterTextsBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/grey_rectangle">
 
             <TextView
                 android:id="@+id/ActioneeCharacterName"
@@ -166,6 +181,7 @@
                 app:layout_constraintStart_toEndOf="@+id/ActioneeCharacter"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.111" />
+            </LinearLayout>
 
             <ImageButton
                 android:id="@+id/ActionFromActioner"
@@ -181,12 +197,12 @@
                 app:layout_constraintVertical_bias="0.48" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </LinearLayout>
 
-
+    <!--Buttons-->
     <Button
-        android:id="@+id/StartTheNight"
+        android:id="@+id/ToNextActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -200,18 +216,18 @@
         app:layout_constraintVertical_bias="0.96" />
 
     <Button
-        android:id="@+id/BacktoLastAction"
+        android:id="@+id/BacktoLastActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:text="BACK"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/StartTheNight"
+        app:layout_constraintEnd_toStartOf="@+id/ToNextActionButton"
         app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ActioneeCharacterBox"
-        app:layout_constraintVertical_bias="0.959" />
+        app:layout_constraintVertical_bias="0.96" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

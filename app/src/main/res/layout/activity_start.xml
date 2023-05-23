@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Start">
 
+    <!--How Many Players Title Text Box-->
     <LinearLayout
         android:id="@+id/HowManyPLayersBox"
         android:layout_width="wrap_content"
@@ -30,8 +31,9 @@
             android:textSize="36sp" />
     </LinearLayout>
 
+    <!--Seek Bar For How Many Players-->
     <SeekBar
-        android:id="@+id/seekBar2"
+        android:id="@+id/NumberOfCharactersSeekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="395dp"
         android:layout_height="wrap_content"
@@ -43,20 +45,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HowManyPLayersBox"
         app:layout_constraintVertical_bias="0.006" />
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/NumberOfPlayersText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="# of Players"
         android:textSize="50sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar2"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintTop_toBottomOf="@+id/NumberOfCharactersSeekBar"
+        app:layout_constraintVertical_bias="0.088"
+        tools:text="0 Players" />
 
+    <!--Random Charcters Button-->
     <Button
         android:id="@+id/RandomCharactersButton"
         android:layout_width="wrap_content"
@@ -67,9 +70,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/NumberOfPlayersText"
         app:layout_constraintVertical_bias="0.173" />
 
+    <!--Choose Characters Button-->
     <Button
         android:id="@+id/ChooseCharactersButton"
         android:layout_width="262dp"
@@ -83,6 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/RandomCharactersButton"
         app:layout_constraintVertical_bias="0.201" />
 
+    <!--Button-->
     <Button
         android:id="@+id/BackToMainMenu"
         android:layout_width="wrap_content"

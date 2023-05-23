@@ -8,7 +8,7 @@
     tools:context=".ChangeToThisCharacter">
 
 
-
+  <!--Change Role To Title Text Box-->
   <LinearLayout
       android:id="@+id/ChangeToCharactersBox"
       android:layout_width="wrap_content"
@@ -36,9 +36,9 @@
         android:textSize="30dp" />
   </LinearLayout>
 
-
+  <!--Change Character To Box-->
   <LinearLayout
-      android:id="@+id/ChangeToPictureCharacterBox"
+      android:id="@+id/ChosenCharacterBox"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:background="@drawable/green_rectangle"
@@ -59,9 +59,10 @@
         app:srcCompat="@drawable/alien_puffle" />
 
 
-  
+
   </LinearLayout>
 
+  <!--Buttons-->
   <Button
       android:id="@+id/HowManyNextToChooseYourCharacters"
       android:layout_width="wrap_content"
@@ -71,7 +72,7 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.931"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/ChangeToPictureCharacterBox"
+      app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterBox"
       app:layout_constraintVertical_bias="0.095" />
 
   <Button
@@ -83,7 +84,7 @@
       app:layout_constraintEnd_toStartOf="@+id/HowManyNextToChooseYourCharacters"
       app:layout_constraintHorizontal_bias="0.126"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/ChangeToPictureCharacterBox"
+      app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterBox"
       app:layout_constraintVertical_bias="0.095" />
 
 
