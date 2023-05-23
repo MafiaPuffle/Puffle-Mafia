@@ -7,12 +7,18 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.app.game.GameManager;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Setting Up the App data
+        AppManager.setup();
 
 
         Button Roles = findViewById(R.id.RolesButton);
