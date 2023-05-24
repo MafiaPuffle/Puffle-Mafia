@@ -25,11 +25,35 @@ public class DataManager {
     private static void InitializeAllTokens(){
         allTokens = new HashMap<String, Token>();
 
+        Token alien = new Token(
+                "Alien",
+                R.drawable.alien_puffle,
+                Token.TokenTypes.CLEAR_NEVER);
+        allTokens.put(alien.getName(), alien);
+
+        Token baker = new Token(
+                "Baker",
+                R.drawable.baker_puffle,
+                Token.TokenTypes.CLEAR_NEVER);
+        allTokens.put(baker.getName(), baker);
+
         Token cupid = new Token(
                 "Cupid",
                 R.drawable.cupid_puffle,
                 Token.TokenTypes.CLEAR_NEVER);
         allTokens.put(cupid.getName(), cupid);
+
+        Token cyborg = new Token(
+                "Cyborg",
+                R.drawable.cyborg_puffle,
+                Token.TokenTypes.CLEAR_NEVER);
+        allTokens.put(cyborg.getName(), cyborg);
+
+        Token dentist = new Token(
+                "Dentist",
+                R.drawable.detective_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT);
+        allTokens.put(dentist.getName(), dentist);
 
         Token detective = new Token(
                 "Detective",
@@ -43,17 +67,77 @@ public class DataManager {
                 Token.TokenTypes.CLEAR_ON_NIGHT);
         allTokens.put(doctor.getName(), doctor);
 
+        Token theFather = new Token(
+                "The Father",
+                R.drawable.the_father_puffle,
+                Token.TokenTypes.CLEAR_NEVER);
+        allTokens.put(theFather.getName(), theFather);
+
+        Token holySpirit = new Token(
+                "Holy Spirit",
+                R.drawable.holy_spirit_puffle,
+                Token.TokenTypes.CLEAR_NEVER);
+        allTokens.put(holySpirit.getName(), holySpirit);
+
+        Token jackOfAllTrades = new Token(
+                "Jack-of-All-Trades",
+                R.drawable.jack_of_all_trades,
+                Token.TokenTypes.CLEAR_ON_NIGHT);
+        allTokens.put(jackOfAllTrades.getName(), jackOfAllTrades);
+
+        Token jailKeeper = new Token(
+                "Jailkeeper",
+                R.drawable.jailkeeper_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT);
+        allTokens.put(jailKeeper.getName(), jailKeeper);
+
+        Token lawyer = new Token(
+                "Lawyer",
+                R.drawable.lawyer_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT);
+        allTokens.put(lawyer.getName(), lawyer);
+
+        Token lovers = new Token(
+                "Lovers",
+                R.drawable.lover_puffle,
+                Token.TokenTypes.CLEAR_NEVER);
+        allTokens.put(lovers.getName(), lovers);
+
         Token mafia = new Token(
                 "Mafia",
                 R.drawable.mafia_puffle,
                 Token.TokenTypes.CLEAR_ON_NIGHT);
         allTokens.put(mafia.getName(), mafia);
 
+        Token mafiaRival = new Token(
+                "Mafia Rival",
+                R.drawable.mafia_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT);
+        allTokens.put(mafiaRival.getName(), mafiaRival);
+
+        Token satan = new Token(
+                "Satan",
+                R.drawable.satan,
+                Token.TokenTypes.CLEAR_NEVER);
+        allTokens.put(satan.getName(), satan);
+
         Token terrorist = new Token(
                 "Terrorist",
                 R.drawable.terrorist_puffle,
                 Token.TokenTypes.CLEAR_NEVER);
         allTokens.put(terrorist.getName(), terrorist);
+
+        Token witness = new Token(
+                "Witness",
+                R.drawable.witness_puffle,
+                Token.TokenTypes.CLEAR_NEVER);
+        allTokens.put(witness.getName(), witness);
+
+        Token wizard = new Token(
+                "Wizard",
+                R.drawable.wizard_puffle,
+                Token.TokenTypes.CLEAR_NEVER);
+        allTokens.put(wizard.getName(), wizard);
 
         Token testClearOnDeath = new Token(
                 "Test Clear On Death",
@@ -65,12 +149,41 @@ public class DataManager {
     private static void InitializeAllPowers(){
         allPowers = new HashMap<String, Power>();
 
+        Power alien = new Power("Alien",
+                Power.PowerType.CONTINOUS,
+                "infect",
+                GetToken("Alien"));
+        allPowers.put(alien.getName(), alien);
+
+        Power baker = new Power("Baker",
+                Power.PowerType.CONTINOUS,
+                "give bread",
+                GetToken("Baker"));
+        allPowers.put(baker.getName(), baker);
+
+        Power civilian = new Power("Civilian",
+                Power.PowerType.PASSIVE,
+                "");
+        allPowers.put(civilian.getName(), civilian);
+
         Power cupid = new Power(
                 "Cupid",
                 Power.PowerType.FIRSTNIGHT,
                 "link",
                 GetToken("Cupid"));
         allPowers.put(cupid.getName(), cupid);
+
+        Power cyborg = new Power("Cyborg",
+                Power.PowerType.FIRSTNIGHT,
+                "copy",
+                GetToken("Cyborg"));
+        allPowers.put(cyborg.getName(), cyborg);
+
+        Power dentist = new Power("Dentist",
+                Power.PowerType.CONTINOUS,
+                "mute",
+                GetToken("Dentist"));
+        allPowers.put(dentist.getName(), dentist);
 
         Power detective = new Power(
                 "Detective",
@@ -92,6 +205,46 @@ public class DataManager {
                 "");
         allPowers.put(doggie.getName(), doggie);
 
+        Power theFather = new Power("The Father",
+                Power.PowerType.ACTIVE,
+                "???",
+                GetToken("The Father"));
+        allPowers.put(theFather.getName(), theFather);
+
+        Power godFather = new Power("GodFather",
+                Power.PowerType.ACTIVE,
+                "kill");
+        allPowers.put(godFather.getName(), godFather);
+
+        Power holySpirit = new Power("Holy Spirit",
+                Power.PowerType.ACTIVE,
+                "???",
+                GetToken("Holy Spirit"));
+        allPowers.put(holySpirit.getName(), holySpirit);
+
+        Power jackOfAllTrades = new Power("Jack-of-All-Trades",
+                Power.PowerType.CONTINOUS,
+                "???",
+                GetToken("Jack-of-All-Trades"));
+        allPowers.put(jackOfAllTrades.getName(), jackOfAllTrades);
+
+        Power jailKeeper = new Power("Jailkeeper",
+                Power.PowerType.CONTINOUS,
+                "???",
+                GetToken("Jailkeeper"));
+        allPowers.put(jailKeeper.getName(), jailKeeper);
+
+        Power jesus = new Power("Jesus",
+                Power.PowerType.PASSIVE,
+                "???");
+        allPowers.put(jesus.getName(), jesus);
+
+        Power lawyer = new Power("Lawyer",
+                Power.PowerType.CONTINOUS,
+                "???",
+                GetToken("Lawyer"));
+        allPowers.put(lawyer.getName(), lawyer);
+
         Power lovers = new Power(
                 "Lovers",
                 Power.PowerType.FIRSTNIGHT,
@@ -105,11 +258,23 @@ public class DataManager {
                 GetToken("Mafia"));
         allPowers.put(mafia.getName(), mafia);
 
+        Power rivalMafia = new Power("Mafia Rival",
+                Power.PowerType.CONTINOUS,
+                "Kill",
+                GetToken("Mafia Rival"));
+        allPowers.put(rivalMafia.getName(), rivalMafia);
+
         Power president = new Power(
                 "President",
                 Power.PowerType.SELFACTIVE,
                 "");
         allPowers.put(president.getName(), president);
+
+        Power satan = new Power("Satan",
+                Power.PowerType.ACTIVE,
+                "???",
+                GetToken("Satan"));
+        allPowers.put(satan.getName(), satan);
 
         Power terrorist = new Power(
                 "Terrorist",
@@ -118,15 +283,77 @@ public class DataManager {
                 GetToken("Terrorist"));
         allPowers.put(terrorist.getName(), terrorist);
 
+        Power veteran = new Power("Veteran",
+                Power.PowerType.PASSIVE,
+                "");
+        allPowers.put(veteran.getName(), veteran);
+
         Power villageIdiot = new Power(
                 "Village Idiot",
                 Power.PowerType.PASSIVE,
                 "");
         allPowers.put(villageIdiot.getName(), villageIdiot);
+
+        Power witness = new Power("Witness",
+                Power.PowerType.ACTIVE,
+                "witness anything",
+                GetToken("Witness"));
+        allPowers.put(witness.getName(), witness);
+
+        Power wizard = new Power("Wizard",
+                Power.PowerType.ACTIVE,
+                "switch with",
+                GetToken("Wizard"));
+        allPowers.put(wizard.getName(), wizard);
+
+        Power wizardAfter = new Power("Wizard after Switch",
+                Power.PowerType.SELFACTIVE,
+                "");
+        allPowers.put(wizardAfter.getName(), wizardAfter);
+
+        Power zombieGood = new Power("Zombie Good",
+                Power.PowerType.PASSIVE,
+                "");
+        allPowers.put(zombieGood.getName(), zombieGood);
+
+        Power zombieBad = new Power("Zombie Evil",
+                Power.PowerType.PASSIVE,
+                "");
+        allPowers.put(zombieBad.getName(), zombieBad);
     }
 
     private static void InitializeAllRoles(){
         allRoles = new HashMap<String, Role>();
+
+        Role alien = new Role("Alien",
+                R.drawable.alien_puffle,
+                3,
+                Role.Alliances.EVIL,
+                Role.Teams.SELF,
+                GetPower("Alien"),
+                1,
+                3);
+        allRoles.put(alien.getName(), alien);
+
+        Role baker = new Role("Baker",
+                R.drawable.baker_puffle,
+                3,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Baker"),
+                1,
+                3);
+        allRoles.put(baker.getName(), baker);
+
+        Role civilian = new Role("Civilian",
+                R.drawable.civilian_puffles,
+                -1,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Civilian"),
+                1,
+                3);
+        allRoles.put(civilian.getName(), civilian);
 
         Role cupid = new Role("Cupid",
                 R.drawable.cupid_puffle,
@@ -137,6 +364,26 @@ public class DataManager {
                 1,
                 3);
         allRoles.put(cupid.getName(), cupid);
+
+        Role cyborg = new Role("Cyborg",
+                R.drawable.cyborg_puffle,
+                0,
+                Role.Alliances.NEUTRAL,
+                Role.Teams.NEUTRAL,
+                GetPower("Cyborg"),
+                1,
+                3);
+        allRoles.put(cyborg.getName(), cyborg);
+
+        Role dentist = new Role("Dentist",
+                R.drawable.dentist_puffle,
+                3,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Dentist"),
+                1,
+                3);
+        allRoles.put(dentist.getName(), dentist);
 
         Role detective = new Role("Detective",
                 R.drawable.detective_puffle,
@@ -168,6 +415,76 @@ public class DataManager {
                 3);
         allRoles.put(doggie.getName(), doggie);
 
+        Role theFather = new Role("The Father",
+                R.drawable.the_father_puffle,
+                1,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("The Father"),
+                1,
+                3);
+        allRoles.put(theFather.getName(), theFather);
+
+        Role Godfather = new Role("GodFather",
+                R.drawable.godfather_puffle,
+                -1,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA,
+                GetPower("GodFather"),
+                1,
+                3);
+        allRoles.put(Godfather.getName(), Godfather);
+
+        Role holySpirit = new Role("Holy Spirit",
+                R.drawable.holy_spirit_puffle,
+                0,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Holy Spirit"),
+                1,
+                3);
+        allRoles.put(holySpirit.getName(), holySpirit);
+
+        Role jackOfAllTrades = new Role("Jack-of-All-Trades",
+                R.drawable.jack_of_all_trades,
+                3,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Jack-of-All-Trades"),
+                1,
+                3);
+        allRoles.put(jackOfAllTrades.getName(), jackOfAllTrades);
+
+        Role jailkeeper = new Role("Jailkeeper",
+                R.drawable.jailkeeper_puffle,
+                1.1f,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA,
+                GetPower("Jailkeeper"),
+                1,
+                3);
+        allRoles.put(jailkeeper.getName(), jailkeeper);
+
+        Role jesus = new Role("Jesus",
+                R.drawable.jesus_puffle,
+                -1,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Jesus"),
+                1,
+                3);
+        allRoles.put(jesus.getName(), jesus);
+
+        Role lawyer = new Role("Lawyer",
+                R.drawable.lawyer_puffle,
+                3,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA,
+                GetPower("Lawyer"),
+                1,
+                3);
+        allRoles.put(lawyer.getName(), lawyer);
+
         Role lovers = new Role("Lovers",
                 R.drawable.lover_puffle,
                 0,
@@ -188,6 +505,16 @@ public class DataManager {
                 3);
         allRoles.put(mafia.getName(), mafia);
 
+        Role mafiaRival = new Role("Mafia Rival",
+                R.drawable.rival_puffle,
+                2.1f,
+                Role.Alliances.EVIL,
+                Role.Teams.RIVAL_MAFIA,
+                GetPower("Mafia Rival"),
+                1,
+                3);
+        allRoles.put(mafiaRival.getName(), mafiaRival);
+
         Role president = new Role("President",
                 R.drawable.president_puffle,
                 -1,
@@ -197,6 +524,16 @@ public class DataManager {
                 1,
                 3);
         allRoles.put(president.getName(), president);
+
+        Role satan = new Role("Satan",
+                R.drawable.satan,
+                0,
+                Role.Alliances.EVIL,
+                Role.Teams.MAFIA,
+                GetPower("Satan"),
+                1,
+                3);
+        allRoles.put(satan.getName(), satan);
 
         Role terrorist = new Role("Terrorist",
                 R.drawable.terrorist_puffle,
@@ -208,6 +545,16 @@ public class DataManager {
                 3);
         allRoles.put(terrorist.getName(), terrorist);
 
+        Role veteran = new Role("Veteran",
+                R.drawable.veteran_puffle,
+                -1,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Veteran"),
+                1,
+                3);
+        allRoles.put(veteran.getName(), veteran);
+
         Role villageIdiot = new Role("Village Idiot",
                 R.drawable.village_idiot_puffle,
                 -1,
@@ -217,6 +564,56 @@ public class DataManager {
                 1,
                 3);
         allRoles.put(villageIdiot.getName(), villageIdiot);
+
+        Role witness = new Role("Witness",
+                R.drawable.witness_puffle,
+                2.1f,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Witness"),
+                1,
+                3);
+        allRoles.put(witness.getName(), witness);
+
+        Role wizard = new Role("Wizard",
+                R.drawable.wizard_puffle,
+                4,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Wizard"),
+                1,
+                3);
+        allRoles.put(wizard.getName(), wizard);
+
+        Role wizardAfter = new Role("Wizard after Switch",
+                R.drawable.wizard_puffle,
+                -1,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Wizard after Switch"),
+                1,
+                3);
+        allRoles.put(wizardAfter.getName(), wizardAfter);
+
+        Role zombieGood = new Role("Zombie Good",
+                R.drawable.good_zombie_puffle,
+                -1,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Zombie Good"),
+                1,
+                3);
+        allRoles.put(zombieGood.getName(), zombieGood);
+
+        Role zombieEvil = new Role("Zombie Evil",
+                R.drawable.evil_zombie_puffle,
+                -1,
+                Role.Alliances.EVIL,
+                Role.Teams.TOWN,
+                GetPower("Zombie Evil"),
+                1,
+                3);
+        allRoles.put(zombieEvil.getName(), zombieEvil);
     }
 
 

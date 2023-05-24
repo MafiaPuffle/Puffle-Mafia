@@ -43,207 +43,18 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/green_rectangle"
-        android:columnCount="8"
+        android:columnCount="7"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp"
-        android:rowCount="8"
+        android:rowCount="7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ChooseYourCharactersTitleBox"
         app:layout_constraintVertical_bias="0.046">
 
-        <ImageButton
-            android:id="@+id/NonActiveCharacter"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/alien_puffle"
-            android:contentDescription="Alien" />
 
-        <ImageButton
-            android:id="@+id/Baker"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/baker_puffle"
-            android:onClick="addImageToGrid"
-            android:contentDescription="Baker" />
-
-        <ImageButton
-            android:id="@+id/Cupid"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/cupid_puffle"
-            android:onClick="addImageToGrid"
-            android:contentDescription="Cupid" />
-
-        <ImageButton
-            android:id="@+id/imageView19"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/cyborg_puffle"
-            android:contentDescription="Cyborg" />
-
-        <ImageButton
-            android:id="@+id/imageView20"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/dentist_puffle"
-            android:contentDescription="Dentist" />
-
-        <ImageButton
-            android:id="@+id/imageView21"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/detective_puffle"
-            android:contentDescription="Detective" />
-
-        <ImageButton
-            android:id="@+id/imageView22"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/doctor_puffle"
-            android:contentDescription="Doctor" />
-
-        <ImageButton
-            android:id="@+id/imageView23"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/doggie_puffle"
-            android:contentDescription="Doggie" />
-
-        <ImageButton
-            android:id="@+id/imageView24"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/evil_zombie_puffle"
-            android:contentDescription="Evil-Zombie" />
-
-        <ImageButton
-            android:id="@+id/imageView25"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/godfather_puffle"
-            android:contentDescription="Godfather" />
-
-        <ImageButton
-            android:id="@+id/imageView26"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/good_zombie_puffle"
-            android:contentDescription="Good-Zombie" />
-
-        <ImageButton
-            android:id="@+id/imageView27"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/holy_spirit_puffle"
-            android:contentDescription="Holy-Spitit" />
-
-        <ImageButton
-            android:id="@+id/imageView28"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/jack_of_all_trades"
-            android:contentDescription="Jack-of-all-trades" />
-
-        <ImageButton
-            android:id="@+id/imageView29"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/jailkeeper_puffle"
-            android:contentDescription="Jailkeeper" />
-
-        <ImageButton
-            android:id="@+id/imageView30"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/jesus_puffle"
-            android:contentDescription="Jesus" />
-
-        <ImageButton
-            android:id="@+id/imageView31"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/lawyer_puffle"
-            android:contentDescription="Lawyer" />
-
-        <ImageButton
-            android:id="@+id/imageView32"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/lover_puffle"
-            android:contentDescription="Lovers" />
-
-        <ImageButton
-            android:id="@+id/imageView33"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/mafia_puffle"
-            android:contentDescription="Mafia" />
-
-        <ImageButton
-            android:id="@+id/imageView34"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/president_puffle"
-            android:contentDescription="President" />
-
-        <ImageButton
-            android:id="@+id/imageView35"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/rival_puffle"
-            android:contentDescription="Rival-Mafia" />
-
-        <ImageButton
-            android:id="@+id/imageView36"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/satan"
-            android:contentDescription="Satan" />
-
-        <ImageButton
-            android:id="@+id/imageView37"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/terrorist_puffle"
-            android:contentDescription="Terrorist" />
-
-        <ImageButton
-            android:id="@+id/imageView38"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/the_father_puffle"
-            android:contentDescription="The-Father" />
-
-        <ImageButton
-            android:id="@+id/imageView39"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/veteran_puffle"
-            android:contentDescription="Veteran" />
-
-        <ImageButton
-            android:id="@+id/imageView40"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/village_idiot_puffle"
-            android:contentDescription="Village-Idiot" />
-
-        <ImageButton
-            android:id="@+id/imageView41"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/witness_puffle"
-            android:contentDescription="Witness" />
-
-        <ImageButton
-            android:id="@+id/imageView42"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/wizard_puffle"
-            android:contentDescription="Wizard" />
     </GridLayout>
 
     <!--Chosen Characters Text Box-->
@@ -285,10 +96,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/green_rectangle"
-        android:columnCount="8"
+        android:columnCount="7"
         android:gravity="center"
         android:padding="5dp"
-        android:rowCount="8"
+        android:rowCount="7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
