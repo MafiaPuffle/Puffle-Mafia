@@ -1,5 +1,7 @@
 package com.example.pufflemafia.app.data;
 
+import android.util.Log;
+
 import java.util.Vector;
 
 public class GameSetup {
@@ -50,6 +52,24 @@ public class GameSetup {
 
         this.isValid = output;
         return output;
+    }
+
+    public void LogSummary(){
+        String message = "";
+
+        message += "GameSetup Current state\n";
+        message += "  Number of Players: " + this.numberOfPlayers + "\n";
+        message += "  Names: \n";
+        for (String name: this.names) {
+            message += "      " + name + "\n";
+        }
+        message += "  Chosen Roles: \n";
+        for (Role role: this.chosenRoles){
+            message += "      " + role.getName() + "\n";
+        }
+        message += "  Is Valid: " + this.isValid + "\n";
+
+        Log.d("GameSetup",message);
     }
 
     public void PrintSummary(){

@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.example.pufflemafia.app.AppManager;
+
 public class Start extends AppCompatActivity {
  // SeekBar IDs
    SeekBar NumberOfCharactersSeekBar;
@@ -18,16 +20,26 @@ public class Start extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        AppManager.gameSetup.reset();
 
         //SeekBar
         NumberOfCharactersSeekBar = findViewById(R.id.NumberOfCharactersSeekBar);
         NumberOfPlayersText = findViewById(R.id.NumberOfPlayersText);
+
+        NumberOfPlayersText.setText(NumberOfCharactersSeekBar.getProgress() +" Players");
+        AppManager.gameSetup.numberOfPlayers = NumberOfCharactersSeekBar.getProgress();
+
+        //ADDS TEMP NAMES FOR TESTING PURPOSES ONLY
+        AppManager.gameSetup.names.add("Jonathon");
+        AppManager.gameSetup.names.add("Jacob");
+        AppManager.gameSetup.names.add("James");
 
         NumberOfCharactersSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //NumberOfPlayersText.setVisibility(View.VISIBLE);
                 NumberOfPlayersText.setText(progress+" Players");
+                AppManager.gameSetup.numberOfPlayers = progress;
             }
 
             @Override
