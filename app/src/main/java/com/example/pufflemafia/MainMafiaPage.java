@@ -19,7 +19,7 @@ public class MainMafiaPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mafia_page);
 
-        add_new(this);
+
 
 
         //Configure Button
@@ -48,15 +48,5 @@ public class MainMafiaPage extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-
-    public static void add_new(final Activity activity)
-    {
-        final LinearLayout linearLayoutForm = (LinearLayout) activity.findViewById(R.id.AliveCharacterBox);
-        final LinearLayout newView = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.character_ui_night_layout, null);
-        newView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        linearLayoutForm.addView(newView);
     }
 }
