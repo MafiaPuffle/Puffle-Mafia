@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <!-- character_ui_layout.xml -->
+    <LinearLayout
+        android:id="@+id/CharacterUIINBox"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/grey_rectangle"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/CharacterUI"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/alien_puffle"
+            android:contentDescription="Alien" />
+
+        <LinearLayout
+            android:id="@+id/CharacterUITextsBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grey_rectangle"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/CharacterUIName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME" />
+
+            <TextView
+                android:id="@+id/CharacterUIRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ROLE" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/CharacterUIActionFromActioner"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/puffle_o_croissant"
+            android:contentDescription="Croissant" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--          <include layout="@layout/character_ui_night_layout" />           -->
