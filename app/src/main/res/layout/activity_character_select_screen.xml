@@ -6,16 +6,154 @@
     android:layout_height="match_parent"
     tools:context=".CharacterSelectScreen">
 
-    <ImageButton
-        android:id="@+id/Alien"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:background="@drawable/alien_puffle"
-        android:contentDescription="Alien"
+    <!--Choose Your Characters Title Box-->
+    <LinearLayout
+        android:id="@+id/ChooseYourCharactersTitleBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/grey_rectangle"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.024">
+
+        <TextView
+            android:id="@+id/ChooseYourCharactersTitleText"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:text="Choose Your Characters"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FEFAFD"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <!--Choose Your Characters Box-->
+    <GridLayout
+        android:id="@+id/CharacterBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_rectangle"
+        android:columnCount="7"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:rowCount="7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ChooseYourCharactersTitleBox"
+        app:layout_constraintVertical_bias="0.046">
+
+
+    </GridLayout>
+
+    <!--Chosen Characters Text Box-->
+    <LinearLayout
+        android:id="@+id/ChosenCharactersTitleBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/grey_rectangle"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CharacterBox"
+        app:layout_constraintVertical_bias="0.071">
+
+        <TextView
+            android:id="@+id/ChosenYourCharactersTitleText"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:text="Chosen Characters"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FEFAFD"
+            android:textSize="35sp" />
+    </LinearLayout>
+
+    <!--Chosen Characters Box-->
+    <GridLayout
+        android:id="@+id/ChosenCharacterBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/green_rectangle"
+        android:columnCount="7"
+        android:gravity="center"
+        android:padding="5dp"
+        android:rowCount="7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ChosenCharactersTitleBox"
+        app:layout_constraintVertical_bias="0.149">
+
+    </GridLayout>
+
+    <!--Buttons-->
+    <Button
+        android:id="@+id/DoneChoosingCharactersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterBox"
+        app:layout_constraintVertical_bias="0.878" />
+
+    <Button
+        android:id="@+id/BackToStartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/DoneChoosingCharactersButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterBox"
+        app:layout_constraintVertical_bias="0.878" />
+
+    <TextView
+        android:id="@+id/ChosenCharacterCountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/DoneChoosingCharactersButton"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toEndOf="@+id/BackToStartButton"
+        app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterBox"
+        app:layout_constraintVertical_bias="0.821" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
