@@ -9,38 +9,51 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pufflemafia.adaptors.PlayerDayUIAdaptor;
+import com.example.pufflemafia.adaptors.AlivePlayerDayUIAdaptor;
+import com.example.pufflemafia.adaptors.DeadPlayerDayUIAdaptor;
 import com.example.pufflemafia.app.AppManager;
-import com.example.pufflemafia.app.data.DataManager;
+import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 
 import java.util.Vector;
 
-public class MainMafiaPage extends AppCompatActivity {
+public class MainMafiaPage extends AppCompatActivity implements IListener<Boolean> {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private PlayerDayUIAdaptor playerDayUIAdaptor;
+    private RecyclerView allAliveRecycleView;
+    private RecyclerView allDeadRecycleView;
+    private RecyclerView.LayoutManager allAliveLayoutManager;
+    private RecyclerView.LayoutManager allDeadLayoutManager;
+    private AlivePlayerDayUIAdaptor allAlivePlayerDayUIAdaptor;
+    private DeadPlayerDayUIAdaptor allDeadPlayerDayUIAdaptor;
     private Vector<Player> allAlivePlayers;
+    private Vector<Player> allDeadPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mafia_page);
 
+        PlayerManager.onPlayerKillOrRevive.AddListener(this);
+
         GameManager.StartNewGame(AppManager.gameSetup);
 
         allAlivePlayers = PlayerManager.allAlive;
+        allDeadPlayers = PlayerManager.allDead;
 
-        mRecyclerView = findViewById(R.id.TestRecycleView);
-        mLayoutManager = new LinearLayoutManager(this);
-        playerDayUIAdaptor = new PlayerDayUIAdaptor(allAlivePlayers);
+        allAliveRecycleView = findViewById(R.id.AllAliveRecycleView);
+        allDeadRecycleView = findViewById(R.id.AllDeadRecycleView);
+        allAliveLayoutManager = new LinearLayoutManager(this);
+        allDeadLayoutManager = new LinearLayoutManager(this);
+        allAlivePlayerDayUIAdaptor = new AlivePlayerDayUIAdaptor(allAlivePlayers);
+        allDeadPlayerDayUIAdaptor = new DeadPlayerDayUIAdaptor(allDeadPlayers);
 
 
-        mRecyclerView.setAdapter(playerDayUIAdaptor);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        allAliveRecycleView.setAdapter(allAlivePlayerDayUIAdaptor);
+        allDeadRecycleView.setAdapter(allDeadPlayerDayUIAdaptor);
+        allAliveRecycleView.setLayoutManager(allAliveLayoutManager);
+        allDeadRecycleView.setLayoutManager(allDeadLayoutManager);
 
 
         //Configure Button
@@ -48,6 +61,12 @@ public class MainMafiaPage extends AppCompatActivity {
         configureStartTheNightButton();
     }
 
+    @Override
+    protected void onDestroy() {
+        PlayerManager.onPlayerKillOrRevive.RemoveListener(this);
+
+        super.onDestroy();
+    }
 
     //Start The Night Button
     private void configureStartTheNightButton() {
@@ -69,5 +88,17 @@ public class MainMafiaPage extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void Response() {
+        allAlivePlayerDayUIAdaptor.notifyDataSetChanged();
+        allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
+    }
+
+    @Override
+    public void Response(Boolean aBoolean) {
+        allAlivePlayerDayUIAdaptor.notifyDataSetChanged();
+        allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
     }
 }

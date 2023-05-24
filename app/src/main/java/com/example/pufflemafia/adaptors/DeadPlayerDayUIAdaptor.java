@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.Player;
+import com.example.pufflemafia.app.game.PlayerManager;
 
 import java.util.Vector;
 
-public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.ViewHolder> {
+public class DeadPlayerDayUIAdaptor extends RecyclerView.Adapter<DeadPlayerDayUIAdaptor.ViewHolder> {
 
     private Vector<Player> localDataSet;
 
@@ -60,7 +61,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         }
     }
 
-    public PlayerDayUIAdaptor (Vector<Player> dataSet){
+    public DeadPlayerDayUIAdaptor(Vector<Player> dataSet){
         localDataSet = dataSet;
     }
 
@@ -83,6 +84,15 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         viewHolder.getRoleNameView().setText(player.getRole().getName());
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
         viewHolder.getRoleButton().setImageResource(0);
+        viewHolder.getKillOrReviveButton().setBackgroundResource(R.drawable.alive_button);
+        viewHolder.getKillOrReviveButton().setImageResource(0);
+        viewHolder.getKillOrReviveButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PlayerManager.RevivePlayer(player);
+                notifyDataSetChanged();
+            }
+        });
         //TODO: update kill/revive button to show correct image
         //TODO: update all buttons to do stuff on click
     }
