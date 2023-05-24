@@ -1,10 +1,12 @@
 package com.example.pufflemafia;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,22 +19,7 @@ public class MainMafiaPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mafia_page);
 
-        //Sets up the Game Manager
-        //GameManager.StartNewGame(AppManager.gameSetup);
-
-        LinearLayout allAliveLayout = findViewById(R.id.AliveCharacterBox);
-
-        ConstraintLayout playerDayUIConstraintLayout = (ConstraintLayout) this.getLayoutInflater().inflate(R.layout.character_ui_day_layout, null);
-
-        View testView = this.getLayoutInflater().inflate(R.layout.character_ui_day_layout,null);
-
-        View wantThisView = testView.findViewById(R.id.CharacterUIINBox);
-
-        //LinearLayout playerDayUILinearLayout = playerDayUIConstraintLayout.findViewById(R.id.CharacterUIINBox);
-        //playerDayUILinearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-
-        //allAliveLayout.addView(wantThisView);
+        add_new(this);
 
 
         //Configure Button
@@ -63,4 +50,13 @@ public class MainMafiaPage extends AppCompatActivity {
         });
     }
 
+
+    public static void add_new(final Activity activity)
+    {
+        final LinearLayout linearLayoutForm = (LinearLayout) activity.findViewById(R.id.AliveCharacterBox);
+        final LinearLayout newView = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.character_ui_night_layout, null);
+        newView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        linearLayoutForm.addView(newView);
+    }
 }
