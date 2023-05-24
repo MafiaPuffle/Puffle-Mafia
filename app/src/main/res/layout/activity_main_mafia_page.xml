@@ -54,53 +54,11 @@
         app:layout_constraintTop_toBottomOf="@+id/AliveTitleBox"
         app:layout_constraintVertical_bias="0.057">
 
-
-        <LinearLayout
-            android:id="@+id/FinalAliveCharacterBox"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/grey_rectangle"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageButton
-                android:id="@+id/AliveCharacter"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/alien_puffle"
-                android:contentDescription="Alien"/>
-
-            <LinearLayout
-                android:id="@+id/AliveCharacterTextsBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/grey_rectangle">
-
-                <TextView
-                    android:id="@+id/AliveCharacterRole"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ALIVE CHARACTER ROLE"/>
-
-                <EditText
-                android:id="@+id/AliveCharacterName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ALIVE CHARACTER NAME"
-                    android:textSize="14dp"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        <include layout="@layout/character_ui_day_layout" />
 
     </LinearLayout>
 
-    <!--Dead Box-->
+    <!--Dead Text Box-->
     <LinearLayout
         android:id="@+id/DeadTitleBox"
         android:layout_width="wrap_content"
@@ -148,48 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/DeadTitleBox"
         app:layout_constraintVertical_bias="0.094">
 
-        <LinearLayout
-            android:id="@+id/FinalDeathCharacterBox"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/grey_rectangle"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageButton
-                android:id="@+id/DeadCharacter"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/alien_puffle"
-                android:contentDescription="Alien"/>
-
-            <LinearLayout
-                android:id="@+id/DeadCharacterTextsBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/grey_rectangle">
-
-                <TextView
-                    android:id="@+id/DeadCharacterRole"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DEAD CHARACTER ROLE"/>
-
-                <TextView
-                android:id="@+id/DeadCharacterName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="DEAD CHARACTER NAME"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        <include layout="@layout/character_ui_day_layout" />
 
     </LinearLayout>
 
