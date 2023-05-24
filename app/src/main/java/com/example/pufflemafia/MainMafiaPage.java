@@ -1,25 +1,46 @@
 package com.example.pufflemafia;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pufflemafia.adaptors.PlayerDayUIAdaptor;
+import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.app.data.DataManager;
+import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.Player;
+import com.example.pufflemafia.app.game.PlayerManager;
+
+import java.util.Vector;
 
 public class MainMafiaPage extends AppCompatActivity {
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private PlayerDayUIAdaptor playerDayUIAdaptor;
+    private Vector<Player> allAlivePlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mafia_page);
 
+        GameManager.StartNewGame(AppManager.gameSetup);
 
+        allAlivePlayers = PlayerManager.allAlive;
+
+        mRecyclerView = findViewById(R.id.TestRecycleView);
+        mLayoutManager = new LinearLayoutManager(this);
+        playerDayUIAdaptor = new PlayerDayUIAdaptor(allAlivePlayers);
+
+
+        mRecyclerView.setAdapter(playerDayUIAdaptor);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
 
         //Configure Button
