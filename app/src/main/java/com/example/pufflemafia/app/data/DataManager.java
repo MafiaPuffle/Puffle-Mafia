@@ -566,7 +566,7 @@ public class DataManager {
         allRoles.put(villageIdiot.getName(), villageIdiot);
 
         Role witness = new Role("Witness",
-                R.drawable.wizard_puffle,
+                R.drawable.witness_puffle,
                 2.1f,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,

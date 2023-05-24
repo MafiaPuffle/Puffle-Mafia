@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 
+import java.util.Vector;
+
 public class CharacterSelectScreen extends AppCompatActivity {
 
     private int buttonCount = 0;
@@ -34,32 +36,38 @@ public class CharacterSelectScreen extends AppCompatActivity {
 
         countTextView = findViewById(R.id.ChosenCharacterCountText);
 
-        for(int i = 0; i < allRolesCharacterBox.getChildCount(); i++) {
-            ImageButton child = (ImageButton) allRolesCharacterBox.getChildAt(i);
-            //String roleAsString = child.getContentDescription().toString();
-            //Role role = DataManager.GetRole(roleAsString);
+        Vector<Role> allRoles = DataManager.GetAllRoles();
+        Log.d("CharacterSelectScreen", "allRoles size = " + allRoles.size());
 
-            // do stuff with child view
-            child.setOnClickListener(new View.OnClickListener() {
+        for (Role role: allRoles) {
+            ImageButton roleImageButton = addImageButtonToGrid(allRolesCharacterBox, role.getImageResource());
+
+            roleImageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    addImageToGrid(ChosenCharacterBox, R.drawable.alien_puffle);
+                    ImageButton chosenRoleButton = addImageButtonToGrid(ChosenCharacterBox, role.getImageResource());
+                    buttonCount++; // Increment the counter
+                    countTextView.setText(String.valueOf(buttonCount)); // Update the count in the TextView
+
+                    chosenRoleButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ChosenCharacterBox.removeView(v); // Remove the clicked button from the layout
+                            buttonCount--; // Decrement the counter
+                            countTextView.setText(String.valueOf(buttonCount)); // Update the count in the TextView
+                        }
+                    });
                 }
             });
-
-
-
-            //Log.i("CharacterSelectScreen", roleAsString + " should be setup");
         }
 
         //Configure Buttons
         configureBackToStart();
         configureDoneChoosingCharactersButton();
-        //configureNonActiveCharacter();
-        //ImageButton ChosenCharacter = findViewById(R.id.NonActiveCharacter);
     }
 
-    private void addImageToGrid(GridLayout chosenCharacterBox, int drawableId) {
+    private ImageButton addImageButtonToGrid(GridLayout gridLayout, int drawableId) {
+        Log.d("CharacterSelectScreen", "Adding image button to grid");
         ImageButton imageButton = new ImageButton(this);
         imageButton.setBackgroundResource(drawableId); // Set the image as the background
         imageButton.setImageResource(0); // Remove the image source
@@ -70,29 +78,9 @@ public class CharacterSelectScreen extends AppCompatActivity {
         params.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
         params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
         imageButton.setLayoutParams(params);
+        gridLayout.addView(imageButton);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chosenCharacterBox.removeView(v); // Remove the clicked button from the layout
-                buttonCount--; // Decrement the counter
-                countTextView.setText(String.valueOf(buttonCount)); // Update the count in the TextView
-            }
-        });
-
-        chosenCharacterBox.addView(imageButton);
-        buttonCount++; // Increment the counter
-        countTextView.setText(String.valueOf(buttonCount)); // Update the count in the TextView
-    }
-
-    private void configureNonActiveCharacter() {
-        ImageButton NonActiveCharacterButton = (ImageButton) findViewById(R.id.NonActiveCharacter);
-        NonActiveCharacterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CharacterSelectScreen.this, HowManyCharacters.class));
-            }
-        });
+        return imageButton;
     }
 
 
