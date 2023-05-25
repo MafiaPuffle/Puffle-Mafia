@@ -36,6 +36,7 @@ public class CharacterSelectScreen extends AppCompatActivity {
         GridLayout ChosenCharacterBox = findViewById(R.id.ChosenCharacterBox);
 
         countTextView = findViewById(R.id.ChosenCharacterCountText);
+        updateCountTextView(AppManager.gameSetup.numberOfPlayers(), buttonCount);
 
 
 
@@ -51,18 +52,18 @@ public class CharacterSelectScreen extends AppCompatActivity {
                 public void onClick(View view) {
                     ImageButton chosenRoleButton = addImageButtonToGrid(ChosenCharacterBox, role.getImageResource());
                     buttonCount++; // Increment the counter
-                    countTextView.setText(String.valueOf(buttonCount)); // Update the count in the TextView
                     AppManager.gameSetup.chosenRoles.add(role);
                     AppManager.gameSetup.LogSummary();
+                    updateCountTextView(AppManager.gameSetup.numberOfPlayers(), buttonCount); // Update the count in the TextView
 
                     chosenRoleButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             ChosenCharacterBox.removeView(v); // Remove the clicked button from the layout
                             buttonCount--; // Decrement the counter
-                            countTextView.setText(String.valueOf(buttonCount)); // Update the count in the TextView
                             AppManager.gameSetup.chosenRoles.remove(role);
                             AppManager.gameSetup.LogSummary();
+                            updateCountTextView(AppManager.gameSetup.numberOfPlayers(), buttonCount); // Update the count in the TextView
                         }
                     });
                 }
@@ -72,6 +73,23 @@ public class CharacterSelectScreen extends AppCompatActivity {
         //Configure Buttons
         configureBackToStart();
         configureDoneChoosingCharactersButton();
+    }
+
+    private void updateCountTextView(int numberOfPlayers, int numberOfRoles){
+        int difference = numberOfPlayers - numberOfRoles;
+
+        if(difference > 0){
+            countTextView.setText(String.valueOf(difference));
+        }
+        else if(difference < 0){
+            countTextView.setText("To Many Roles");
+        }
+        else if (difference == 0 && AppManager.gameSetup.checkIfIsValid() == false){
+            countTextView.setText("Need one Mafia");
+        }
+        else {
+            countTextView.setText("Ready!");
+        }
     }
 
     private ImageButton addImageButtonToGrid(GridLayout gridLayout, int drawableId) {
