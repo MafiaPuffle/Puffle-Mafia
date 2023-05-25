@@ -36,6 +36,7 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         setContentView(R.layout.activity_main_mafia_page);
 
         PlayerManager.onPlayerKillOrRevive.AddListener(this);
+        GameManager.onStartDay.AddListener(this);
 
         //GameManager.StartNewGame(AppManager.gameSetup);
 
@@ -46,7 +47,7 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         allDeadRecycleView = findViewById(R.id.AllDeadRecycleView);
         allAliveLayoutManager = new LinearLayoutManager(this);
         allDeadLayoutManager = new LinearLayoutManager(this);
-        allAlivePlayerDayUIAdaptor = new AlivePlayerDayUIAdaptor(allAlivePlayers);
+        allAlivePlayerDayUIAdaptor = new AlivePlayerDayUIAdaptor(allAlivePlayers, this);
         allDeadPlayerDayUIAdaptor = new DeadPlayerDayUIAdaptor(allDeadPlayers);
 
 
@@ -64,8 +65,14 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
     @Override
     protected void onDestroy() {
         PlayerManager.onPlayerKillOrRevive.RemoveListener(this);
+        GameManager.onStartDay.AddListener(this);
 
         super.onDestroy();
+    }
+
+    private void Refresh(){
+        allAlivePlayerDayUIAdaptor.notifyDataSetChanged();
+        allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
     }
 
     //Start The Night Button
@@ -92,13 +99,11 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
 
     @Override
     public void Response() {
-        allAlivePlayerDayUIAdaptor.notifyDataSetChanged();
-        allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
+        Refresh();
     }
 
     @Override
     public void Response(Boolean aBoolean) {
-        allAlivePlayerDayUIAdaptor.notifyDataSetChanged();
-        allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
+        Refresh();
     }
 }

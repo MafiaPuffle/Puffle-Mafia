@@ -92,12 +92,7 @@
         app:layout_constraintVertical_bias="0.031">
 
 
-        <ImageButton
-            android:id="@+id/CharacterUI"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/alien_puffle"
-            android:contentDescription="Alien" />
+
 
 
     </GridLayout>

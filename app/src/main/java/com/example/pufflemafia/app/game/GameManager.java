@@ -33,8 +33,8 @@ public class GameManager {
     public static PlayerManager playerManager;
 
     // Events
-    public static Event<Integer> onStartDay;
-    public static Event<Integer> onStartNight;
+    public static Event<Boolean> onStartDay;
+    public static Event<Boolean> onStartNight;
 
     // Used for sending warning messages for debugging
     private static Logger logger;
@@ -46,8 +46,8 @@ public class GameManager {
         nightNumber = 0;
         currentState = GameState.Day;
         currentRoleActiveAtNight = new Role();
-        onStartDay = new Event<Integer>();
-        onStartNight = new Event<Integer>();
+        onStartDay = new Event<Boolean>();
+        onStartNight = new Event<Boolean>();
 
         logger = Logger.getLogger(GameManager.class.getName());
         // Set Logger level()
