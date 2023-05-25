@@ -1,0 +1,104 @@
+package com.example.pufflemafia;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pufflemafia.adaptors.AlivePlayerDayUIAdaptor;
+import com.example.pufflemafia.adaptors.DeadPlayerDayUIAdaptor;
+import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.Player;
+import com.example.pufflemafia.app.game.PlayerManager;
+
+import java.util.Vector;
+
+public class MainMafiaPage extends AppCompatActivity implements IListener<Boolean> {
+
+    private RecyclerView allAliveRecycleView;
+    private RecyclerView allDeadRecycleView;
+    private RecyclerView.LayoutManager allAliveLayoutManager;
+    private RecyclerView.LayoutManager allDeadLayoutManager;
+    private AlivePlayerDayUIAdaptor allAlivePlayerDayUIAdaptor;
+    private DeadPlayerDayUIAdaptor allDeadPlayerDayUIAdaptor;
+    private Vector<Player> allAlivePlayers;
+    private Vector<Player> allDeadPlayers;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_mafia_page);
+
+        PlayerManager.onPlayerKillOrRevive.AddListener(this);
+
+        //GameManager.StartNewGame(AppManager.gameSetup);
+
+        allAlivePlayers = PlayerManager.allAlive;
+        allDeadPlayers = PlayerManager.allDead;
+
+        allAliveRecycleView = findViewById(R.id.AllAliveRecycleView);
+        allDeadRecycleView = findViewById(R.id.AllDeadRecycleView);
+        allAliveLayoutManager = new LinearLayoutManager(this);
+        allDeadLayoutManager = new LinearLayoutManager(this);
+        allAlivePlayerDayUIAdaptor = new AlivePlayerDayUIAdaptor(allAlivePlayers);
+        allDeadPlayerDayUIAdaptor = new DeadPlayerDayUIAdaptor(allDeadPlayers);
+
+
+        allAliveRecycleView.setAdapter(allAlivePlayerDayUIAdaptor);
+        allDeadRecycleView.setAdapter(allDeadPlayerDayUIAdaptor);
+        allAliveRecycleView.setLayoutManager(allAliveLayoutManager);
+        allDeadRecycleView.setLayoutManager(allDeadLayoutManager);
+
+
+        //Configure Button
+        configureDayBacktoChooseYourCharactersButton();
+        configureStartTheNightButton();
+    }
+
+    @Override
+    protected void onDestroy() {
+        PlayerManager.onPlayerKillOrRevive.RemoveListener(this);
+
+        super.onDestroy();
+    }
+
+    //Start The Night Button
+    private void configureStartTheNightButton() {
+        Button StartTheNightButton = (Button) findViewById(R.id.StartTheNightButton);
+        StartTheNightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainMafiaPage.this, NightActions.class));
+            }
+        });
+    }
+
+    //Back Button
+    private void configureDayBacktoChooseYourCharactersButton(){
+        Button DayBacktoChooseYourCharacters = (Button) findViewById(R.id.DayBacktoChooseYourCharactersButton);
+        DayBacktoChooseYourCharacters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void Response() {
+        allAlivePlayerDayUIAdaptor.notifyDataSetChanged();
+        allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
+    }
+
+    @Override
+    public void Response(Boolean aBoolean) {
+        allAlivePlayerDayUIAdaptor.notifyDataSetChanged();
+        allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
+    }
+}
