@@ -1,5 +1,7 @@
 package com.example.pufflemafia.app.game;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.app.Event;
@@ -220,6 +222,28 @@ public class PlayerManager {
         for(Player player : allDead){
             player.PrintSummary("    ");
         }
+    }
+
+    public static void LogSummary(){
+        String output = "";
+
+        output += "\nPlayerManager's State";
+        output += "\nAlive:\n";
+        for(Player player: allAlive){
+            output += "  " + player.name + "\n";
+            for(Token token: player.getAllTokensOnPlayer()){
+                output += "    " + token.getName() + "\n";
+            }
+        }
+        output += "\nDead:\n";
+        for(Player player: allDead){
+            output += "  " + player.name + "\n";
+            for(Token token: player.getAllTokensOnPlayer()){
+                output += "    " + token.getName() + "\n";
+            }
+        }
+
+        Log.d("PlayerManager",output);
     }
 
     public static void PrintDetailed(){

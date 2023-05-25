@@ -37,7 +37,7 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
 
         PlayerManager.onPlayerKillOrRevive.AddListener(this);
 
-        GameManager.StartNewGame(AppManager.gameSetup);
+        //GameManager.StartNewGame(AppManager.gameSetup);
 
         allAlivePlayers = PlayerManager.allAlive;
         allDeadPlayers = PlayerManager.allDead;
