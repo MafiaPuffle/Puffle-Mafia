@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.util.TypedValue;
 import android.widget.TextView;
 
+import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 
@@ -36,11 +37,14 @@ public class CharacterSelectScreen extends AppCompatActivity {
 
         countTextView = findViewById(R.id.ChosenCharacterCountText);
 
+
+
         Vector<Role> allRoles = DataManager.GetAllRoles();
         Log.d("CharacterSelectScreen", "allRoles size = " + allRoles.size());
 
         for (Role role: allRoles) {
             ImageButton roleImageButton = addImageButtonToGrid(allRolesCharacterBox, role.getImageResource());
+
 
             roleImageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -48,6 +52,8 @@ public class CharacterSelectScreen extends AppCompatActivity {
                     ImageButton chosenRoleButton = addImageButtonToGrid(ChosenCharacterBox, role.getImageResource());
                     buttonCount++; // Increment the counter
                     countTextView.setText(String.valueOf(buttonCount)); // Update the count in the TextView
+                    AppManager.gameSetup.chosenRoles.add(role);
+                    AppManager.gameSetup.LogSummary();
 
                     chosenRoleButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -55,6 +61,8 @@ public class CharacterSelectScreen extends AppCompatActivity {
                             ChosenCharacterBox.removeView(v); // Remove the clicked button from the layout
                             buttonCount--; // Decrement the counter
                             countTextView.setText(String.valueOf(buttonCount)); // Update the count in the TextView
+                            AppManager.gameSetup.chosenRoles.remove(role);
+                            AppManager.gameSetup.LogSummary();
                         }
                     });
                 }
@@ -89,7 +97,9 @@ public class CharacterSelectScreen extends AppCompatActivity {
         DoneChoosingCharactersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CharacterSelectScreen.this, MainMafiaPage.class));
+                if(AppManager.gameSetup.checkIfIsValid()){
+                    startActivity(new Intent(CharacterSelectScreen.this, MainMafiaPage.class));
+                }
             }
         });
     }

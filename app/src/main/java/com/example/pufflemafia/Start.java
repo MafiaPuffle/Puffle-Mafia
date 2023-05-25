@@ -12,6 +12,8 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 
+import com.example.pufflemafia.app.AppManager;
+
 public class Start extends AppCompatActivity {
     private EditText nameEditText;
     private Button addNameButton;
@@ -24,18 +26,23 @@ public class Start extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+
         // Configure Buttons
         configureBackToMainMenu();
         configureChooseCharactersButton();
+
 
         // Names GridView
         nameEditText = findViewById(R.id.nameEditText);
         addNameButton = findViewById(R.id.addNameButton);
         namesGridView = findViewById(R.id.namesGridView);
 
+
         namesList = new ArrayList<>();
         namesAdapter = new NamesAdapter();
         namesGridView.setAdapter(namesAdapter);
+
+        
 
         addNameButton.setOnClickListener(new View.OnClickListener() {
             @Override

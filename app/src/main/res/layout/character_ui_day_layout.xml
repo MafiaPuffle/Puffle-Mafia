@@ -1,33 +1,31 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
+
     <!-- character_ui_layout.xml -->
     <LinearLayout
         android:id="@+id/CharacterUIINBox"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/grey_rectangle"
         android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="5dp">
 
         <ImageButton
-            android:id="@+id/AliveButton"
+            android:id="@+id/KillOrReviveButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/alive_button"
-            android:contentDescription="Alive Button" />
+            android:contentDescription="Kill or Revive Button" />
 
         <ImageButton
-            android:id="@+id/CharacterUI"
+            android:id="@+id/RoleUIButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/alien_puffle"

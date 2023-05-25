@@ -2,6 +2,7 @@ package com.example.pufflemafia.app.game;
 
 import androidx.annotation.NonNull;
 
+import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 
@@ -19,6 +20,8 @@ public class PlayerManager {
     public static Vector<Player> allDead;
     public static int numberOfPlayersDead() {return allDead.size();}
 
+    public static Event<Boolean> onPlayerKillOrRevive;
+
     // Used for sending warning messages for debugging
     private static Logger logger;
 
@@ -29,6 +32,8 @@ public class PlayerManager {
         logger = Logger.getLogger(PlayerManager.class.getName());
         // Set Logger level()
         logger.setLevel(Level.WARNING);
+
+        onPlayerKillOrRevive = new Event<Boolean>();
     }
 
     // Adds a player to the game
@@ -40,11 +45,13 @@ public class PlayerManager {
         player.clearAlTokensOfType(Token.TokenTypes.CLEAR_ON_DEATH);
         allDead.add(player);
         allAlive.remove(player);
+        onPlayerKillOrRevive.Invoke(true);
     }
 
     public static void RevivePlayer(Player player){
         allAlive.add(player);
         allDead.remove(player);
+        onPlayerKillOrRevive.Invoke(false);
     }
 
     public static void ClearAllNightTokens(){
