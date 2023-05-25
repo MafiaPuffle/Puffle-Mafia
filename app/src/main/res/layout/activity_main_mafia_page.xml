@@ -36,44 +36,21 @@
     </LinearLayout>
 
     <!--Alive Characters Box-->
-    <LinearLayout
-        android:id="@+id/AliveCharacterBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/green_rectangle"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AliveTitleBox"
-        app:layout_constraintVertical_bias="0.057">
 
-        <include layout="@layout/character_ui_day_layout" />
-
-    </LinearLayout>
 
     <!--Dead Text Box-->
     <LinearLayout
         android:id="@+id/DeadTitleBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:background="@drawable/red_rectangle"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AliveCharacterBox"
-        app:layout_constraintVertical_bias="0.032">
+        app:layout_constraintTop_toBottomOf="@+id/AliveTitleBox">
 
         <TextView
             android:id="@+id/DeadTitleText"
@@ -88,27 +65,6 @@
     </LinearLayout>
 
     <!--Dead Characters Box-->
-    <LinearLayout
-        android:id="@+id/DeadCharacterBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/red_rectangle"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DeadTitleBox"
-        app:layout_constraintVertical_bias="0.094">
-
-        <include layout="@layout/character_ui_day_layout" />
-
-    </LinearLayout>
 
     <!--Buttons-->
     <Button
@@ -119,9 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DeadCharacterBox"
-        app:layout_constraintVertical_bias="0.969" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/DayBacktoChooseYourCharactersButton"
@@ -131,9 +85,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/StartTheNightButton"
         app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AllDeadRecycleView"
+        android:layout_width="330dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DeadCharacterBox"
-        app:layout_constraintVertical_bias="0.969" />
+        app:layout_constraintTop_toBottomOf="@+id/DeadTitleBox"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AllAliveRecycleView"
+        android:layout_width="326dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/DeadTitleBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AliveTitleBox" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
