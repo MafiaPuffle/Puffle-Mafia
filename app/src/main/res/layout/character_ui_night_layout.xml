@@ -5,6 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <!-- character_ui_layout.xml -->
+
     <LinearLayout
         android:id="@+id/CharacterUIINBox"
         android:layout_width="350dp"
@@ -19,7 +20,9 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageButton
             android:id="@+id/CharacterUI"
@@ -48,12 +51,11 @@
                 android:text="ROLE" />
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/CharacterUIActionFromActioner"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/puffle_o_croissant"
-            android:contentDescription="Croissant" />
+        <LinearLayout
+            android:id="@+id/TokensLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"></LinearLayout>
 
     </LinearLayout>
 </FrameLayout>

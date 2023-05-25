@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.game.GameManager;
 
 import java.util.Vector;
 
@@ -116,6 +117,7 @@ public class CharacterSelectScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(AppManager.gameSetup.checkIfIsValid()){
+                    GameManager.StartNewGame(AppManager.gameSetup);
                     startActivity(new Intent(CharacterSelectScreen.this, MainMafiaPage.class));
                 }
             }
