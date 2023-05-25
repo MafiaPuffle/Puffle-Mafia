@@ -5,20 +5,20 @@ import android.util.Log;
 import java.util.Vector;
 
 public class GameSetup {
-    public int numberOfPlayers;
+    public int numberOfPlayers() {return names.size();}
     public Vector<String> names;
     public Vector<Role> chosenRoles;
     public boolean isValid;
 
     public GameSetup(){
-        this.numberOfPlayers = 0;
+        //this.numberOfPlayers = 0;
         this.names = new Vector<String>();
         this.chosenRoles = new Vector<Role>();
         this.isValid = false;
     }
 
     public void reset(){
-        this.numberOfPlayers = 0;
+        //this.numberOfPlayers = 0;
         this.names.clear();
         this.chosenRoles.clear();
         this.isValid = false;
@@ -34,10 +34,8 @@ public class GameSetup {
         boolean output = false;
 
         boolean amountOfRolesEqualsAmountOfPlayers = false;
-        if(this.numberOfPlayers == this.names.size()){
-            if(this.names.size() == this.chosenRoles.size()){
-                amountOfRolesEqualsAmountOfPlayers = true;
-            }
+        if(this.numberOfPlayers() == this.chosenRoles.size()){
+            amountOfRolesEqualsAmountOfPlayers = true;
         }
 
         boolean foundAtleastOneMafia = false;
@@ -58,7 +56,7 @@ public class GameSetup {
         String message = "";
 
         message += "GameSetup Current state\n";
-        message += "  Number of Players: " + this.numberOfPlayers + "\n";
+        message += "  Number of Players: " + this.numberOfPlayers() + "\n";
         message += "  Names: \n";
         for (String name: this.names) {
             message += "      " + name + "\n";
@@ -74,7 +72,7 @@ public class GameSetup {
 
     public void PrintSummary(){
         System.out.print("GameSetup Current state");
-        System.out.print("  Number of Players: " + this.numberOfPlayers + "\n");
+        System.out.print("  Number of Players: " + this.numberOfPlayers() + "\n");
         System.out.print("  Names: \n");
         for (String name: this.names) {
             System.out.print("      " + name + "\n");
@@ -89,7 +87,7 @@ public class GameSetup {
 
     public void PrintDetailed(){
         System.out.print("GameSetup Current state");
-        System.out.print("  Number of Players: " + this.numberOfPlayers + "\n");
+        System.out.print("  Number of Players: " + this.numberOfPlayers() + "\n");
         System.out.print("  Names: \n");
         for (String name: this.names) {
             System.out.print("      " + name + "\n");

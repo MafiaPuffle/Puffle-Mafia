@@ -13,6 +13,8 @@ import android.widget.GridView;
 import java.util.ArrayList;
 
 import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.app.data.GameSetup;
+import com.example.pufflemafia.app.game.GameManager;
 
 public class Start extends AppCompatActivity {
     private EditText nameEditText;
@@ -42,7 +44,7 @@ public class Start extends AppCompatActivity {
         namesAdapter = new NamesAdapter();
         namesGridView.setAdapter(namesAdapter);
 
-        
+        AppManager.gameSetup = new GameSetup();
 
         addNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +80,7 @@ public class Start extends AppCompatActivity {
         String name = nameEditText.getText().toString().trim();
         if (!name.isEmpty()) {
             namesList.add(name);
+            AppManager.gameSetup.names.add(name);
             nameEditText.setText(""); // Clear the input field
             namesAdapter.notifyDataSetChanged();
         }
@@ -117,6 +120,7 @@ public class Start extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    AppManager.gameSetup.names.remove(position);
                     namesList.remove(position);
                     namesAdapter.notifyDataSetChanged();
                 }

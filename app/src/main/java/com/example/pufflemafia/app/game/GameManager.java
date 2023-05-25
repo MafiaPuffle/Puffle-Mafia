@@ -74,7 +74,7 @@ public class GameManager {
         Collections.shuffle(gameSetup.chosenRoles, new Random());
 
         // Add players to PlayerManager with Roles and Names
-        for(int i = 0; i < gameSetup.numberOfPlayers; ++i){
+        for(int i = 0; i < gameSetup.numberOfPlayers(); ++i){
             PlayerManager.AddPlayer(new Player());
             PlayerManager.EditPlayerName(PlayerManager.PlayerMangerListType.ALIVE, i, gameSetup.names.get(i));
             PlayerManager.EditPlayerRole(PlayerManager.PlayerMangerListType.ALIVE, i, gameSetup.chosenRoles.get(i));
