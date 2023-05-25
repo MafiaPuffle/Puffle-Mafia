@@ -1,9 +1,11 @@
+
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="75dp"
-    android:layout_marginLeft="@dimen/margin_medium"
-    android:layout_marginRight="@dimen/margin_medium"
-    android:gravity="center_vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
     <!-- character_ui_layout.xml -->
     <LinearLayout
         android:id="@+id/CharacterUIINBox"
@@ -66,5 +68,4 @@
 
     </LinearLayout>
 </FrameLayout>
-
 <!--            <include layout="@layout/character_ui_day_layout" />             -->

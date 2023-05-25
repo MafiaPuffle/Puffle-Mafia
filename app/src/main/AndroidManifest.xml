@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PuffleMafia"
         tools:targetApi="31">
         <activity
-            android:name=".ChangeToThisCharacter"
+            android:name=".Test"
             android:exported="false" />
         <activity
             android:name=".NightActions"
