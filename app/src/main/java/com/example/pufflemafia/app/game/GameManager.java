@@ -68,8 +68,8 @@ public class GameManager {
         // Resets the night number
         nightNumber = 0;
 
-        PlayerManager.allAlive.clear();
-        PlayerManager.allDead.clear();
+        PlayerManager.clearAllAlivePlayers();
+        PlayerManager.clearAllDeadPlayers();
 
         // Randomly shuffle the chosenRoles
         Collections.shuffle(gameSetup.chosenRoles, new Random());
@@ -97,7 +97,7 @@ public class GameManager {
 
         // Gets all alive roles and sends the to the ActiveRolesManager
         Vector<Role> allAliveRoles = new Vector<Role>();
-        for (Player player: PlayerManager.allAlive) {
+        for (Player player: PlayerManager.getAllAlive()) {
             Role role = player.getRole();
             Power power = role.getPower();
 

@@ -9,6 +9,7 @@ import com.example.pufflemafia.app.data.Power;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 
+import java.util.Collections;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,10 +19,41 @@ public class PlayerManager {
     public enum PlayerMangerListType {ALIVE, DEAD}
 
 
-    public static Vector<Player> allAlive;
+    private static Vector<Player> allAlive;
     public static int numberOfPlayersAlive() {return allAlive.size();}
-    public static Vector<Player> allDead;
+    public static Vector<Player> getAllAlive() {
+        //Collections.sort(allAlive, new SortPlayerByAmountOfTokensApplied());
+        //onPlayerDataUpdated.Invoke();
+        return allAlive;
+    }
+    public static void sortAllAliveByTokenCount(){
+        Collections.sort(allAlive, new SortPlayerByAmountOfTokensApplied());
+        onPlayerDataUpdated.Invoke();
+    }
+    public static Player getAlivePlayerAt(int index){
+        return allAlive.elementAt(index);
+    }
+    public static void clearAllAlivePlayers(){
+        allAlive.clear();
+    }
+    private static Vector<Player> allDead;
     public static int numberOfPlayersDead() {return allDead.size();}
+    public static Vector<Player> getAllDead() {
+        //Collections.sort(allDead, new SortPlayerByAmountOfTokensApplied());
+        //onPlayerDataUpdated.Invoke();
+        return allDead;
+    }
+    public static void sortAllDeadByTokenCount(){
+        Collections.sort(allDead, new SortPlayerByAmountOfTokensApplied());
+        onPlayerDataUpdated.Invoke();
+    }
+    public static Player getDeadPlayerAt(int index){
+        return allAlive.elementAt(index);
+    }
+
+    public static void clearAllDeadPlayers(){
+        allDead.clear();
+    }
 
     public static Event<Boolean> onPlayerDataUpdated;
     public static Event<Boolean> onPlayerKillOrRevive;

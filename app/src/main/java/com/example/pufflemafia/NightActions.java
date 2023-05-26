@@ -36,7 +36,7 @@ public class NightActions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_night_actions);
 
-        allAlivePlayers = PlayerManager.allAlive;
+        allAlivePlayers = PlayerManager.getAllAlive();
 
         activeRoleTextView = findViewById(R.id.ActiveRoleUITextView);
         nightActionTitle = findViewById(R.id.NightActionTitleText);
@@ -49,6 +49,8 @@ public class NightActions extends AppCompatActivity {
         recyclerView.setAdapter(adaptor);
         recyclerView.setLayoutManager(layoutManager);
 
+        PlayerManager.sortAllAliveByTokenCount();
+
         GameManager.StartNight();
 
         Refresh();
@@ -59,7 +61,8 @@ public class NightActions extends AppCompatActivity {
     }
 
     private void Refresh(){
-        allAlivePlayers = PlayerManager.allAlive;
+        allAlivePlayers = PlayerManager.getAllAlive();
+        PlayerManager.sortAllAliveByTokenCount();
         currentActiveRoleAtNight = GameManager.getCurrentRoleActiveAtNight();
         if(currentActiveRoleAtNight == null){
             finish();
