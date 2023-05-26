@@ -32,7 +32,8 @@
             android:text="ALIVE"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:fontFamily="@font/horizon"/>
     </LinearLayout>
 
     <!--Alive Characters Box-->
@@ -43,6 +44,7 @@
     <!--Dead Characters Box-->
 
     <!--Buttons-->
+
     <LinearLayout
         android:id="@+id/DeadTitleBox"
         android:layout_width="wrap_content"
@@ -56,13 +58,14 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AllAliveRecycleView"
-        app:layout_constraintVertical_bias="0.039">
+        app:layout_constraintVertical_bias="0.081">
 
         <TextView
             android:id="@+id/DeadTitleText"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
+            android:fontFamily="@font/horizon"
             android:gravity="center"
             android:text="DEAD"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -97,7 +100,7 @@
         android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@+id/StartTheNightButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DeadTitleBox"
         app:layout_constraintVertical_bias="0.0" />
@@ -111,6 +114,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Next"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.973"
@@ -123,6 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BACK"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/StartTheNightButton"
         app:layout_constraintHorizontal_bias="0.073"

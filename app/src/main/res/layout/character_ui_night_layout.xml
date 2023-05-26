@@ -36,27 +36,34 @@
         <LinearLayout
             android:id="@+id/CharacterUITextsBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/grey_rectangle"
             android:clickable="false"
             android:focusable="false"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/CharacterUIName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:text="NAME" />
-
-            <TextView
                 android:id="@+id/CharacterUIRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:gravity="top"
                 android:clickable="false"
                 android:focusable="false"
+                android:fontFamily="@font/horizon"
                 android:text="ROLE" />
+
+            <TextView
+                android:id="@+id/CharacterUIName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:textColor="@color/white"
+                android:clickable="false"
+                android:focusable="false"
+                android:text="NAME"
+                android:fontFamily="@font/horizon"/>
+
         </LinearLayout>
 
         <LinearLayout

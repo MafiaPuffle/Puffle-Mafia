@@ -88,7 +88,7 @@ public class CharacterSelectScreen extends AppCompatActivity {
             countTextView.setText("To Many Roles");
         }
         else if (difference == 0 && AppManager.gameSetup.checkIfIsValid() == false){
-            countTextView.setText("Need one Mafia");
+            countTextView.setText("Needs Mafia");
         }
         else {
             countTextView.setText("Ready!");

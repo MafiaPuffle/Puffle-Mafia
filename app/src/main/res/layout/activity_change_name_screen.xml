@@ -31,7 +31,8 @@
             android:text="Change the Name to"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="25sp" />
+            android:textSize="20dp"
+            android:fontFamily="@font/horizon"/>
 
     </LinearLayout>
 
@@ -43,6 +44,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Next"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"
@@ -58,6 +60,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="BACK"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/DoneChangingCharactersButton"
         app:layout_constraintHorizontal_bias="0.023"
@@ -80,7 +83,7 @@
             android:id="@+id/NewPlayerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name of the Character that is Being changed" />
+            android:hint="Name of the character that is being changed" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
