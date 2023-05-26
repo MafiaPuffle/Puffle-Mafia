@@ -54,19 +54,13 @@
 
         <LinearLayout
             android:id="@+id/TokenUIBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="209dp"
+            android:layout_height="match_parent"
             android:background="@drawable/grey_rectangle"
-            android:orientation="horizontal"
             android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:id="@+id/Add_Tokens"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/add_token" />
-        </LinearLayout>
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:visibility="visible" />
 
 
     </LinearLayout>
