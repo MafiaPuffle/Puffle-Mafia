@@ -326,8 +326,7 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.SELF,
                 GetPower("Alien"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(alien.getName(), alien);
 
         Role baker = new Role("Baker",
@@ -336,8 +335,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Baker"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(baker.getName(), baker);
 
         Role civilian = new Role("Civilian",
@@ -346,8 +344,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Civilian"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(civilian.getName(), civilian);
 
         Role cupid = new Role("Cupid",
@@ -356,8 +353,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Cupid"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(cupid.getName(), cupid);
 
         Role cyborg = new Role("Cyborg",
@@ -366,8 +362,7 @@ public class DataManager {
                 Role.Alliances.NEUTRAL,
                 Role.Teams.NEUTRAL,
                 GetPower("Cyborg"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(cyborg.getName(), cyborg);
 
         Role dentist = new Role("Dentist",
@@ -376,8 +371,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Dentist"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(dentist.getName(), dentist);
 
         Role detective = new Role("Detective",
@@ -386,8 +380,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Detective"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(detective.getName(), detective);
 
         Role doctor = new Role("Doctor",
@@ -396,8 +389,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Doctor"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(doctor.getName(), doctor);
 
         Role doggie = new Role("Doggie",
@@ -406,8 +398,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Doggie"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(doggie.getName(), doggie);
 
         Role theFather = new Role("The Father",
@@ -416,8 +407,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("The Father"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(theFather.getName(), theFather);
 
         Role Godfather = new Role("GodFather",
@@ -426,8 +416,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.MAFIA,
                 GetPower("GodFather"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(Godfather.getName(), Godfather);
 
         Role holySpirit = new Role("Holy Spirit",
@@ -436,8 +425,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Holy Spirit"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(holySpirit.getName(), holySpirit);
 
         Role jackOfAllTrades = new Role("Jack-of-All-Trades",
@@ -446,8 +434,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Jack-of-All-Trades"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(jackOfAllTrades.getName(), jackOfAllTrades);
 
         Role jailkeeper = new Role("Jailkeeper",
@@ -456,8 +443,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.MAFIA,
                 GetPower("Jailkeeper"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(jailkeeper.getName(), jailkeeper);
 
         Role jesus = new Role("Jesus",
@@ -466,8 +452,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Jesus"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(jesus.getName(), jesus);
 
         Role lawyer = new Role("Lawyer",
@@ -476,8 +461,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.MAFIA,
                 GetPower("Lawyer"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(lawyer.getName(), lawyer);
 
         Role lovers = new Role("Lovers",
@@ -486,8 +470,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Lovers"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(lovers.getName(), lovers);
 
         Role mafia = new Role("Mafia",
@@ -496,8 +479,7 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA,
                 GetPower("Mafia"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(mafia.getName(), mafia);
 
         Role mafiaRival = new Role("Mafia Rival",
@@ -506,8 +488,7 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.RIVAL_MAFIA,
                 GetPower("Mafia Rival"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(mafiaRival.getName(), mafiaRival);
 
         Role president = new Role("President",
@@ -516,8 +497,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("President"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(president.getName(), president);
 
         Role satan = new Role("Satan",
@@ -526,8 +506,7 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA,
                 GetPower("Satan"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(satan.getName(), satan);
 
         Role terrorist = new Role("Terrorist",
@@ -536,8 +515,7 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA,
                 GetPower("Terrorist"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(terrorist.getName(), terrorist);
 
         Role veteran = new Role("Veteran",
@@ -546,8 +524,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Veteran"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(veteran.getName(), veteran);
 
         Role villageIdiot = new Role("Village Idiot",
@@ -556,8 +533,7 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.SELF,
                 GetPower("Village Idiot"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(villageIdiot.getName(), villageIdiot);
 
         Role witness = new Role("Witness",
@@ -566,8 +542,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Witness"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(witness.getName(), witness);
 
         Role wizard = new Role("Wizard",
@@ -576,8 +551,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Wizard"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(wizard.getName(), wizard);
 
         Role wizardAfter = new Role("Wizard after Switch",
@@ -586,8 +560,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Wizard after Switch"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(wizardAfter.getName(), wizardAfter);
 
         Role zombieGood = new Role("Zombie Good",
@@ -596,8 +569,7 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Zombie Good"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(zombieGood.getName(), zombieGood);
 
         Role zombieEvil = new Role("Zombie Evil",
@@ -606,8 +578,7 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.TOWN,
                 GetPower("Zombie Evil"),
-                1,
-                3);
+                "Does something amazing!");
         allRoles.put(zombieEvil.getName(), zombieEvil);
     }
 

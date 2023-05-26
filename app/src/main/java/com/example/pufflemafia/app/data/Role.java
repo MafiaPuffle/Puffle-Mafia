@@ -30,10 +30,9 @@ public class Role {
     private Power power = new Power();
     public Power getPower() { return power; }
 
-    private int minimumAllowed;
-    public int getMinimumAllowed(){return minimumAllowed;}
-    private int maximumAllowed;
-    public int getMaximumAllowed(){return maximumAllowed;}
+
+    private String description;
+    public String getDescription(){return description;}
 
 
     public Role(){
@@ -42,8 +41,7 @@ public class Role {
         this.team = Teams.TOWN;
         this.name = "PuffleName";
         this.imageResource = R.drawable.alien_puffle;
-        this.minimumAllowed = 1;
-        this.maximumAllowed = 3;
+        this.description = "Does something amazing!";
     }
 
     public Role(Role other){
@@ -51,15 +49,14 @@ public class Role {
     }
 
     // Constructor with Power class as an argument
-    public Role ( String name, int imageResource, float priority, Alliances alliance, Teams team, @NonNull Power power, int minimumAllowed, int maximumAllowed){
+    public Role ( String name, int imageResource, float priority, Alliances alliance, Teams team, @NonNull Power power, String description){
         this.name = name;
         this.imageResource = imageResource;
         this.priority = priority;
         this.alliance = alliance;
         this.team = team;
         this.power = new Power(power);
-        this.minimumAllowed = minimumAllowed;
-        this.maximumAllowed = maximumAllowed;
+        this.description = description;
     }
 
     // Lets us copy values from another role into this
@@ -70,8 +67,7 @@ public class Role {
         this.alliance = other.getAlliance();
         this.team = other.getTeam();
         this.power = new Power(other.getPower());
-        this.minimumAllowed = other.minimumAllowed;
-        this.maximumAllowed = other.maximumAllowed;
+        this.description = other.getDescription();
     }
 
     public void PrintSummary(){
@@ -92,8 +88,7 @@ public class Role {
                         + "     Alliance: " + this.alliance + "\n"
                         + "     Team: " + this.team + "\n"
                         + "     Image Resource: " + this.imageResource + "\n"
-                        + "     Minimum Allowed: " + this.minimumAllowed + "\n"
-                        + "     Maximum Allowed: " + this.maximumAllowed + "\nPower:\n");
+                        + "     Description: " + this.getDescription() + "\n");
         this.power.PrintDetailed("    ");
     }
 
@@ -105,8 +100,7 @@ public class Role {
                         + spacer + "     Alliance: " + this.alliance + "\n"
                         + spacer + "     Team: " + this.team + "\n"
                         + spacer + "     Image Resource: " + this.imageResource + "\n"
-                        + spacer + "     Minimum Allowed: " + this.minimumAllowed + "\n"
-                        + spacer + "     Maximum Allowed: " + this.maximumAllowed + "\nPower:\n");
+                        + spacer + "     Description: " + this.getDescription() + "\n");
         this.power.PrintDetailed(spacer + "    ");
     }
 }

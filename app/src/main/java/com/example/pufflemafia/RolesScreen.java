@@ -40,7 +40,7 @@ public class RolesScreen extends AppCompatActivity {
                     Intent intent = new Intent(RolesScreen.this, RoleDetails.class);
                     intent.putExtra("name", role.getName());
                     intent.putExtra("imageResourceId", role.getImageResource());
-                    intent.putExtra("description", "Does something amazing!");
+                    intent.putExtra("description", role.getDescription());
                     startActivity(intent);
                 }
             });
