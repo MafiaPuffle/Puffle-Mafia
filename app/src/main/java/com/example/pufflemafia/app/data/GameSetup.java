@@ -17,6 +17,20 @@ public class GameSetup {
         this.isValid = false;
     }
 
+    public void SetUpRandomGame(Vector<String> names){
+        this.reset();
+
+        this.names = names;
+        int numberOfPlayers = this.names.size();
+
+        chosenRoles.add(DataManager.GetRole("Mafia"));
+        if(numberOfPlayers > 1){
+            for (int i = 0; i < (numberOfPlayers - 1); i++) {
+                chosenRoles.add(DataManager.GetRandomRole());
+            }
+        }
+    }
+
     public void reset(){
         //this.numberOfPlayers = 0;
         this.names.clear();

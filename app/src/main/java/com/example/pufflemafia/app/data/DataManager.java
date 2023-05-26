@@ -4,6 +4,7 @@ import com.example.pufflemafia.R;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Vector;
 
 public class DataManager {
@@ -619,6 +620,12 @@ public class DataManager {
         }
 
         return output;
+    }
+    public static Role GetRandomRole(){
+        Random generator = new Random();
+        Object[] values = allRoles.values().toArray();
+        Role randomRole = (Role) values[generator.nextInt(values.length)];
+        return randomRole;
     }
 
     public static void PrintSummary(){
