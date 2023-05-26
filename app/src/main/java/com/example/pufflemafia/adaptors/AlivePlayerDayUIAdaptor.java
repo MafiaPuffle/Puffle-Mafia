@@ -30,6 +30,7 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //private final TextView textView;
+        private final LinearLayout playerAndRoleLinearLayout;
         private final TextView playerNameView;
         private final TextView roleNameView;
         private final ImageButton roleButton;
@@ -44,6 +45,7 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
             // Define click listener for the ViewHolder's View
 
             //textView = (TextView) view.findViewById(R.id.textView);
+            playerAndRoleLinearLayout = (LinearLayout) view.findViewById(R.id.CharacterUITextsBox);
             playerNameView = (TextView) view.findViewById(R.id.CharacterUIName);
             roleNameView = (TextView) view.findViewById(R.id.CharacterUIRole);
             roleButton = (ImageButton) view.findViewById(R.id.RoleUIButton);
@@ -54,6 +56,10 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         //public TextView getTextView() {
             //return textView;
         //}
+
+        public LinearLayout getPlayerAndRoleLinearLayout(){
+            return playerAndRoleLinearLayout;
+        }
 
         public TextView getPlayerNameView(){
             return playerNameView;
@@ -79,12 +85,17 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
             tokenHolder.removeAllViewsInLayout();
         }
 
+        private int dpToPx(int dp) {
+            float density = itemView.getResources().getDisplayMetrics().density;
+            return Math.round((float) dp * density);
+        }
+
         public void addToken(int imageResource){
             ImageButton imageButton = new ImageButton(itemView.getContext());
             imageButton.setBackgroundResource(imageResource);
             imageButton.setImageResource(0);
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(60,60);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dpToPx(30),dpToPx(30));
             imageButton.setLayoutParams(params);
 
             tokenHolder.addView(imageButton);
@@ -110,6 +121,13 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         Player player = localDataSet.get(position);
         Role role = player.getRole();
 
+
+        viewHolder.getPlayerAndRoleLinearLayout().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(context, ChangeNameScreen.class);
+            }
+        });
 
         viewHolder.getPlayerNameView().setText(player.name);
         viewHolder.getRoleNameView().setText(player.getRole().getName());
