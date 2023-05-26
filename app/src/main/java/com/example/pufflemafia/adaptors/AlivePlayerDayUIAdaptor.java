@@ -1,16 +1,23 @@
 package com.example.pufflemafia.adaptors;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pufflemafia.ChangeCharacterScreen;
+import com.example.pufflemafia.CharacterSelectScreen;
+import com.example.pufflemafia.MainMafiaPage;
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 
@@ -19,6 +26,7 @@ import java.util.Vector;
 public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDayUIAdaptor.ViewHolder> {
 
     private Vector<Player> localDataSet;
+    private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //private final TextView textView;
@@ -26,6 +34,8 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         private final TextView roleNameView;
         private final ImageButton roleButton;
         private final ImageButton killOrReviveButton;
+
+        private final LinearLayout tokenHolder;
 
 
 
@@ -38,6 +48,7 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
             roleNameView = (TextView) view.findViewById(R.id.CharacterUIRole);
             roleButton = (ImageButton) view.findViewById(R.id.RoleUIButton);
             killOrReviveButton = (ImageButton) view.findViewById(R.id.KillOrReviveButton);
+            tokenHolder = (LinearLayout) view.findViewById(R.id.TokenUIBox);
         }
 
         //public TextView getTextView() {
@@ -59,10 +70,30 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         public ImageButton getKillOrReviveButton(){
             return killOrReviveButton;
         }
+
+        public LinearLayout getTokenHolder(){
+            return tokenHolder;
+        }
+
+        public void removeAllTokens(){
+            tokenHolder.removeAllViewsInLayout();
+        }
+
+        public void addToken(int imageResource){
+            ImageButton imageButton = new ImageButton(itemView.getContext());
+            imageButton.setBackgroundResource(imageResource);
+            imageButton.setImageResource(0);
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(60,60);
+            imageButton.setLayoutParams(params);
+
+            tokenHolder.addView(imageButton);
+        }
     }
 
-    public AlivePlayerDayUIAdaptor(Vector<Player> dataSet){
+    public AlivePlayerDayUIAdaptor(Vector<Player> dataSet, Context context){
         localDataSet = dataSet;
+        this.context = context;
     }
 
     @NonNull
@@ -84,6 +115,16 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         viewHolder.getRoleNameView().setText(player.getRole().getName());
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
         viewHolder.getRoleButton().setImageResource(0);
+        viewHolder.getRoleButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ChangeCharacterScreen.class);
+                intent.putExtra("currentRoleImageResource", role.getImageResource());
+                intent.putExtra("position", viewHolder.getAdapterPosition());
+                context.startActivity(intent);
+            }
+        });
+
         viewHolder.getKillOrReviveButton().setBackgroundResource(R.drawable.dead_button);
         viewHolder.getKillOrReviveButton().setImageResource(0);
         viewHolder.getKillOrReviveButton().setOnClickListener(new View.OnClickListener() {
@@ -93,6 +134,11 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
                 notifyDataSetChanged();
             }
         });
+
+        viewHolder.removeAllTokens();
+        for(Token token: player.getAllTokensOnPlayer()){
+            viewHolder.addToken(token.getImageResource());
+        }
         //TODO: update kill/revive button to show correct image
         //TODO: update all buttons to do stuff on click
     }

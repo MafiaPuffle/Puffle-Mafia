@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 
@@ -27,6 +29,7 @@ public class DeadPlayerDayUIAdaptor extends RecyclerView.Adapter<DeadPlayerDayUI
         private final ImageButton roleButton;
         private final ImageButton killOrReviveButton;
 
+        private final LinearLayout tokenHolder;
 
 
         public ViewHolder(View view) {
@@ -38,6 +41,7 @@ public class DeadPlayerDayUIAdaptor extends RecyclerView.Adapter<DeadPlayerDayUI
             roleNameView = (TextView) view.findViewById(R.id.CharacterUIRole);
             roleButton = (ImageButton) view.findViewById(R.id.RoleUIButton);
             killOrReviveButton = (ImageButton) view.findViewById(R.id.KillOrReviveButton);
+            tokenHolder = (LinearLayout) view.findViewById(R.id.TokenUIBox);
         }
 
         //public TextView getTextView() {
@@ -58,6 +62,25 @@ public class DeadPlayerDayUIAdaptor extends RecyclerView.Adapter<DeadPlayerDayUI
 
         public ImageButton getKillOrReviveButton(){
             return killOrReviveButton;
+        }
+
+        public LinearLayout getTokenHolder(){
+            return tokenHolder;
+        }
+
+        public void removeAllTokens(){
+            tokenHolder.removeAllViewsInLayout();
+        }
+
+        public void addToken(int imageResource){
+            ImageButton imageButton = new ImageButton(itemView.getContext());
+            imageButton.setBackgroundResource(imageResource);
+            imageButton.setImageResource(0);
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(60,60);
+            imageButton.setLayoutParams(params);
+
+            tokenHolder.addView(imageButton);
         }
     }
 
@@ -93,6 +116,11 @@ public class DeadPlayerDayUIAdaptor extends RecyclerView.Adapter<DeadPlayerDayUI
                 notifyDataSetChanged();
             }
         });
+
+        viewHolder.removeAllTokens();
+        for(Token token: player.getAllTokensOnPlayer()){
+            viewHolder.addToken(token.getImageResource());
+        }
         //TODO: update kill/revive button to show correct image
         //TODO: update all buttons to do stuff on click
     }

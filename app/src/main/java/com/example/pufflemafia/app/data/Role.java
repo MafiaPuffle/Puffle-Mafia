@@ -66,7 +66,7 @@ public class Role {
     public void Copy (@NonNull Role other){
         this.name = other.getName();
         this.imageResource = other.getImageResource();
-        this.priority = other.getImageResource();
+        this.priority = other.getPriority();
         this.alliance = other.getAlliance();
         this.team = other.getTeam();
         this.power = new Power(other.getPower());
