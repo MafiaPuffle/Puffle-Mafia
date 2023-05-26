@@ -57,7 +57,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/grey_rectangle"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/Add_Tokens"
