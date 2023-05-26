@@ -1,11 +1,16 @@
 package com.example.pufflemafia.app.game;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.data.Power;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.data.SortByPriority;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -50,6 +55,20 @@ public class ActiveRolesManager {
             }
 
         }
+
+        String message1 ="";
+        for (int i = 0; i < rolesWithAbilitiesForTheNight.size(); i++) {
+            message1 += rolesWithAbilitiesForTheNight.get(i).getName() + " ";
+        }
+        Log.d("ActiveRolesManager", "Order before sort: " + message1);
+
+        Collections.sort(rolesWithAbilitiesForTheNight, new SortByPriority());
+
+        String message2 ="";
+        for (int i = 0; i < rolesWithAbilitiesForTheNight.size(); i++) {
+            message2 += rolesWithAbilitiesForTheNight.get(i).getName() + " ";
+        }
+        Log.d("ActiveRolesManager", "Order after sort: " + message2);
 
         if(rolesWithAbilitiesForTheNight.size() > 0){
             return rolesWithAbilitiesForTheNight.get(0);

@@ -32,6 +32,8 @@ public class CharacterSelectScreen extends AppCompatActivity {
 
         Log.i("CharacterSelectScreen", "Starting CharacterSelectScreen");
 
+        AppManager.gameSetup.chosenRoles.clear();
+
         GridLayout allRolesCharacterBox = findViewById(R.id.CharacterBox);
 
         GridLayout ChosenCharacterBox = findViewById(R.id.ChosenCharacterBox);
