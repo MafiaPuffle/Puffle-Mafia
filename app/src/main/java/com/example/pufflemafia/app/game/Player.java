@@ -33,6 +33,7 @@ public class Player {
         else return null;
     }
     public Vector<Token> getAllTokensOnPlayer() { return tokensOnPlayer; }
+    public void removeAllTokensOnPlayer(){tokensOnPlayer.clear();}
     public void setTokenAt(int index, Token token){
         tokensOnPlayer.removeElementAt(index);
         tokensOnPlayer.insertElementAt(token, index);
@@ -64,6 +65,11 @@ public class Player {
     public void RemoveTokenAt(int tokenIndex){
         if(tokenIndex >= tokensOnPlayer.size()) return;
         tokensOnPlayer.removeElementAt(tokenIndex);
+    }
+
+    public void UpdateTokens(Vector<Token> newTokens){
+        tokensOnPlayer.clear();
+        tokensOnPlayer = newTokens;
     }
 
     public void PrintSummary(){

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pufflemafia.AddTokenScreen;
 import com.example.pufflemafia.ChangeCharacterScreen;
 import com.example.pufflemafia.CharacterSelectScreen;
 import com.example.pufflemafia.MainMafiaPage;
@@ -126,7 +127,8 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         viewHolder.getPlayerAndRoleLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(context, ChangeNameScreen.class);
+                //Intent intent = new Intent(context, AddTokenScreen.class);
+                //intent.putExtra("position", viewHolder.getAdapterPosition());
             }
         });
 
@@ -158,6 +160,15 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         for(Token token: player.getAllTokensOnPlayer()){
             viewHolder.addToken(token.getImageResource());
         }
+        viewHolder.getTokenHolder().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AddTokenScreen.class);
+                intent.putExtra("position", viewHolder.getAdapterPosition());
+                intent.putExtra("ListType", PlayerManager.PlayerMangerListType.ALIVE);
+                context.startActivity(intent);
+            }
+        });
         //TODO: update kill/revive button to show correct image
         //TODO: update all buttons to do stuff on click
     }
