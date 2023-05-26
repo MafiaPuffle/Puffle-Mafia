@@ -2,6 +2,7 @@ package com.example.pufflemafia;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -18,6 +19,7 @@ import java.util.Vector;
 
 public class ChangeCharacterScreen extends AppCompatActivity {
 
+    private Intent intent;
     private Vector<Role> allRoles;
     private GridLayout gridLayout;
     private ImageView currentRoleImageView;
@@ -29,11 +31,15 @@ public class ChangeCharacterScreen extends AppCompatActivity {
         setContentView(R.layout.activity_change_character_screen);
 
         allRoles = DataManager.GetAllRoles();
+        intent = getIntent();
 
         gridLayout = findViewById(R.id.EditAllCharacterBox);
 
         currentRoleImageView = findViewById(R.id.CurrentRole);
         newRoleImageView = findViewById(R.id.NewRole);
+
+        currentRoleImageView.setBackgroundResource(intent.getIntExtra("currentRoleImageResource", 0));
+        currentRoleImageView.setImageResource(0);
 
         for(Role role: allRoles){
             addImageButtonToGrid(gridLayout, role.getImageResource());
