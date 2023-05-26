@@ -9,9 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pufflemafia.adaptors.AlivePlayerDayUIAdaptor;
-import com.example.pufflemafia.adaptors.DeadPlayerDayUIAdaptor;
-import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.adaptors.PlayerDayUIAdaptor;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
@@ -25,8 +23,8 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
     private RecyclerView allDeadRecycleView;
     private RecyclerView.LayoutManager allAliveLayoutManager;
     private RecyclerView.LayoutManager allDeadLayoutManager;
-    private AlivePlayerDayUIAdaptor allAlivePlayerDayUIAdaptor;
-    private DeadPlayerDayUIAdaptor allDeadPlayerDayUIAdaptor;
+    private PlayerDayUIAdaptor allAlivePlayerDayUIAdaptor;
+    private PlayerDayUIAdaptor allDeadPlayerDayUIAdaptor;
     private Vector<Player> allAlivePlayers;
     private Vector<Player> allDeadPlayers;
 
@@ -48,8 +46,8 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         allDeadRecycleView = findViewById(R.id.AllDeadRecycleView);
         allAliveLayoutManager = new LinearLayoutManager(this);
         allDeadLayoutManager = new LinearLayoutManager(this);
-        allAlivePlayerDayUIAdaptor = new AlivePlayerDayUIAdaptor(allAlivePlayers, this);
-        allDeadPlayerDayUIAdaptor = new DeadPlayerDayUIAdaptor(allDeadPlayers);
+        allAlivePlayerDayUIAdaptor = new PlayerDayUIAdaptor(allAlivePlayers, this, PlayerManager.PlayerMangerListType.ALIVE);
+        allDeadPlayerDayUIAdaptor = new PlayerDayUIAdaptor(allDeadPlayers, this, PlayerManager.PlayerMangerListType.DEAD);
 
 
         allAliveRecycleView.setAdapter(allAlivePlayerDayUIAdaptor);
