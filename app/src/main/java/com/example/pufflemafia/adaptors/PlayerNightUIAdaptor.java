@@ -113,7 +113,8 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
         viewHolder.getLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PlayerManager.AddTokenToPlayer(PlayerManager.PlayerMangerListType.ALIVE,viewHolder.getAdapterPosition(), GameManager.getCurrentRoleActiveAtNight().getPower().getToken());
+                //PlayerManager.AddTokenToPlayer(PlayerManager.PlayerMangerListType.ALIVE,viewHolder.getAdapterPosition(), GameManager.getCurrentRoleActiveAtNight().getPower().getToken());
+                PlayerManager.UseAbilityOnPlayer(GameManager.getCurrentRoleActiveAtNight(), PlayerManager.allAlive.elementAt(viewHolder.getAdapterPosition()));
                 notifyDataSetChanged();
                 PlayerManager.LogSummary();
             }

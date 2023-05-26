@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.data.GameSetup;
+import com.example.pufflemafia.app.data.Power;
 import com.example.pufflemafia.app.data.Role;
 
 import java.util.Collections;
@@ -97,7 +98,15 @@ public class GameManager {
         // Gets all alive roles and sends the to the ActiveRolesManager
         Vector<Role> allAliveRoles = new Vector<Role>();
         for (Player player: PlayerManager.allAlive) {
-            allAliveRoles.add(player.getRole());
+            Role role = player.getRole();
+            Power power = role.getPower();
+
+            // Filters out one time use powers after they have been used i.e. Wizard, the father, holy spirit, satan, witness
+            if(power.getType() == Power.PowerType.ONETIMEUSE && power.checkIfPowerHasBeenUsed() == true){
+                continue;
+            }else{
+                allAliveRoles.add(role);
+            }
         }
 
         currentRoleActiveAtNight = ActiveRolesManager.StartNight(allAliveRoles, nightNumber);

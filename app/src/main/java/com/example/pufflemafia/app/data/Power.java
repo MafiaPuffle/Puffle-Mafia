@@ -1,10 +1,12 @@
 package com.example.pufflemafia.app.data;
 
+import android.util.Log;
+
 import com.example.pufflemafia.R;
 
 // Handles all data and logic for a single power/ability of a playere
 public class Power {
-    public enum PowerType {PASSIVE, ACTIVE, CONTINOUS, FIRSTNIGHT, SELFACTIVE};
+    public enum PowerType {PASSIVE, ACTIVE, CONTINOUS, FIRSTNIGHT, SELFACTIVE, ONETIMEUSE};
 
     private String name;
     public String getName(){return name;}
@@ -17,11 +19,18 @@ public class Power {
     private Token token;
     public Token getToken(){return token;}
 
+    private boolean hasPowerBeenUsed;
+    public boolean checkIfPowerHasBeenUsed(){return hasPowerBeenUsed;}
+    public void usePower(){
+        hasPowerBeenUsed = true;
+    }
+
     public  Power (){
         this.name = "power";
         this.type = PowerType.PASSIVE;
         this.prompt = "";
         this.token = new Token("Token", R.drawable.village_idiot_puffle, Token.TokenTypes.CLEAR_NEVER);
+        this.hasPowerBeenUsed = false;
     }
 
     public Power (String name,PowerType type, String prompt){
@@ -29,6 +38,7 @@ public class Power {
         this.type = type;
         this.prompt = prompt;
         this.token = new Token("Empty", 0, Token.TokenTypes.CLEAR_NEVER);
+        this.hasPowerBeenUsed = false;
     }
 
     public Power (String name,PowerType type, String prompt, Token token){
@@ -36,6 +46,7 @@ public class Power {
         this.type = type;
         this.prompt = prompt;
         this.token = new Token(token);
+        this.hasPowerBeenUsed = false;
     }
 
     public Power (Power other){
@@ -47,6 +58,7 @@ public class Power {
         this.type = other.getType();
         this.prompt = other.getPrompt();
         this.token = new Token(other.getToken());
+        this.hasPowerBeenUsed = false;
     }
 
     public void PrintSummary(){
@@ -57,6 +69,13 @@ public class Power {
     public void PrintSummary(String spacer){
         System.out.print(spacer + "Power: " + this.name + "\n");
         this.token.PrintSummary(spacer + "    ");
+    }
+
+    public void LogSummary(String spacer){
+        String message = "";
+        message += spacer + "Power: " + this.name + "\n";
+        message += spacer + " Has been used: " + this.checkIfPowerHasBeenUsed() + "\n";
+        Log.d("Power", message);
     }
 
     public void PrintDetailed(){
