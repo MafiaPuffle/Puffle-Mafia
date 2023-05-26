@@ -14,13 +14,18 @@ import android.widget.ImageView;
 
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.game.PlayerManager;
 
 import java.util.Vector;
 
 public class ChangeCharacterScreen extends AppCompatActivity {
 
     private Intent intent;
+
+    private PlayerManager.PlayerMangerListType listType;
+    private Integer position;
     private Vector<Role> allRoles;
+    private Role newRole;
     private GridLayout gridLayout;
     private ImageView currentRoleImageView;
     private ImageView newRoleImageView;
@@ -33,6 +38,10 @@ public class ChangeCharacterScreen extends AppCompatActivity {
         allRoles = DataManager.GetAllRoles();
         intent = getIntent();
 
+        newRole = new Role();
+
+        listType = PlayerManager.PlayerMangerListType.ALIVE;
+
         gridLayout = findViewById(R.id.EditAllCharacterBox);
 
         currentRoleImageView = findViewById(R.id.CurrentRole);
@@ -41,10 +50,24 @@ public class ChangeCharacterScreen extends AppCompatActivity {
         currentRoleImageView.setBackgroundResource(intent.getIntExtra("currentRoleImageResource", 0));
         currentRoleImageView.setImageResource(0);
 
+        newRoleImageView.setBackgroundResource(intent.getIntExtra("currentRoleImageResource", 0));
+        newRoleImageView.setImageResource(0);
+
+        position = intent.getIntExtra("position",0);
+
         for(Role role: allRoles){
-            addImageButtonToGrid(gridLayout, role.getImageResource());
+            ImageButton imageButton = addImageButtonToGrid(gridLayout, role.getImageResource());
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    newRole = role;
+                    newRoleImageView.setBackgroundResource(newRole.getImageResource());
+                    newRoleImageView.setImageResource(0);
+                }
+            });
         }
 
+        configureNextButton();
         configureBackToMainMenu();
 
     }
@@ -64,6 +87,18 @@ public class ChangeCharacterScreen extends AppCompatActivity {
         gridLayout.addView(imageButton);
 
         return imageButton;
+    }
+
+    private void configureNextButton(){
+        Button NextButton = (Button) findViewById(R.id.DoneChangingCharactersButton);
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(newRole.getName() != "PuffleName")PlayerManager.EditPlayerRole(listType, position, newRole);
+                PlayerManager.LogSummary();
+                finish();
+            }
+        });
     }
 
     private void configureBackToMainMenu(){

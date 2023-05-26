@@ -22,6 +22,7 @@ public class PlayerManager {
     public static Vector<Player> allDead;
     public static int numberOfPlayersDead() {return allDead.size();}
 
+    public static Event<Boolean> onPlayerDataUpdated;
     public static Event<Boolean> onPlayerKillOrRevive;
 
     // Used for sending warning messages for debugging
@@ -36,6 +37,7 @@ public class PlayerManager {
         logger.setLevel(Level.WARNING);
 
         onPlayerKillOrRevive = new Event<Boolean>();
+        onPlayerDataUpdated = new Event<Boolean>();
     }
 
     // Adds a player to the game
@@ -76,6 +78,7 @@ public class PlayerManager {
             }
 
             allAlive.elementAt(playerIndex).name = newName;
+            onPlayerDataUpdated.Invoke();
         }
         else{
             if(playerIndex >= allDead.size()){
@@ -86,6 +89,7 @@ public class PlayerManager {
             }
 
             allDead.elementAt(playerIndex).name = newName;
+            onPlayerDataUpdated.Invoke();
         }
     }
 
@@ -99,6 +103,7 @@ public class PlayerManager {
             }
 
             allAlive.elementAt(playerIndex).setRole(newRole);
+            onPlayerDataUpdated.Invoke();
         }
         else{
             if(playerIndex >= allDead.size()){
@@ -109,6 +114,7 @@ public class PlayerManager {
             }
 
             allDead.elementAt(playerIndex).setRole(newRole);
+            onPlayerDataUpdated.Invoke();
         }
     }
 
@@ -128,6 +134,7 @@ public class PlayerManager {
             }
 
             allAlive.elementAt(playerIndex).setTokenAt(tokenIndex, newToken);
+            onPlayerDataUpdated.Invoke();
         }
         else{
             if(playerIndex >= allDead.size()){
@@ -144,6 +151,7 @@ public class PlayerManager {
             }
 
             allDead.elementAt(playerIndex).setTokenAt(tokenIndex, newToken);
+            onPlayerDataUpdated.Invoke();
         }
     }
 
@@ -157,6 +165,7 @@ public class PlayerManager {
             }
 
             allAlive.elementAt(playerIndex).AddTokenOnToPlayer(newToken);
+            onPlayerDataUpdated.Invoke();
         }
         else{
             if(playerIndex >= allDead.size()){
@@ -167,6 +176,7 @@ public class PlayerManager {
             }
 
             allDead.elementAt(playerIndex).AddTokenOnToPlayer(newToken);
+            onPlayerDataUpdated.Invoke();
         }
     }
 
@@ -186,6 +196,7 @@ public class PlayerManager {
             }
 
             allAlive.elementAt(playerIndex).RemoveTokenAt(tokenIndex);
+            onPlayerDataUpdated.Invoke();
         }
         else{
             if(playerIndex >= allDead.size()){
@@ -202,6 +213,7 @@ public class PlayerManager {
             }
 
             allDead.elementAt(playerIndex).RemoveTokenAt(tokenIndex);
+            onPlayerDataUpdated.Invoke();
         }
     }
 
@@ -231,6 +243,7 @@ public class PlayerManager {
         output += "\nAlive:\n";
         for(Player player: allAlive){
             output += "  " + player.name + "\n";
+            output += "    Role: " + player.getRole().getName() + "\n";
             for(Token token: player.getAllTokensOnPlayer()){
                 output += "    " + token.getName() + "\n";
             }

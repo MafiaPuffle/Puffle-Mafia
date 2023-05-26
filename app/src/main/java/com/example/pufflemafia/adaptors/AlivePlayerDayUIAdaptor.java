@@ -120,6 +120,7 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
             public void onClick(View view) {
                 Intent intent = new Intent(context, ChangeCharacterScreen.class);
                 intent.putExtra("currentRoleImageResource", role.getImageResource());
+                intent.putExtra("position", viewHolder.getAdapterPosition());
                 context.startActivity(intent);
             }
         });

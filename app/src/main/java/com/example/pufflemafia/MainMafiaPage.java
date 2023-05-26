@@ -36,6 +36,7 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         setContentView(R.layout.activity_main_mafia_page);
 
         PlayerManager.onPlayerKillOrRevive.AddListener(this);
+        PlayerManager.onPlayerDataUpdated.AddListener(this);
         GameManager.onStartDay.AddListener(this);
 
         //GameManager.StartNewGame(AppManager.gameSetup);
@@ -65,6 +66,7 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
     @Override
     protected void onDestroy() {
         PlayerManager.onPlayerKillOrRevive.RemoveListener(this);
+        PlayerManager.onPlayerDataUpdated.RemoveListener(this);
         GameManager.onStartDay.AddListener(this);
 
         super.onDestroy();
