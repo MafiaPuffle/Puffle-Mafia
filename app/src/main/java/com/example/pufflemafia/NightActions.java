@@ -49,7 +49,7 @@ public class NightActions extends AppCompatActivity {
         recyclerView.setAdapter(adaptor);
         recyclerView.setLayoutManager(layoutManager);
 
-        PlayerManager.sortAllAliveByTokenCount();
+        PlayerManager.sortAllAliveByTokens();
 
         GameManager.StartNight();
 
@@ -62,9 +62,9 @@ public class NightActions extends AppCompatActivity {
 
     private void Refresh(){
         allAlivePlayers = PlayerManager.getAllAlive();
-        PlayerManager.sortAllAliveByTokenCount();
         currentActiveRoleAtNight = GameManager.getCurrentRoleActiveAtNight();
         if(currentActiveRoleAtNight == null){
+            PlayerManager.sortAllAliveByTokens();
             finish();
             return;
         }

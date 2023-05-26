@@ -5,7 +5,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.app.Event;
-import com.example.pufflemafia.app.data.Power;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 
@@ -26,8 +25,8 @@ public class PlayerManager {
         //onPlayerDataUpdated.Invoke();
         return allAlive;
     }
-    public static void sortAllAliveByTokenCount(){
-        Collections.sort(allAlive, new SortPlayerByAmountOfTokensApplied());
+    public static void sortAllAliveByTokens(){
+        Collections.sort(allAlive, new SortPlayerByTokensApplied());
         onPlayerDataUpdated.Invoke();
     }
     public static Player getAlivePlayerAt(int index){
@@ -43,8 +42,8 @@ public class PlayerManager {
         //onPlayerDataUpdated.Invoke();
         return allDead;
     }
-    public static void sortAllDeadByTokenCount(){
-        Collections.sort(allDead, new SortPlayerByAmountOfTokensApplied());
+    public static void sortAllDeadByTokens(){
+        Collections.sort(allDead, new SortPlayerByTokensApplied());
         onPlayerDataUpdated.Invoke();
     }
     public static Player getDeadPlayerAt(int index){

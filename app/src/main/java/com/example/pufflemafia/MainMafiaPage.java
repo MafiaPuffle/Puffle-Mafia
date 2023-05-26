@@ -55,8 +55,8 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         allAliveRecycleView.setLayoutManager(allAliveLayoutManager);
         allDeadRecycleView.setLayoutManager(allDeadLayoutManager);
 
-        PlayerManager.sortAllAliveByTokenCount();
-        PlayerManager.sortAllDeadByTokenCount();
+        PlayerManager.sortAllAliveByTokens();
+        PlayerManager.sortAllDeadByTokens();
 
         //Configure Button
         configureDayBacktoChooseYourCharactersButton();

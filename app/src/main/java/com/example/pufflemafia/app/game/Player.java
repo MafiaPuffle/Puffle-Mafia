@@ -33,6 +33,14 @@ public class Player {
         else return null;
     }
     public Vector<Token> getAllTokensOnPlayer() { return tokensOnPlayer; }
+    public int getNumberOfTokensOnPlayerOfType(Token.TokenTypes tokenType){
+        int numOfTokens = 0;
+        for (Token token: tokensOnPlayer) {
+            if(token.getType() == tokenType)
+                numOfTokens++;
+        }
+        return numOfTokens;
+    }
     public void removeAllTokensOnPlayer(){tokensOnPlayer.clear();}
     public void setTokenAt(int index, Token token){
         tokensOnPlayer.removeElementAt(index);
