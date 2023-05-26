@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainMafiaPage">
 
     <!--Alive Box-->
@@ -32,7 +33,7 @@
             android:text="ALIVE"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="25sp"
+            android:textSize="25dp"
             android:fontFamily="@font/horizon"/>
     </LinearLayout>
 
@@ -142,5 +143,33 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
 
+    <ImageView
+        android:id="@+id/sun"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/AllAliveRecycleView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toEndOf="@+id/AliveTitleBox"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        app:srcCompat="@drawable/sun" />
+
+    <TextView
+        android:id="@+id/DayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/green_rectangle"
+        android:fontFamily="@font/horizon"
+        android:padding="5dp"
+        android:text="DAY"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/AliveTitleBox"
+        app:layout_constraintHorizontal_bias="0.295"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.014" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

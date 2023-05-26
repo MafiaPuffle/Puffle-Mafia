@@ -109,6 +109,8 @@
         app:layout_constraintTop_toBottomOf="@+id/RolesButton"
         app:layout_constraintVertical_bias="0.0" />
 
+
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
@@ -124,5 +126,18 @@
         app:layout_constraintTop_toBottomOf="@+id/PuffleMafiaBox"
         app:layout_constraintVertical_bias="0.047"
         app:srcCompat="@drawable/mafia_puffle" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="Music ON"
+        android:textOff="Music OFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/QRCodeButton"
+        app:layout_constraintVertical_bias="0.78" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

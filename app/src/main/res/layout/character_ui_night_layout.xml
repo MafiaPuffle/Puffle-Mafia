@@ -26,8 +26,8 @@
 
         <ImageButton
             android:id="@+id/CharacterUI"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/alien_puffle"
             android:clickable="false"
             android:contentDescription="Alien"
@@ -47,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:textSize="13dp"
                 android:gravity="top"
                 android:clickable="false"
                 android:focusable="false"
@@ -59,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
                 android:textColor="@color/white"
+                android:textSize="13dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:text="NAME"
