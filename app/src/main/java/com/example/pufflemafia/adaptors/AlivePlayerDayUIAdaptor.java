@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.AddTokenScreen;
 import com.example.pufflemafia.ChangeCharacterScreen;
+import com.example.pufflemafia.ChangeNameScreen;
 import com.example.pufflemafia.CharacterSelectScreen;
 import com.example.pufflemafia.MainMafiaPage;
 import com.example.pufflemafia.R;
@@ -127,8 +128,11 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         viewHolder.getPlayerAndRoleLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(context, AddTokenScreen.class);
-                //intent.putExtra("position", viewHolder.getAdapterPosition());
+                Intent intent = new Intent(context, ChangeNameScreen.class);
+                intent.putExtra("position", viewHolder.getAdapterPosition());
+                intent.putExtra("name",player.name);
+                intent.putExtra("ListType", PlayerManager.PlayerMangerListType.ALIVE);
+                context.startActivity(intent);
             }
         });
 
