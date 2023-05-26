@@ -13,6 +13,15 @@
         android:theme="@style/Theme.PuffleMafia"
         tools:targetApi="31">
         <activity
+            android:name=".ChangeNameScreen"
+            android:exported="false" />
+        <activity
+            android:name=".AddTokenScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ChangeCharacterScreen"
+            android:exported="false" />
+        <activity
             android:name=".Test"
             android:exported="false" />
         <activity
@@ -22,9 +31,6 @@
             android:name=".MainMafiaPage"
             android:exported="false" />
         <activity
-            android:name=".HowManyCharacters"
-            android:exported="false" />
-        <activity
             android:name=".CharacterSelectScreen"
             android:exported="false" />
         <activity
@@ -32,6 +38,9 @@
             android:exported="false" />
         <activity
             android:name=".RolesScreen"
+            android:exported="false" />
+        <activity
+            android:name=".RoleDetails"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
