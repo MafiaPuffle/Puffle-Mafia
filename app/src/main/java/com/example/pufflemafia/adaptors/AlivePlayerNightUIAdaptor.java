@@ -69,12 +69,17 @@ public class AlivePlayerNightUIAdaptor extends RecyclerView.Adapter<AlivePlayerN
             tokenHolder.removeAllViewsInLayout();
         }
 
-        public void addToken(int imageResource){
+        private int dpToPx(int dp) {
+            float density = itemView.getResources().getDisplayMetrics().density;
+            return Math.round((float) dp * density);
+        }
+
+        public void addToken(int imageResource) {
             ImageButton imageButton = new ImageButton(itemView.getContext());
             imageButton.setBackgroundResource(imageResource);
             imageButton.setImageResource(0);
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(48,48);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dpToPx(30), dpToPx(30));
             imageButton.setLayoutParams(params);
 
             tokenHolder.addView(imageButton);

@@ -8,7 +8,7 @@
 
     <!--Roles Title Text Box-->
     <LinearLayout
-        android:id="@+id/ChangeCharacterTitleBox"
+        android:id="@+id/AddTokenTitleBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/ChangeCharacterTitleText"
+            android:id="@+id/AddTokenTitleText"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
@@ -37,7 +37,7 @@
 
     <!--Roles Box-->
     <GridLayout
-        android:id="@+id/EditAllCharacterBox"
+        android:id="@+id/AddingTokenBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChangeCharacterTitleBox"
+        app:layout_constraintTop_toBottomOf="@+id/AddTokenTitleBox"
         app:layout_constraintVertical_bias="0.146">
 
 

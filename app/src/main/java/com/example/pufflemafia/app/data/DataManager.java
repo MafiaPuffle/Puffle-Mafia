@@ -33,7 +33,7 @@ public class DataManager {
 
         Token baker = new Token(
                 "Baker",
-                R.drawable.baker_puffle,
+                R.drawable.puffle_o_croissant,
                 Token.TokenTypes.CLEAR_NEVER);
         allTokens.put(baker.getName(), baker);
 
@@ -51,7 +51,7 @@ public class DataManager {
 
         Token dentist = new Token(
                 "Dentist",
-                R.drawable.detective_puffle,
+                R.drawable.dentist_puffle,
                 Token.TokenTypes.CLEAR_ON_NIGHT);
         allTokens.put(dentist.getName(), dentist);
 
@@ -111,7 +111,7 @@ public class DataManager {
 
         Token mafiaRival = new Token(
                 "Mafia Rival",
-                R.drawable.mafia_puffle,
+                R.drawable.rival_puffle,
                 Token.TokenTypes.CLEAR_ON_NIGHT);
         allTokens.put(mafiaRival.getName(), mafiaRival);
 
@@ -139,11 +139,6 @@ public class DataManager {
                 Token.TokenTypes.CLEAR_NEVER);
         allTokens.put(wizard.getName(), wizard);
 
-        Token testClearOnDeath = new Token(
-                "Test Clear On Death",
-                R.drawable.terrorist_puffle,
-                Token.TokenTypes.CLEAR_ON_DEATH);
-        allTokens.put(testClearOnDeath.getName(), testClearOnDeath);
     }
 
     private static void InitializeAllPowers(){
@@ -151,13 +146,13 @@ public class DataManager {
 
         Power alien = new Power("Alien",
                 Power.PowerType.CONTINOUS,
-                "infect",
+                "INFECT",
                 GetToken("Alien"));
         allPowers.put(alien.getName(), alien);
 
         Power baker = new Power("Baker",
                 Power.PowerType.CONTINOUS,
-                "give bread",
+                "GIVE BREAD TO",
                 GetToken("Baker"));
         allPowers.put(baker.getName(), baker);
 
@@ -169,33 +164,33 @@ public class DataManager {
         Power cupid = new Power(
                 "Cupid",
                 Power.PowerType.FIRSTNIGHT,
-                "link",
+                "FALL IN LOVE",
                 GetToken("Cupid"));
         allPowers.put(cupid.getName(), cupid);
 
         Power cyborg = new Power("Cyborg",
                 Power.PowerType.FIRSTNIGHT,
-                "copy",
+                "COPY",
                 GetToken("Cyborg"));
         allPowers.put(cyborg.getName(), cyborg);
 
         Power dentist = new Power("Dentist",
                 Power.PowerType.CONTINOUS,
-                "mute",
+                "SILENCE",
                 GetToken("Dentist"));
         allPowers.put(dentist.getName(), dentist);
 
         Power detective = new Power(
                 "Detective",
                 Power.PowerType.CONTINOUS,
-                "know about",
+                "KNOW ABOUT",
                 GetToken("Detective"));
         allPowers.put(detective.getName(), detective);
 
         Power doctor = new Power(
                 "Doctor",
                 Power.PowerType.CONTINOUS,
-                "heal",
+                "SAVE",
                 GetToken("Doctor"));
         allPowers.put(doctor.getName(), doctor);
 
@@ -207,13 +202,13 @@ public class DataManager {
 
         Power theFather = new Power("The Father",
                 Power.PowerType.ACTIVE,
-                "???",
+                "???",//);
                 GetToken("The Father"));
         allPowers.put(theFather.getName(), theFather);
 
         Power godFather = new Power("GodFather",
-                Power.PowerType.ACTIVE,
-                "kill");
+                Power.PowerType.PASSIVE,
+                "MURDER");
         allPowers.put(godFather.getName(), godFather);
 
         Power holySpirit = new Power("Holy Spirit",
@@ -230,7 +225,7 @@ public class DataManager {
 
         Power jailKeeper = new Power("Jailkeeper",
                 Power.PowerType.CONTINOUS,
-                "???",
+                "PUT IN JAIL",
                 GetToken("Jailkeeper"));
         allPowers.put(jailKeeper.getName(), jailKeeper);
 
@@ -241,7 +236,7 @@ public class DataManager {
 
         Power lawyer = new Power("Lawyer",
                 Power.PowerType.CONTINOUS,
-                "???",
+                "DEFEND",
                 GetToken("Lawyer"));
         allPowers.put(lawyer.getName(), lawyer);
 
@@ -254,13 +249,13 @@ public class DataManager {
         Power mafia = new Power(
                 "Mafia",
                 Power.PowerType.CONTINOUS,
-                "kill",
+                "MURDER",
                 GetToken("Mafia"));
         allPowers.put(mafia.getName(), mafia);
 
         Power rivalMafia = new Power("Mafia Rival",
                 Power.PowerType.CONTINOUS,
-                "Kill",
+                "MURDER",
                 GetToken("Mafia Rival"));
         allPowers.put(rivalMafia.getName(), rivalMafia);
 
@@ -279,7 +274,7 @@ public class DataManager {
         Power terrorist = new Power(
                 "Terrorist",
                 Power.PowerType.FIRSTNIGHT,
-                "plant a bomb on",
+                "PLANT A BOMB ON",
                 GetToken("Terrorist"));
         allPowers.put(terrorist.getName(), terrorist);
 
@@ -296,13 +291,13 @@ public class DataManager {
 
         Power witness = new Power("Witness",
                 Power.PowerType.ACTIVE,
-                "witness anything",
+                "WITNESS",
                 GetToken("Witness"));
         allPowers.put(witness.getName(), witness);
 
         Power wizard = new Power("Wizard",
                 Power.PowerType.ACTIVE,
-                "switch with",
+                "SWITCH WITH",
                 GetToken("Wizard"));
         allPowers.put(wizard.getName(), wizard);
 
