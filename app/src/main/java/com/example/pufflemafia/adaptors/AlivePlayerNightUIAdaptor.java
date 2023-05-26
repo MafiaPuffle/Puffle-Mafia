@@ -81,6 +81,8 @@ public class AlivePlayerNightUIAdaptor extends RecyclerView.Adapter<AlivePlayerN
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dpToPx(30), dpToPx(30));
             imageButton.setLayoutParams(params);
+            imageButton.setClickable(false);
+            imageButton.setFocusable(false);
 
             tokenHolder.addView(imageButton);
         }

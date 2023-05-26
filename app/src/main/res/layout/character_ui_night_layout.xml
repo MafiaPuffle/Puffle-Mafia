@@ -29,25 +29,33 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/alien_puffle"
-            android:contentDescription="Alien" />
+            android:clickable="false"
+            android:contentDescription="Alien"
+            android:focusable="false" />
 
         <LinearLayout
             android:id="@+id/CharacterUITextsBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/grey_rectangle"
+            android:clickable="false"
+            android:focusable="false"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/CharacterUIName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
                 android:text="NAME" />
 
             <TextView
                 android:id="@+id/CharacterUIRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
                 android:text="ROLE" />
         </LinearLayout>
 
@@ -55,6 +63,8 @@
             android:id="@+id/TokensLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clickable="false"
+            android:focusable="false"
             android:orientation="horizontal"></LinearLayout>
 
     </LinearLayout>

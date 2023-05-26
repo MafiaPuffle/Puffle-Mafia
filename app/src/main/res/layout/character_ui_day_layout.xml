@@ -43,12 +43,16 @@
                 android:id="@+id/CharacterUIName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
                 android:text="NAME" />
 
             <TextView
                 android:id="@+id/CharacterUIRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
                 android:text="ROLE" />
         </LinearLayout>
 
@@ -56,7 +60,7 @@
             android:id="@+id/TokenUIBox"
             android:layout_width="209dp"
             android:layout_height="match_parent"
-            android:background="@drawable/grey_rectangle"
+            android:background="?attr/listChoiceBackgroundIndicator"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal"
