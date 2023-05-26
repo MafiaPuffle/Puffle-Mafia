@@ -79,7 +79,7 @@ public class DataManager {
         allTokens.put(holySpirit.getName(), holySpirit);
 
         Token jackOfAllTrades = new Token(
-                "Jack-of-All-Trades",
+                "J.O.A.T.",
                 R.drawable.jack_of_all_trades,
                 Token.TokenTypes.CLEAR_ON_NIGHT);
         allTokens.put(jackOfAllTrades.getName(), jackOfAllTrades);
@@ -201,8 +201,8 @@ public class DataManager {
 
         Power theFather = new Power("The Father",
                 Power.PowerType.ACTIVE,
-                "???",//);
-                GetToken("The Father"));
+                "???");
+//                GetToken("The Father"));
         allPowers.put(theFather.getName(), theFather);
 
         Power godFather = new Power("GodFather",
@@ -212,14 +212,14 @@ public class DataManager {
 
         Power holySpirit = new Power("Holy Spirit",
                 Power.PowerType.ACTIVE,
-                "???",
-                GetToken("Holy Spirit"));
+                "???");
+//                GetToken("Holy Spirit"));
         allPowers.put(holySpirit.getName(), holySpirit);
 
-        Power jackOfAllTrades = new Power("Jack-of-All-Trades",
+        Power jackOfAllTrades = new Power("J.O.A.T.",
                 Power.PowerType.CONTINOUS,
-                "???",
-                GetToken("Jack-of-All-Trades"));
+                "ACTIVATE ON",
+                GetToken("J.O.A.T."));
         allPowers.put(jackOfAllTrades.getName(), jackOfAllTrades);
 
         Power jailKeeper = new Power("Jailkeeper",
@@ -266,8 +266,8 @@ public class DataManager {
 
         Power satan = new Power("Satan",
                 Power.PowerType.ACTIVE,
-                "???",
-                GetToken("Satan"));
+                "???");
+//                GetToken("Satan"));
         allPowers.put(satan.getName(), satan);
 
         Power terrorist = new Power(
@@ -348,7 +348,7 @@ public class DataManager {
 
         Role cupid = new Role("Cupid",
                 R.drawable.cupid_puffle,
-                0,
+                .5f,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Cupid"),
@@ -402,7 +402,7 @@ public class DataManager {
 
         Role theFather = new Role("The Father",
                 R.drawable.the_father_puffle,
-                1,
+                4,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("The Father"),
@@ -420,25 +420,25 @@ public class DataManager {
 
         Role holySpirit = new Role("Holy Spirit",
                 R.drawable.holy_spirit_puffle,
-                0,
+                0.75f,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Holy Spirit"),
                 "Does something amazing!");
         allRoles.put(holySpirit.getName(), holySpirit);
 
-        Role jackOfAllTrades = new Role("Jack-of-All-Trades",
+        Role jackOfAllTrades = new Role("J.O.A.T.",
                 R.drawable.jack_of_all_trades,
                 3,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
-                GetPower("Jack-of-All-Trades"),
+                GetPower("J.O.A.T."),
                 "Does something amazing!");
         allRoles.put(jackOfAllTrades.getName(), jackOfAllTrades);
 
         Role jailkeeper = new Role("Jailkeeper",
                 R.drawable.jailkeeper_puffle,
-                1.1f,
+                1.9f,
                 Role.Alliances.GOOD,
                 Role.Teams.MAFIA,
                 GetPower("Jailkeeper"),
@@ -465,7 +465,7 @@ public class DataManager {
 
         Role lovers = new Role("Lovers",
                 R.drawable.lover_puffle,
-                0,
+                0.25f,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Lovers"),
@@ -483,7 +483,7 @@ public class DataManager {
 
         Role mafiaRival = new Role("Mafia Rival",
                 R.drawable.rival_puffle,
-                2.1f,
+                2.25f,
                 Role.Alliances.EVIL,
                 Role.Teams.RIVAL_MAFIA,
                 GetPower("Mafia Rival"),
@@ -501,7 +501,7 @@ public class DataManager {
 
         Role satan = new Role("Satan",
                 R.drawable.satan,
-                0,
+                0.75f,
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA,
                 GetPower("Satan"),
@@ -510,7 +510,7 @@ public class DataManager {
 
         Role terrorist = new Role("Terrorist",
                 R.drawable.terrorist_puffle,
-                0,
+                0.5f,
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA,
                 GetPower("Terrorist"),
@@ -537,7 +537,7 @@ public class DataManager {
 
         Role witness = new Role("Witness",
                 R.drawable.witness_puffle,
-                2.1f,
+                2.5f,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Witness"),

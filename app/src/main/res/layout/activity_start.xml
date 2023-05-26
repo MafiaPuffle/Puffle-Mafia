@@ -25,7 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
+            android:gravity="center"
             android:text="How Many Players"
+            android:fontFamily="@font/horizon"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
             android:textSize="36sp" />
@@ -65,7 +67,8 @@
             android:id="@+id/addNameButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Name" />
+            android:text="Add Name"
+            android:fontFamily="@font/horizon"/>
 
         <GridView
             android:id="@+id/namesGridView"
@@ -83,10 +86,11 @@
 
     <Button
         android:id="@+id/RandomCharactersButton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Random Characters"
-        android:textSize="24sp"
+        android:fontFamily="@font/horizon"
+        android:textSize="13.9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -96,10 +100,11 @@
 
     <Button
         android:id="@+id/ChooseCharactersButton"
-        android:layout_width="262dp"
-        android:layout_height="52dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:text="Choose Characters"
-        android:textSize="24sp"
+        android:fontFamily="@font/horizon"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -112,13 +117,14 @@
         android:id="@+id/BackToMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/horizon"
         android:text="BACK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981" />
+        app:layout_constraintTop_toBottomOf="@+id/RandomCharactersButton"
+        app:layout_constraintVertical_bias="0.857" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,8 @@
             android:text="Add a Token"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:fontFamily="@font/horizon"/>
     </LinearLayout>
 
 
@@ -86,7 +87,8 @@
             android:text="Added Tokens"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:fontFamily="@font/horizon"/>
     </LinearLayout>
 
     <LinearLayout
@@ -119,6 +121,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Next"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"
@@ -134,6 +137,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="BACK"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/DoneChangingCharactersButton"
         app:layout_constraintHorizontal_bias="0.023"

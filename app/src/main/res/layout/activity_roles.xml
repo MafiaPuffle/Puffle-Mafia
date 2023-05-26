@@ -32,7 +32,8 @@
             android:text="Roles"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/horizon"/>
     </LinearLayout>
 
     <!--Roles Box-->

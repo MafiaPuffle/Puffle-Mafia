@@ -31,7 +31,8 @@
             android:text="Choose Your Characters"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="30sp" />
+            android:textSize="17dp"
+            android:fontFamily="@font/horizon"/>
     </LinearLayout>
 
     <!--Choose Your Characters Box-->
@@ -90,7 +91,8 @@
             android:text="Chosen Characters"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="35sp" />
+            android:textSize="20dp"
+            android:fontFamily="@font/horizon"/>
     </LinearLayout>
 
     <GridLayout
@@ -122,6 +124,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Next"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"
@@ -137,6 +140,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="BACK"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/DoneChoosingCharactersButton"
         app:layout_constraintHorizontal_bias="0.023"
@@ -155,11 +159,12 @@
         android:text="0"
         android:textColor="@color/white"
         android:textSize="30dp"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ChosenCharactersTitleBox"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.006" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
