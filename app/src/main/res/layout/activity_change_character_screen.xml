@@ -9,7 +9,7 @@
 
 
     <LinearLayout
-        android:id="@+id/AddTokenTitleBox"
+        android:id="@+id/ChangeCharacterTitleBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/AddTokenTitleText"
+            android:id="@+id/ChangeCharacterTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
@@ -52,8 +52,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddingTokenBox"
-        app:layout_constraintVertical_bias="0.036">
+        app:layout_constraintTop_toBottomOf="@+id/EditAllCharacterBox"
+        app:layout_constraintVertical_bias="0.032">
 
 
         <ImageView
@@ -76,9 +76,13 @@
     </LinearLayout>
 
     <GridLayout
-        android:id="@+id/AddingTokenBox"
+        android:id="@+id/EditAllCharacterBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/green_rectangle"
         android:columnCount="7"
         android:orientation="horizontal"
@@ -88,11 +92,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddTokenTitleBox"
-        app:layout_constraintVertical_bias="0.031">
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/ChangeCharacterTitleBox"
+        app:layout_constraintVertical_bias="0.027">
 
 
     </GridLayout>
