@@ -60,7 +60,6 @@ public class ChangeNameScreen extends AppCompatActivity {
         BackToMainMafiaPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
                 String newName = Objects.requireNonNull(editText.getText()).toString().trim();
                 if(!newName.isEmpty()){
                     PlayerManager.EditPlayerName(listType, position, newName);

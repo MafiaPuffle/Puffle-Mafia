@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.pufflemafia.adaptors.AlivePlayerNightUIAdaptor;
+import com.example.pufflemafia.adaptors.PlayerNightUIAdaptor;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
@@ -29,7 +29,7 @@ public class NightActions extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private AlivePlayerNightUIAdaptor adaptor;
+    private PlayerNightUIAdaptor adaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class NightActions extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.AllAlivePlayersForThisNightRecycleView);
         layoutManager = new LinearLayoutManager(this);
-        adaptor = new AlivePlayerNightUIAdaptor(allAlivePlayers);
+        adaptor = new PlayerNightUIAdaptor(allAlivePlayers);
 
         recyclerView.setAdapter(adaptor);
         recyclerView.setLayoutManager(layoutManager);
@@ -65,7 +65,6 @@ public class NightActions extends AppCompatActivity {
             finish();
             return;
         }
-        //TODO: Set up night actions screen
 
         activeRoleImageButton.setBackgroundResource(currentActiveRoleAtNight.getImageResource());
         activeRoleImageButton.setImageResource(0);

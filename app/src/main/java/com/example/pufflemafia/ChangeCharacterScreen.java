@@ -40,7 +40,7 @@ public class ChangeCharacterScreen extends AppCompatActivity {
 
         newRole = new Role();
 
-        listType = PlayerManager.PlayerMangerListType.ALIVE;
+        listType = (PlayerManager.PlayerMangerListType) intent.getSerializableExtra("ListType");
 
         gridLayout = findViewById(R.id.EditAllCharacterBox);
 
