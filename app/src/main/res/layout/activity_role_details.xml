@@ -20,19 +20,21 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="350dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alien"
         android:background="@drawable/green_rectangle"
-        android:textSize="50dp"
-        android:gravity="center"
         android:fontFamily="@font/horizon"
+        android:gravity="center"
+        android:text="Alien"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.056" />
 
     <TextView
         android:id="@+id/textView3"
