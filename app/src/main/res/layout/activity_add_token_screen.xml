@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChangeCharacterScreen">
-
-
+    tools:context=".AddTokenScreen">
 
     <LinearLayout
         android:id="@+id/AddTokenTitleBox"
@@ -30,7 +28,7 @@
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:gravity="center"
-            android:text="Change Your Role"
+            android:text="Add a Token"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
             android:textSize="25sp" />
@@ -38,7 +36,7 @@
 
 
     <LinearLayout
-        android:id="@+id/ChangeCharactertoOtherCharacterBox"
+        android:id="@+id/AddTokenBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -60,19 +58,8 @@
             android:id="@+id/CurrentRole"
             android:layout_width="125dp"
             android:layout_height="125dp"
-            app:srcCompat="@drawable/alien_puffle" />
+            app:srcCompat="@drawable/puffle_o_croissant" />
 
-        <ImageView
-            android:id="@+id/Arrow"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            app:srcCompat="@drawable/arrow" />
-
-        <ImageView
-            android:id="@+id/NewRole"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            app:srcCompat="@drawable/alien_puffle" />
     </LinearLayout>
 
     <GridLayout
@@ -93,10 +80,10 @@
 
 
         <ImageButton
-            android:id="@+id/CharacterUI"
+            android:id="@+id/AddingTokenUI"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/alien_puffle"
+            android:background="@drawable/puffle_o_croissant"
             android:contentDescription="Alien" />
 
 
