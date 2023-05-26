@@ -79,12 +79,19 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
             tokenHolder.removeAllViewsInLayout();
         }
 
+
+        private int dpToPx(int dp) {
+            float density = itemView.getResources().getDisplayMetrics().density;
+            return Math.round((float) dp * density);
+        }
+
+
         public void addToken(int imageResource){
             ImageButton imageButton = new ImageButton(itemView.getContext());
             imageButton.setBackgroundResource(imageResource);
             imageButton.setImageResource(0);
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(60,60);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dpToPx(30), dpToPx(30));
             imageButton.setLayoutParams(params);
 
             tokenHolder.addView(imageButton);

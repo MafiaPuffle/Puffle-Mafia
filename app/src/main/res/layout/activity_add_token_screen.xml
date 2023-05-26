@@ -35,37 +35,14 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/AddTokenBox"
+    <GridLayout
+        android:id="@+id/AddingTokenBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/green_rectangle"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddingTokenBox"
-        app:layout_constraintVertical_bias="0.036">
-
-
-        <ImageView
-            android:id="@+id/CurrentRole"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            app:srcCompat="@drawable/puffle_o_croissant" />
-
-    </LinearLayout>
-
-    <GridLayout
-        android:id="@+id/AddingTokenBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:background="@drawable/green_rectangle"
         android:columnCount="7"
         android:orientation="horizontal"
@@ -76,7 +53,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AddTokenTitleBox"
-        app:layout_constraintVertical_bias="0.031">
+        app:layout_constraintVertical_bias="0.009">
 
 
         <ImageButton
@@ -85,9 +62,64 @@
             android:layout_height="48dp"
             android:background="@drawable/puffle_o_croissant"
             android:contentDescription="Alien" />
-
-
     </GridLayout>
+
+    <LinearLayout
+        android:id="@+id/AddedTokenTitleBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_rectangle"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddingTokenBox"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/AddedTokenTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:text="Added Tokens"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FEFAFD"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/AddTokenBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_rectangle"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddedTokenTitleBox"
+        app:layout_constraintVertical_bias="0.025">
+
+
+        <ImageView
+            android:id="@+id/CurrentRole"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:srcCompat="@drawable/puffle_o_croissant" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/DoneChangingCharactersButton"
