@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.app.Event;
+import com.example.pufflemafia.app.data.Power;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 
@@ -272,6 +273,11 @@ public class PlayerManager {
     // Adds token from sourcePlayer onto targetPlayer
     public static void UseAbilityOnPlayer( @NonNull Role sourceRole, @NonNull Player targetPlayer){
         targetPlayer.AddTokenOnToPlayer(sourceRole.getPower().getToken());
+        for (int i = 0; i < allAlive.size(); i++) {
+            if(allAlive.elementAt(i).getRole().getName() == sourceRole.getName()){
+                allAlive.elementAt(i).getRole().getPower().usePower();
+            }
+        }
     }
 
 
@@ -298,16 +304,21 @@ public class PlayerManager {
             for(Token token: player.getAllTokensOnPlayer()){
                 output += "    " + token.getName() + "\n";
             }
+            player.getRole().getPower().LogSummary("   ");
         }
-        output += "\nDead:\n";
+        Log.d("PlayerManager", output);
+
+        String output2 = "";
+        output2 += "\nDead:\n";
         for(Player player: allDead){
-            output += "  " + player.name + "\n";
+            output2 += "  " + player.name + "\n";
             for(Token token: player.getAllTokensOnPlayer()){
-                output += "    " + token.getName() + "\n";
+                output2 += "    " + token.getName() + "\n";
             }
+            player.getRole().getPower().LogSummary("   ");
         }
 
-        Log.d("PlayerManager",output);
+        Log.d("PlayerManager",output2);
     }
 
     public static void PrintDetailed(){
