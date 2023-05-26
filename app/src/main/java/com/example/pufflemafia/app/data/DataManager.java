@@ -207,8 +207,8 @@ public class DataManager {
         allPowers.put(theFather.getName(), theFather);
 
         Power godFather = new Power("GodFather",
-                Power.PowerType.ACTIVE,
-                "kill");
+                Power.PowerType.PASSIVE,
+                "MURDER");
         allPowers.put(godFather.getName(), godFather);
 
         Power holySpirit = new Power("Holy Spirit",
@@ -236,7 +236,7 @@ public class DataManager {
 
         Power lawyer = new Power("Lawyer",
                 Power.PowerType.CONTINOUS,
-                "DENFEND",
+                "DEFEND",
                 GetToken("Lawyer"));
         allPowers.put(lawyer.getName(), lawyer);
 
