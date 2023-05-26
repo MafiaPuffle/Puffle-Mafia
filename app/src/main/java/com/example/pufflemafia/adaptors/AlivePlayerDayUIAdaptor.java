@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pufflemafia.AddTokenScreen;
 import com.example.pufflemafia.ChangeCharacterScreen;
 import com.example.pufflemafia.CharacterSelectScreen;
 import com.example.pufflemafia.MainMafiaPage;
@@ -30,6 +31,7 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //private final TextView textView;
+        private final LinearLayout playerAndRoleLinearLayout;
         private final TextView playerNameView;
         private final TextView roleNameView;
         private final ImageButton roleButton;
@@ -44,6 +46,7 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
             // Define click listener for the ViewHolder's View
 
             //textView = (TextView) view.findViewById(R.id.textView);
+            playerAndRoleLinearLayout = (LinearLayout) view.findViewById(R.id.CharacterUITextsBox);
             playerNameView = (TextView) view.findViewById(R.id.CharacterUIName);
             roleNameView = (TextView) view.findViewById(R.id.CharacterUIRole);
             roleButton = (ImageButton) view.findViewById(R.id.RoleUIButton);
@@ -54,6 +57,10 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         //public TextView getTextView() {
             //return textView;
         //}
+
+        public LinearLayout getPlayerAndRoleLinearLayout(){
+            return playerAndRoleLinearLayout;
+        }
 
         public TextView getPlayerNameView(){
             return playerNameView;
@@ -84,7 +91,6 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
             float density = itemView.getResources().getDisplayMetrics().density;
             return Math.round((float) dp * density);
         }
-
 
         public void addToken(int imageResource){
             ImageButton imageButton = new ImageButton(itemView.getContext());
@@ -118,6 +124,14 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         Role role = player.getRole();
 
 
+        viewHolder.getPlayerAndRoleLinearLayout().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(context, AddTokenScreen.class);
+                //intent.putExtra("position", viewHolder.getAdapterPosition());
+            }
+        });
+
         viewHolder.getPlayerNameView().setText(player.name);
         viewHolder.getRoleNameView().setText(player.getRole().getName());
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
@@ -146,6 +160,15 @@ public class AlivePlayerDayUIAdaptor extends RecyclerView.Adapter<AlivePlayerDay
         for(Token token: player.getAllTokensOnPlayer()){
             viewHolder.addToken(token.getImageResource());
         }
+        viewHolder.getTokenHolder().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AddTokenScreen.class);
+                intent.putExtra("position", viewHolder.getAdapterPosition());
+                intent.putExtra("ListType", PlayerManager.PlayerMangerListType.ALIVE);
+                context.startActivity(intent);
+            }
+        });
         //TODO: update kill/revive button to show correct image
         //TODO: update all buttons to do stuff on click
     }

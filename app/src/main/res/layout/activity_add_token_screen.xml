@@ -56,12 +56,7 @@
         app:layout_constraintVertical_bias="0.009">
 
 
-        <ImageButton
-            android:id="@+id/AddingTokenUI"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/puffle_o_croissant"
-            android:contentDescription="Alien" />
+
     </GridLayout>
 
     <LinearLayout
@@ -113,11 +108,6 @@
         app:layout_constraintVertical_bias="0.025">
 
 
-        <ImageView
-            android:id="@+id/CurrentRole"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:srcCompat="@drawable/puffle_o_croissant" />
 
     </LinearLayout>
 

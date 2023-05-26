@@ -180,6 +180,31 @@ public class PlayerManager {
         }
     }
 
+    public static void UpdateAllTokensOnSinglePlayer(PlayerMangerListType listType, int playerIndex, Vector<Token> updatedTokens){
+        if(listType == PlayerMangerListType.ALIVE){
+            if(playerIndex >= allAlive.size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside of all alive");
+                return;
+            }
+
+            allAlive.elementAt(playerIndex).UpdateTokens(updatedTokens);
+            onPlayerDataUpdated.Invoke();
+        }
+        else{
+            if(playerIndex >= allDead.size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside of all dead");
+                return;
+            }
+
+            allDead.elementAt(playerIndex).UpdateTokens(updatedTokens);
+            onPlayerDataUpdated.Invoke();
+        }
+    }
+
     public static void RemovePlayerToken(PlayerMangerListType listType, int playerIndex, int tokenIndex){
         if(listType == PlayerMangerListType.ALIVE){
             if(playerIndex >= allAlive.size()){
@@ -213,6 +238,32 @@ public class PlayerManager {
             }
 
             allDead.elementAt(playerIndex).RemoveTokenAt(tokenIndex);
+            onPlayerDataUpdated.Invoke();
+        }
+    }
+
+    public static void RemovePlayerAllToken(PlayerMangerListType listType, int playerIndex){
+        if(listType == PlayerMangerListType.ALIVE){
+            if(playerIndex >= allAlive.size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside of all alive");
+                return;
+            }
+
+            allAlive.elementAt(playerIndex).removeAllTokensOnPlayer();
+            onPlayerDataUpdated.Invoke();
+        }
+        else{
+            if(playerIndex >= allDead.size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside of all dead");
+                return;
+            }
+
+
+            allDead.elementAt(playerIndex).removeAllTokensOnPlayer();
             onPlayerDataUpdated.Invoke();
         }
     }
