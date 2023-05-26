@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.data.GameSetup;
@@ -31,6 +32,7 @@ public class Start extends AppCompatActivity {
 
         // Configure Buttons
         configureBackToMainMenu();
+        configureRandomCharactersButton();
         configureChooseCharactersButton();
 
 
@@ -61,6 +63,21 @@ public class Start extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Start.this, CharacterSelectScreen.class));
+            }
+        });
+    }
+
+    private void configureRandomCharactersButton() {
+        Button randomCharactersButton = findViewById(R.id.RandomCharactersButton);
+        randomCharactersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vector<String> names = new Vector<String>(namesList);
+                if(!names.isEmpty()){
+                    AppManager.gameSetup.SetUpRandomGame(names);
+                    GameManager.StartNewGame(AppManager.gameSetup);
+                    startActivity(new Intent(Start.this, MainMafiaPage.class));
+                }
             }
         });
     }
