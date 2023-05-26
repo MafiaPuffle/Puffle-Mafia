@@ -18,15 +18,15 @@
 
         <ImageButton
             android:id="@+id/KillOrReviveButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/alive_button"
             android:contentDescription="Kill or Revive Button" />
 
         <ImageButton
             android:id="@+id/RoleUIButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/alien_puffle"
             android:contentDescription="Alien" />
 
@@ -40,25 +40,32 @@
             android:focusable="true">
 
             <TextView
-                android:id="@+id/CharacterUIName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:text="NAME" />
-
-            <TextView
                 android:id="@+id/CharacterUIRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="13dp"
                 android:clickable="false"
                 android:focusable="false"
+                android:fontFamily="@font/horizon"
                 android:text="ROLE" />
+
+            <TextView
+                android:id="@+id/CharacterUIName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="13dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:text="NAME"
+                android:fontFamily="@font/horizon"/>
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/TokenUIBox"
-            android:layout_width="209dp"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="?attr/listChoiceBackgroundIndicator"
             android:clickable="true"

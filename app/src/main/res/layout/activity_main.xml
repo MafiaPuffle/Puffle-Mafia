@@ -9,8 +9,12 @@
     <!--Title Text Box-->
     <LinearLayout
         android:id="@+id/PuffleMafiaBox"
-        android:layout_width="254dp"
-        android:layout_height="72dp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/purple_rectangle"
         android:orientation="vertical"
         android:padding="5dp"
@@ -23,41 +27,102 @@
 
         <TextView
             android:id="@+id/PuffleMafia"
-            android:layout_width="244dp"
-            android:layout_height="61dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:baselineAligned="false"
+            android:fontFamily="@font/horizon"
             android:gravity="center"
             android:text="Puffle Mafia"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="36sp" />
+            android:textSize="30sp" />
     </LinearLayout>
 
     <!--Buttons-->
+
     <Button
         android:id="@+id/RolesButton"
         android:layout_width="350dp"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/horizon"
         android:text="Roles"
-        android:textSize="34sp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartButton"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.032" />
 
     <Button
         android:id="@+id/StartButton"
         android:layout_width="350dp"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/horizon"
         android:text="Start"
-        android:textSize="34sp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.06" />
+
+
+    <Button
+        android:id="@+id/QRCodeButton"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/horizon"
+        android:text="QR Code"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/InstructionsButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/InstructionsButton"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/horizon"
+        android:text="Instructions"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RolesButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PuffleMafiaBox"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.047"
+        app:srcCompat="@drawable/mafia_puffle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

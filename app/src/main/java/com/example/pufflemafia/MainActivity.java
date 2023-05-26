@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        BackgroundMusicManager.start(this, R.raw.mystery);
 
         // Setting Up the App data
         AppManager.setup();
@@ -56,5 +57,27 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        BackgroundMusicManager.stop();}
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        BackgroundMusicManager.stop();}
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        BackgroundMusicManager.stop();}
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BackgroundMusicManager.stop();
+    }
+
 
 }
