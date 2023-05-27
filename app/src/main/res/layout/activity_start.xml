@@ -7,6 +7,12 @@
     tools:context=".Start">
 
     <!--How Many Players Title Text Box-->
+
+    <!--Seek Bar For How Many Players-->
+
+
+    <!--Random Charcters Button-->
+
     <LinearLayout
         android:id="@+id/HowManyPLayersBox"
         android:layout_width="wrap_content"
@@ -15,41 +21,40 @@
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046">
+        app:layout_constraintVertical_bias="0.025">
 
         <TextView
             android:id="@+id/HowManyPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
-            android:gravity="center"
-            android:text="How Many Players"
             android:fontFamily="@font/horizon"
+            android:gravity="center"
+            android:text="Enter Names"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
             android:textSize="36sp" />
 
     </LinearLayout>
 
-    <!--Seek Bar For How Many Players-->
-
-
-    <!--Random Charcters Button-->
+    <!--Choose Characters Button-->
 
     <LinearLayout
         android:id="@+id/containerLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HowManyPLayersBox"
-        app:layout_constraintVertical_bias="0.088">
+        app:layout_constraintVertical_bias="0.011">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nameInputLayout"
@@ -63,12 +68,32 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/addNameButton"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Name"
-            android:fontFamily="@font/horizon"/>
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+            <Button
+                android:id="@+id/addNameButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/horizon"
+                android:text="Add Name"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/NumberofNames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/purple_rectangle"
+                android:fontFamily="@font/horizon"
+                android:padding="5dp"
+                android:text="N"
+                android:textColor="@color/white"
+                android:textSize="13dp"></TextView>
+        </LinearLayout>
+
 
         <GridView
             android:id="@+id/namesGridView"
@@ -82,49 +107,59 @@
 
     </LinearLayout>
 
-    <!--Choose Characters Button-->
+    <!--Button-->
 
     <Button
         android:id="@+id/RandomCharactersButton"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="Random Characters"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/horizon"
+        android:text="Random Characters"
+        android:textColor="@color/white"
         android:textSize="13.9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ChooseCharactersButton"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/ChooseCharactersButton"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="Choose Characters"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/horizon"
+        android:text="Choose Characters"
+        android:textColor="@color/white"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerLayout"
-        app:layout_constraintVertical_bias="0.122" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <!--Button-->
     <Button
         android:id="@+id/BackToMainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/horizon"
         android:text="BACK"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RandomCharactersButton"
-        app:layout_constraintVertical_bias="0.857" />
+        app:layout_constraintVertical_bias="0.915" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

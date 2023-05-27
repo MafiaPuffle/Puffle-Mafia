@@ -25,27 +25,17 @@
         <TextView
             android:id="@+id/ChooseYourCharactersTitleText"
             android:layout_width="375dp"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:gravity="center"
-            android:text="Choose Your Characters"
+            android:text="Choose Your Puffles"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="17dp"
+            android:textSize="15dp"
             android:fontFamily="@font/horizon"/>
     </LinearLayout>
 
     <!--Choose Your Characters Box-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/AllCharactersRecyclerView"
-        android:layout_width="365dp"
-        android:layout_height="331dp"
-        android:background="@drawable/green_rectangle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChooseYourCharactersTitleBox"
-        app:layout_constraintVertical_bias="0.04000002" />
 
     <!--Chosen Characters Text Box-->
 
@@ -53,12 +43,30 @@
 
     <!--Buttons-->
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AllCharactersRecyclerView"
+        android:layout_width="375dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_rectangle"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ChooseYourCharactersTitleBox"
+        app:layout_constraintVertical_bias="0.0" />
+
     <LinearLayout
         android:id="@+id/ChosenCharactersTitleBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/grey_rectangle"
         android:gravity="center"
         android:orientation="vertical"
@@ -67,31 +75,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AllCharactersRecyclerView"
-        app:layout_constraintVertical_bias="0.060000002">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/ChosenYourCharactersTitleText"
             android:layout_width="375dp"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:fontFamily="@font/horizon"
             android:gravity="center"
-            android:text="Chosen Characters"
+            android:text="Chosen Puffles"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="20dp" />
+            android:textSize="15dp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ChosenCharactersRecyclerView"
-        android:layout_width="348dp"
-        android:layout_height="82dp"
+        android:layout_width="375dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/green_rectangle"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/BackToStartButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterCountText"
-        app:layout_constraintVertical_bias="0.120000005" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/DoneChoosingCharactersButton"
@@ -100,14 +112,15 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Next"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/horizon"
+        android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.983"
+        app:layout_constraintHorizontal_bias="0.982"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintVertical_bias="0.992" />
 
     <Button
         android:id="@+id/BackToStartButton"
@@ -116,14 +129,15 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="BACK"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/horizon"
+        android:text="BACK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/DoneChoosingCharactersButton"
-        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintVertical_bias="0.992" />
 
     <TextView
         android:id="@+id/ChosenCharacterCountText"
@@ -132,16 +146,18 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/purple_rectangle_hard_edges"
-        android:padding="5dp"
-        android:text="0"
-        android:textColor="@color/white"
-        android:textSize="30dp"
         android:fontFamily="@font/horizon"
+        android:padding="5dp"
+        android:gravity="center"
+        android:text="Characters Needed"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ChosenCharactersTitleBox"
-        app:layout_constraintVertical_bias="0.006" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

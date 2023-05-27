@@ -1,11 +1,12 @@
 package com.example.pufflemafia;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ToggleButton;
 import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ToggleButton toggleButton;
     private boolean isMusicPlaying = true;
+    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +28,7 @@ public class MainActivity extends AppCompatActivity {
         // Setting Up the App data
         AppManager.setup();
 
-        Button roles = findViewById(R.id.RolesButton);
-        roles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RolesScreen.class);
-                startActivity(intent);
-            }
-        });
-
+        clickSound = MediaPlayer.create(this, R.raw.click_sound);
         configureStart();
         configureRoles();
         configureInstructions();
@@ -65,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 startActivity(new Intent(MainActivity.this, Start.class));
             }
         });
@@ -75,26 +70,29 @@ public class MainActivity extends AppCompatActivity {
         rolesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 startActivity(new Intent(MainActivity.this, RolesScreen.class));
             }
         });
     }
 
     private void configureQRCode() {
-        Button rolesButton = findViewById(R.id.QRCodeButton);
-        rolesButton.setOnClickListener(new View.OnClickListener() {
+        Button qrCodeButton = findViewById(R.id.QRCodeButton);
+        qrCodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 startActivity(new Intent(MainActivity.this, QRCode.class));
             }
         });
     }
 
     private void configureInstructions() {
-        Button startButton = findViewById(R.id.InstructionsButton);
-        startButton.setOnClickListener(new View.OnClickListener() {
+        Button instructionsButton = findViewById(R.id.InstructionsButton);
+        instructionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 startActivity(new Intent(MainActivity.this, Instructions.class));
             }
         });
@@ -109,5 +107,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         BackgroundMusicManager.stop();
+        clickSound.release();
     }
 }

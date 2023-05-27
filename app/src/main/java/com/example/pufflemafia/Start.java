@@ -1,7 +1,9 @@
 package com.example.pufflemafia;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -23,24 +26,25 @@ public class Start extends AppCompatActivity {
     private GridView namesGridView;
     private ArrayList<String> namesList;
     private NamesAdapter namesAdapter;
+    private TextView numberOfNamesTextView;
+    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+        clickSound = MediaPlayer.create(this, R.raw.click_sound);
 
         // Configure Buttons
         configureBackToMainMenu();
         configureRandomCharactersButton();
         configureChooseCharactersButton();
 
-
         // Names GridView
         nameEditText = findViewById(R.id.nameEditText);
         addNameButton = findViewById(R.id.addNameButton);
         namesGridView = findViewById(R.id.namesGridView);
-
+        numberOfNamesTextView = findViewById(R.id.NumberofNames);
 
         namesList = new ArrayList<>();
         namesAdapter = new NamesAdapter();
@@ -51,9 +55,13 @@ public class Start extends AppCompatActivity {
         addNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 addName();
             }
         });
+
+        int numberOfNames = namesList.size();
+        numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
     }
 
     // Character Select Screen Button
@@ -62,6 +70,7 @@ public class Start extends AppCompatActivity {
         chooseCharactersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 startActivity(new Intent(Start.this, CharacterSelectScreen.class));
             }
         });
@@ -72,8 +81,9 @@ public class Start extends AppCompatActivity {
         randomCharactersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 Vector<String> names = new Vector<String>(namesList);
-                if(!names.isEmpty()){
+                if (!names.isEmpty()) {
                     AppManager.gameSetup.SetUpRandomGame(names);
                     GameManager.StartNewGame(AppManager.gameSetup);
                     startActivity(new Intent(Start.this, MainMafiaPage.class));
@@ -88,6 +98,7 @@ public class Start extends AppCompatActivity {
         backToMainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 finish();
             }
         });
@@ -100,6 +111,9 @@ public class Start extends AppCompatActivity {
             AppManager.gameSetup.names.add(name);
             nameEditText.setText(""); // Clear the input field
             namesAdapter.notifyDataSetChanged();
+
+            int numberOfNames = namesList.size();
+            numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
         }
     }
 
@@ -137,13 +151,23 @@ public class Start extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    clickSound.start();
                     AppManager.gameSetup.names.remove(position);
                     namesList.remove(position);
                     namesAdapter.notifyDataSetChanged();
+
+                    int numberOfNames = namesList.size();
+                    numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
                 }
             });
 
             return button;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        clickSound.release();
     }
 }

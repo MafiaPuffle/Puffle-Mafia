@@ -202,7 +202,7 @@ public class DataManager {
 
         Power theFather = new Power("The Father",
                 Power.PowerType.ONETIMEUSE,
-                "???");
+                "");
 //                GetToken("The Father"));
         allPowers.put(theFather.getName(), theFather);
 
@@ -213,7 +213,7 @@ public class DataManager {
 
         Power holySpirit = new Power("Holy Spirit",
                 Power.PowerType.ONETIMEUSE,
-                "???");
+                "DOUBLE GOOD POWERS");
 //                GetToken("Holy Spirit"));
         allPowers.put(holySpirit.getName(), holySpirit);
 
@@ -231,7 +231,7 @@ public class DataManager {
 
         Power jesus = new Power("Jesus",
                 Power.PowerType.PASSIVE,
-                "???");
+                "");
         allPowers.put(jesus.getName(), jesus);
 
         Power lawyer = new Power("Lawyer",
@@ -267,7 +267,7 @@ public class DataManager {
 
         Power satan = new Power("Satan",
                 Power.PowerType.ONETIMEUSE,
-                "???");
+                "DOUBLE EVIL POWERS");
 //                GetToken("Satan"));
         allPowers.put(satan.getName(), satan);
 
@@ -301,10 +301,10 @@ public class DataManager {
                 GetToken("Wizard"));
         allPowers.put(wizard.getName(), wizard);
 
-        Power wizardAfter = new Power("Wizard after Switch",
-                Power.PowerType.SELFACTIVE,
-                "");
-        allPowers.put(wizardAfter.getName(), wizardAfter);
+//        Power wizardAfter = new Power("Wizard after Switch",
+//                Power.PowerType.SELFACTIVE,
+//                "");
+//        allPowers.put(wizardAfter.getName(), wizardAfter);
 
         Power zombieGood = new Power("Zombie Good",
                 Power.PowerType.PASSIVE,
@@ -554,14 +554,14 @@ public class DataManager {
                 "Does something amazing!");
         allRoles.put(wizard.getName(), wizard);
 
-        Role wizardAfter = new Role("Wizard after Switch",
-                R.drawable.wizard_puffle,
-                -1,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Wizard after Switch"),
-                "Does something amazing!");
-        allRoles.put(wizardAfter.getName(), wizardAfter);
+//        Role wizardAfter = new Role("Wizard after Switch",
+//                R.drawable.wizard_puffle,
+//                -1,
+//                Role.Alliances.GOOD,
+//                Role.Teams.TOWN,
+//                GetPower("Wizard after Switch"),
+//                "Does something amazing!");
+//        allRoles.put(wizardAfter.getName(), wizardAfter);
 
         Role zombieGood = new Role("Zombie Good",
                 R.drawable.good_zombie_puffle,
@@ -576,7 +576,7 @@ public class DataManager {
                 R.drawable.evil_zombie_puffle,
                 -1,
                 Role.Alliances.EVIL,
-                Role.Teams.TOWN,
+                Role.Teams.MAFIA,
                 GetPower("Zombie Evil"),
                 "Does something amazing!");
         allRoles.put(zombieEvil.getName(), zombieEvil);
