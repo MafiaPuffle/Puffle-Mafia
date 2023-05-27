@@ -48,6 +48,9 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
 
         Log.i("CharacterSelectScreen", "Starting CharacterSelectScreen");
 
+        AppManager.gameSetup.chosenRoles.clear();
+        AppManager.gameSetup.addRole(DataManager.GetRole("Mafia"));
+
         allRoles = DataManager.GetAllRoles();
         selectedRoles = AppManager.gameSetup.chosenRoles;
 
