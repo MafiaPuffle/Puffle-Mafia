@@ -89,18 +89,21 @@ public class GameSetup {
             amountOfRolesEqualsAmountOfPlayers = true;
         }
 
-        boolean foundAtleastOneMafia = false;
-        for (Role role: chosenRoles) {
-            if(role.getName() == "Mafia") {
-                foundAtleastOneMafia = true;
-                break;
-            }
-        }
+        boolean foundAtleastOneMafia = mafiaHasBeenChosen();
 
         if(amountOfRolesEqualsAmountOfPlayers && foundAtleastOneMafia) output = true;
 
         this.isValid = output;
         return output;
+    }
+
+    public boolean mafiaHasBeenChosen(){
+        for (Role role: chosenRoles) {
+            if(Objects.equals(role.getName(), "Mafia") || Objects.equals(role.getName(), "Mafia Rival")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void LogSummary(){

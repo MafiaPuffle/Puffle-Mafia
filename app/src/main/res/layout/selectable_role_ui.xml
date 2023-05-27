@@ -27,7 +27,9 @@
             android:layout_height="wrap_content"
             android:clickable="false"
             android:focusable="false"
+            android:fontFamily="@font/horizon"
             android:gravity="center"
-            android:text="Alien" />
+            android:text="Alien"
+            android:textSize="8sp" />
     </LinearLayout>
 </FrameLayout>

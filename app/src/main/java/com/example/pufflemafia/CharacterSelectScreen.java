@@ -49,6 +49,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         Log.i("CharacterSelectScreen", "Starting CharacterSelectScreen");
 
         AppManager.gameSetup.chosenRoles.clear();
+        AppManager.gameSetup.addRole(DataManager.GetRole("Mafia"));
 
         allRoles = DataManager.GetAllRoles();
         selectedRoles = AppManager.gameSetup.chosenRoles;
@@ -63,6 +64,8 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         // Configure Buttons
         configureBackToStart();
         configureDoneChoosingCharactersButton();
+        updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.chosenRoles.size());
+        refreshStartGameButton();
     }
 
     @Override
@@ -75,14 +78,17 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
     private void updateCountTextView(int numberOfPlayers, int numberOfRoles){
         int difference = numberOfPlayers - numberOfRoles;
 
-        if(difference > 0){
-            countTextView.setText(String.valueOf(difference));
+        if (difference == 1 && AppManager.gameSetup.mafiaHasBeenChosen() == false) {
+            countTextView.setText("Choose a Mafia");
+        }
+        else if(difference > 0){
+            countTextView.setText("Choose " + String.valueOf(difference) + " more roles");
         }
         else if(difference < 0){
             countTextView.setText("Too Many Roles");
         }
-        else if (difference == 0 && AppManager.gameSetup.checkIfIsValid() == false){
-            countTextView.setText("Needs Mafia");
+        else if (difference == 0 && AppManager.gameSetup.mafiaHasBeenChosen() == false){
+            countTextView.setText("Replace on role with a Mafia");
         }
         else {
             countTextView.setText("Ready!");
@@ -93,6 +99,17 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         allRolesUIAdaptor.notifyDataSetChanged();
         selectedRolesUIAdaptor.notifyDataSetChanged();
         updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.chosenRoles.size());
+        refreshStartGameButton();
+    }
+
+    private void refreshStartGameButton(){
+        Button startGameButton = findViewById(R.id.DoneChoosingCharactersButton);
+        if(AppManager.gameSetup.checkIfIsValid()){
+            startGameButton.setVisibility(View.VISIBLE);
+        }
+        else{
+            startGameButton.setVisibility(View.GONE);
+        }
     }
 
     private void configureRecyclerViews(){
@@ -138,6 +155,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
             @Override
             public void onClick(View v) {
                 clickSound.start();
+                AppManager.gameSetup.chosenRoles.clear();
                 finish();
             }
         });
