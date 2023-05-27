@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         configureStart();
         configureRoles();
+        configureInstructions();
 
         toggleButton = findViewById(R.id.toggleButton);
         toggleButton.setChecked(true);
@@ -74,6 +75,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RolesScreen.class));
+            }
+        });
+    }
+
+    private void configureInstructions() {
+        Button startButton = findViewById(R.id.InstructionsButton);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Instructions.class));
             }
         });
     }

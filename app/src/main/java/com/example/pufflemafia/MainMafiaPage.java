@@ -90,7 +90,7 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
 
     //Back Button
     private void configureDayBacktoChooseYourCharactersButton(){
-        Button DayBacktoChooseYourCharacters = (Button) findViewById(R.id.DayBacktoChooseYourCharactersButton);
+        Button DayBacktoChooseYourCharacters = (Button) findViewById(R.id.BackButton);
         DayBacktoChooseYourCharacters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
