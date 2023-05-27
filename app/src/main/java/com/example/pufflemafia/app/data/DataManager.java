@@ -553,15 +553,7 @@ public class DataManager {
                 GetPower("Wizard"),
                 "Does something amazing!");
         allRoles.put(wizard.getName(), wizard);
-
-//        Role wizardAfter = new Role("Wizard after Switch",
-//                R.drawable.wizard_puffle,
-//                -1,
-//                Role.Alliances.GOOD,
-//                Role.Teams.TOWN,
-//                GetPower("Wizard after Switch"),
-//                "Does something amazing!");
-//        allRoles.put(wizardAfter.getName(), wizardAfter);
+        
 
         Role zombieGood = new Role("Zombie Good",
                 R.drawable.good_zombie_puffle,
