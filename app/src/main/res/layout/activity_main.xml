@@ -34,7 +34,7 @@
             android:gravity="center"
             android:text="Puffle Mafia"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FEFAFD"
+            android:textColor="@color/white"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -47,6 +47,7 @@
         android:fontFamily="@font/horizon"
         android:text="Roles"
         android:textSize="25dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -65,6 +66,7 @@
         android:fontFamily="@font/horizon"
         android:text="Start"
         android:textSize="25dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -84,6 +86,7 @@
         android:fontFamily="@font/horizon"
         android:text="QR Code"
         android:textSize="25dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
@@ -102,6 +105,7 @@
         android:fontFamily="@font/horizon"
         android:text="Instructions"
         android:textSize="25dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
