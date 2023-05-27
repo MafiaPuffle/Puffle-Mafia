@@ -1,9 +1,12 @@
 package com.example.pufflemafia.adaptors;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +25,7 @@ import java.util.Vector;
 public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdaptor.ViewHolder> {
 
     private Vector<Player> localDataSet;
+    private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //private final TextView textView;
@@ -30,6 +34,7 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
         private final ImageButton roleButton;
         private final LinearLayout linearLayout;
         private final LinearLayout tokenHolder;
+        private final ImageView thumbsUpOrDownImageView;
 
         public ViewHolder(View view) {
             super(view);
@@ -41,6 +46,7 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
             roleButton = (ImageButton) view.findViewById(R.id.CharacterUI);
             linearLayout = (LinearLayout) view.findViewById(R.id.CharacterUIINBox);
             tokenHolder = (LinearLayout) view.findViewById(R.id.TokensLinearLayout);
+            thumbsUpOrDownImageView = (ImageView) view.findViewById(R.id.thumbsUpOrDownImage);
         }
 
         //public TextView getTextView() {
@@ -54,6 +60,9 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
         public TextView getRoleNameView(){
             return roleNameView;
         }
+        public void setRoleNameViewColor(int colorResourceId, Context context){
+            roleNameView.setTextColor(context.getResources().getColor(colorResourceId, context.getTheme()));
+        }
 
         public ImageButton getRoleButton(){
             return roleButton;
@@ -61,6 +70,15 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
 
         public LinearLayout getLinearLayout() {
             return linearLayout;
+        }
+
+        public ImageView getThumbsUpOrDownImageView(){
+            return thumbsUpOrDownImageView;
+        }
+
+        public void setThumbsUpOrDownImageView(int imageResourceId){
+            //thumbsUpOrDownImageView.setBackgroundResource(imageResourceId);
+            thumbsUpOrDownImageView.setImageResource(imageResourceId);
         }
 
         public void removeAllTokens(){
@@ -87,8 +105,9 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
 
     }
 
-    public PlayerNightUIAdaptor(Vector<Player> dataSet){
+    public PlayerNightUIAdaptor(Vector<Player> dataSet, Context context){
         localDataSet = dataSet;
+        this.context = context;
     }
 
     @NonNull
@@ -108,6 +127,26 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
 
         viewHolder.getPlayerNameView().setText(player.name);
         viewHolder.getRoleNameView().setText(player.getRole().getName());
+
+        Role.Teams team = role.getTeam();
+        switch (team){
+            case TOWN:
+                viewHolder.setRoleNameViewColor(R.color.white, context);
+                break;
+            case MAFIA:
+                viewHolder.setRoleNameViewColor(R.color.red, context);
+                break;
+            case RIVAL_MAFIA:
+                viewHolder.setRoleNameViewColor(R.color.red, context);
+                break;
+            case SELF:
+                viewHolder.setRoleNameViewColor(R.color.black, context);
+                break;
+            case NEUTRAL:
+                viewHolder.setRoleNameViewColor(R.color.black, context);
+                break;
+        }
+
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
         viewHolder.getRoleButton().setImageResource(0);
         viewHolder.getLinearLayout().setOnClickListener(new View.OnClickListener() {
@@ -124,8 +163,19 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
         for(Token token: player.getAllTokensOnPlayer()){
             viewHolder.addToken(token.getImageResource());
         }
-        //TODO: update kill/revive button to show correct image
-        //TODO: update all buttons to do stuff on click
+
+        Role.Alliances alliance = role.getAlliance();
+        switch (alliance){
+            case GOOD:
+                viewHolder.setThumbsUpOrDownImageView(R.drawable.thumbs_up);
+                break;
+            case EVIL:
+                viewHolder.setThumbsUpOrDownImageView(R.drawable.thumbs_down);
+                break;
+            case NEUTRAL:
+                viewHolder.setThumbsUpOrDownImageView(R.drawable.fist_sideways);
+                break;
+        }
     }
 
     @Override
