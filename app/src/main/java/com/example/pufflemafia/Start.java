@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.GameSetup;
 import com.example.pufflemafia.app.game.GameManager;
 
@@ -72,6 +73,7 @@ public class Start extends AppCompatActivity {
             public void onClick(View v) {
                 if(namesList.size() > 0){
                     clickSound.start();
+                    AppManager.gameSetup.addRole(DataManager.GetRole("Mafia"));
                     startActivity(new Intent(Start.this, CharacterSelectScreen.class));
                 }
             }
