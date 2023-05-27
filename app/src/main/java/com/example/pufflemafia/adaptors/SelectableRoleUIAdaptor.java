@@ -77,7 +77,6 @@ public class SelectableRoleUIAdaptor extends RecyclerView.Adapter<SelectableRole
         viewHolder.getRoleLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //AppManager.gameSetup.addRole(role);
                 onItemClick(role);
             }
         });
