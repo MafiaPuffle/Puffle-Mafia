@@ -65,6 +65,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         configureBackToStart();
         configureDoneChoosingCharactersButton();
         updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.chosenRoles.size());
+        refreshStartGameButton();
     }
 
     @Override
@@ -98,6 +99,17 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         allRolesUIAdaptor.notifyDataSetChanged();
         selectedRolesUIAdaptor.notifyDataSetChanged();
         updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.chosenRoles.size());
+        refreshStartGameButton();
+    }
+
+    private void refreshStartGameButton(){
+        Button startGameButton = findViewById(R.id.DoneChoosingCharactersButton);
+        if(AppManager.gameSetup.checkIfIsValid()){
+            startGameButton.setVisibility(View.VISIBLE);
+        }
+        else{
+            startGameButton.setVisibility(View.GONE);
+        }
     }
 
     private void configureRecyclerViews(){

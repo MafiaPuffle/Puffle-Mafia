@@ -12,14 +12,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.pufflemafia.adaptors.PlayerNightUIAdaptor;
+import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.game.ActiveRolesManager;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 
 import java.util.Vector;
 
-public class NightActions extends AppCompatActivity {
+public class NightActions extends AppCompatActivity implements IListener<Boolean> {
 
     private Vector<Player> allAlivePlayers;
     private Role currentActiveRoleAtNight;
@@ -62,6 +64,7 @@ public class NightActions extends AppCompatActivity {
         configureToNextActionButton();
         configureBacktoLastActionButton();
         clickSound = MediaPlayer.create(this, R.raw.click_sound);
+        ActiveRolesManager.onLookingAtLastRoleForTheNight.AddListener(this);
     }
 
     private void Refresh(){
@@ -102,6 +105,8 @@ public class NightActions extends AppCompatActivity {
             public void onClick(View v) {
                 clickSound.start();
                 GameManager.GoToPreviousEventAtNight();
+                Button ToNextActionButton = findViewById(R.id.ToNextActionButton);
+                ToNextActionButton.setText("NEXT");
                 Refresh();
             }
         });
@@ -109,7 +114,24 @@ public class NightActions extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        ActiveRolesManager.onLookingAtLastRoleForTheNight.RemoveListener(this);
         super.onDestroy();
         clickSound.release();
+    }
+
+    @Override
+    public void Response() {
+
+    }
+
+    @Override
+    public void Response(Boolean aBoolean) {
+        Button ToNextActionButton = findViewById(R.id.ToNextActionButton);
+        if(aBoolean){
+            ToNextActionButton.setText("END NIGHT");
+        }
+        else {
+            ToNextActionButton.setText("NEXT");
+        }
     }
 }
