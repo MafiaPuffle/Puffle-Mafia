@@ -69,6 +69,9 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         public TextView getRoleNameView(){
             return roleNameView;
         }
+        public void setRoleNameViewColor(int colorResourceId, Context context){
+            roleNameView.setTextColor(context.getResources().getColor(colorResourceId, context.getTheme()));
+        }
 
         public ImageButton getRoleButton(){
             return roleButton;
@@ -140,6 +143,26 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
 
         viewHolder.getPlayerNameView().setText(player.name);
         viewHolder.getRoleNameView().setText(player.getRole().getName());
+
+        Role.Teams team = role.getTeam();
+        switch (team){
+            case TOWN:
+                viewHolder.setRoleNameViewColor(R.color.white, context);
+                break;
+            case MAFIA:
+                viewHolder.setRoleNameViewColor(R.color.red, context);
+                break;
+            case RIVAL_MAFIA:
+                viewHolder.setRoleNameViewColor(R.color.red, context);
+                break;
+            case SELF:
+                viewHolder.setRoleNameViewColor(R.color.black, context);
+                break;
+            case NEUTRAL:
+                viewHolder.setRoleNameViewColor(R.color.black, context);
+                break;
+        }
+
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
         viewHolder.getRoleButton().setImageResource(0);
         viewHolder.getRoleButton().setOnClickListener(new View.OnClickListener() {
