@@ -1,6 +1,8 @@
 package com.example.pufflemafia;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +14,16 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.pufflemafia.adaptors.ChangingRoleUIAdaptor;
+import com.example.pufflemafia.adaptors.SelectableRoleUIAdaptor;
+import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.PlayerManager;
 
 import java.util.Vector;
 
-public class ChangeCharacterScreen extends AppCompatActivity {
+public class ChangeCharacterScreen extends AppCompatActivity implements IListener<Role> {
 
     private Intent intent;
 
@@ -29,6 +34,10 @@ public class ChangeCharacterScreen extends AppCompatActivity {
     private GridLayout gridLayout;
     private ImageView currentRoleImageView;
     private ImageView newRoleImageView;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private ChangingRoleUIAdaptor adaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +50,9 @@ public class ChangeCharacterScreen extends AppCompatActivity {
         newRole = new Role();
 
         listType = (PlayerManager.PlayerMangerListType) intent.getSerializableExtra("ListType");
+        position = intent.getIntExtra("position",0);
 
-        gridLayout = findViewById(R.id.EditAllCharacterBox);
+
 
         currentRoleImageView = findViewById(R.id.CurrentRole);
         newRoleImageView = findViewById(R.id.NewRole);
@@ -53,40 +63,27 @@ public class ChangeCharacterScreen extends AppCompatActivity {
         newRoleImageView.setBackgroundResource(intent.getIntExtra("currentRoleImageResource", 0));
         newRoleImageView.setImageResource(0);
 
-        position = intent.getIntExtra("position",0);
-
-        for(Role role: allRoles){
-            ImageButton imageButton = addImageButtonToGrid(gridLayout, role.getImageResource());
-            imageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    newRole = role;
-                    newRoleImageView.setBackgroundResource(newRole.getImageResource());
-                    newRoleImageView.setImageResource(0);
-                }
-            });
-        }
+        configureRecyclerView();
 
         configureNextButton();
         configureBackToMainMenu();
 
     }
 
-    private ImageButton addImageButtonToGrid(GridLayout gridLayout, int drawableId) {
-        Log.d("CharacterSelectScreen", "Adding image button to grid");
-        ImageButton imageButton = new ImageButton(this);
-        imageButton.setBackgroundResource(drawableId); // Set the image as the background
-        imageButton.setImageResource(0); // Remove the image source
+    private void Refresh(){
+        newRoleImageView.setBackgroundResource(newRole.getImageResource());
+        newRoleImageView.setImageResource(0);
+    }
 
-        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-        params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        params.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
-        params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
-        imageButton.setLayoutParams(params);
-        gridLayout.addView(imageButton);
+    private void configureRecyclerView(){
+        adaptor = new ChangingRoleUIAdaptor(allRoles, this);
+        layoutManager = new GridLayoutManager(this, 7);
+        recyclerView = findViewById(R.id.AllRolesRecycleView);
 
-        return imageButton;
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adaptor);
+
+        adaptor.onSelectRole.AddListener(this);
     }
 
     private void configureNextButton(){
@@ -112,6 +109,14 @@ public class ChangeCharacterScreen extends AppCompatActivity {
     }
 
 
+    @Override
+    public void Response() {
 
+    }
 
+    @Override
+    public void Response(Role role) {
+        newRole = role;
+        Refresh();
+    }
 }

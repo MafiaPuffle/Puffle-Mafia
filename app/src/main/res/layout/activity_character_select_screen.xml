@@ -36,30 +36,18 @@
     </LinearLayout>
 
     <!--Choose Your Characters Box-->
-
-    <!--Chosen Characters Text Box-->
-    <GridLayout
-        android:id="@+id/CharacterBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AllCharactersRecyclerView"
+        android:layout_width="365dp"
+        android:layout_height="331dp"
         android:background="@drawable/green_rectangle"
-        android:columnCount="7"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:rowCount="7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ChooseYourCharactersTitleBox"
-        app:layout_constraintVertical_bias="0.016">
+        app:layout_constraintVertical_bias="0.04000002" />
 
-
-    </GridLayout>
+    <!--Chosen Characters Text Box-->
 
     <!--Chosen Characters Box-->
 
@@ -70,7 +58,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/grey_rectangle"
         android:gravity="center"
@@ -79,42 +66,32 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CharacterBox"
-        app:layout_constraintVertical_bias="0.004">
+        app:layout_constraintTop_toBottomOf="@+id/AllCharactersRecyclerView"
+        app:layout_constraintVertical_bias="0.060000002">
 
         <TextView
             android:id="@+id/ChosenYourCharactersTitleText"
             android:layout_width="375dp"
             android:layout_height="55dp"
             android:baselineAligned="false"
+            android:fontFamily="@font/horizon"
             android:gravity="center"
             android:text="Chosen Characters"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="20dp"
-            android:fontFamily="@font/horizon"/>
+            android:textSize="20dp" />
     </LinearLayout>
 
-    <GridLayout
-        android:id="@+id/ChosenCharacterBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ChosenCharactersRecyclerView"
+        android:layout_width="348dp"
+        android:layout_height="82dp"
         android:background="@drawable/green_rectangle"
-        android:columnCount="7"
-        android:gravity="center"
-        android:padding="5dp"
-        android:rowCount="7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ChosenCharacterCountText"
-        app:layout_constraintVertical_bias="0.044">
-
-    </GridLayout>
+        app:layout_constraintVertical_bias="0.120000005" />
 
     <Button
         android:id="@+id/DoneChoosingCharactersButton"

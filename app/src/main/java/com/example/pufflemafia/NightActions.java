@@ -44,7 +44,7 @@ public class NightActions extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.AllAlivePlayersForThisNightRecycleView);
         layoutManager = new LinearLayoutManager(this);
-        adaptor = new PlayerNightUIAdaptor(allAlivePlayers);
+        adaptor = new PlayerNightUIAdaptor(allAlivePlayers, this);
 
         recyclerView.setAdapter(adaptor);
         recyclerView.setLayoutManager(layoutManager);
