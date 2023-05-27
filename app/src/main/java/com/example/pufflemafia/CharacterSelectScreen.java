@@ -1,6 +1,8 @@
 package com.example.pufflemafia;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,18 +14,30 @@ import android.widget.ImageButton;
 import android.util.TypedValue;
 import android.widget.TextView;
 
+import com.example.pufflemafia.adaptors.PossibleRoleUIAdaptor;
+import com.example.pufflemafia.adaptors.SelectableRoleUIAdaptor;
+import com.example.pufflemafia.adaptors.SelectedRoleUIAdaptor;
 import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.GameManager;
 
 import java.util.Vector;
 
-public class CharacterSelectScreen extends AppCompatActivity {
+public class CharacterSelectScreen extends AppCompatActivity implements IListener<Boolean> {
 
     private int buttonCount = 0;
-
     private TextView countTextView;
+    private RecyclerView allRolesRecyclerView;
+    private RecyclerView selectedRolesRecyclerView;
+    private RecyclerView.LayoutManager allRolesLayoutManager;
+    private RecyclerView.LayoutManager selectedLayoutManager;
+    private PossibleRoleUIAdaptor allRolesUIAdaptor;
+    private SelectedRoleUIAdaptor selectedRolesUIAdaptor;
+
+    private Vector<Role> allRoles;
+    private Vector<Role> selectedRoles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,48 +48,24 @@ public class CharacterSelectScreen extends AppCompatActivity {
 
         AppManager.gameSetup.chosenRoles.clear();
 
-        GridLayout allRolesCharacterBox = findViewById(R.id.CharacterBox);
-
-        GridLayout ChosenCharacterBox = findViewById(R.id.ChosenCharacterBox);
+        allRoles = DataManager.GetAllRoles();
+        selectedRoles = AppManager.gameSetup.chosenRoles;
 
         countTextView = findViewById(R.id.ChosenCharacterCountText);
-        updateCountTextView(AppManager.gameSetup.numberOfPlayers(), buttonCount);
 
+        configureRecyclerViews();
 
-
-        Vector<Role> allRoles = DataManager.GetAllRoles();
-        Log.d("CharacterSelectScreen", "allRoles size = " + allRoles.size());
-
-        for (Role role: allRoles) {
-            ImageButton roleImageButton = addImageButtonToGrid(allRolesCharacterBox, role.getImageResource());
-
-
-            roleImageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ImageButton chosenRoleButton = addImageButtonToGrid(ChosenCharacterBox, role.getImageResource());
-                    buttonCount++; // Increment the counter
-                    AppManager.gameSetup.chosenRoles.add(role);
-                    AppManager.gameSetup.LogSummary();
-                    updateCountTextView(AppManager.gameSetup.numberOfPlayers(), buttonCount); // Update the count in the TextView
-
-                    chosenRoleButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ChosenCharacterBox.removeView(v); // Remove the clicked button from the layout
-                            buttonCount--; // Decrement the counter
-                            AppManager.gameSetup.chosenRoles.remove(role);
-                            AppManager.gameSetup.LogSummary();
-                            updateCountTextView(AppManager.gameSetup.numberOfPlayers(), buttonCount); // Update the count in the TextView
-                        }
-                    });
-                }
-            });
-        }
+        AppManager.gameSetup.onDataUpdated.AddListener(this);
 
         //Configure Buttons
         configureBackToStart();
         configureDoneChoosingCharactersButton();
+    }
+
+    @Override
+    protected void onDestroy() {
+        AppManager.gameSetup.onDataUpdated.RemoveListener(this);
+        super.onDestroy();
     }
 
     private void updateCountTextView(int numberOfPlayers, int numberOfRoles){
@@ -95,23 +85,33 @@ public class CharacterSelectScreen extends AppCompatActivity {
         }
     }
 
-    private ImageButton addImageButtonToGrid(GridLayout gridLayout, int drawableId) {
-        Log.d("CharacterSelectScreen", "Adding image button to grid");
-        ImageButton imageButton = new ImageButton(this);
-        imageButton.setBackgroundResource(drawableId); // Set the image as the background
-        imageButton.setImageResource(0); // Remove the image source
-
-        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-        params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        params.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
-        params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
-        imageButton.setLayoutParams(params);
-        gridLayout.addView(imageButton);
-
-        return imageButton;
+    private void refresh(){
+        allRolesUIAdaptor.notifyDataSetChanged();
+        selectedRolesUIAdaptor.notifyDataSetChanged();
+        updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.chosenRoles.size());
     }
 
+    private void configureRecyclerViews(){
+        // initialize adaptors
+        allRolesUIAdaptor = new PossibleRoleUIAdaptor(allRoles, this);
+        selectedRolesUIAdaptor = new SelectedRoleUIAdaptor(selectedRoles, this);
+
+        // initialize layoutManagers
+        allRolesLayoutManager = new GridLayoutManager(this, 7);
+        selectedLayoutManager = new GridLayoutManager(this, 7);
+
+        // initialize recyclerViews
+        allRolesRecyclerView = findViewById(R.id.AllCharactersRecyclerView);
+        selectedRolesRecyclerView = findViewById(R.id.ChosenCharactersRecyclerView);
+
+        // configure allRolesRecyclerView
+        allRolesRecyclerView.setLayoutManager(allRolesLayoutManager);
+        allRolesRecyclerView.setAdapter(allRolesUIAdaptor);
+
+        // configure selectedRolesRecyclerView
+        selectedRolesRecyclerView.setLayoutManager(selectedLayoutManager);
+        selectedRolesRecyclerView.setAdapter(selectedRolesUIAdaptor);
+    }
 
     private void configureDoneChoosingCharactersButton() {
         Button DoneChoosingCharactersButton = (Button) findViewById(R.id.DoneChoosingCharactersButton);
@@ -135,5 +135,15 @@ public class CharacterSelectScreen extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void Response() {
+        refresh();
+    }
+
+    @Override
+    public void Response(Boolean aBoolean) {
+        refresh();
     }
 }

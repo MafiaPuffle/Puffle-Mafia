@@ -2,6 +2,8 @@ package com.example.pufflemafia.app.data;
 
 import android.util.Log;
 
+import com.example.pufflemafia.app.Event;
+
 import java.util.Vector;
 
 public class GameSetup {
@@ -10,11 +12,14 @@ public class GameSetup {
     public Vector<Role> chosenRoles;
     public boolean isValid;
 
+    public Event<Boolean> onDataUpdated;
+
     public GameSetup(){
         //this.numberOfPlayers = 0;
         this.names = new Vector<String>();
         this.chosenRoles = new Vector<Role>();
         this.isValid = false;
+        this.onDataUpdated = new Event<Boolean>();
     }
 
     public void SetUpRandomGame(Vector<String> names){
@@ -38,10 +43,21 @@ public class GameSetup {
         this.isValid = false;
     }
 
+    public void addRole(Role role){
+        this.chosenRoles.add(role);
+        this.onDataUpdated.Invoke();
+    }
+
     public void addMultipleRoles(int amount, Role role){
         for(int i = 0; i < amount; ++i){
             this.chosenRoles.add(role);
         }
+        this.onDataUpdated.Invoke();
+    }
+
+    public void removeRole(Role role){
+        this.chosenRoles.remove(role);
+        this.onDataUpdated.Invoke();
     }
 
     public boolean checkIfIsValid(){
