@@ -39,8 +39,8 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
 
         //GameManager.StartNewGame(AppManager.gameSetup);
 
-        allAlivePlayers = PlayerManager.allAlive;
-        allDeadPlayers = PlayerManager.allDead;
+        allAlivePlayers = PlayerManager.getAllAlive();
+        allDeadPlayers = PlayerManager.getAllDead();
 
         allAliveRecycleView = findViewById(R.id.AllAliveRecycleView);
         allDeadRecycleView = findViewById(R.id.AllDeadRecycleView);
@@ -55,6 +55,8 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         allAliveRecycleView.setLayoutManager(allAliveLayoutManager);
         allDeadRecycleView.setLayoutManager(allDeadLayoutManager);
 
+        PlayerManager.sortAllAliveByTokens();
+        PlayerManager.sortAllDeadByTokens();
 
         //Configure Button
         configureDayBacktoChooseYourCharactersButton();

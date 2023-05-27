@@ -4,6 +4,7 @@ import com.example.pufflemafia.R;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Vector;
 
 public class DataManager {
@@ -200,7 +201,7 @@ public class DataManager {
         allPowers.put(doggie.getName(), doggie);
 
         Power theFather = new Power("The Father",
-                Power.PowerType.ACTIVE,
+                Power.PowerType.ONETIMEUSE,
                 "???");
 //                GetToken("The Father"));
         allPowers.put(theFather.getName(), theFather);
@@ -211,7 +212,7 @@ public class DataManager {
         allPowers.put(godFather.getName(), godFather);
 
         Power holySpirit = new Power("Holy Spirit",
-                Power.PowerType.ACTIVE,
+                Power.PowerType.ONETIMEUSE,
                 "???");
 //                GetToken("Holy Spirit"));
         allPowers.put(holySpirit.getName(), holySpirit);
@@ -265,7 +266,7 @@ public class DataManager {
         allPowers.put(president.getName(), president);
 
         Power satan = new Power("Satan",
-                Power.PowerType.ACTIVE,
+                Power.PowerType.ONETIMEUSE,
                 "???");
 //                GetToken("Satan"));
         allPowers.put(satan.getName(), satan);
@@ -289,13 +290,13 @@ public class DataManager {
         allPowers.put(villageIdiot.getName(), villageIdiot);
 
         Power witness = new Power("Witness",
-                Power.PowerType.ACTIVE,
+                Power.PowerType.ONETIMEUSE,
                 "WITNESS",
                 GetToken("Witness"));
         allPowers.put(witness.getName(), witness);
 
         Power wizard = new Power("Wizard",
-                Power.PowerType.ACTIVE,
+                Power.PowerType.ONETIMEUSE,
                 "SWITCH WITH",
                 GetToken("Wizard"));
         allPowers.put(wizard.getName(), wizard);
@@ -619,6 +620,12 @@ public class DataManager {
         }
 
         return output;
+    }
+    public static Role GetRandomRole(){
+        Random generator = new Random();
+        Object[] values = allRoles.values().toArray();
+        Role randomRole = (Role) values[generator.nextInt(values.length)];
+        return randomRole;
     }
 
     public static void PrintSummary(){

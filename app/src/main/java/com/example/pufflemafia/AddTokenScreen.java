@@ -44,13 +44,13 @@ public class AddTokenScreen extends AppCompatActivity {
 
         allTokens = DataManager.GetAllTokens();
         if(listType == PlayerManager.PlayerMangerListType.ALIVE){
-            for (int i = 0; i < PlayerManager.allAlive.get(position).getAllTokensOnPlayer().size(); i++) {
-                selectedTokens.add(PlayerManager.allAlive.get(position).getTokenOnPlayer(i));
+            for (int i = 0; i < PlayerManager.getAlivePlayerAt(position).getAllTokensOnPlayer().size(); i++) {
+                selectedTokens.add(PlayerManager.getAlivePlayerAt(position).getTokenOnPlayer(i));
             }
         }
         else {
-            for (int i = 0; i < PlayerManager.allDead.get(position).getAllTokensOnPlayer().size(); i++) {
-                selectedTokens.add(PlayerManager.allDead.get(position).getTokenOnPlayer(i));
+            for (int i = 0; i < PlayerManager.getDeadPlayerAt(position).getAllTokensOnPlayer().size(); i++) {
+                selectedTokens.add(PlayerManager.getDeadPlayerAt(position).getTokenOnPlayer(i));
             }
         }
 
