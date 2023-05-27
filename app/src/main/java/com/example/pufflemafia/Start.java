@@ -70,8 +70,10 @@ public class Start extends AppCompatActivity {
         chooseCharactersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
-                startActivity(new Intent(Start.this, CharacterSelectScreen.class));
+                if(namesList.size() > 0){
+                    clickSound.start();
+                    startActivity(new Intent(Start.this, CharacterSelectScreen.class));
+                }
             }
         });
     }
@@ -81,9 +83,9 @@ public class Start extends AppCompatActivity {
         randomCharactersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
-                Vector<String> names = new Vector<String>(namesList);
-                if (!names.isEmpty()) {
+                if(namesList.size() > 0){
+                    Vector<String> names = new Vector<String>(namesList);
+                    clickSound.start();
                     AppManager.gameSetup.SetUpRandomGame(names);
                     GameManager.StartNewGame(AppManager.gameSetup);
                     startActivity(new Intent(Start.this, MainMafiaPage.class));
