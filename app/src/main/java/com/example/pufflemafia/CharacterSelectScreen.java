@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
 
     private Vector<Role> allRoles;
     private Vector<Role> selectedRoles;
+    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,9 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         configureRecyclerViews();
 
         AppManager.gameSetup.onDataUpdated.AddListener(this);
+        clickSound = MediaPlayer.create(this, R.raw.click_sound);
 
-        //Configure Buttons
+        // Configure Buttons
         configureBackToStart();
         configureDoneChoosingCharactersButton();
     }
@@ -66,6 +69,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
     protected void onDestroy() {
         AppManager.gameSetup.onDataUpdated.RemoveListener(this);
         super.onDestroy();
+        clickSound.release();
     }
 
     private void updateCountTextView(int numberOfPlayers, int numberOfRoles){
@@ -75,7 +79,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
             countTextView.setText(String.valueOf(difference));
         }
         else if(difference < 0){
-            countTextView.setText("To Many Roles");
+            countTextView.setText("Too Many Roles");
         }
         else if (difference == 0 && AppManager.gameSetup.checkIfIsValid() == false){
             countTextView.setText("Needs Mafia");
@@ -114,10 +118,11 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
     }
 
     private void configureDoneChoosingCharactersButton() {
-        Button DoneChoosingCharactersButton = (Button) findViewById(R.id.DoneChoosingCharactersButton);
+        Button DoneChoosingCharactersButton = findViewById(R.id.DoneChoosingCharactersButton);
         DoneChoosingCharactersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 if(AppManager.gameSetup.checkIfIsValid()){
                     GameManager.StartNewGame(AppManager.gameSetup);
                     startActivity(new Intent(CharacterSelectScreen.this, MainMafiaPage.class));
@@ -126,12 +131,13 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         });
     }
 
-    //Back Button
+    // Back Button
     private void configureBackToStart(){
-        Button BackToStartButton = (Button) findViewById(R.id.BackToStartButton);
+        Button BackToStartButton = findViewById(R.id.BackToStartButton);
         BackToStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 finish();
             }
         });

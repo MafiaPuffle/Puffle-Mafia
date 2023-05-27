@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,8 @@ public class NightActions extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private PlayerNightUIAdaptor adaptor;
 
+    private MediaPlayer clickSound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +58,10 @@ public class NightActions extends AppCompatActivity {
 
         Refresh();
 
-        //Configure Buttons
+        // Configure Buttons
         configureToNextActionButton();
         configureBacktoLastActionButton();
+        clickSound = MediaPlayer.create(this, R.raw.click_sound);
     }
 
     private void Refresh(){
@@ -77,28 +81,35 @@ public class NightActions extends AppCompatActivity {
         nightActionTitle.setText("WHO WOULD YOU LIKE TO " + currentActiveRoleAtNight.getPower().getPrompt());
     }
 
-    //Next Button
+    // Next Button
     private void configureToNextActionButton(){
-        Button ToNextActionButton = (Button) findViewById(R.id.ToNextActionButton);
+        Button ToNextActionButton = findViewById(R.id.ToNextActionButton);
         ToNextActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 GameManager.GoToNextEventAtNight();
                 Refresh();
             }
         });
     }
 
-    //Back Button
+    // Back Button
     private void configureBacktoLastActionButton(){
-        Button BacktoLastActionButton = (Button) findViewById(R.id.BacktoLastActionButton);
+        Button BacktoLastActionButton = findViewById(R.id.BacktoLastActionButton);
         BacktoLastActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 GameManager.GoToPreviousEventAtNight();
                 Refresh();
             }
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        clickSound.release();
+    }
 }

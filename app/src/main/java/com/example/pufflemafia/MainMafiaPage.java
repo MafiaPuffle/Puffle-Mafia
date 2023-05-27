@@ -1,6 +1,7 @@
 package com.example.pufflemafia;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
     private PlayerDayUIAdaptor allDeadPlayerDayUIAdaptor;
     private Vector<Player> allAlivePlayers;
     private Vector<Player> allDeadPlayers;
+    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +60,10 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         PlayerManager.sortAllAliveByTokens();
         PlayerManager.sortAllDeadByTokens();
 
-        //Configure Button
+        // Configure Button
         configureDayBacktoChooseYourCharactersButton();
         configureStartTheNightButton();
+        clickSound = MediaPlayer.create(this, R.raw.click_sound);
     }
 
     @Override
@@ -68,8 +71,8 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         PlayerManager.onPlayerKillOrRevive.RemoveListener(this);
         PlayerManager.onPlayerDataUpdated.RemoveListener(this);
         GameManager.onStartDay.AddListener(this);
-
         super.onDestroy();
+        clickSound.release();
     }
 
     private void Refresh(){
@@ -77,23 +80,25 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
     }
 
-    //Start The Night Button
+    // Start The Night Button
     private void configureStartTheNightButton() {
-        Button StartTheNightButton = (Button) findViewById(R.id.StartTheNightButton);
+        Button StartTheNightButton = findViewById(R.id.StartTheNightButton);
         StartTheNightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 startActivity(new Intent(MainMafiaPage.this, NightActions.class));
             }
         });
     }
 
-    //Back Button
+    // Back Button
     private void configureDayBacktoChooseYourCharactersButton(){
-        Button DayBacktoChooseYourCharacters = (Button) findViewById(R.id.BackButton);
+        Button DayBacktoChooseYourCharacters = findViewById(R.id.BackButton);
         DayBacktoChooseYourCharacters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickSound.start();
                 finish();
             }
         });
