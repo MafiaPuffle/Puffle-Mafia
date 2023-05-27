@@ -9,7 +9,7 @@
 
     <!--Alive Box-->
     <LinearLayout
-        android:id="@+id/AliveTitleBox"
+        android:id="@+id/InstructionsTitleBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/AliveTitleText"
+            android:id="@+id/InstructionsTitleText"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
@@ -87,7 +87,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AliveTitleBox"
+        app:layout_constraintTop_toBottomOf="@+id/InstructionsTitleBox"
         app:layout_constraintVertical_bias="0.021" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -124,7 +124,7 @@
         app:layout_constraintVertical_bias="0.989" />
 
     <Button
-        android:id="@+id/DayBacktoChooseYourCharactersButton"
+        android:id="@+id/BackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BACK"
@@ -150,7 +150,7 @@
         app:layout_constraintBottom_toTopOf="@+id/AllAliveRecycleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.437"
-        app:layout_constraintStart_toEndOf="@+id/AliveTitleBox"
+        app:layout_constraintStart_toEndOf="@+id/InstructionsTitleBox"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8"
         app:srcCompat="@drawable/sun" />
@@ -166,7 +166,7 @@
         android:textColor="@color/white"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/AliveTitleBox"
+        app:layout_constraintEnd_toStartOf="@+id/InstructionsTitleBox"
         app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
