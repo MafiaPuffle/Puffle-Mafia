@@ -203,7 +203,6 @@ public class DataManager {
         Power theFather = new Power("The Father",
                 Power.PowerType.ONETIMEUSE,
                 "");
-//                GetToken("The Father"));
         allPowers.put(theFather.getName(), theFather);
 
         Power godFather = new Power("GodFather",
@@ -214,7 +213,6 @@ public class DataManager {
         Power holySpirit = new Power("Holy Spirit",
                 Power.PowerType.ONETIMEUSE,
                 "DOUBLE GOOD POWERS");
-//                GetToken("Holy Spirit"));
         allPowers.put(holySpirit.getName(), holySpirit);
 
         Power jackOfAllTrades = new Power("J.O.A.T.",
@@ -268,7 +266,6 @@ public class DataManager {
         Power satan = new Power("Satan",
                 Power.PowerType.ONETIMEUSE,
                 "DOUBLE EVIL POWERS");
-//                GetToken("Satan"));
         allPowers.put(satan.getName(), satan);
 
         Power terrorist = new Power(
@@ -300,11 +297,6 @@ public class DataManager {
                 "SWITCH WITH",
                 GetToken("Wizard"));
         allPowers.put(wizard.getName(), wizard);
-
-//        Power wizardAfter = new Power("Wizard after Switch",
-//                Power.PowerType.SELFACTIVE,
-//                "");
-//        allPowers.put(wizardAfter.getName(), wizardAfter);
 
         Power zombieGood = new Power("Zombie Good",
                 Power.PowerType.PASSIVE,
@@ -553,15 +545,6 @@ public class DataManager {
                 GetPower("Wizard"),
                 "Does something amazing!");
         allRoles.put(wizard.getName(), wizard);
-
-//        Role wizardAfter = new Role("Wizard after Switch",
-//                R.drawable.wizard_puffle,
-//                -1,
-//                Role.Alliances.GOOD,
-//                Role.Teams.TOWN,
-//                GetPower("Wizard after Switch"),
-//                "Does something amazing!");
-//        allRoles.put(wizardAfter.getName(), wizardAfter);
 
         Role zombieGood = new Role("Zombie Good",
                 R.drawable.good_zombie_puffle,
