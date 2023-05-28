@@ -8,7 +8,7 @@
     <!-- character_ui_layout.xml -->
     <LinearLayout
         android:id="@+id/CharacterUIINBox"
-        android:layout_width="350dp"
+        android:layout_width="375dp"
         android:layout_height="match_parent"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
@@ -18,15 +18,15 @@
 
         <ImageButton
             android:id="@+id/KillOrReviveButton"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/alive_button"
             android:contentDescription="Kill or Revive Button" />
 
         <ImageButton
             android:id="@+id/RoleUIButton"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/alien_puffle"
             android:contentDescription="Alien" />
 

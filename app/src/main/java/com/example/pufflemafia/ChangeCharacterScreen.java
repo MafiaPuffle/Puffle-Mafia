@@ -78,7 +78,7 @@ public class ChangeCharacterScreen extends AppCompatActivity implements IListene
 
     private void configureRecyclerView(){
         adaptor = new ChangingRoleUIAdaptor(allRoles, this);
-        layoutManager = new GridLayoutManager(this, 7);
+        layoutManager = new GridLayoutManager(this, 5);
         recyclerView = findViewById(R.id.AllRolesRecycleView);
 
         recyclerView.setLayoutManager(layoutManager);
