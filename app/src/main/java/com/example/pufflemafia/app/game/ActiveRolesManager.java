@@ -79,7 +79,10 @@ public class ActiveRolesManager {
     }
     @Nullable
     public static Role GetRoleForNight(int index){
-        if(index >= rolesWithAbilitiesForTheNight.size()) return null;
+        if(index >= rolesWithAbilitiesForTheNight.size()) {
+            onLookingAtLastRoleForTheNight.Invoke(false);
+            return null;
+        }
         if(index == (rolesWithAbilitiesForTheNight.size() - 1)){
             onLookingAtLastRoleForTheNight.Invoke(true);
         }

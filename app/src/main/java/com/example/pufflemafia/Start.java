@@ -17,28 +17,25 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.app.Event;
+import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.GameSetup;
 import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
-public class Start extends AppCompatActivity {
+public class Start extends AppCompatActivity implements IListener<Boolean> {
     private EditText nameEditText;
     private Button addNameButton;
     private GridView namesGridView;
     private ArrayList<String> namesList;
     private NamesAdapter namesAdapter;
     private TextView numberOfNamesTextView;
-    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        clickSound = MediaPlayer.create(this, R.raw.click_sound);
-
-        // Configure Buttons
-        configureBackToMainMenu();
-        configureRandomCharactersButton();
-        configureChooseCharactersButton();
 
         // Names GridView
         nameEditText = findViewById(R.id.nameEditText);
@@ -48,6 +45,7 @@ public class Start extends AppCompatActivity {
 
         namesList = new ArrayList<>();
         namesAdapter = new NamesAdapter();
+        namesAdapter.onDataChanged.AddListener(this);
         namesGridView.setAdapter(namesAdapter);
 
         AppManager.gameSetup = new GameSetup();
@@ -55,13 +53,32 @@ public class Start extends AppCompatActivity {
         addNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 addName();
             }
         });
 
         int numberOfNames = namesList.size();
         numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
+
+        // Configure Buttons
+        configureBackToMainMenu();
+        configureRandomCharactersButton();
+        configureChooseCharactersButton();
+        Refresh();
+    }
+
+    private void Refresh(){
+        Button chooseCharactersButton = findViewById(R.id.ChooseCharactersButton);
+        Button randomCharactersButton = findViewById(R.id.RandomCharactersButton);
+        if(namesList.size() > 0){
+            chooseCharactersButton.setVisibility(View.VISIBLE);
+            randomCharactersButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            chooseCharactersButton.setVisibility(View.GONE);
+            randomCharactersButton.setVisibility(View.GONE);
+        }
     }
 
     // Character Select Screen Button
@@ -70,8 +87,10 @@ public class Start extends AppCompatActivity {
         chooseCharactersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
-                startActivity(new Intent(Start.this, CharacterSelectScreen.class));
+                if(namesList.size() > 0){
+                    SoundManager.playSfx("Click");
+                    startActivity(new Intent(Start.this, CharacterSelectScreen.class));
+                }
             }
         });
     }
@@ -81,9 +100,9 @@ public class Start extends AppCompatActivity {
         randomCharactersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
-                Vector<String> names = new Vector<String>(namesList);
-                if (!names.isEmpty()) {
+                if(namesList.size() > 0){
+                    Vector<String> names = new Vector<String>(namesList);
+                    SoundManager.playSfx("Click");
                     AppManager.gameSetup.SetUpRandomGame(names);
                     GameManager.StartNewGame(AppManager.gameSetup);
                     startActivity(new Intent(Start.this, MainMafiaPage.class));
@@ -98,7 +117,7 @@ public class Start extends AppCompatActivity {
         backToMainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 finish();
             }
         });
@@ -114,10 +133,28 @@ public class Start extends AppCompatActivity {
 
             int numberOfNames = namesList.size();
             numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
+            Refresh();
         }
     }
 
+    @Override
+    public void Response() {
+        Refresh();
+    }
+
+    @Override
+    public void Response(Boolean aBoolean) {
+
+    }
+
     private class NamesAdapter extends BaseAdapter {
+
+        public Event<Boolean> onDataChanged;
+
+        public NamesAdapter(){
+            super();
+            onDataChanged = new Event<Boolean>();
+        }
 
         @Override
         public int getCount() {
@@ -151,10 +188,11 @@ public class Start extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clickSound.start();
+                    SoundManager.playSfx("Click");
                     AppManager.gameSetup.names.remove(position);
                     namesList.remove(position);
                     namesAdapter.notifyDataSetChanged();
+                    onDataChanged.Invoke();
 
                     int numberOfNames = namesList.size();
                     numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
@@ -167,7 +205,7 @@ public class Start extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        namesAdapter.onDataChanged.RemoveListener(this);
         super.onDestroy();
-        clickSound.release();
     }
 }

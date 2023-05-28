@@ -1,5 +1,7 @@
 package com.example.pufflemafia.app.game;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.app.Event;
@@ -120,7 +122,11 @@ public class GameManager {
     public static void GoToPreviousEventAtNight(){
         if(currentState != GameState.Night) return;
         currentIndexOfEventsAtNight--;
-        if(currentIndexOfEventsAtNight < 0) currentIndexOfEventsAtNight = 0;
+        if(currentIndexOfEventsAtNight < 0){
+            currentIndexOfEventsAtNight = 0;
+            BackOutOfANight();
+            return;
+        }
 
         currentRoleActiveAtNight = ActiveRolesManager.GetRoleForNight(currentIndexOfEventsAtNight);
     }
@@ -130,6 +136,14 @@ public class GameManager {
 
         currentRoleActiveAtNight = ActiveRolesManager.GetRoleForNight(currentIndexOfEventsAtNight);
         if(currentRoleActiveAtNight == null) StartDay();
+    }
+
+    public static void BackOutOfANight(){
+        if(currentState != GameState.Night) return;
+        nightNumber--;
+        currentRoleActiveAtNight = null;
+        Log.d("GameMmanager","Backing out of night");
+        //StartDay();
     }
 
     // handles logic for going to day

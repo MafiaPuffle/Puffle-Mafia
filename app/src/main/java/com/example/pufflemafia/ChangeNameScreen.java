@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.SoundManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -40,6 +41,7 @@ public class ChangeNameScreen extends AppCompatActivity {
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 editText.setHint(name);
             }
         });
@@ -47,6 +49,7 @@ public class ChangeNameScreen extends AppCompatActivity {
         textInputLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 editText.setHint(name);
             }
         });
@@ -60,6 +63,7 @@ public class ChangeNameScreen extends AppCompatActivity {
         BackToMainMafiaPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundManager.playSfx("Click");
                 String newName = Objects.requireNonNull(editText.getText()).toString().trim();
                 if(!newName.isEmpty()){
                     PlayerManager.EditPlayerName(listType, position, newName);
@@ -74,6 +78,7 @@ public class ChangeNameScreen extends AppCompatActivity {
         BackToMainMafiaPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundManager.playSfx("Click");
                 finish();
             }
         });

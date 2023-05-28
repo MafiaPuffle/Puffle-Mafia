@@ -20,6 +20,7 @@ import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -133,6 +134,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         viewHolder.getPlayerAndRoleLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 Intent intent = new Intent(context, ChangeNameScreen.class);
                 intent.putExtra("position", viewHolder.getAdapterPosition());
                 intent.putExtra("name",player.name);
@@ -168,6 +170,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         viewHolder.getRoleButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 Intent intent = new Intent(context, ChangeCharacterScreen.class);
                 intent.putExtra("currentRoleImageResource", role.getImageResource());
                 intent.putExtra("position", viewHolder.getAdapterPosition());
@@ -186,6 +189,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         viewHolder.getKillOrReviveButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 if(listType == PlayerManager.PlayerMangerListType.ALIVE){
                     PlayerManager.KillPlayer(player);
                 }
@@ -203,6 +207,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         viewHolder.getTokenHolder().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 Intent intent = new Intent(context, AddTokenScreen.class);
                 intent.putExtra("position", viewHolder.getAdapterPosition());
                 intent.putExtra("ListType", listType);

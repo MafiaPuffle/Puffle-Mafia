@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.pufflemafia.app.game.SoundManager;
+
 public class Instructions extends AppCompatActivity {
 
     @Override
@@ -22,6 +24,7 @@ public class Instructions extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundManager.playSfx("Click");
                 finish();
             }
         });

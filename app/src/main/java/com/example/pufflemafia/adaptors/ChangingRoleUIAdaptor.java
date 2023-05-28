@@ -18,6 +18,7 @@ public class ChangingRoleUIAdaptor extends SelectableRoleUIAdaptor{
 
     @Override
     protected void onItemClick(Role role){
+        super.onItemClick(role);
         onSelectRole.Invoke(role);
     }
 }

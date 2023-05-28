@@ -15,6 +15,7 @@ import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -28,7 +29,6 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
     private PlayerDayUIAdaptor allDeadPlayerDayUIAdaptor;
     private Vector<Player> allAlivePlayers;
     private Vector<Player> allDeadPlayers;
-    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,6 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         // Configure Button
         configureDayBacktoChooseYourCharactersButton();
         configureStartTheNightButton();
-        clickSound = MediaPlayer.create(this, R.raw.click_sound);
     }
 
     @Override
@@ -72,7 +71,6 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         PlayerManager.onPlayerDataUpdated.RemoveListener(this);
         GameManager.onStartDay.AddListener(this);
         super.onDestroy();
-        clickSound.release();
     }
 
     private void Refresh(){
@@ -86,7 +84,7 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         StartTheNightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 startActivity(new Intent(MainMafiaPage.this, NightActions.class));
             }
         });
@@ -98,7 +96,7 @@ public class MainMafiaPage extends AppCompatActivity implements IListener<Boolea
         DayBacktoChooseYourCharacters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 finish();
             }
         });

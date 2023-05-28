@@ -23,6 +23,7 @@ import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -39,7 +40,6 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
 
     private Vector<Role> allRoles;
     private Vector<Role> selectedRoles;
-    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         Log.i("CharacterSelectScreen", "Starting CharacterSelectScreen");
 
         AppManager.gameSetup.chosenRoles.clear();
+        AppManager.gameSetup.addRole(DataManager.GetRole("Mafia"));
 
         allRoles = DataManager.GetAllRoles();
         selectedRoles = AppManager.gameSetup.chosenRoles;
@@ -58,31 +59,35 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         configureRecyclerViews();
 
         AppManager.gameSetup.onDataUpdated.AddListener(this);
-        clickSound = MediaPlayer.create(this, R.raw.click_sound);
+        SoundManager.playSfx("Click");
 
         // Configure Buttons
         configureBackToStart();
         configureDoneChoosingCharactersButton();
+        updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.chosenRoles.size());
+        refreshStartGameButton();
     }
 
     @Override
     protected void onDestroy() {
         AppManager.gameSetup.onDataUpdated.RemoveListener(this);
         super.onDestroy();
-        clickSound.release();
     }
 
     private void updateCountTextView(int numberOfPlayers, int numberOfRoles){
         int difference = numberOfPlayers - numberOfRoles;
 
-        if(difference > 0){
-            countTextView.setText(String.valueOf(difference));
+        if (difference == 1 && AppManager.gameSetup.mafiaHasBeenChosen() == false) {
+            countTextView.setText("Choose a Mafia");
+        }
+        else if(difference > 0){
+            countTextView.setText("Choose " + String.valueOf(difference) + " more roles");
         }
         else if(difference < 0){
             countTextView.setText("Too Many Roles");
         }
-        else if (difference == 0 && AppManager.gameSetup.checkIfIsValid() == false){
-            countTextView.setText("Needs Mafia");
+        else if (difference == 0 && AppManager.gameSetup.mafiaHasBeenChosen() == false){
+            countTextView.setText("Replace on role with a Mafia");
         }
         else {
             countTextView.setText("Ready!");
@@ -93,6 +98,17 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         allRolesUIAdaptor.notifyDataSetChanged();
         selectedRolesUIAdaptor.notifyDataSetChanged();
         updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.chosenRoles.size());
+        refreshStartGameButton();
+    }
+
+    private void refreshStartGameButton(){
+        Button startGameButton = findViewById(R.id.DoneChoosingCharactersButton);
+        if(AppManager.gameSetup.checkIfIsValid()){
+            startGameButton.setVisibility(View.VISIBLE);
+        }
+        else{
+            startGameButton.setVisibility(View.GONE);
+        }
     }
 
     private void configureRecyclerViews(){
@@ -122,7 +138,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         DoneChoosingCharactersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 if(AppManager.gameSetup.checkIfIsValid()){
                     GameManager.StartNewGame(AppManager.gameSetup);
                     startActivity(new Intent(CharacterSelectScreen.this, MainMafiaPage.class));
@@ -137,7 +153,8 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         BackToStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
+                AppManager.gameSetup.chosenRoles.clear();
                 finish();
             }
         });

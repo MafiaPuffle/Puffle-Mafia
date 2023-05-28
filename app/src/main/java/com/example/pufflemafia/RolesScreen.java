@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -37,6 +38,7 @@ public class RolesScreen extends AppCompatActivity {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SoundManager.playSfx("Click");
                     Intent intent = new Intent(RolesScreen.this, RoleDetails.class);
                     intent.putExtra("name", role.getName());
                     intent.putExtra("imageResourceId", role.getImageResource());
@@ -71,6 +73,7 @@ public class RolesScreen extends AppCompatActivity {
         BackToMainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundManager.playSfx("Click");
                 finish();
             }
         });

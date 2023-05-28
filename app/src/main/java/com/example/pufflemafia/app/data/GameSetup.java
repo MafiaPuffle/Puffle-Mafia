@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.pufflemafia.app.Event;
 
+import java.util.Objects;
 import java.util.Vector;
 
 public class GameSetup {
@@ -28,10 +29,10 @@ public class GameSetup {
         this.names = names;
         int numberOfPlayers = this.names.size();
 
-        chosenRoles.add(DataManager.GetRole("Mafia"));
+        this.chosenRoles.add(DataManager.GetRole("Mafia"));
         if(numberOfPlayers > 1){
             for (int i = 0; i < (numberOfPlayers - 1); i++) {
-                chosenRoles.add(DataManager.GetRandomRole());
+                this.addRandomRole();
             }
         }
     }
@@ -48,6 +49,16 @@ public class GameSetup {
         this.onDataUpdated.Invoke();
     }
 
+    public void addRandomRole(){
+        Role randomRole = DataManager.GetRandomRole();
+
+        while (checkIfRoleHasBeenChosenToManyTimes(3, randomRole)){
+            randomRole = DataManager.GetRandomRole();
+        }
+
+        this.chosenRoles.add(randomRole);
+    }
+
     public void addMultipleRoles(int amount, Role role){
         for(int i = 0; i < amount; ++i){
             this.chosenRoles.add(role);
@@ -60,6 +71,16 @@ public class GameSetup {
         this.onDataUpdated.Invoke();
     }
 
+    public boolean checkIfRoleHasBeenChosenToManyTimes(int threshold, Role roleToCheckFor){
+        int amountFound = 0;
+
+        for (Role role: this.chosenRoles) {
+            if(Objects.equals(role.getName(), roleToCheckFor.getName())) amountFound++;
+        }
+
+        return amountFound >= threshold;
+    }
+
     public boolean checkIfIsValid(){
         boolean output = false;
 
@@ -68,18 +89,21 @@ public class GameSetup {
             amountOfRolesEqualsAmountOfPlayers = true;
         }
 
-        boolean foundAtleastOneMafia = false;
-        for (Role role: chosenRoles) {
-            if(role.getName() == "Mafia") {
-                foundAtleastOneMafia = true;
-                break;
-            }
-        }
+        boolean foundAtleastOneMafia = mafiaHasBeenChosen();
 
         if(amountOfRolesEqualsAmountOfPlayers && foundAtleastOneMafia) output = true;
 
         this.isValid = output;
         return output;
+    }
+
+    public boolean mafiaHasBeenChosen(){
+        for (Role role: chosenRoles) {
+            if(Objects.equals(role.getName(), "Mafia") || Objects.equals(role.getName(), "Mafia Rival")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void LogSummary(){
