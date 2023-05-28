@@ -144,4 +144,17 @@
         app:layout_constraintTop_toBottomOf="@+id/QRCodeButton"
         app:layout_constraintVertical_bias="0.78" />
 
+    <ToggleButton
+        android:id="@+id/toggleButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="SFX OFF"
+        android:textOn="SFX ON"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/QRCodeButton"
+        app:layout_constraintVertical_bias="0.78" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

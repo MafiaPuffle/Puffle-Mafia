@@ -1,7 +1,6 @@
 package com.example.pufflemafia;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,13 +10,14 @@ import android.widget.ToggleButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pufflemafia.app.AppManager;
-import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ToggleButton toggleButton;
+    private ToggleButton musicToggleButton;
+    private ToggleButton sfxToggleButton;
     private boolean isMusicPlaying = true;
+    private boolean isSFXPlaying = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +36,12 @@ public class MainActivity extends AppCompatActivity {
         configureInstructions();
         configureQRCode();
 
-        toggleButton = findViewById(R.id.toggleButton);
-        toggleButton.setChecked(true);
-        updateToggleButtonBackground();
+        musicToggleButton = findViewById(R.id.toggleButton);
+        musicToggleButton.setChecked(true);
+        sfxToggleButton = findViewById(R.id.toggleButton2);
+        sfxToggleButton.setChecked(true);
 
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        musicToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 isMusicPlaying = isChecked;
@@ -57,6 +58,27 @@ public class MainActivity extends AppCompatActivity {
                 updateToggleButtonBackground();
             }
         });
+
+        sfxToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isSFXPlaying = isChecked;
+                SoundManager.playSfx("Click");
+
+                if(isSFXPlaying){
+                    SoundManager.setSfxVolume(1.0f);
+                }
+                else{
+                    SoundManager.muteSFX();
+                }
+
+
+                updateToggleButtonBackground();
+            }
+        });
+
+
+        updateToggleButtonBackground();
     }
 
     private void configureStart() {
@@ -104,8 +126,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateToggleButtonBackground() {
-        int backgroundResId = isMusicPlaying ? R.drawable.green_rectangle : R.drawable.red_rectangle;
-        toggleButton.setBackgroundResource(backgroundResId);
+        int sfxBackgroundResId = isSFXPlaying ? R.drawable.green_rectangle : R.drawable.red_rectangle;
+        int musicBackgroundResId = isMusicPlaying ? R.drawable.green_rectangle : R.drawable.red_rectangle;
+        musicToggleButton.setBackgroundResource(musicBackgroundResId);
+        sfxToggleButton.setBackgroundResource(sfxBackgroundResId);
     }
 
     @Override
