@@ -19,6 +19,7 @@ import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -152,6 +153,7 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
         viewHolder.getLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 //PlayerManager.AddTokenToPlayer(PlayerManager.PlayerMangerListType.ALIVE,viewHolder.getAdapterPosition(), GameManager.getCurrentRoleActiveAtNight().getPower().getToken());
                 PlayerManager.UseAbilityOnPlayer(GameManager.getCurrentRoleActiveAtNight(), PlayerManager.getAlivePlayerAt(viewHolder.getAdapterPosition()));
                 notifyDataSetChanged();

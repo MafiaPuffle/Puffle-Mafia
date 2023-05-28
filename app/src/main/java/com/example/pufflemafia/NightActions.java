@@ -18,6 +18,7 @@ import com.example.pufflemafia.app.game.ActiveRolesManager;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -33,8 +34,6 @@ public class NightActions extends AppCompatActivity implements IListener<Boolean
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private PlayerNightUIAdaptor adaptor;
-
-    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +62,6 @@ public class NightActions extends AppCompatActivity implements IListener<Boolean
         // Configure Buttons
         configureToNextActionButton();
         configureBacktoLastActionButton();
-        clickSound = MediaPlayer.create(this, R.raw.click_sound);
         ActiveRolesManager.onLookingAtLastRoleForTheNight.AddListener(this);
     }
 
@@ -90,7 +88,7 @@ public class NightActions extends AppCompatActivity implements IListener<Boolean
         ToNextActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 GameManager.GoToNextEventAtNight();
                 Refresh();
             }
@@ -103,7 +101,7 @@ public class NightActions extends AppCompatActivity implements IListener<Boolean
         BacktoLastActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 GameManager.GoToPreviousEventAtNight();
                 Button ToNextActionButton = findViewById(R.id.ToNextActionButton);
                 ToNextActionButton.setText("NEXT");
@@ -116,7 +114,6 @@ public class NightActions extends AppCompatActivity implements IListener<Boolean
     protected void onDestroy() {
         ActiveRolesManager.onLookingAtLastRoleForTheNight.RemoveListener(this);
         super.onDestroy();
-        clickSound.release();
     }
 
     @Override
