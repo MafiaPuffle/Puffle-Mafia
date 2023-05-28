@@ -52,7 +52,7 @@ public class GameSetup {
     public void addRandomRole(){
         Role randomRole = DataManager.GetRandomRole();
 
-        while (checkIfRoleHasBeenChosenToManyTimes(3, randomRole)){
+        while (checkIfRoleHasBeenChosenToManyTimes(1, randomRole)){
             randomRole = DataManager.GetRandomRole();
         }
 
