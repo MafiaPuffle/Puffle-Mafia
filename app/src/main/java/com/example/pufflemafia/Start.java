@@ -31,13 +31,11 @@ public class Start extends AppCompatActivity implements IListener<Boolean> {
     private ArrayList<String> namesList;
     private NamesAdapter namesAdapter;
     private TextView numberOfNamesTextView;
-    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        clickSound = MediaPlayer.create(this, R.raw.click_sound);
 
         // Names GridView
         nameEditText = findViewById(R.id.nameEditText);
@@ -55,7 +53,7 @@ public class Start extends AppCompatActivity implements IListener<Boolean> {
         addNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 addName();
             }
         });
