@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -50,13 +52,13 @@ public class Start extends AppCompatActivity implements IListener<Boolean> {
 
         AppManager.gameSetup = new GameSetup();
 
-        addNameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SoundManager.playSfx("Click");
-                addName();
-            }
-        });
+//        addNameButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SoundManager.playSfx("Click");
+//                addName();
+//            }
+//        });
 
         int numberOfNames = namesList.size();
         numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
@@ -66,6 +68,16 @@ public class Start extends AppCompatActivity implements IListener<Boolean> {
         configureRandomCharactersButton();
         configureChooseCharactersButton();
         Refresh();
+
+        nameEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                Log.d("Start", "onEditorAction() called");
+                SoundManager.playSfx("Click");
+                addName();
+                return true;
+            }
+        });
     }
 
     private void Refresh(){
