@@ -25,6 +25,7 @@ import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -77,6 +78,7 @@ public class SelectableRoleUIAdaptor extends RecyclerView.Adapter<SelectableRole
         viewHolder.getRoleLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 onItemClick(role);
             }
         });
@@ -84,6 +86,7 @@ public class SelectableRoleUIAdaptor extends RecyclerView.Adapter<SelectableRole
         viewHolder.getRoleLinearLayout().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
                 Intent intent = new Intent(context, RoleDetails.class);
                 intent.putExtra("name", role.getName());
                 intent.putExtra("imageResourceId", role.getImageResource());

@@ -23,6 +23,7 @@ import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -39,7 +40,6 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
 
     private Vector<Role> allRoles;
     private Vector<Role> selectedRoles;
-    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         configureRecyclerViews();
 
         AppManager.gameSetup.onDataUpdated.AddListener(this);
-        clickSound = MediaPlayer.create(this, R.raw.click_sound);
+        SoundManager.playSfx("Click");
 
         // Configure Buttons
         configureBackToStart();
@@ -72,7 +72,6 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
     protected void onDestroy() {
         AppManager.gameSetup.onDataUpdated.RemoveListener(this);
         super.onDestroy();
-        clickSound.release();
     }
 
     private void updateCountTextView(int numberOfPlayers, int numberOfRoles){
@@ -139,7 +138,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         DoneChoosingCharactersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 if(AppManager.gameSetup.checkIfIsValid()){
                     GameManager.StartNewGame(AppManager.gameSetup);
                     startActivity(new Intent(CharacterSelectScreen.this, MainMafiaPage.class));
@@ -154,7 +153,7 @@ public class CharacterSelectScreen extends AppCompatActivity implements IListene
         BackToStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 AppManager.gameSetup.chosenRoles.clear();
                 finish();
             }

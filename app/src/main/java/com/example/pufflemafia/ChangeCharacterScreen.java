@@ -20,6 +20,7 @@ import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -91,6 +92,7 @@ public class ChangeCharacterScreen extends AppCompatActivity implements IListene
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 if(newRole.getName() != "PuffleName")PlayerManager.EditPlayerRole(listType, position, newRole);
                 PlayerManager.LogSummary();
                 finish();
@@ -103,6 +105,7 @@ public class ChangeCharacterScreen extends AppCompatActivity implements IListene
         BackToMainMafiaPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundManager.playSfx("Click");
                 finish();
             }
         });

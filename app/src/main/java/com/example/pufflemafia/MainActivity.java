@@ -12,23 +12,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 public class MainActivity extends AppCompatActivity {
 
     private ToggleButton toggleButton;
     private boolean isMusicPlaying = true;
-    private MediaPlayer clickSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BackgroundMusicManager.start(this, R.raw.mystery);
 
         // Setting Up the App data
         AppManager.setup();
 
-        clickSound = MediaPlayer.create(this, R.raw.click_sound);
+        // Setup SoundManager
+        SoundManager.initialize(this);
+        SoundManager.playSong("Mystery");
+
         configureStart();
         configureRoles();
         configureInstructions();
@@ -42,12 +44,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 isMusicPlaying = isChecked;
+                SoundManager.playSfx("Click");
 
-                if (isMusicPlaying) {
-                    BackgroundMusicManager.start(MainActivity.this, R.raw.mystery);
-                } else {
-                    BackgroundMusicManager.stop();
+                if(isMusicPlaying){
+                    SoundManager.setMusicVolume(1.0f);
                 }
+                else{
+                    SoundManager.muteMusic();
+                }
+
 
                 updateToggleButtonBackground();
             }
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 startActivity(new Intent(MainActivity.this, Start.class));
             }
         });
@@ -70,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         rolesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 startActivity(new Intent(MainActivity.this, RolesScreen.class));
             }
         });
@@ -81,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         qrCodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 startActivity(new Intent(MainActivity.this, QRCode.class));
             }
         });
@@ -92,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         instructionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 startActivity(new Intent(MainActivity.this, Instructions.class));
             }
         });
@@ -105,8 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        SoundManager.stopSongSuddenly("Mystery");
         super.onDestroy();
-        BackgroundMusicManager.stop();
-        clickSound.release();
     }
 }

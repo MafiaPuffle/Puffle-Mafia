@@ -22,6 +22,7 @@ import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.GameSetup;
 import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 public class Start extends AppCompatActivity implements IListener<Boolean> {
     private EditText nameEditText;
@@ -89,7 +90,7 @@ public class Start extends AppCompatActivity implements IListener<Boolean> {
             @Override
             public void onClick(View v) {
                 if(namesList.size() > 0){
-                    clickSound.start();
+                    SoundManager.playSfx("Click");
                     startActivity(new Intent(Start.this, CharacterSelectScreen.class));
                 }
             }
@@ -103,7 +104,7 @@ public class Start extends AppCompatActivity implements IListener<Boolean> {
             public void onClick(View v) {
                 if(namesList.size() > 0){
                     Vector<String> names = new Vector<String>(namesList);
-                    clickSound.start();
+                    SoundManager.playSfx("Click");
                     AppManager.gameSetup.SetUpRandomGame(names);
                     GameManager.StartNewGame(AppManager.gameSetup);
                     startActivity(new Intent(Start.this, MainMafiaPage.class));
@@ -118,7 +119,7 @@ public class Start extends AppCompatActivity implements IListener<Boolean> {
         backToMainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSound.start();
+                SoundManager.playSfx("Click");
                 finish();
             }
         });
@@ -189,7 +190,7 @@ public class Start extends AppCompatActivity implements IListener<Boolean> {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clickSound.start();
+                    SoundManager.playSfx("Click");
                     AppManager.gameSetup.names.remove(position);
                     namesList.remove(position);
                     namesAdapter.notifyDataSetChanged();
@@ -208,6 +209,5 @@ public class Start extends AppCompatActivity implements IListener<Boolean> {
     protected void onDestroy() {
         namesAdapter.onDataChanged.RemoveListener(this);
         super.onDestroy();
-        clickSound.release();
     }
 }

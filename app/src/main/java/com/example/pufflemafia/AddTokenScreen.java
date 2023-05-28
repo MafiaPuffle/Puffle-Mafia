@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -62,6 +63,7 @@ public class AddTokenScreen extends AppCompatActivity {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SoundManager.playSfx("Click");
                     linearLayout.removeView(view);
                     selectedTokens.remove(token);
                 }
@@ -73,12 +75,14 @@ public class AddTokenScreen extends AppCompatActivity {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SoundManager.playSfx("Click");
                     ImageButton imageButton1 = addImageButtonToLinearLayout(linearLayout, token.getImageResource());
                     selectedTokens.add(token);
 
                     imageButton1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            SoundManager.playSfx("Click");
                             linearLayout.removeView(view);
                             selectedTokens.remove(token);
                         }
@@ -132,6 +136,7 @@ public class AddTokenScreen extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundManager.playSfx("Click");
                 Log.d("AddTokenScreen", "" + selectedTokens.size());
                 PlayerManager.RemovePlayerAllToken(listType, position);
                 for (int i = 0; i < selectedTokens.size(); i++) {
@@ -148,6 +153,7 @@ public class AddTokenScreen extends AppCompatActivity {
         BackToMainMafiaPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundManager.playSfx("Click");
                 finish();
             }
         });

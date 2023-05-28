@@ -14,6 +14,7 @@ public class PossibleRoleUIAdaptor extends SelectableRoleUIAdaptor{
 
     @Override
     protected void onItemClick(Role role){
+        super.onItemClick(role);
         AppManager.gameSetup.addRole(role);
     }
 }
