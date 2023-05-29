@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.SoundManager;
@@ -18,7 +19,7 @@ import com.example.pufflemafia.app.game.SoundManager;
 import java.util.Vector;
 
 
-public class RolesScreen extends AppCompatActivity {
+public class RolesScreen extends CustomAppCompatActivityWrapper {
 
     private Vector<Role> allRoles;
     private GridLayout gridLayout;

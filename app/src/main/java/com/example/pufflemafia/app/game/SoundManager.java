@@ -5,13 +5,15 @@ import android.media.MediaPlayer;
 import android.util.Log;
 
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.app.AppMinimizedWatcher;
+import com.example.pufflemafia.app.IListener;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SoundManager {
+public class SoundManager implements IListener<Boolean> {
 
     private static Map<String, MediaPlayer> songs;
     private static Map<String, MediaPlayer> sfxSounds;
@@ -19,7 +21,12 @@ public class SoundManager {
     private static Timer fadeInTimer;
     private static Timer fadeOutTimer;
 
-    public SoundManager(){
+    private static float musicVolume;
+    private static float sfxVolume;
+
+    private static SoundManager instance;
+
+    private SoundManager(){
     }
 
     public static void initialize(Context context){
@@ -27,6 +34,12 @@ public class SoundManager {
         fadeOutTimer = new Timer();
         initializeSongs(context);
         initializeSFX(context);
+
+        musicVolume = 1;
+        sfxVolume = 1;
+
+        instance = new SoundManager();
+        AppMinimizedWatcher.onAppMinimize.AddListener(instance);
     }
 
     private static void initializeSongs(Context context){
@@ -42,6 +55,11 @@ public class SoundManager {
     public static void setMusicVolume(float volume){
         if(volume > 1.0) volume = 1.0f;
         if(volume < 0) volume = 0;
+        musicVolume = volume;
+        updateAllMusicVolume(musicVolume);
+    }
+
+    private static void updateAllMusicVolume(float volume){
         for (Map.Entry<String, MediaPlayer> entry: songs.entrySet()) {
             entry.getValue().setVolume(volume,volume);
         }
@@ -57,6 +75,11 @@ public class SoundManager {
     public static void setSfxVolume(float volume){
         if(volume > 1.0) volume = 1.0f;
         if(volume < 0) volume = 0;
+        sfxVolume = volume;
+        updateAllSfxVolume(sfxVolume);
+    }
+
+    private static void updateAllSfxVolume(float volume){
         for (Map.Entry<String, MediaPlayer> entry: sfxSounds.entrySet()) {
             entry.getValue().setVolume(volume,volume);
         }
@@ -170,4 +193,33 @@ public class SoundManager {
 
     }
 
+    @Override
+    public void Response() {
+
+    }
+
+    @Override
+    public void Response(Boolean aBoolean) {
+        if(aBoolean){
+            // we minimized
+            onAppMinimize();
+        }
+        else{
+            // we maximized
+            onAppMaximize();
+        }
+    }
+
+    private static void onAppMinimize(){
+        updateAllSfxVolume(0);
+        updateAllMusicVolume(0);
+
+        fadeOutTimer.cancel();
+        fadeInTimer.cancel();
+    }
+
+    private static void onAppMaximize(){
+        updateAllSfxVolume(sfxVolume);
+        updateAllMusicVolume(musicVolume);
+    }
 }

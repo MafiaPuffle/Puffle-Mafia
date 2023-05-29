@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.game.SoundManager;
 
-public class QRCode extends AppCompatActivity {
+public class QRCode extends CustomAppCompatActivityWrapper {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

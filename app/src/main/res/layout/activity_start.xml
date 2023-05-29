@@ -65,7 +65,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nameEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -73,14 +75,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="0dp">
-
-            <Button
-                android:id="@+id/addNameButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/horizon"
-                android:text="Add Name"
-                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/NumberofNames"

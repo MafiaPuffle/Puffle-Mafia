@@ -44,6 +44,16 @@ public class GameSetup {
         this.isValid = false;
     }
 
+    public boolean tryAddRole(Role role){
+        if(checkIfCanAddRole(role)) {
+            addRole(role);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public void addRole(Role role){
         this.chosenRoles.add(role);
         this.onDataUpdated.Invoke();
@@ -52,7 +62,7 @@ public class GameSetup {
     public void addRandomRole(){
         Role randomRole = DataManager.GetRandomRole();
 
-        while (checkIfRoleHasBeenChosenToManyTimes(3, randomRole)){
+        while (roleWouldBeAddedToManyTimes(randomRole)){
             randomRole = DataManager.GetRandomRole();
         }
 
@@ -71,14 +81,23 @@ public class GameSetup {
         this.onDataUpdated.Invoke();
     }
 
-    public boolean checkIfRoleHasBeenChosenToManyTimes(int threshold, Role roleToCheckFor){
+    public boolean checkIfCanAddRole(Role roleToCheckFor){
+        if(chosenRoles.size() == numberOfPlayers()){
+            return false;
+        } else if (roleWouldBeAddedToManyTimes(roleToCheckFor)) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean roleWouldBeAddedToManyTimes(Role roleToCheckFor){
         int amountFound = 0;
 
         for (Role role: this.chosenRoles) {
             if(Objects.equals(role.getName(), roleToCheckFor.getName())) amountFound++;
         }
 
-        return amountFound >= threshold;
+        return amountFound >= roleToCheckFor.getMaximumAllowed();
     }
 
     public boolean checkIfIsValid(){

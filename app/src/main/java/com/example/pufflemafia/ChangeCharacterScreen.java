@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.example.pufflemafia.adaptors.ChangingRoleUIAdaptor;
 import com.example.pufflemafia.adaptors.SelectableRoleUIAdaptor;
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
@@ -24,7 +25,7 @@ import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
-public class ChangeCharacterScreen extends AppCompatActivity implements IListener<Role> {
+public class ChangeCharacterScreen extends CustomAppCompatActivityWrapper implements IListener<Role> {
 
     private Intent intent;
 
