@@ -20,8 +20,7 @@ public class PossibleRoleUIAdaptor extends SelectableRoleUIAdaptor{
     @Override
     protected void onItemClick(Role role){
         super.onItemClick(role);
-        if(!AppManager.gameSetup.checkIfRoleHasBeenChosenToManyTimes(role)) {
-            AppManager.gameSetup.addRole(role);
+        if(AppManager.gameSetup.tryAddRole(role)){
             onRoleWasAdded.Invoke(true);
         }
         else {
