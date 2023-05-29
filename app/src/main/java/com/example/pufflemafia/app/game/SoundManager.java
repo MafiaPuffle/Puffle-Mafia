@@ -5,19 +5,24 @@ import android.media.MediaPlayer;
 import android.util.Log;
 
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.app.AppMinimizedWatcher;
+import com.example.pufflemafia.app.IListener;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SoundManager {
+public class SoundManager implements IListener<Boolean> {
 
     private static Map<String, MediaPlayer> songs;
     private static Map<String, MediaPlayer> sfxSounds;
 
     private static Timer fadeInTimer;
     private static Timer fadeOutTimer;
+
+    private static float musicVolume;
+    private static float sfxVolume;
 
     public SoundManager(){
     }
@@ -42,6 +47,11 @@ public class SoundManager {
     public static void setMusicVolume(float volume){
         if(volume > 1.0) volume = 1.0f;
         if(volume < 0) volume = 0;
+        musicVolume = volume;
+        updateAllMusicVolume(musicVolume);
+    }
+
+    private static void updateAllMusicVolume(float volume){
         for (Map.Entry<String, MediaPlayer> entry: songs.entrySet()) {
             entry.getValue().setVolume(volume,volume);
         }
@@ -57,6 +67,11 @@ public class SoundManager {
     public static void setSfxVolume(float volume){
         if(volume > 1.0) volume = 1.0f;
         if(volume < 0) volume = 0;
+        sfxVolume = volume;
+        updateAllSfxVolume(sfxVolume);
+    }
+
+    private static void updateAllSfxVolume(float volume){
         for (Map.Entry<String, MediaPlayer> entry: sfxSounds.entrySet()) {
             entry.getValue().setVolume(volume,volume);
         }
@@ -170,4 +185,30 @@ public class SoundManager {
 
     }
 
+    @Override
+    public void Response() {
+
+    }
+
+    @Override
+    public void Response(Boolean aBoolean) {
+        if(aBoolean){
+            // we minimized
+            onAppMinimize();
+        }
+        else{
+            // we maximized
+            onAppMaximize();
+        }
+    }
+
+    public static void onAppMinimize(){
+        updateAllSfxVolume(0);
+        updateAllMusicVolume(0);
+    }
+
+    public static void onAppMaximize(){
+        updateAllSfxVolume(sfxVolume);
+        updateAllMusicVolume(musicVolume);
+    }
 }
