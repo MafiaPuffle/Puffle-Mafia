@@ -29,7 +29,6 @@ import com.example.pufflemafia.app.game.SoundManager;
 
 public class Start extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
     private EditText nameEditText;
-    private Button addNameButton;
     private GridView namesGridView;
     private ArrayList<String> namesList;
     private NamesAdapter namesAdapter;
@@ -42,7 +41,6 @@ public class Start extends CustomAppCompatActivityWrapper implements IListener<B
 
         // Names GridView
         nameEditText = findViewById(R.id.nameEditText);
-        addNameButton = findViewById(R.id.addNameButton);
         namesGridView = findViewById(R.id.namesGridView);
         numberOfNamesTextView = findViewById(R.id.NumberofNames);
 
