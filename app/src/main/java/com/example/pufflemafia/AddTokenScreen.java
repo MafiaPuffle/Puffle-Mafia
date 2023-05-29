@@ -12,6 +12,7 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.PlayerManager;
@@ -19,7 +20,7 @@ import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
-public class AddTokenScreen extends AppCompatActivity {
+public class AddTokenScreen extends CustomAppCompatActivityWrapper {
 
     private Intent intent;
     private GridLayout gridLayout;

@@ -83,7 +83,9 @@
             android:id="@+id/NewPlayerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name of the character that is being changed" />
+            android:hint="Name of the character that is being changed"
+            android:maxLength="10"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

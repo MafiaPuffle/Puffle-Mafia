@@ -10,9 +10,10 @@ import android.widget.ToggleButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.game.SoundManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends CustomAppCompatActivityWrapper {
 
     private ToggleButton musicToggleButton;
     private ToggleButton sfxToggleButton;

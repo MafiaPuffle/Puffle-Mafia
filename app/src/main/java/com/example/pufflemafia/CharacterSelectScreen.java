@@ -19,6 +19,7 @@ import com.example.pufflemafia.adaptors.PossibleRoleUIAdaptor;
 import com.example.pufflemafia.adaptors.SelectableRoleUIAdaptor;
 import com.example.pufflemafia.adaptors.SelectedRoleUIAdaptor;
 import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
@@ -27,7 +28,7 @@ import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
-public class CharacterSelectScreen extends AppCompatActivity implements IListener<Boolean> {
+public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
 
     private int buttonCount = 0;
     private TextView countTextView;
