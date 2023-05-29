@@ -14,23 +14,25 @@ public class AppMinimizedWatcher implements DefaultLifecycleObserver {
     private static Map<ScreenLifeCycleWatcher, ScreenState> allRegisteredScreens;
 
     public static Event<Boolean> onAppMinimize;
-
-    public static Event<Boolean> onAppMaximize;
     public static Boolean appIsMinimized;
 
-    public AppMinimizedWatcher(){
+    public static AppMinimizedWatcher instance;
+
+    private AppMinimizedWatcher(){
         //
     }
 
     public static void Initialize(){
         allRegisteredScreens = new HashMap<ScreenLifeCycleWatcher, ScreenState>();
         onAppMinimize = new Event<Boolean>();
-        onAppMaximize = new Event<Boolean>();
         appIsMinimized = false;
+        instance = new AppMinimizedWatcher();
     }
 
     public static void RegisterScreen(ScreenLifeCycleWatcher screenLifeCycleWatcher){
-        allRegisteredScreens.put(screenLifeCycleWatcher, ScreenState.ACTIVE);
+        if(allRegisteredScreens == null) Initialize();
+        ScreenState state = ScreenState.ACTIVE;
+        allRegisteredScreens.put(screenLifeCycleWatcher, state);
     }
 
     public static void UnregisterScreen(ScreenLifeCycleWatcher screenLifeCycleWatcher){
@@ -58,12 +60,12 @@ public class AppMinimizedWatcher implements DefaultLifecycleObserver {
             if(appIsMinimized){
                 // we minimized the app
                 onAppMinimize.Invoke(true);
-                SoundManager.onAppMinimize();
+                //SoundManager.onAppMinimize();
             }
             else{
                 // we maximized the app
                 onAppMinimize.Invoke(false);
-                SoundManager.onAppMaximize();
+                //SoundManager.onAppMaximize();
             }
         }
     }

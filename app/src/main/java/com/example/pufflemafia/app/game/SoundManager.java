@@ -24,7 +24,9 @@ public class SoundManager implements IListener<Boolean> {
     private static float musicVolume;
     private static float sfxVolume;
 
-    public SoundManager(){
+    private static SoundManager instance;
+
+    private SoundManager(){
     }
 
     public static void initialize(Context context){
@@ -32,6 +34,12 @@ public class SoundManager implements IListener<Boolean> {
         fadeOutTimer = new Timer();
         initializeSongs(context);
         initializeSFX(context);
+
+        musicVolume = 1;
+        sfxVolume = 1;
+
+        instance = new SoundManager();
+        AppMinimizedWatcher.onAppMinimize.AddListener(instance);
     }
 
     private static void initializeSongs(Context context){
@@ -202,12 +210,12 @@ public class SoundManager implements IListener<Boolean> {
         }
     }
 
-    public static void onAppMinimize(){
+    private static void onAppMinimize(){
         updateAllSfxVolume(0);
         updateAllMusicVolume(0);
     }
 
-    public static void onAppMaximize(){
+    private static void onAppMaximize(){
         updateAllSfxVolume(sfxVolume);
         updateAllMusicVolume(musicVolume);
     }

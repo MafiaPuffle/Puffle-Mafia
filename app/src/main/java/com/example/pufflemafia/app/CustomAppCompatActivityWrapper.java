@@ -11,7 +11,9 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         screenLifeCycleWatcher = new ScreenLifeCycleWatcher();
         getLifecycle().addObserver(screenLifeCycleWatcher);
+        screenLifeCycleWatcher.Setup();
     }
 }

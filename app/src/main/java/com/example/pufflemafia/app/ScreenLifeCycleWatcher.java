@@ -1,18 +1,14 @@
 package com.example.pufflemafia.app;
 
+import android.util.Log;
+
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
 public class ScreenLifeCycleWatcher implements DefaultLifecycleObserver {
 
-    @Override
-    public void onCreate(LifecycleOwner owner){
-        try {
-            Boolean test = AppMinimizedWatcher.appIsMinimized;
-        } catch (Exception e) {
-            AppMinimizedWatcher.Initialize();
-        }
 
+    public void Setup(){
         AppMinimizedWatcher.RegisterScreen(this);
     }
 
