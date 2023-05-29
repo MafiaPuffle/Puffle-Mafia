@@ -30,9 +30,16 @@ public class Role {
     private Power power = new Power();
     public Power getPower() { return power; }
 
+    private int minimumAllowed;
+    public int getMinimumAllowed(){return minimumAllowed;}
+    private int maximumAllowed;
+    public int getMaximumAllowed(){return maximumAllowed;}
 
     private String description;
     public String getDescription(){return description;}
+
+    private String flavorText;
+    public String getFlavorText(){return flavorText;}
 
 
     public Role(){
@@ -41,7 +48,10 @@ public class Role {
         this.team = Teams.TOWN;
         this.name = "PuffleName";
         this.imageResource = R.drawable.alien_puffle;
+        this.minimumAllowed = 1;
+        this.maximumAllowed = 3;
         this.description = "Does something amazing!";
+        this.flavorText = "Did your know puffles are fluffy?";
     }
 
     public Role(Role other){
@@ -49,14 +59,17 @@ public class Role {
     }
 
     // Constructor with Power class as an argument
-    public Role ( String name, int imageResource, float priority, Alliances alliance, Teams team, @NonNull Power power, String description){
+    public Role ( String name, int imageResource, float priority, Alliances alliance, Teams team, @NonNull Power power, String description, String flavorText, int minimumAllowed, int maximumAllowed){
         this.name = name;
         this.imageResource = imageResource;
         this.priority = priority;
         this.alliance = alliance;
         this.team = team;
         this.power = new Power(power);
+        this.minimumAllowed = minimumAllowed;
+        this.maximumAllowed = maximumAllowed;
         this.description = description;
+        this.flavorText = flavorText;
     }
 
     // Lets us copy values from another role into this
@@ -67,7 +80,10 @@ public class Role {
         this.alliance = other.getAlliance();
         this.team = other.getTeam();
         this.power = new Power(other.getPower());
+        this.minimumAllowed = other.getMinimumAllowed();
+        this.maximumAllowed = other.getMaximumAllowed();
         this.description = other.getDescription();
+        this.flavorText = other.getFlavorText();
     }
 
     public void PrintSummary(){

@@ -52,7 +52,7 @@ public class GameSetup {
     public void addRandomRole(){
         Role randomRole = DataManager.GetRandomRole();
 
-        while (checkIfRoleHasBeenChosenToManyTimes(1, randomRole)){
+        while (checkIfRoleHasBeenChosenToManyTimes(randomRole)){
             randomRole = DataManager.GetRandomRole();
         }
 
@@ -71,14 +71,14 @@ public class GameSetup {
         this.onDataUpdated.Invoke();
     }
 
-    public boolean checkIfRoleHasBeenChosenToManyTimes(int threshold, Role roleToCheckFor){
+    public boolean checkIfRoleHasBeenChosenToManyTimes(Role roleToCheckFor){
         int amountFound = 0;
 
         for (Role role: this.chosenRoles) {
             if(Objects.equals(role.getName(), roleToCheckFor.getName())) amountFound++;
         }
 
-        return amountFound >= threshold;
+        return amountFound >= roleToCheckFor.getMaximumAllowed();
     }
 
     public boolean checkIfIsValid(){
