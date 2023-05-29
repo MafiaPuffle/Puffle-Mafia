@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import com.example.pufflemafia.app.AppManager;
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
@@ -26,7 +27,7 @@ import com.example.pufflemafia.app.data.GameSetup;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
-public class Start extends AppCompatActivity implements IListener<Boolean> {
+public class Start extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
     private EditText nameEditText;
     private Button addNameButton;
     private GridView namesGridView;

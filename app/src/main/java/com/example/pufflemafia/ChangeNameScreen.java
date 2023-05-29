@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
 import com.google.android.material.textfield.TextInputEditText;
@@ -15,7 +16,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
-public class ChangeNameScreen extends AppCompatActivity {
+public class ChangeNameScreen extends CustomAppCompatActivityWrapper {
 
     private Intent intent;
     private String name;

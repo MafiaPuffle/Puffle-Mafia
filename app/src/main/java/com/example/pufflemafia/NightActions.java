@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.pufflemafia.adaptors.PlayerNightUIAdaptor;
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.ActiveRolesManager;
@@ -22,7 +23,7 @@ import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
-public class NightActions extends AppCompatActivity implements IListener<Boolean> {
+public class NightActions extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
 
     private Vector<Player> allAlivePlayers;
     private Role currentActiveRoleAtNight;

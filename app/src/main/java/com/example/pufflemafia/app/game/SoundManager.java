@@ -213,6 +213,9 @@ public class SoundManager implements IListener<Boolean> {
     private static void onAppMinimize(){
         updateAllSfxVolume(0);
         updateAllMusicVolume(0);
+
+        fadeOutTimer.cancel();
+        fadeInTimer.cancel();
     }
 
     private static void onAppMaximize(){

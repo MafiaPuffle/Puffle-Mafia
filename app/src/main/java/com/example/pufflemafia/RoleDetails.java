@@ -9,9 +9,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.game.SoundManager;
 
-public class RoleDetails extends AppCompatActivity {
+public class RoleDetails extends CustomAppCompatActivityWrapper {
 
     private Intent intent;
 

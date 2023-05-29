@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.adaptors.PlayerDayUIAdaptor;
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
@@ -19,7 +20,7 @@ import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
-public class MainMafiaPage extends AppCompatActivity implements IListener<Boolean> {
+public class MainMafiaPage extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
 
     private RecyclerView allAliveRecycleView;
     private RecyclerView allDeadRecycleView;
