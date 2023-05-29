@@ -318,7 +318,9 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.SELF,
                 GetPower("Alien"),
-                "Does something amazing!",
+                "Infect one player at night. If half the players become Aliens, the Alien wins. (Does not win with the Civilians or Mafia)\n" +
+                        "" +
+                        "The Alien takes the form of a Puffle and slowly infects the town players, turning them into Aliens. Players do not know they are Aliens. Once half the players are Aliens, they can take over the town and win. If the head Alien is dead, then infected players return to normal.",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -330,7 +332,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Baker"),
-                "Does something amazing!",
+                "Bake 2 Croissants and give them out to any player(s) during the day. If the Baker dies, players without Croissants die after 3 nights (Maximum).\n" +
+                        "" +
+                        "Everyone needs FOOD. The Baker's yummy pastries keep the town alive. If the Baker dies, a famine will spread and players without Croissants will die in 3 nights (1 night for every 5 players)\n",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -342,7 +346,11 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Civilian"),
-                "Does something amazing!",
+                "Civilians have no special abilities.\n" +
+                        "" +
+                        "Civilian will vote people out at the beginning of the next day. \n" +
+                        "" +
+                        "Boring life as a Civilian. At least your get to execute a player every night!",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -354,7 +362,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Cupid"),
-                "Does something amazing!",
+                "Links two players together on the first night\n" +
+                        "" +
+                        "Choose two players to link together. All effects of other players will affect both players that are linked together (If one player dies, they both die. If one player is saved, both are saved.) The Match-Maker of Heaven!",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -366,7 +376,9 @@ public class DataManager {
                 Role.Alliances.NEUTRAL,
                 Role.Teams.NEUTRAL,
                 GetPower("Cyborg"),
-                "Does something amazing!",
+                "At the start of the game, choose one player to copy their ability and become Good or Evil based on that player.\n" +
+                        "" +
+                        "Cyborgs can become anyone they want to with the power of technology. Choosing a player will transform the Cyborg into that player's ability as well.",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -378,7 +390,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Dentist"),
-                "Does something amazing!",
+                "Choose one player to silence for the day\n" +
+                        "" +
+                        "The Dentist does daily dentist appointments with town players. When a player gets their teeth done, they cannot speak for an entire day. ",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -390,7 +404,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Detective"),
-                "Does something amazing!",
+                "Discovers the alliance of one player every night\n" +
+                        "" +
+                        "Being the genius that they are, choose one player and the Playmaster will give a thumbs up if the person is Good or a thumbs down if they are Evil (Possibly Mafia). ",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -402,7 +418,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Doctor"),
-                "Does something amazing!",
+                "Save one player every night (self-included) from death by the Mafia \n" +
+                        "" +
+                        "All Doctors must save one player unanimously. The oath the Doctors took will keep the injuries to a minimum.",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -414,7 +432,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Doggie"),
-                "Does something amazing!",
+                "Doggie must receive 1 extra vote to be voted out \n" +
+                        "" +
+                        "The Doggie is loved by the town. It must receive a majority vote plus 1 (if 11 people are voting, 7 guilty votes are required) because most people do not want the Doggie to die. "
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -426,7 +446,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("The Father"),
-                "Does something amazing!",
+                "Everybody that died this round will come back to life\n" +
+                        "" +
+                        "He chooses to activate it at the beginning of the night and it activates at the end of the day. The Father has all the power of space, time, and matter. All players that die this round will come back to life because The Father loves the world.  ",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -438,7 +460,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.MAFIA,
                 GetPower("GodFather"),
-                "Does something amazing!",
+                "Kill one player every night with the other members of the Mafia. Will be a thumbs up when discovered by the Detective \n" +
+                        "" +
+                        "All Mafia and Godfather members must kill one player unanimously. Being the Head of the Mafia, he often avoids detection by the authorities. ",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -450,7 +474,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Holy Spirit"),
-                "Does something amazing!",
+                "All Good players this round will have their ability activated twice\n" +
+                        "" +
+                        "The Holy Spirit dwells within all the believers and empowers them. This allows all Good players to use their abilities twice this round. Players with one-time use abilities cannot use their powers again and are unaffected by the Holy Spirit.",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -462,7 +488,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("J.O.A.T."),
-                "Does something amazing!",
+                "Can use one skill of the Town players. You cannot use the same skill until all skills are used\n" +
+                        "" +
+                        "The Jack-of-All-Trades a master of none, but still better than a master of one. Choose one skill from a list of skills. (Detective, Doctor, Lawyer, Dentist)",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -474,7 +502,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.MAFIA,
                 GetPower("Jailkeeper"),
-                "Does something amazing!",
+                "The Jailkeeper chooses one player every night and they cannot activate their ability during the night or day\n" +
+                        "" +
+                        "The Jailkeeper will keep any player in jail because he is scared of the Mafia. Anyone that the Jailkeeper chooses, cannot activate their ability for the night or day",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -486,7 +516,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Jesus"),
-                "Does something amazing!",
+                "Jesus comes back to the game after death, after 3 nights (maximum)\n" +
+                        "" +
+                        "Jesus is the Son of God and will return after 3 nights (1 night for every 5 players) after being killed by the Mafia or Civilians.",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -498,7 +530,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.MAFIA,
                 GetPower("Lawyer"),
-                "Does something amazing!",
+                "Save one player every day (self-included) from death by the player's vote, chosen at night\n" +
+                        "" +
+                        "The master of the Law, the Lawyer can defend anyone is a court of law and save anyone they choose from a vote execution.",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -510,7 +544,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Lovers"),
-                "Does something amazing!",
+                "Lovers are linked to each other\n" +
+                        "" +
+                        "All effects of other players will affect both players that are linked together (If one player dies, they both die. If one player is saved, both are saved.) Till death do us part am I right?!",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -522,7 +558,9 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA,
                 GetPower("Mafia"),
-                "Does something amazing!",
+                "Kill one player every night with the other members of the Mafia. \n" +
+                        "" +
+                        "All Mafia members must kill one player unanimously. What turned these once-good Civilians into murderers, the world will never know.",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -534,7 +572,9 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.RIVAL_MAFIA,
                 GetPower("Mafia Rival"),
-                "Does something amazing!",
+                "Kill one player every night with the other members of the Rival Mafia. \n" +
+                        "" +
+                        "All Rival Mafia members must kill one player unanimously. What turned these once-good Civilians into murders, the world will never know.",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -546,7 +586,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("President"),
-                "Does something amazing!",
+                "Stand up and announce that you are the President and execute one player during the day at ANYTIME \n" +
+                        "" +
+                        "President can veto any vote on a player and execute any player of their choice during the day (not night).",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -558,7 +600,9 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA,
                 GetPower("Satan"),
-                "Does something amazing!",
+                "All Evil players this round will have their ability activated twice\n" +
+                        "" +
+                        "Satan causes evil and confusion in the world. This allows all Evil players to use their abilities twice this round. Players with one-time use abilities cannot use their powers again and are unaffected by the Satan.",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -570,7 +614,9 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA,
                 GetPower("Terrorist"),
-                "Does something amazing!",
+                "Choose one player to die when the Terrorist dies\n" +
+                        "" +
+                        "Choose one player to attach a bomb too. That player dies when the Terrorist dies. The Terrorist is highered by the Mafia but their identities are hidden from each other. The Terrorist does not vote with the Mafia but wins with them. ",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -582,7 +628,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Veteran"),
-                "Does something amazing!",
+                "When the Veteran is chosen to die by the Mafia for the first time, one random Mafia member dies instead\n" +
+                        "" +
+                        "The Veteran is a master of combat and self-defense. Once he's fought off one Mafia member, the Veteran is injured and cannot defend himself anymore. The civilians find out that the Veteran has defended themselves but does not know who it is. !",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -594,7 +642,9 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.SELF,
                 GetPower("Village Idiot"),
-                "Does something amazing!",
+                "The Village Idiot wins if they are voted out by the players at the end of the day. \n" +
+                        "" +
+                        "If the players choose the Village Idiot to die during the day, the Village Idiot wins. They do not win if they die by any other means. They do not win with the Mafia or the Civilians. Why do idiots suck?!",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -606,7 +656,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Witness"),
-                "Does something amazing!",
+                "For one night, the witness can look up to see who the Mafia are\n" +
+                        "" +
+                        "For one night only, the Witness can look up to see the Mafia. If the Mafia catches the Witness, the Witness dies that round as well. Being a little child doesn't help that much.",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -618,7 +670,13 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Wizard"),
-                "Does something amazing!",
+                "At the beginning of a single night, choose one person to switch roles with. The Playmaster will switch cards with the Wizard and the other player will know there has been a switch.\n" +
+                        "" +
+                        "CANNOT ACTIVATE THE SPELLS. "
+                        +"[Switch Ability]\n" +
+                        "You are an untrained Wizard\n" +
+                        "Due to your lack of skill as a Wizard Announce that you are using your Spell anytime during the day.\n" +
+                        "CAN ACTIVATE SPELLS",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -630,7 +688,9 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Zombie Good"),
-                "Does something amazing!",
+                "The Good Zombie not allowed to talk only grunting is allowed. You are not allowed to use your arms. You win with the Mafia.\\n\" +\n" +
+                        "" +
+                        "The Good Zombie the dead Godfather of the Mafia. Being brought back to life does not mean your body is still intact. As a Zombie, your tongue has decayed and you cannot talk but only make grunting sounds. Your limbs have also decayed so you cannot move your arms. \");\n",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -642,7 +702,9 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA,
                 GetPower("Zombie Evil"),
-                "Does something amazing!",
+                "The Evil Zombie not allowed to talk only grunting is allowed. You are not allowed to use your arms. You win with the Mafia.\n" +
+                        "" +
+                        "The Evil Zombie the dead Godfather of the Mafia. Being brought back to life does not mean your body is still intact. As a Zombie, your tongue has decayed and you cannot talk but only make grunting sounds. Your limbs have also decayed so you cannot move your arms. ",
                 "Did you know puffles are fluffy?",
                 1,
                 3);

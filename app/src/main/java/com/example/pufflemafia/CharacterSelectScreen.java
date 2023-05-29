@@ -88,7 +88,7 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
             countTextView.setText("Too Many Roles");
         }
         else if (difference == 0 && AppManager.gameSetup.mafiaHasBeenChosen() == false){
-            countTextView.setText("Replace on role with a Mafia");
+            countTextView.setText("Replace a role with a Mafia");
         }
         else {
             countTextView.setText("Ready!");
@@ -118,8 +118,8 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
         selectedRolesUIAdaptor = new SelectedRoleUIAdaptor(selectedRoles, this);
 
         // initialize layoutManagers
-        allRolesLayoutManager = new GridLayoutManager(this, 7);
-        selectedLayoutManager = new GridLayoutManager(this, 7);
+        allRolesLayoutManager = new GridLayoutManager(this, 5);
+        selectedLayoutManager = new GridLayoutManager(this, 5);
 
         // initialize recyclerViews
         allRolesRecyclerView = findViewById(R.id.AllCharactersRecyclerView);
