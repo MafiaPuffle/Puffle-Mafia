@@ -12,7 +12,7 @@ import androidx.viewpager.widget.PagerAdapter;
 public class ImagePagerAdapter extends PagerAdapter {
 
     private Context context;
-    private int[] imageIds = {R.drawable.click_start, R.drawable.enter_names, R.drawable.delete_names,R.drawable.choose_characters,R.drawable.start_night,R.drawable.chooshe_character,R.drawable.next_action,R.drawable.end_night,R.drawable.kill_player,R.drawable.edit_role,R.drawable.edit_name,R.drawable.edit_tokens,};
+    private int[] imageIds = {R.drawable.click_start, R.drawable.enter_names, R.drawable.delete_names,R.drawable.choose_characters,R.drawable.tap4characters,R.drawable.top2deletecharacters,R.drawable.start_night,R.drawable.chooshe_character,R.drawable.next_action,R.drawable.end_night,R.drawable.kill_player,R.drawable.edit_role,R.drawable.edit_name,R.drawable.edit_tokens,};
 
     public ImagePagerAdapter(Context context) {
         this.context = context;

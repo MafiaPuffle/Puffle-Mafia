@@ -7,9 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.game.SoundManager;
 
-public class Instructions extends AppCompatActivity {
+public class Instructions extends CustomAppCompatActivityWrapper{
 
     private ViewPager viewPager;
     private ImagePagerAdapter imagePagerAdapter;
