@@ -80,12 +80,19 @@
                 android:id="@+id/NumberofNames"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/purple_rectangle"
+                android:background="@drawable/green_rectangle"
                 android:fontFamily="@font/horizon"
+                android:gravity="center"
                 android:padding="5dp"
                 android:text="N"
                 android:textColor="@color/white"
-                android:textSize="13dp"></TextView>
+                android:textSize="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp">
+
+            </TextView>
         </LinearLayout>
 
 
@@ -153,7 +160,7 @@
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RandomCharactersButton"
-        app:layout_constraintVertical_bias="0.915" />
+        app:layout_constraintVertical_bias="0.913" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
