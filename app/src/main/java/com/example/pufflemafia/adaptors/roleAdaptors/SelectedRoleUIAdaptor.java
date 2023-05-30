@@ -1,4 +1,4 @@
-package com.example.pufflemafia.adaptors;
+package com.example.pufflemafia.adaptors.roleAdaptors;
 
 import android.content.Context;
 

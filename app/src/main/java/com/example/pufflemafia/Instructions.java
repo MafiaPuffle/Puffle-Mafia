@@ -23,6 +23,8 @@ public class Instructions extends CustomAppCompatActivityWrapper{
         viewPager = findViewById(R.id.viewPager);
         imagePagerAdapter = new ImagePagerAdapter(this);
         viewPager.setAdapter(imagePagerAdapter);
+
+        configureBackButton();
     }
 
     private void configureBackButton() {

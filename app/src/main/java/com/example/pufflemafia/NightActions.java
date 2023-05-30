@@ -1,17 +1,15 @@
 package com.example.pufflemafia;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.pufflemafia.adaptors.PlayerNightUIAdaptor;
+import com.example.pufflemafia.adaptors.playerAdaptors.PlayerNightUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.Role;

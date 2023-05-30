@@ -46,12 +46,32 @@ public class Player {
         tokensOnPlayer.removeElementAt(index);
         tokensOnPlayer.insertElementAt(token, index);
     }
+    public void AddTokenOnToPlayer(Token token){
+        if(DoesPlayerAlreadyHaveToken(token) == false){
+            this.tokensOnPlayer.add(token);
+        }
+    }
+    public boolean DoesPlayerAlreadyHaveToken(Token token){
+        for (Token t: this.tokensOnPlayer) {
+            if(token.getName() == t.getName()) return true;
+        }
+        return false;
+    }
+    public void RemoveTokenAt(int tokenIndex){
+        if(tokenIndex >= tokensOnPlayer.size()) return;
+        tokensOnPlayer.removeElementAt(tokenIndex);
+    }
 
+    public void UpdateTokens(Vector<Token> newTokens){
+        tokensOnPlayer.clear();
+        tokensOnPlayer = newTokens;
+    }
     public void clearAlTokensOfType(Token.TokenTypes typeToCLear){
         Predicate<Token> isTypeToClear = token -> (token.getType() == typeToCLear);
 
         tokensOnPlayer.removeIf(isTypeToClear);
     }
+
 
     // the token this player applies to others
     public Token getToken(){
@@ -64,22 +84,6 @@ public class Player {
         this.role = new Role();
         this.tokensOnPlayer = new Vector<Token>();
     }
-
-    // adds the token to tokensOnPlayer
-    public void AddTokenOnToPlayer(Token token){
-        tokensOnPlayer.add(token);
-    }
-
-    public void RemoveTokenAt(int tokenIndex){
-        if(tokenIndex >= tokensOnPlayer.size()) return;
-        tokensOnPlayer.removeElementAt(tokenIndex);
-    }
-
-    public void UpdateTokens(Vector<Token> newTokens){
-        tokensOnPlayer.clear();
-        tokensOnPlayer = newTokens;
-    }
-
     public void PrintSummary(){
         System.out.print("Player: " + this.name + "\n");
         this.role.PrintSummary("    ");
