@@ -72,6 +72,7 @@ public class GameSetup {
 
         while(tryAddRole(randomRole) == false){
             randomRole = DataManager.GetRandomRole();
+            Log.d("GameSetup","Adding a random role: " + randomRole.getName());
         }
     }
 
@@ -92,10 +93,13 @@ public class GameSetup {
     }
 
     public boolean checkIfCanAddRole(Role roleToCheckFor){
-        if(this.chosenRoles.size() == numberOfPlayers()){
-            Log.d("GameSetup","Did not add role since number of roles currently equals the number of players");
+        if(numberOfRolesChosen() == numberOfPlayers()){
+            Log.d("GameSetup","Did not add the " + roleToCheckFor.getName() + "role since number of roles currently equals the number of players");
+            LogSummary();
             return false;
         } else if (roleWouldBeAddedToManyTimes(roleToCheckFor)) {
+            Log.d("GameSetup","Did not add the " + roleToCheckFor.getName() + " role since it would be added more than its maximum allowed amount");
+            LogSummary();
             return false;
         }
         return true;
@@ -105,12 +109,15 @@ public class GameSetup {
         int amountFound = 0;
 
         for (Role role: this.chosenRoles) {
-            if(Objects.equals(role.getName(), roleToCheckFor.getName())) amountFound++;
+            if(role.getName() == roleToCheckFor.getName()) amountFound++;
         }
 
         int potentialAmountAfterAdding = amountFound + roleToCheckFor.getMinimumAllowed();
 
-        return potentialAmountAfterAdding > roleToCheckFor.getMaximumAllowed();
+       if(potentialAmountAfterAdding > roleToCheckFor.getMaximumAllowed()){
+           return true;
+       }
+       else return false;
     }
 
     public boolean checkIfIsValid(){
