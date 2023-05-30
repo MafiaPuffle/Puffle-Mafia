@@ -1,9 +1,6 @@
 package com.example.pufflemafia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -22,7 +19,6 @@ import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.IListener;
-import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.GameSetup;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.SoundManager;
@@ -38,6 +34,7 @@ public class Start extends CustomAppCompatActivityWrapper implements IListener<B
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        makeKeyboardHidealbe(findViewById(R.id.rootConstraintLayout));
 
         // Names GridView
         nameEditText = findViewById(R.id.nameEditText);
@@ -50,14 +47,6 @@ public class Start extends CustomAppCompatActivityWrapper implements IListener<B
         namesGridView.setAdapter(namesAdapter);
 
         AppManager.gameSetup = new GameSetup();
-
-//        addNameButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                SoundManager.playSfx("Click");
-//                addName();
-//            }
-//        });
 
         int numberOfNames = namesList.size();
         numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
@@ -77,6 +66,7 @@ public class Start extends CustomAppCompatActivityWrapper implements IListener<B
                 return true;
             }
         });
+
     }
 
     private void Refresh(){
