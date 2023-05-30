@@ -323,7 +323,7 @@ public class DataManager {
                         "The Alien takes the form of a Puffle and slowly infects the town players, turning them into Aliens. Players do not know they are Aliens. Once half the players are Aliens, they can take over the town and win. If the head Alien is dead, then infected players return to normal.",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(alien.getName(), alien);
 
         Role baker = new Role("Baker",
@@ -337,7 +337,7 @@ public class DataManager {
                         "Everyone needs FOOD. The Baker's yummy pastries keep the town alive. If the Baker dies, a famine will spread and players without Croissants will die in 3 nights (1 night for every 5 players)\n",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(baker.getName(), baker);
 
         Role civilian = new Role("Civilian",
@@ -367,7 +367,7 @@ public class DataManager {
                         "Choose two players to link together. All effects of other players will affect both players that are linked together (If one player dies, they both die. If one player is saved, both are saved.) The Match-Maker of Heaven!",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(cupid.getName(), cupid);
 
         Role cyborg = new Role("Cyborg",
@@ -381,7 +381,7 @@ public class DataManager {
                         "Cyborgs can become anyone they want to with the power of technology. Choosing a player will transform the Cyborg into that player's ability as well.",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(cyborg.getName(), cyborg);
 
         Role dentist = new Role("Dentist",
@@ -395,7 +395,7 @@ public class DataManager {
                         "The Dentist does daily dentist appointments with town players. When a player gets their teeth done, they cannot speak for an entire day. ",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(dentist.getName(), dentist);
 
         Role detective = new Role("Detective",
@@ -409,7 +409,7 @@ public class DataManager {
                         "Being the genius that they are, choose one player and the Playmaster will give a thumbs up if the person is Good or a thumbs down if they are Evil (Possibly Mafia). ",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(detective.getName(), detective);
 
         Role doctor = new Role("Doctor",
@@ -423,7 +423,7 @@ public class DataManager {
                         "All Doctors must save one player unanimously. The oath the Doctors took will keep the injuries to a minimum.",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                2);
         allRoles.put(doctor.getName(), doctor);
 
         Role doggie = new Role("Doggie",
@@ -437,7 +437,7 @@ public class DataManager {
                         "The Doggie is loved by the town. It must receive a majority vote plus 1 (if 11 people are voting, 7 guilty votes are required) because most people do not want the Doggie to die. ",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(doggie.getName(), doggie);
 
         Role theFather = new Role("The Father",
@@ -451,7 +451,7 @@ public class DataManager {
                         "He chooses to activate it at the beginning of the night and it activates at the end of the day. The Father has all the power of space, time, and matter. All players that die this round will come back to life because The Father loves the world.  ",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(theFather.getName(), theFather);
 
         Role Godfather = new Role("GodFather",
@@ -465,7 +465,7 @@ public class DataManager {
                         "All Mafia and Godfather members must kill one player unanimously. Being the Head of the Mafia, he often avoids detection by the authorities. ",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(Godfather.getName(), Godfather);
 
         Role holySpirit = new Role("Holy Spirit",
@@ -479,7 +479,7 @@ public class DataManager {
                         "The Holy Spirit dwells within all the believers and empowers them. This allows all Good players to use their abilities twice this round. Players with one-time use abilities cannot use their powers again and are unaffected by the Holy Spirit.",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(holySpirit.getName(), holySpirit);
 
         Role jackOfAllTrades = new Role("J.O.A.T.",
@@ -493,7 +493,7 @@ public class DataManager {
                         "The Jack-of-All-Trades a master of none, but still better than a master of one. Choose one skill from a list of skills. (Detective, Doctor, Lawyer, Dentist)",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(jackOfAllTrades.getName(), jackOfAllTrades);
 
         Role jailkeeper = new Role("Jailkeeper",
@@ -507,7 +507,7 @@ public class DataManager {
                         "The Jailkeeper will keep any player in jail because he is scared of the Mafia. Anyone that the Jailkeeper chooses, cannot activate their ability for the night or day",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(jailkeeper.getName(), jailkeeper);
 
         Role jesus = new Role("Jesus",
@@ -521,7 +521,7 @@ public class DataManager {
                         "Jesus is the Son of God and will return after 3 nights (1 night for every 5 players) after being killed by the Mafia or Civilians.",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(jesus.getName(), jesus);
 
         Role lawyer = new Role("Lawyer",
@@ -535,7 +535,7 @@ public class DataManager {
                         "The master of the Law, the Lawyer can defend anyone is a court of law and save anyone they choose from a vote execution.",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(lawyer.getName(), lawyer);
 
         Role lovers = new Role("Lovers",
@@ -577,7 +577,7 @@ public class DataManager {
                         "All Rival Mafia members must kill one player unanimously. What turned these once-good Civilians into murders, the world will never know.",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                2);
         allRoles.put(mafiaRival.getName(), mafiaRival);
 
         Role president = new Role("President",
@@ -591,7 +591,7 @@ public class DataManager {
                         "President can veto any vote on a player and execute any player of their choice during the day (not night).",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(president.getName(), president);
 
         Role satan = new Role("Satan",
@@ -605,7 +605,7 @@ public class DataManager {
                         "Satan causes evil and confusion in the world. This allows all Evil players to use their abilities twice this round. Players with one-time use abilities cannot use their powers again and are unaffected by the Satan.",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(satan.getName(), satan);
 
         Role terrorist = new Role("Terrorist",
@@ -619,7 +619,7 @@ public class DataManager {
                         "Choose one player to attach a bomb too. That player dies when the Terrorist dies. The Terrorist is highered by the Mafia but their identities are hidden from each other. The Terrorist does not vote with the Mafia but wins with them. ",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(terrorist.getName(), terrorist);
 
         Role veteran = new Role("Veteran",
@@ -633,7 +633,7 @@ public class DataManager {
                         "The Veteran is a master of combat and self-defense. Once he's fought off one Mafia member, the Veteran is injured and cannot defend himself anymore. The civilians find out that the Veteran has defended themselves but does not know who it is. !",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(veteran.getName(), veteran);
 
         Role villageIdiot = new Role("Village Idiot",
@@ -647,7 +647,7 @@ public class DataManager {
                         "If the players choose the Village Idiot to die during the day, the Village Idiot wins. They do not win if they die by any other means. They do not win with the Mafia or the Civilians. Why do idiots suck?!",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(villageIdiot.getName(), villageIdiot);
 
         Role witness = new Role("Witness",
@@ -661,7 +661,7 @@ public class DataManager {
                         "For one night only, the Witness can look up to see the Mafia. If the Mafia catches the Witness, the Witness dies that round as well. Being a little child doesn't help that much.",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(witness.getName(), witness);
 
         Role wizard = new Role("Wizard",
@@ -679,7 +679,7 @@ public class DataManager {
                         "CAN ACTIVATE SPELLS",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(wizard.getName(), wizard);
 
         Role zombieGood = new Role("Zombie Good",
@@ -693,7 +693,7 @@ public class DataManager {
                         "The Good Zombie the dead Godfather of the Mafia. Being brought back to life does not mean your body is still intact. As a Zombie, your tongue has decayed and you cannot talk but only make grunting sounds. Your limbs have also decayed so you cannot move your arms. \");\n",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(zombieGood.getName(), zombieGood);
 
         Role zombieEvil = new Role("Zombie Evil",
@@ -707,7 +707,7 @@ public class DataManager {
                         "The Evil Zombie the dead Godfather of the Mafia. Being brought back to life does not mean your body is still intact. As a Zombie, your tongue has decayed and you cannot talk but only make grunting sounds. Your limbs have also decayed so you cannot move your arms. ",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                1);
         allRoles.put(zombieEvil.getName(), zombieEvil);
     }
 
