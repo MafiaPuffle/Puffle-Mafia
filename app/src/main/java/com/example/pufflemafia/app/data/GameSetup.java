@@ -2,15 +2,19 @@ package com.example.pufflemafia.app.data;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.pufflemafia.app.Event;
 
 import java.util.Objects;
 import java.util.Vector;
 
 public class GameSetup {
-    public int numberOfPlayers() {return names.size();}
+    public int numberOfPlayers() {return this.names.size();}
+    public int numberOfRolesChosen() {return this.chosenRoles.size();}
     public Vector<String> names;
-    public Vector<Role> chosenRoles;
+    private Vector<Role> chosenRoles;
+    public Vector<Role> getChosenRoles(){return chosenRoles;}
     public boolean isValid;
 
     public Event<Boolean> onDataUpdated;
@@ -24,15 +28,15 @@ public class GameSetup {
     }
 
     public void SetUpRandomGame(Vector<String> names){
+        Log.d("GameSetup","Starting SetUpRandomGame");
         this.reset();
 
         this.names = names;
-        int numberOfPlayers = this.names.size();
 
-        this.chosenRoles.add(DataManager.GetRole("Mafia"));
-        if(numberOfPlayers > 1){
-            for (int i = 0; i < (numberOfPlayers - 1); i++) {
-                this.addRandomRole();
+        this.addRole(DataManager.GetRole("Mafia"));
+        if(this.numberOfPlayers() > 1){
+            while(checkIfIsValid() == false){
+                addRandomRole();
             }
         }
     }
@@ -45,6 +49,7 @@ public class GameSetup {
     }
 
     public boolean tryAddRole(Role role){
+        Log.d("GameSetup", "Trying to add role: " + role.getName());
         if(checkIfCanAddRole(role)) {
             addRole(role);
             return true;
@@ -54,19 +59,20 @@ public class GameSetup {
         }
     }
 
-    public void addRole(Role role){
-        this.chosenRoles.add(role);
+    public void addRole(@NonNull Role role){
+        for (int i = 0; i < role.getMinimumAllowed(); i++) {
+            this.chosenRoles.add(role);
+            Log.d("GameSetup", "Added role: " + role.getName());
+        }
         this.onDataUpdated.Invoke();
     }
 
     public void addRandomRole(){
         Role randomRole = DataManager.GetRandomRole();
 
-        while (roleWouldBeAddedToManyTimes(randomRole)){
+        while(tryAddRole(randomRole) == false){
             randomRole = DataManager.GetRandomRole();
         }
-
-        this.chosenRoles.add(randomRole);
     }
 
     public void addMultipleRoles(int amount, Role role){
@@ -81,8 +87,13 @@ public class GameSetup {
         this.onDataUpdated.Invoke();
     }
 
+    public void removeAllRoles(){
+        this.chosenRoles.clear();
+    }
+
     public boolean checkIfCanAddRole(Role roleToCheckFor){
-        if(chosenRoles.size() == numberOfPlayers()){
+        if(this.chosenRoles.size() == numberOfPlayers()){
+            Log.d("GameSetup","Did not add role since number of roles currently equals the number of players");
             return false;
         } else if (roleWouldBeAddedToManyTimes(roleToCheckFor)) {
             return false;
@@ -97,7 +108,9 @@ public class GameSetup {
             if(Objects.equals(role.getName(), roleToCheckFor.getName())) amountFound++;
         }
 
-        return amountFound >= roleToCheckFor.getMaximumAllowed();
+        int potentialAmountAfterAdding = amountFound + roleToCheckFor.getMinimumAllowed();
+
+        return potentialAmountAfterAdding > roleToCheckFor.getMaximumAllowed();
     }
 
     public boolean checkIfIsValid(){
