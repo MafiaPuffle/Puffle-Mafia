@@ -1,5 +1,4 @@
 package com.example.pufflemafia;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +13,11 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.util.TypedValue;
 import android.widget.TextView;
+import android.graphics.drawable.AnimationDrawable;
+import android.widget.ImageView;
+import android.view.ViewGroup;
+
+
 
 import com.example.pufflemafia.adaptors.PossibleRoleUIAdaptor;
 import com.example.pufflemafia.adaptors.SelectableRoleUIAdaptor;
@@ -42,6 +46,13 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
     private Vector<Role> allRoles;
     private Vector<Role> selectedRoles;
 
+    private ImageView fingerImageView;
+
+    private AnimationDrawable fingerAnimation;
+
+    private int[] itemIds = {R.id.ChooseYourCharactersTitleText, R.id.ChosenYourCharactersTitleText}; // Replace with the actual IDs of the items you want to tap
+    private int currentItemIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +78,72 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
         configureDoneChoosingCharactersButton();
         updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.chosenRoles.size());
         refreshStartGameButton();
+
+        fingerImageView = new ImageView(this);
+        fingerImageView.setImageResource(R.drawable.finger);
+        fingerImageView.setVisibility(View.INVISIBLE);
+        addContentView(fingerImageView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        Button helpButton = findViewById(R.id.helpButton); // Replace with the ID of your help button
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentItemIndex = 0; // Reset the current index
+                showFinger();
+            }
+        });
+
+        for (int i = 0; i < itemIds.length; i++) {
+            final int currentIndex = i;
+            findViewById(itemIds[i]).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (currentIndex == currentItemIndex) {
+                        if (currentIndex == itemIds.length - 1) {
+                            fingerImageView.setVisibility(View.INVISIBLE);
+                        } else {
+                            currentItemIndex++;
+                            moveFingerToItem();
+                        }
+                    }
+                }
+            });
+        }
     }
+
+    private void showFinger() {
+        if (currentItemIndex == itemIds.length) {
+            currentItemIndex = 0;
+        }
+        fingerImageView.setVisibility(View.VISIBLE);
+        moveFingerToItem();
+    }
+
+
+    private void moveFingerToItem() {
+        RecyclerView recyclerView;
+        if (currentItemIndex == 0) {
+            recyclerView = findViewById(R.id.AllCharactersRecyclerView);
+        } else {
+            recyclerView = findViewById(R.id.ChosenCharactersRecyclerView);
+        }
+
+        View targetItem = recyclerView.getChildAt(0);
+        if (targetItem != null) {
+            int[] targetLocation = new int[2];
+            targetItem.getLocationOnScreen(targetLocation);
+
+            int targetX = targetLocation[0] + targetItem.getWidth() / 2;
+            int targetY = targetLocation[1] + targetItem.getHeight() / 2;
+
+            fingerImageView.animate()
+                    .x(targetX - fingerImageView.getWidth() / 2)
+                    .y(targetY - fingerImageView.getHeight() / 2)
+                    .setDuration(500)
+                    .start();
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -78,7 +154,7 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
     private void updateCountTextView(int numberOfPlayers, int numberOfRoles){
         int difference = numberOfPlayers - numberOfRoles;
 
-        if (difference == 1 && AppManager.gameSetup.mafiaHasBeenChosen() == false) {
+        if (difference == 1 && !AppManager.gameSetup.mafiaHasBeenChosen()) {
             countTextView.setText("Choose a Mafia");
         }
         else if(difference > 0){
@@ -87,7 +163,7 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
         else if(difference < 0){
             countTextView.setText("Too Many Roles");
         }
-        else if (difference == 0 && AppManager.gameSetup.mafiaHasBeenChosen() == false){
+        else if (difference == 0 && !AppManager.gameSetup.mafiaHasBeenChosen()){
             countTextView.setText("Replace a role with a Mafia");
         }
         else {
