@@ -49,11 +49,11 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
 
         Log.i("CharacterSelectScreen", "Starting CharacterSelectScreen");
 
-        AppManager.gameSetup.chosenRoles.clear();
+        AppManager.gameSetup.removeAllRoles();
         AppManager.gameSetup.addRole(DataManager.GetRole("Mafia"));
 
         allRoles = DataManager.GetAllRoles();
-        selectedRoles = AppManager.gameSetup.chosenRoles;
+        selectedRoles = AppManager.gameSetup.getChosenRoles();
 
         countTextView = findViewById(R.id.ChosenCharacterCountText);
 
@@ -65,7 +65,7 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
         // Configure Buttons
         configureBackToStart();
         configureDoneChoosingCharactersButton();
-        updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.chosenRoles.size());
+        updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.numberOfRolesChosen());
         refreshStartGameButton();
     }
 
@@ -98,7 +98,7 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
     private void refresh(){
         allRolesUIAdaptor.notifyDataSetChanged();
         selectedRolesUIAdaptor.notifyDataSetChanged();
-        updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.chosenRoles.size());
+        updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.numberOfRolesChosen());
         refreshStartGameButton();
     }
 
@@ -155,7 +155,7 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
-                AppManager.gameSetup.chosenRoles.clear();
+                AppManager.gameSetup.removeAllRoles();
                 finish();
             }
         });

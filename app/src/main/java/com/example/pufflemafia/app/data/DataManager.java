@@ -434,7 +434,7 @@ public class DataManager {
                 GetPower("Doggie"),
                 "Doggie must receive 1 extra vote to be voted out \n" +
                         "" +
-                        "The Doggie is loved by the town. It must receive a majority vote plus 1 (if 11 people are voting, 7 guilty votes are required) because most people do not want the Doggie to die. "
+                        "The Doggie is loved by the town. It must receive a majority vote plus 1 (if 11 people are voting, 7 guilty votes are required) because most people do not want the Doggie to die. ",
                 "Did you know puffles are fluffy?",
                 1,
                 3);
@@ -548,8 +548,8 @@ public class DataManager {
                         "" +
                         "All effects of other players will affect both players that are linked together (If one player dies, they both die. If one player is saved, both are saved.) Till death do us part am I right?!",
                 "Did you know puffles are fluffy?",
-                1,
-                3);
+                2,
+                2);
         allRoles.put(lovers.getName(), lovers);
 
         Role mafia = new Role("Mafia",
