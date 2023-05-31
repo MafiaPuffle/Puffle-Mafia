@@ -423,7 +423,7 @@ public class DataManager {
                         "All Doctors must save one player unanimously. The oath the Doctors took will keep the injuries to a minimum.",
                 "Did you know puffles are fluffy?",
                 1,
-                2);
+                1);
         allRoles.put(doctor.getName(), doctor);
 
         Role doggie = new Role("Doggie",
@@ -563,7 +563,7 @@ public class DataManager {
                         "All Mafia members must kill one player unanimously. What turned these once-good Civilians into murderers, the world will never know.",
                 "Did you know puffles are fluffy?",
                 1,
-                3);
+                2);
         allRoles.put(mafia.getName(), mafia);
 
         Role mafiaRival = new Role("Mafia Rival",

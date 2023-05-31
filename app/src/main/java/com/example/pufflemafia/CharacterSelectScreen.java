@@ -1,17 +1,14 @@
 package com.example.pufflemafia;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.ImageButton;
-import android.util.TypedValue;
 import android.widget.TextView;
 import android.graphics.drawable.AnimationDrawable;
 import android.widget.ImageView;
@@ -20,7 +17,6 @@ import android.view.ViewGroup;
 
 
 import com.example.pufflemafia.adaptors.PossibleRoleUIAdaptor;
-import com.example.pufflemafia.adaptors.SelectableRoleUIAdaptor;
 import com.example.pufflemafia.adaptors.SelectedRoleUIAdaptor;
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
@@ -50,14 +46,25 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
 
     private AnimationDrawable fingerAnimation;
 
-    private int[] itemIds = {R.id.ChooseYourCharactersTitleText, R.id.ChosenYourCharactersTitleText}; // Replace with the actual IDs of the items you want to tap
+    private int[] itemIds = {R.id.nextButton, R.id.nextButton2}; // Replace with the actual IDs of the items you want to tap
     private int currentItemIndex = 0;
+
+    private Button helpButton;
+    private Button nextButton;
+    private Button nextButton2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_select_screen);
 
+        ColorStateList blueColorStateList = ColorStateList.valueOf(Color.BLUE);
+        ColorStateList greenColorStateList = ColorStateList.valueOf(Color.GREEN);
+        ColorStateList redColorStateList = ColorStateList.valueOf(Color.RED);
+
+        Button button = findViewById(R.id.helpButton);
+        button.setBackgroundTintList(blueColorStateList);
+        
         Log.i("CharacterSelectScreen", "Starting CharacterSelectScreen");
 
         AppManager.gameSetup.removeAllRoles();
@@ -79,36 +86,55 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
         updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.numberOfRolesChosen());
         refreshStartGameButton();
 
+// Initialize buttons
+        helpButton = findViewById(R.id.helpButton);
+        nextButton = findViewById(R.id.nextButton);
+        nextButton2 = findViewById(R.id.nextButton2);
+
+
+        // Set initial visibility
+        nextButton.setVisibility(View.GONE);
+        nextButton2.setVisibility(View.GONE);
+
+
+// Set onClickListener for helpButton
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpButton.setVisibility(View.GONE);
+                nextButton.setVisibility(View.VISIBLE);
+                fingerImageView.setVisibility(View.VISIBLE);
+                currentItemIndex = 0;
+                moveFingerToItem();
+            }
+        });
+
+// Set onClickListener for nextButton1
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextButton.setVisibility(View.GONE);
+                nextButton2.setVisibility(View.VISIBLE);
+                currentItemIndex++;
+                moveFingerToItem();
+            }
+        });
+
+// Set onClickListener for nextButton2
+        nextButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextButton2.setVisibility(View.GONE);
+                helpButton.setVisibility(View.VISIBLE);
+                currentItemIndex = 0;
+                fingerImageView.setVisibility(View.INVISIBLE);
+            }
+        });
+
         fingerImageView = new ImageView(this);
         fingerImageView.setImageResource(R.drawable.finger);
         fingerImageView.setVisibility(View.INVISIBLE);
         addContentView(fingerImageView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        Button helpButton = findViewById(R.id.helpButton); // Replace with the ID of your help button
-        helpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                currentItemIndex = 0; // Reset the current index
-                showFinger();
-            }
-        });
-
-        for (int i = 0; i < itemIds.length; i++) {
-            final int currentIndex = i;
-            findViewById(itemIds[i]).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (currentIndex == currentItemIndex) {
-                        if (currentIndex == itemIds.length - 1) {
-                            fingerImageView.setVisibility(View.INVISIBLE);
-                        } else {
-                            currentItemIndex++;
-                            moveFingerToItem();
-                        }
-                    }
-                }
-            });
-        }
     }
 
     private void showFinger() {
