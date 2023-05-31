@@ -70,7 +70,7 @@
 
         <LinearLayout
             android:id="@+id/TokensLinearLayout"
-            android:layout_width="194dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:clickable="false"
             android:focusable="false"
@@ -78,10 +78,10 @@
 
         <ImageView
             android:id="@+id/thumbsUpOrDownImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_weight="0"
+            android:scaleType="fitEnd"
             app:srcCompat="@drawable/thumbs_down" />
 
     </LinearLayout>
