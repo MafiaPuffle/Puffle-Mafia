@@ -16,8 +16,9 @@ import android.view.ViewGroup;
 
 
 
-import com.example.pufflemafia.adaptors.PossibleRoleUIAdaptor;
-import com.example.pufflemafia.adaptors.SelectedRoleUIAdaptor;
+
+import com.example.pufflemafia.adaptors.roleAdaptors.PossibleRoleUIAdaptor;
+import com.example.pufflemafia.adaptors.roleAdaptors.SelectedRoleUIAdaptor;
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;

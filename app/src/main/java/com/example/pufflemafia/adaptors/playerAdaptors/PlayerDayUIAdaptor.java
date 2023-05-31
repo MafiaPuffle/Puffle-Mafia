@@ -1,4 +1,4 @@
-package com.example.pufflemafia.adaptors;
+package com.example.pufflemafia.adaptors.playerAdaptors;
 
 import android.content.Context;
 import android.content.Intent;

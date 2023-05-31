@@ -237,6 +237,43 @@ public class PlayerManager {
         }
     }
 
+    public static void RemovePlayerToken(PlayerMangerListType listType, int playerIndex, Token token){
+        if(listType == PlayerMangerListType.ALIVE){
+            if(playerIndex >= allAlive.size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside of all alive");
+                return;
+            }
+
+            Vector<Token> allTokensOnPlayer = allAlive.elementAt(playerIndex).getAllTokensOnPlayer();
+            for (int i = 0; i < allTokensOnPlayer.size(); i++) {
+                if(allTokensOnPlayer.get(i).getName() == token.getName()){
+                    allAlive.elementAt(playerIndex).RemoveTokenAt(i);
+                    break;
+                }
+            }
+            onPlayerDataUpdated.Invoke();
+        }
+        else{
+            if(playerIndex >= allDead.size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside of all dead");
+                return;
+            }
+
+            Vector<Token> allTokensOnPlayer = allDead.elementAt(playerIndex).getAllTokensOnPlayer();
+            for (int i = 0; i < allTokensOnPlayer.size(); i++) {
+                if(allTokensOnPlayer.get(i).getName() == token.getName()){
+                    allDead.elementAt(playerIndex).RemoveTokenAt(i);
+                    break;
+                }
+            }
+            onPlayerDataUpdated.Invoke();
+        }
+    }
+
     public static void RemovePlayerToken(PlayerMangerListType listType, int playerIndex, int tokenIndex){
         if(listType == PlayerMangerListType.ALIVE){
             if(playerIndex >= allAlive.size()){

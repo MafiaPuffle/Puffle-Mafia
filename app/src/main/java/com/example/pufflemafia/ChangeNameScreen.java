@@ -33,6 +33,7 @@ public class ChangeNameScreen extends CustomAppCompatActivityWrapper {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_name_screen);
+        makeKeyboardHidealbe(findViewById(R.id.rootConstrainLayout));
 
         intent = getIntent();
 

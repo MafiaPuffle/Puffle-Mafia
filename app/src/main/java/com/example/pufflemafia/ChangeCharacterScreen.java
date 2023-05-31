@@ -1,21 +1,16 @@
 package com.example.pufflemafia;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.example.pufflemafia.adaptors.ChangingRoleUIAdaptor;
-import com.example.pufflemafia.adaptors.SelectableRoleUIAdaptor;
+import com.example.pufflemafia.adaptors.roleAdaptors.ChangingRoleUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
