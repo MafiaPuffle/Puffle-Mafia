@@ -56,10 +56,13 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
         helpPopupTextView = findViewById(R.id.HelpInstructions);
 
         helpPopupNextButton = findViewById(R.id.helpnext);
-        helpPopupNextButton.setOnClickListener(new View.OnClickListener() {
+        helpPopupNextButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                NextHelp();
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    NextHelp();
+                }
+                return false;
             }
         });
 
@@ -79,8 +82,8 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
             }
         });
         animateMoveViewToTarget(helpPopupWindowRoot, getCenterOfScreen(), 0);
-        helpPopupWindowRoot.setVisibility(View.GONE);
-        finger.setVisibility(View.GONE);
+        helpPopupWindowRoot.setVisibility(View.INVISIBLE);
+        finger.setVisibility(View.INVISIBLE);
     }
 
     private void RefreshPopUp(){
@@ -91,10 +94,13 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
         View view = findViewById(currentHelpPrompt.getPointsTo());
         view.setClickable(true);
         view.setFocusable(true);
-        view.setOnClickListener(new View.OnClickListener() {
+        view.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                NextHelp();
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    NextHelp();
+                }
+                return false;
             }
         });
     }
@@ -133,8 +139,8 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
     public void ExitHelp(){
         //TODO exit help
         currentPopupWindowIndex = 0;
-        helpPopupWindowRoot.setVisibility(View.GONE);
-        finger.setVisibility(View.GONE);
+        helpPopupWindowRoot.setVisibility(View.INVISIBLE);
+        finger.setVisibility(View.INVISIBLE);
     }
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager =
