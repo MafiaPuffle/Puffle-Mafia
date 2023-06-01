@@ -43,17 +43,6 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
     private Vector<Role> allRoles;
     private Vector<Role> selectedRoles;
 
-    private ImageView fingerImageView;
-
-    private AnimationDrawable fingerAnimation;
-
-    private int[] itemIds = {R.id.nextButton, R.id.nextButton2}; // Replace with the actual IDs of the items you want to tap
-    private int currentItemIndex = 0;
-
-    private Button helpButton;
-    private Button nextButton;
-    private Button nextButton2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,94 +70,13 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
         AppManager.gameSetup.onDataUpdated.AddListener(this);
         SoundManager.playSfx("Click");
 
+
         // Configure Buttons
         configureBackToStart();
         configureDoneChoosingCharactersButton();
         updateCountTextView(AppManager.gameSetup.numberOfPlayers(), AppManager.gameSetup.numberOfRolesChosen());
         refreshStartGameButton();
-
-// Initialize buttons
-        helpButton = findViewById(R.id.helpButton);
-        nextButton = findViewById(R.id.nextButton);
-        nextButton2 = findViewById(R.id.nextButton2);
-
-
-        // Set initial visibility
-        nextButton.setVisibility(View.GONE);
-        nextButton2.setVisibility(View.GONE);
-
-
-// Set onClickListener for helpButton
-        helpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                helpButton.setVisibility(View.GONE);
-                nextButton.setVisibility(View.VISIBLE);
-                fingerImageView.setVisibility(View.VISIBLE);
-                currentItemIndex = 0;
-                moveFingerToItem();
-            }
-        });
-
-// Set onClickListener for nextButton1
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextButton.setVisibility(View.GONE);
-                nextButton2.setVisibility(View.VISIBLE);
-                currentItemIndex++;
-                moveFingerToItem();
-            }
-        });
-
-// Set onClickListener for nextButton2
-        nextButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextButton2.setVisibility(View.GONE);
-                helpButton.setVisibility(View.VISIBLE);
-                currentItemIndex = 0;
-                fingerImageView.setVisibility(View.INVISIBLE);
-            }
-        });
-
-        fingerImageView = new ImageView(this);
-        fingerImageView.setImageResource(R.drawable.finger);
-        fingerImageView.setVisibility(View.INVISIBLE);
-        addContentView(fingerImageView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-    }
-
-    private void showFinger() {
-        if (currentItemIndex == itemIds.length) {
-            currentItemIndex = 0;
-        }
-        fingerImageView.setVisibility(View.VISIBLE);
-        moveFingerToItem();
-    }
-
-
-    private void moveFingerToItem() {
-        RecyclerView recyclerView;
-        if (currentItemIndex == 0) {
-            recyclerView = findViewById(R.id.AllCharactersRecyclerView);
-        } else {
-            recyclerView = findViewById(R.id.ChosenCharactersRecyclerView);
-        }
-
-        View targetItem = recyclerView.getChildAt(0);
-        if (targetItem != null) {
-            int[] targetLocation = new int[2];
-            targetItem.getLocationOnScreen(targetLocation);
-
-            int targetX = targetLocation[0] + targetItem.getWidth() / 2;
-            int targetY = targetLocation[1] + targetItem.getHeight() / 2;
-
-            fingerImageView.animate()
-                    .x(targetX - fingerImageView.getWidth() / 2)
-                    .y(targetY - fingerImageView.getHeight() / 2)
-                    .setDuration(500)
-                    .start();
-        }
+        configureHelpButton();
     }
 
 
@@ -235,6 +143,16 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
         // configure selectedRolesRecyclerView
         selectedRolesRecyclerView.setLayoutManager(selectedLayoutManager);
         selectedRolesRecyclerView.setAdapter(selectedRolesUIAdaptor);
+    }
+
+    private void configureHelpButton(){
+        Button helpButton = findViewById(R.id.helpButton);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void configureDoneChoosingCharactersButton() {
