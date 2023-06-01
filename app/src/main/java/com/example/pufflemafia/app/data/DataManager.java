@@ -1,6 +1,7 @@
 package com.example.pufflemafia.app.data;
 
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.app.game.HelpPrompt;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,7 @@ public class DataManager {
     public static Map<String, Token> allTokens;
     public static Map<String, Power> allPowers;
     public static Map<String, Role> allRoles;
+    public static Map<Integer, Vector<HelpPrompt>> allHelpPrompts;
 
     public DataManager(){
         InitializeAllDictionaries();
@@ -20,6 +22,7 @@ public class DataManager {
         InitializeAllTokens();
         InitializeAllPowers();
         InitializeAllRoles();
+        InitializeAllHelpPrompts();
     }
 
     private static void InitializeAllTokens(){
@@ -711,6 +714,23 @@ public class DataManager {
         allRoles.put(zombieEvil.getName(), zombieEvil);
     }
 
+    private static void InitializeAllHelpPrompts(){
+        allHelpPrompts = new HashMap<Integer, Vector<HelpPrompt>>();
+
+        Vector<HelpPrompt> promptsOnMainMafiaPage = new Vector<HelpPrompt>();
+
+        HelpPrompt testPrompt = new HelpPrompt(
+                R.id.InstructionsTitleBox,
+                "I'm a prompt");
+        promptsOnMainMafiaPage.add(testPrompt);
+
+        HelpPrompt testPrompt2 = new HelpPrompt(
+                R.id.InstructionsTitleBox,
+                "This is another prompt");
+        promptsOnMainMafiaPage.add(testPrompt2);
+
+        allHelpPrompts.put(R.layout.activity_main_mafia_page, promptsOnMainMafiaPage);
+    }
 
     public static Token GetToken(String name){
         return allTokens.get(name);
@@ -755,6 +775,10 @@ public class DataManager {
         Object[] values = allRoles.values().toArray();
         Role randomRole = (Role) values[generator.nextInt(values.length)];
         return randomRole;
+    }
+
+    public static HelpPrompt GetHelpPrompt(int screenAppearsOn, int index){
+        return allHelpPrompts.get(screenAppearsOn).get(index);
     }
 
     public static void PrintSummary(){

@@ -1,6 +1,9 @@
 package com.example.pufflemafia;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,6 +13,7 @@ import android.widget.ImageButton;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.widget.Button;
+import android.widget.PopupWindow;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,10 +49,13 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
     private ImageView fingerImageView;
     private int currentItemIndex = 0;
 
+    private LinearLayout linearLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mafia_page);
+        SetupPopupWindow(R.layout.activity_main_mafia_page);
 
         ColorStateList blueColorStateList = ColorStateList.valueOf(Color.BLUE);
         ColorStateList greenColorStateList = ColorStateList.valueOf(Color.GREEN);
@@ -163,6 +170,9 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         fingerImageView.setImageResource(R.drawable.finger);
         fingerImageView.setVisibility(View.INVISIBLE);
         addContentView(fingerImageView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        animateMoveViewToTarget(helpButton, findViewById(R.id.InstructionsTitleBox));
+
     }
 
     private void showFinger() {
@@ -290,8 +300,5 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
     public void Response(Boolean aBoolean) {
         Refresh();
     }
-
-
-
 
 }
