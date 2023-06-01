@@ -720,12 +720,12 @@ public class DataManager {
         Vector<HelpPrompt> promptsOnMainMafiaPage = new Vector<HelpPrompt>();
 
         HelpPrompt testPrompt = new HelpPrompt(
-                R.id.InstructionsTitleBox,
+                R.id.DeadTitleBox,
                 "I'm a prompt");
         promptsOnMainMafiaPage.add(testPrompt);
 
         HelpPrompt testPrompt2 = new HelpPrompt(
-                R.id.InstructionsTitleBox,
+                R.id.BackButton,
                 "This is another prompt");
         promptsOnMainMafiaPage.add(testPrompt2);
 
@@ -778,7 +778,13 @@ public class DataManager {
     }
 
     public static HelpPrompt GetHelpPrompt(int screenAppearsOn, int index){
-        return allHelpPrompts.get(screenAppearsOn).get(index);
+        Vector<HelpPrompt> allPromptsOnScreen = allHelpPrompts.get(screenAppearsOn);
+        if(index < allPromptsOnScreen.size()) {
+            return allPromptsOnScreen.get(index);
+        }
+        else{
+            return null;
+        }
     }
 
     public static void PrintSummary(){

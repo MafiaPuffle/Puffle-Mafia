@@ -117,10 +117,11 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                helpButton.setVisibility(View.GONE);
-                nextButton1.setVisibility(View.VISIBLE);
-                fingerImageView.setVisibility(View.VISIBLE);
-                moveFingerToItem();
+                StartHelp();
+//                helpButton.setVisibility(View.GONE);
+//                nextButton1.setVisibility(View.VISIBLE);
+//                fingerImageView.setVisibility(View.VISIBLE);
+//                moveFingerToItem();
             }
         });
 
@@ -171,7 +172,6 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         fingerImageView.setVisibility(View.INVISIBLE);
         addContentView(fingerImageView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        animateMoveViewToTarget(helpButton, findViewById(R.id.InstructionsTitleBox));
 
     }
 

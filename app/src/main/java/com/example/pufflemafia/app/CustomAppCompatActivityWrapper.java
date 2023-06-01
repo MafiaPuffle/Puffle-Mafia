@@ -3,16 +3,21 @@ package com.example.pufflemafia.app;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,10 +27,12 @@ import com.example.pufflemafia.app.game.HelpPrompt;
 
 public class CustomAppCompatActivityWrapper extends AppCompatActivity {
 
+    private ImageView finger;
     private View helpPopupWindowRoot;
+    private TextView helpPopupTextView;
     private Button helpPopupNextButton;
     private Button helpPopupPreviousButton;
-    private Button helpPopupCloseButton;
+    private ImageButton helpPopupCloseButton;
     private int currentScreen;
     private int currentPopupWindowIndex;
     private HelpPrompt currentHelpPrompt;
@@ -44,30 +51,90 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
         this.currentPopupWindowIndex = 0;
         this.currentScreen = currentScreen;
 
-        //TODO sets up the popup window variables
+        helpPopupWindowRoot = findViewById(R.id.help_button_ui);
+        finger = findViewById(R.id.finger);
+        helpPopupTextView = findViewById(R.id.HelpInstructions);
 
+        helpPopupNextButton = findViewById(R.id.helpnext);
+        helpPopupNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NextHelp();
+            }
+        });
+
+        helpPopupPreviousButton = findViewById(R.id.helpback);
+        helpPopupPreviousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BackHelp();
+            }
+        });
+
+        helpPopupCloseButton = findViewById(R.id.Xbutton);
+        helpPopupCloseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ExitHelp();
+            }
+        });
+        animateMoveViewToTarget(helpPopupWindowRoot, getCenterOfScreen(), 0);
         helpPopupWindowRoot.setVisibility(View.GONE);
+        finger.setVisibility(View.GONE);
+    }
+
+    private void RefreshPopUp(){
+        helpPopupTextView.setText(currentHelpPrompt.getPrompt());
+        animateMoveViewToTarget(finger, findViewById(currentHelpPrompt.getPointsTo()),0);
+        animateMoveViewToTarget(helpPopupWindowRoot, getCenterOfScreen(),0);
+
+        View view = findViewById(currentHelpPrompt.getPointsTo());
+        view.setClickable(true);
+        view.setFocusable(true);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NextHelp();
+            }
+        });
     }
 
     public void StartHelp(){
         //TODO starts the help
         currentHelpPrompt = DataManager.GetHelpPrompt(currentScreen, currentPopupWindowIndex);
+        helpPopupWindowRoot.setVisibility(View.VISIBLE);
+        finger.setVisibility(View.VISIBLE);
+        animateMoveViewToTarget(helpPopupWindowRoot, getCenterOfScreen(), 0);
+        RefreshPopUp();
     }
 
     public void NextHelp(){
         //TODO next help
         currentPopupWindowIndex++;
         currentHelpPrompt = DataManager.GetHelpPrompt(currentScreen, currentPopupWindowIndex);
+        if(currentHelpPrompt == null){
+            ExitHelp();
+            return;
+        }
+        RefreshPopUp();
     }
 
     public void BackHelp(){
         //TODO back help
         currentPopupWindowIndex--;
+        if(currentPopupWindowIndex < 0){
+            ExitHelp();
+            return;
+        }
         currentHelpPrompt = DataManager.GetHelpPrompt(currentScreen, currentPopupWindowIndex);
+        RefreshPopUp();
     }
 
     public void ExitHelp(){
         //TODO exit help
+        currentPopupWindowIndex = 0;
+        helpPopupWindowRoot.setVisibility(View.GONE);
+        finger.setVisibility(View.GONE);
     }
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager =
@@ -102,13 +169,45 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
         }
     }
 
-    public void animateMoveViewToTarget(View viewToAnimate, View targetToMoveTo){
+    public void animateMoveViewToTarget(View viewToAnimate, View targetToMoveTo, long duration){
         int[] targetLocation = new int[2];
         targetToMoveTo.getLocationOnScreen(targetLocation);
 
         float targetX = (targetLocation[0] + targetToMoveTo.getWidth() / 2) - viewToAnimate.getWidth() / 2;
         float targetY = (targetLocation[1] + targetToMoveTo.getHeight() / 2) - viewToAnimate.getHeight() / 2;
 
-        viewToAnimate.animate().x(targetX).y(targetY).setDuration(500).start();
+        viewToAnimate.animate().x(targetX).y(targetY).setDuration(duration).start();
+    }
+
+    public void animateMoveViewToTarget(View viewToAnimate, int[] targetLocation, long duration){
+
+        float targetX = targetLocation[0] - viewToAnimate.getWidth() / 2;
+        float targetY = targetLocation[1] - viewToAnimate.getHeight() / 2;
+
+        viewToAnimate.animate().x(targetX).y(targetY).setDuration(duration).start();
+    }
+
+    public int[] getCenterOfScreen(){
+        int[] output = new int[2];
+
+        // Get the window manager
+        WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+
+        // Create a DisplayMetrics object to hold the screen dimensions
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+
+        // Get the screen dimensions
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+
+        // Calculate the center coordinates
+        int screenWidth = displayMetrics.widthPixels;
+        int screenHeight = displayMetrics.heightPixels;
+        int centerX = screenWidth / 2;
+        int centerY = screenHeight / 2;
+
+        output[0] = centerX;
+        output[1] = centerY;
+
+        return output;
     }
 }
