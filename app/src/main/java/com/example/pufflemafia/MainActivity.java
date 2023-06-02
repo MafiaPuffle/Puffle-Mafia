@@ -2,16 +2,23 @@ package com.example.pufflemafia;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.PopupWindow;
 import android.widget.ToggleButton;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
+import com.example.pufflemafia.app.ViewToPointTo;
+import com.example.pufflemafia.app.game.HelpPromptManager;
 import com.example.pufflemafia.app.game.SoundManager;
+
+import java.util.Vector;
 
 public class MainActivity extends CustomAppCompatActivityWrapper {
 
@@ -48,10 +55,9 @@ public class MainActivity extends CustomAppCompatActivityWrapper {
                 isMusicPlaying = isChecked;
                 SoundManager.playSfx("Click");
 
-                if(isMusicPlaying){
+                if (isMusicPlaying) {
                     SoundManager.setMusicVolume(1.0f);
-                }
-                else{
+                } else {
                     SoundManager.muteMusic();
                 }
 
@@ -66,10 +72,9 @@ public class MainActivity extends CustomAppCompatActivityWrapper {
                 isSFXPlaying = isChecked;
                 SoundManager.playSfx("Click");
 
-                if(isSFXPlaying){
+                if (isSFXPlaying) {
                     SoundManager.setSfxVolume(1.0f);
-                }
-                else{
+                } else {
                     SoundManager.muteSFX();
                 }
 
@@ -124,6 +129,23 @@ public class MainActivity extends CustomAppCompatActivityWrapper {
                 startActivity(new Intent(MainActivity.this, Instructions.class));
             }
         });
+    }
+
+    private void makePopup(Button button) {
+        PopupWindow popupWindow = new PopupWindow(this);
+        LayoutInflater layoutInflater = this.getLayoutInflater();
+        View viewToAdd = layoutInflater.inflate(R.layout.help_button_ui, findViewById(R.id.help_button_ui));
+
+        popupWindow.setContentView(viewToAdd);
+        popupWindow.setBackgroundDrawable(AppCompatResources.getDrawable(this,R.drawable.alien_puffle));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.showAtLocation(findViewById(R.id.PuffleMafia), Gravity.CENTER, 0, 0);
+                popupWindow.update(0, 0, 500, 200);
+            }
+        });
+
     }
 
     private void updateToggleButtonBackground() {

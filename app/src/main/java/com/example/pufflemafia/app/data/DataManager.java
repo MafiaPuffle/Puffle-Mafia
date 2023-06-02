@@ -711,7 +711,6 @@ public class DataManager {
         allRoles.put(zombieEvil.getName(), zombieEvil);
     }
 
-
     public static Token GetToken(String name){
         return allTokens.get(name);
     }
@@ -756,6 +755,8 @@ public class DataManager {
         Role randomRole = (Role) values[generator.nextInt(values.length)];
         return randomRole;
     }
+
+
 
     public static void PrintSummary(){
 
