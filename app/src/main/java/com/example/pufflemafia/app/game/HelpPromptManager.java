@@ -30,6 +30,7 @@ public class HelpPromptManager {
 
     private static PopupWindow promptPopUp;
     private static PopupWindow pointerPopup;
+    private static PopupWindow screenBlocker;
     private static ImageButton XButton;
     private static TextView promptText;
     private static Button NextButton;
@@ -66,6 +67,9 @@ public class HelpPromptManager {
         }
         if(pointerPopup.isShowing()){
             pointerPopup.dismiss();
+        }
+        if(screenBlocker.isShowing()){
+            screenBlocker.dismiss();
         }
         viewsToPointToIndex = 0;
     }
@@ -111,10 +115,12 @@ public class HelpPromptManager {
 
         InitializePromptPopup(activity, context);
         InitializePointerPopup(activity, context);
+        InitializeScreenBlocker(activity, context);
 
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showScreenBlocker(viewsToPointToIndex);
                 Refresh();
             }
         });
@@ -130,6 +136,7 @@ public class HelpPromptManager {
         promptPopUp.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         promptPopUp.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
         promptPopUp.setTouchable(true);
+        promptPopUp.setOutsideTouchable(false);
         promptPopUp.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -178,6 +185,7 @@ public class HelpPromptManager {
         pointerPopup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         pointerPopup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
         pointerPopup.setTouchable(true);
+        pointerPopup.setOutsideTouchable(false);
 
         pointerPopup.setTouchInterceptor(new View.OnTouchListener() {
             @Override
@@ -190,6 +198,30 @@ public class HelpPromptManager {
                 return false;
             }
         });
+    }
+
+    private static void showScreenBlocker(int index){
+        if(index == viewsToPointTo.size() || screenBlocker.isShowing()){
+            return;
+        }
+
+        try{
+            screenBlocker.showAtLocation(viewsToPointTo.get(index).getPointsTo(), Gravity.CENTER, 0, 0);
+        }catch (Exception e){
+            showScreenBlocker(index + 1);
+        }
+    }
+
+    private static void InitializeScreenBlocker(Activity activity, Context context){
+        screenBlocker = new PopupWindow(context);
+        LayoutInflater layoutInflater = activity.getLayoutInflater();
+        View viewToAdd = layoutInflater.inflate(R.layout.help_blocker_ui, activity.findViewById(R.id.help_blocker_ui));
+        screenBlocker.setContentView(viewToAdd);
+        Drawable background = new ColorDrawable(android.graphics.Color.TRANSPARENT);
+        screenBlocker.setBackgroundDrawable(background);
+        screenBlocker.setTouchable(true);
+        screenBlocker.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        screenBlocker.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
 }
