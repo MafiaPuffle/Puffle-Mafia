@@ -2,9 +2,12 @@ package com.example.pufflemafia.app.game;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -59,6 +62,7 @@ public class HelpPromptManager {
         if(pointerPopup.isShowing()){
             pointerPopup.dismiss();
         }
+        viewsToPointToIndex = 0;
     }
 
     private static void Refresh(){
@@ -103,6 +107,15 @@ public class HelpPromptManager {
         promptPopUp.setBackgroundDrawable(AppCompatResources.getDrawable(context,R.drawable.grey_rectangle));
         promptPopUp.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         promptPopUp.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
+        promptPopUp.setTouchable(true);
+        promptPopUp.setOutsideTouchable(true);
+        promptPopUp.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Return false to indicate that touch events should pass through the PopupWindow
+                return false;
+            }
+        });
 
         // Stores the buttons from the promptPopup window
         XButton = viewToAdd.findViewById(R.id.Xbutton);
@@ -132,23 +145,27 @@ public class HelpPromptManager {
         });
     }
 
-    private static void InitializePointerPopup(Activity activity, Context context){
+    private static void InitializePointerPopup(Activity activity, Context context) {
         // Initializes the promptPopup window
         pointerPopup = new PopupWindow(context);
         LayoutInflater layoutInflater = activity.getLayoutInflater();
         View viewToAdd = layoutInflater.inflate(R.layout.help_pointer_ui, activity.findViewById(R.id.help_pointer_ui));
         pointerPopup.setContentView(viewToAdd);
-        pointerPopup.setBackgroundDrawable(null);
+        Drawable background = new ColorDrawable(android.graphics.Color.TRANSPARENT);
+        pointerPopup.setBackgroundDrawable(background);
         pointerPopup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         pointerPopup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
+        pointerPopup.setTouchable(true);
+        pointerPopup.setOutsideTouchable(true);
 
-        PointerButton = viewToAdd.findViewById(R.id.button);
-
-        PointerButton.setOnClickListener(new View.OnClickListener() {
+        pointerPopup.setTouchInterceptor(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                //TODO
-                Log.d("HelpPromptManager", "How can I help you?");
+            public boolean onTouch(View v, MotionEvent event) {
+                // Return false to indicate that touch events should pass through the PopupWindow
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    NextHelp();
+                }
+                return false;
             }
         });
     }

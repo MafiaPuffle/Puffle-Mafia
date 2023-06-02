@@ -10,17 +10,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button"
+        <ImageView
+            android:id="@+id/imageView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0"
-            android:text="Button" />
+            android:clickable="true"
+            app:srcCompat="@drawable/finger" />
 
         <ImageView
             android:id="@+id/Finger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             app:srcCompat="@drawable/finger" />
     </LinearLayout>
 </FrameLayout>
