@@ -43,7 +43,6 @@ public class MainActivity extends CustomAppCompatActivityWrapper {
         configureRoles();
         configureInstructions();
         configureQRCode();
-        configurePopButton();
 
         musicToggleButton = findViewById(R.id.toggleButton);
         musicToggleButton.setChecked(true);
@@ -130,16 +129,6 @@ public class MainActivity extends CustomAppCompatActivityWrapper {
                 startActivity(new Intent(MainActivity.this, Instructions.class));
             }
         });
-    }
-
-    private void configurePopButton() {
-        Button popUpButton = findViewById(R.id.PopupButton);
-        Vector<ViewToPointTo> testVector = new Vector<ViewToPointTo>();
-
-        testVector.add(new ViewToPointTo(findViewById(R.id.PuffleMafia), "This is a prompt!"));
-        testVector.add(new ViewToPointTo(findViewById(R.id.InstructionsButton), "This is a button"));
-
-        HelpPromptManager.InitializeHelpPopups(this, this, popUpButton, testVector);
     }
 
     private void makePopup(Button button) {
