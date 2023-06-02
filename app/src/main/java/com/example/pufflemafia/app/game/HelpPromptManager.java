@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +31,7 @@ public class HelpPromptManager {
     private static PopupWindow promptPopUp;
     private static PopupWindow pointerPopup;
     private static ImageButton XButton;
+    private static TextView promptText;
     private static Button NextButton;
     private static Button BackButton;
     private static Button PointerButton;
@@ -88,6 +90,8 @@ public class HelpPromptManager {
                 try{
                     promptPopUp.showAtLocation(viewsToPointTo.get(0).getPointsTo(), Gravity.CENTER, 0, 0);
                     pointerPopup.showAsDropDown(viewsToPointTo.get(viewsToPointToIndex).getPointsTo(), 0, -100, Gravity.CENTER);
+
+                    promptText.setText(viewsToPointTo.get(viewsToPointToIndex).getPrompt());
                 }
                 catch (Exception e){
                     NextHelp();
@@ -136,6 +140,7 @@ public class HelpPromptManager {
 
         // Stores the buttons from the promptPopup window
         XButton = viewToAdd.findViewById(R.id.Xbutton);
+        promptText = viewToAdd.findViewById(R.id.HelpInstructions);
         NextButton = viewToAdd.findViewById(R.id.helpnext);
         BackButton = viewToAdd.findViewById(R.id.helpback);
 

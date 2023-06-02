@@ -153,8 +153,8 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
 
         Vector<ViewToPointTo> allViewsToPointTo = new Vector<ViewToPointTo>();
 
-        allViewsToPointTo.add(new ViewToPointTo(allRolesRecyclerView, 0));
-        allViewsToPointTo.add(new ViewToPointTo(selectedRolesRecyclerView, 1));
+        allViewsToPointTo.add(new ViewToPointTo(allRolesRecyclerView, 0,"Tap to choose role"));
+        allViewsToPointTo.add(new ViewToPointTo(selectedRolesRecyclerView, 1, "Tap to remove role"));
 //        allViewsToPointTo.add(new ViewToPointTo(allRolesRecyclerView, 2));
 
         HelpPromptManager.InitializeHelpPopups(this,this,helpButton, allViewsToPointTo);

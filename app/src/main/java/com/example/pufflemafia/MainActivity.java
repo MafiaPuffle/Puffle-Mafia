@@ -136,8 +136,8 @@ public class MainActivity extends CustomAppCompatActivityWrapper {
         Button popUpButton = findViewById(R.id.PopupButton);
         Vector<ViewToPointTo> testVector = new Vector<ViewToPointTo>();
 
-        testVector.add(new ViewToPointTo(findViewById(R.id.PuffleMafia)));
-        testVector.add(new ViewToPointTo(findViewById(R.id.InstructionsButton)));
+        testVector.add(new ViewToPointTo(findViewById(R.id.PuffleMafia), "This is a prompt!"));
+        testVector.add(new ViewToPointTo(findViewById(R.id.InstructionsButton), "This is a button"));
 
         HelpPromptManager.InitializeHelpPopups(this, this, popUpButton, testVector);
     }
