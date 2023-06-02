@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -46,8 +47,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/horizon"
         android:text="Roles"
-        android:textSize="25dp"
         android:textColor="@color/white"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -65,8 +66,8 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/horizon"
         android:text="Start"
-        android:textSize="25dp"
         android:textColor="@color/white"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -83,10 +84,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:alpha="0"
         android:fontFamily="@font/horizon"
-        android:text="QR Code"
-        android:textSize="25dp"
         android:textColor="@color/white"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
@@ -104,15 +105,14 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/horizon"
         android:text="Instructions"
-        android:textSize="25dp"
         android:textColor="@color/white"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RolesButton"
         app:layout_constraintVertical_bias="0.0" />
-
 
 
     <ImageView
@@ -135,8 +135,8 @@
         android:id="@+id/toggleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOn="Music ON"
         android:textOff="Music OFF"
+        android:textOn="Music ON"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -156,5 +156,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/QRCodeButton"
         app:layout_constraintVertical_bias="0.78" />
+
+    <Button
+        android:id="@+id/PopupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Popup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/toggleButton"
+        app:layout_constraintStart_toEndOf="@+id/toggleButton2"
+        app:layout_constraintTop_toBottomOf="@+id/QRCodeButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

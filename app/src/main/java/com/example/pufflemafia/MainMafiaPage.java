@@ -55,7 +55,6 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mafia_page);
-        SetupPopupWindow(R.layout.activity_main_mafia_page);
 
         ColorStateList blueColorStateList = ColorStateList.valueOf(Color.BLUE);
         ColorStateList greenColorStateList = ColorStateList.valueOf(Color.GREEN);
@@ -117,7 +116,6 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StartHelp();
 //                helpButton.setVisibility(View.GONE);
 //                nextButton1.setVisibility(View.VISIBLE);
 //                fingerImageView.setVisibility(View.VISIBLE);
