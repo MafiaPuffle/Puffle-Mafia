@@ -29,6 +29,7 @@ public class SelectableRoleUIAdaptor extends RecyclerView.Adapter<SelectableRole
         private LinearLayout roleLinearLayout;
         private ImageView roleImageView;
         private TextView roleNameTextView;
+        private View ownView;
 
 
 
@@ -38,12 +39,14 @@ public class SelectableRoleUIAdaptor extends RecyclerView.Adapter<SelectableRole
             roleLinearLayout = (LinearLayout) view.findViewById(R.id.SelectableRoleLinearLayout);
             roleImageView = (ImageView) view.findViewById(R.id.SelectableRoleImage);
             roleNameTextView = (TextView) view.findViewById(R.id.SelectableRoleText);
+            ownView = view;
         }
 
         public LinearLayout getRoleLinearLayout(){return roleLinearLayout;}
         public ImageView getRoleImageView(){return roleImageView;}
         public TextView getRoleNameTextView(){return roleNameTextView;}
 
+        public View getOwnView(){return ownView;}
 
     }
 
@@ -65,29 +68,52 @@ public class SelectableRoleUIAdaptor extends RecyclerView.Adapter<SelectableRole
         //TODO: update the view with the data in the localDataSet at the given position
         Role role = localDataSet.get(position);
 
+        viewHolder.getOwnView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shortClick(role);
+            }
+        });
+
         viewHolder.getRoleLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SoundManager.playSfx("Click");
-                onItemClick(role);
+                shortClick(role);
+            }
+        });
+
+        viewHolder.getOwnView().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                longClick(role);
+                return false;
             }
         });
 
         viewHolder.getRoleLinearLayout().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                SoundManager.playSfx("Click");
-                Intent intent = new Intent(context, RoleDetails.class);
-                intent.putExtra("name", role.getName());
-                intent.putExtra("imageResourceId", role.getImageResource());
-                intent.putExtra("description", role.getDescription());
-                context.startActivity(intent);
-                return true;
+                longClick(role);
+                return false;
             }
         });
 
         viewHolder.getRoleImageView().setImageResource(role.getImageResource());
         viewHolder.getRoleNameTextView().setText(role.getName());
+    }
+
+    private void shortClick(Role role){
+        SoundManager.playSfx("Click");
+        onItemClick(role);
+    }
+
+    private void longClick(Role role){
+        SoundManager.playSfx("Click");
+        Intent intent = new Intent(context, RoleDetails.class);
+        intent.putExtra("name", role.getName());
+        intent.putExtra("imageResourceId", role.getImageResource());
+        intent.putExtra("description", role.getDescription());
+        context.startActivity(intent);
     }
 
     protected void onItemClick(Role role){

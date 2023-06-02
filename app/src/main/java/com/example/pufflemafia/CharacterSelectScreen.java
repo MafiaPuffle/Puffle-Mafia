@@ -22,11 +22,14 @@ import com.example.pufflemafia.adaptors.roleAdaptors.SelectedRoleUIAdaptor;
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.ViewToPointTo;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.HelpPromptManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
+import java.util.Objects;
 import java.util.Vector;
 
 public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
@@ -147,12 +150,14 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
 
     private void configureHelpButton(){
         Button helpButton = findViewById(R.id.helpButton);
-        helpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
+        Vector<ViewToPointTo> allViewsToPointTo = new Vector<ViewToPointTo>();
+
+        allViewsToPointTo.add(new ViewToPointTo(allRolesRecyclerView, 0));
+        allViewsToPointTo.add(new ViewToPointTo(selectedRolesRecyclerView, 1));
+//        allViewsToPointTo.add(new ViewToPointTo(allRolesRecyclerView, 2));
+
+        HelpPromptManager.InitializeHelpPopups(this,this,helpButton, allViewsToPointTo);
     }
 
     private void configureDoneChoosingCharactersButton() {

@@ -14,6 +14,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
+import com.example.pufflemafia.app.ViewToPointTo;
 import com.example.pufflemafia.app.game.HelpPromptManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
@@ -133,13 +134,10 @@ public class MainActivity extends CustomAppCompatActivityWrapper {
 
     private void configurePopButton() {
         Button popUpButton = findViewById(R.id.PopupButton);
-        Vector<View> testVector = new Vector<View>();
+        Vector<ViewToPointTo> testVector = new Vector<ViewToPointTo>();
 
-        testVector.add(findViewById(R.id.InstructionsButton));
-        testVector.add(findViewById(R.id.PuffleMafia));
-        testVector.add(findViewById(R.id.imageView2));
-        testVector.add(findViewById(R.id.StartButton));
-        testVector.add(findViewById(R.id.InstructionsButton));
+        testVector.add(new ViewToPointTo(findViewById(R.id.PuffleMafia)));
+        testVector.add(new ViewToPointTo(findViewById(R.id.InstructionsButton)));
 
         HelpPromptManager.InitializeHelpPopups(this, this, popUpButton, testVector);
     }

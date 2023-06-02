@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,8 +17,10 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.app.ViewToPointTo;
 
 import java.util.Vector;
 
@@ -30,7 +33,7 @@ public class HelpPromptManager {
     private static Button NextButton;
     private static Button BackButton;
     private static Button PointerButton;
-    private static Vector<View> viewsToPointTo;
+    private static Vector<ViewToPointTo> viewsToPointTo;
     private static int viewsToPointToIndex;
 
     public static void DisplayHelp(){}
@@ -78,11 +81,26 @@ public class HelpPromptManager {
         if(pointerPopup.isShowing()){
             pointerPopup.dismiss();
         }
-        promptPopUp.showAtLocation(viewsToPointTo.get(0), Gravity.CENTER, 0, 0);
-        pointerPopup.showAsDropDown(viewsToPointTo.get(viewsToPointToIndex), 0, -100, Gravity.CENTER);
+
+        Handler h =new Handler() ;
+        h.postDelayed(new Runnable() {
+            public void run() {
+                try{
+                    promptPopUp.showAtLocation(viewsToPointTo.get(0).getPointsTo(), Gravity.CENTER, 0, 0);
+                    pointerPopup.showAsDropDown(viewsToPointTo.get(viewsToPointToIndex).getPointsTo(), 0, -100, Gravity.CENTER);
+                }
+                catch (Exception e){
+                    NextHelp();
+                }
+            }
+
+        }, 1);
+
+//        promptPopUp.showAtLocation(viewsToPointTo.get(0).getPointsTo(), Gravity.CENTER, 0, 0);
+//        pointerPopup.showAsDropDown(viewsToPointTo.get(viewsToPointToIndex).getPointsTo(), 0, -100, Gravity.CENTER);
     }
 
-    public static void InitializeHelpPopups(Activity activity, Context context, Button helpButton, Vector<View> allViewsToPointTo){
+    public static void InitializeHelpPopups(Activity activity, Context context, Button helpButton, Vector<ViewToPointTo> allViewsToPointTo){
 
         viewsToPointTo = allViewsToPointTo;
         viewsToPointToIndex = 0;
@@ -108,7 +126,6 @@ public class HelpPromptManager {
         promptPopUp.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         promptPopUp.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
         promptPopUp.setTouchable(true);
-        promptPopUp.setOutsideTouchable(true);
         promptPopUp.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -156,13 +173,13 @@ public class HelpPromptManager {
         pointerPopup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         pointerPopup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
         pointerPopup.setTouchable(true);
-        pointerPopup.setOutsideTouchable(true);
 
         pointerPopup.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 // Return false to indicate that touch events should pass through the PopupWindow
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    viewsToPointTo.get(viewsToPointToIndex).getPointsTo().callOnClick();
                     NextHelp();
                 }
                 return false;
