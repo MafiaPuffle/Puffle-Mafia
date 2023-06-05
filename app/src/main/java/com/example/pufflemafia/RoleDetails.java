@@ -1,7 +1,5 @@
 package com.example.pufflemafia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,9 +28,9 @@ public class RoleDetails extends CustomAppCompatActivityWrapper {
 
         intent = getIntent();
 
-        selectedRoleImageView = findViewById(R.id.imageView);
-        selectedRoleNameTextView = findViewById(R.id.textView2);
-        selectedRoleDescriptionTextView = findViewById(R.id.textView3);
+        selectedRoleImageView = findViewById(R.id.RoleImage);
+        selectedRoleNameTextView = findViewById(R.id.RoleName);
+        selectedRoleDescriptionTextView = findViewById(R.id.AbilityEffect);
 
         roleName = intent.getStringExtra("name");
         roleImageResourceId = intent.getIntExtra("imageResourceId",0);
