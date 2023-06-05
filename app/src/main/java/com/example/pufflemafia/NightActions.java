@@ -3,6 +3,8 @@ package com.example.pufflemafia;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -75,6 +77,21 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
 
         activeRoleImageButton.setBackgroundResource(currentActiveRoleAtNight.getImageResource());
         activeRoleImageButton.setImageResource(0);
+        activeRoleImageButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(NightActions.this, RoleDetails.class);
+                intent.putExtra("name", currentActiveRoleAtNight.getName());
+                intent.putExtra("imageResourceId", currentActiveRoleAtNight.getImageResource());
+                intent.putExtra("description", currentActiveRoleAtNight.getDescription());
+                intent.putExtra("winCondition", currentActiveRoleAtNight.getWinCondition());
+                intent.putExtra("team", currentActiveRoleAtNight.getTeam());
+                intent.putExtra("alliance", currentActiveRoleAtNight.getAlliance());
+                startActivity(intent);
+                return false;
+            }
+        });
 
         activeRoleTextView.setText(currentActiveRoleAtNight.getName());
 

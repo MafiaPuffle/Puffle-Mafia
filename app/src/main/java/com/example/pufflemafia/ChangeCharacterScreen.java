@@ -36,6 +36,13 @@ public class ChangeCharacterScreen extends CustomAppCompatActivityWrapper implem
     private RecyclerView.LayoutManager layoutManager;
     private ChangingRoleUIAdaptor adaptor;
 
+    private String currentRoleName;
+    private int currentRoleImageResource;
+    private String currentRoleDescription;
+    private String currentRoleWinCondition;
+    private Role.Teams currentRoleTeam;
+    private Role.Alliances currentRoleAlliance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,16 +56,47 @@ public class ChangeCharacterScreen extends CustomAppCompatActivityWrapper implem
         listType = (PlayerManager.PlayerMangerListType) intent.getSerializableExtra("ListType");
         position = intent.getIntExtra("position",0);
 
-
+        ConfigureCurrentRoleData();
 
         currentRoleImageView = findViewById(R.id.CurrentRole);
         newRoleImageView = findViewById(R.id.NewRole);
 
         currentRoleImageView.setBackgroundResource(intent.getIntExtra("currentRoleImageResource", 0));
         currentRoleImageView.setImageResource(0);
+        currentRoleImageView.setOnLongClickListener(new View.OnLongClickListener() {
+            Role.Alliances alliance = (Role.Alliances) intent.getSerializableExtra("currentRoleAlliance");
+            @Override
+            public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(ChangeCharacterScreen.this, RoleDetails.class);
+                intent.putExtra("name", currentRoleName);
+                intent.putExtra("imageResourceId", currentRoleImageResource);
+                intent.putExtra("description", currentRoleDescription);
+                intent.putExtra("winCondition", currentRoleWinCondition);
+                intent.putExtra("team", currentRoleTeam);
+                intent.putExtra("alliance", currentRoleAlliance);
+                startActivity(intent);
+                return false;
+            }
+        });
 
         newRoleImageView.setBackgroundResource(intent.getIntExtra("currentRoleImageResource", 0));
         newRoleImageView.setImageResource(0);
+        newRoleImageView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(ChangeCharacterScreen.this, RoleDetails.class);
+                intent.putExtra("name", currentRoleName);
+                intent.putExtra("imageResourceId", currentRoleImageResource);
+                intent.putExtra("description", currentRoleDescription);
+                intent.putExtra("winCondition", currentRoleWinCondition);
+                intent.putExtra("team", currentRoleTeam);
+                intent.putExtra("alliance", currentRoleAlliance);
+                startActivity(intent);
+                return false;
+            }
+        });
 
         configureRecyclerView();
 
@@ -67,9 +105,34 @@ public class ChangeCharacterScreen extends CustomAppCompatActivityWrapper implem
 
     }
 
+    private void ConfigureCurrentRoleData(){
+        currentRoleName = intent.getStringExtra("currentRoleName");
+        currentRoleImageResource = intent.getIntExtra("currentRoleImageResource",0);
+        currentRoleDescription = intent.getStringExtra("currentRoleDescription");
+        currentRoleWinCondition = intent.getStringExtra("currentRoleWinCondition");
+        currentRoleTeam = (Role.Teams) intent.getSerializableExtra("currentRoleTeam");
+        currentRoleAlliance = (Role.Alliances) intent.getSerializableExtra("currentRoleAlliance");
+    }
+
     private void Refresh(){
         newRoleImageView.setBackgroundResource(newRole.getImageResource());
         newRoleImageView.setImageResource(0);
+
+        newRoleImageView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(ChangeCharacterScreen.this, RoleDetails.class);
+                intent.putExtra("name", newRole.getName());
+                intent.putExtra("imageResourceId", newRole.getImageResource());
+                intent.putExtra("description", newRole.getDescription());
+                intent.putExtra("winCondition", newRole.getWinCondition());
+                intent.putExtra("team", newRole.getTeam());
+                intent.putExtra("alliance", newRole.getAlliance());
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 
     private void configureRecyclerView(){
