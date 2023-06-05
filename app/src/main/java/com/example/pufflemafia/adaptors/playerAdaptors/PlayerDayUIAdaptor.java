@@ -16,6 +16,7 @@ import com.example.pufflemafia.AddTokenScreen;
 import com.example.pufflemafia.ChangeCharacterScreen;
 import com.example.pufflemafia.ChangeNameScreen;
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.RoleDetails;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.Player;
@@ -172,10 +173,30 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
                 Intent intent = new Intent(context, ChangeCharacterScreen.class);
+                intent.putExtra("currentRoleName", role.getName());
                 intent.putExtra("currentRoleImageResource", role.getImageResource());
+                intent.putExtra("currentRoleDescription", role.getDescription());
+                intent.putExtra("currentRoleWinCondition", role.getWinCondition());
+                intent.putExtra("currentRoleTeam", role.getTeam());
+                intent.putExtra("currentRoleAlliance", role.getAlliance());
                 intent.putExtra("position", viewHolder.getAdapterPosition());
                 intent.putExtra("ListType", listType);
                 context.startActivity(intent);
+            }
+        });
+        viewHolder.getRoleButton().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(context, RoleDetails.class);
+                intent.putExtra("name", role.getName());
+                intent.putExtra("imageResourceId", role.getImageResource());
+                intent.putExtra("description", role.getDescription());
+                intent.putExtra("winCondition", role.getWinCondition());
+                intent.putExtra("team", role.getTeam());
+                intent.putExtra("alliance", role.getAlliance());
+                context.startActivity(intent);
+                return false;
             }
         });
 
@@ -217,6 +238,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         //TODO: update kill/revive button to show correct image
         //TODO: update all buttons to do stuff on click
     }
+
 
     @Override
     public int getItemCount() {
