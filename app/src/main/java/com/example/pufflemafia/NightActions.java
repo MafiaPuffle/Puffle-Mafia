@@ -78,7 +78,7 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
 
         activeRoleTextView.setText(currentActiveRoleAtNight.getName());
 
-        nightActionTitle.setText("WHO WOULD YOU LIKE TO " + currentActiveRoleAtNight.getPower().getPrompt());
+        nightActionTitle.setText(currentActiveRoleAtNight.getPower().getPrompt());
     }
 
     // Next Button
