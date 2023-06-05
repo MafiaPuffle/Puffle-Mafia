@@ -37,6 +37,10 @@ public class Role {
 
     private String description;
     public String getDescription(){return description;}
+    private String winCondition;
+    public String getWinCondition() {
+        return winCondition;
+    }
 
     private String flavorText;
     public String getFlavorText(){return flavorText;}
@@ -51,6 +55,7 @@ public class Role {
         this.minimumAllowed = 1;
         this.maximumAllowed = 3;
         this.description = "Does something amazing!";
+        this.winCondition = "Wins if the player had fun!";
         this.flavorText = "Did your know puffles are fluffy?";
     }
 
@@ -59,7 +64,7 @@ public class Role {
     }
 
     // Constructor with Power class as an argument
-    public Role ( String name, int imageResource, float priority, Alliances alliance, Teams team, @NonNull Power power, String description, String flavorText, int minimumAllowed, int maximumAllowed){
+    public Role ( String name, int imageResource, float priority, Alliances alliance, Teams team, @NonNull Power power, String description, String winCondition, String flavorText, int minimumAllowed, int maximumAllowed){
         this.name = name;
         this.imageResource = imageResource;
         this.priority = priority;
@@ -69,6 +74,7 @@ public class Role {
         this.minimumAllowed = minimumAllowed;
         this.maximumAllowed = maximumAllowed;
         this.description = description;
+        this.winCondition = winCondition;
         this.flavorText = flavorText;
     }
 
@@ -83,6 +89,7 @@ public class Role {
         this.minimumAllowed = other.getMinimumAllowed();
         this.maximumAllowed = other.getMaximumAllowed();
         this.description = other.getDescription();
+        this.winCondition = other.getWinCondition();
         this.flavorText = other.getFlavorText();
     }
 
@@ -104,7 +111,8 @@ public class Role {
                         + "     Alliance: " + this.alliance + "\n"
                         + "     Team: " + this.team + "\n"
                         + "     Image Resource: " + this.imageResource + "\n"
-                        + "     Description: " + this.getDescription() + "\n");
+                        + "     Description: " + this.getDescription() + "\n"
+                        + "     Win Condition: " + this.getWinCondition() + "\n");
         this.power.PrintDetailed("    ");
     }
 
@@ -116,7 +124,8 @@ public class Role {
                         + spacer + "     Alliance: " + this.alliance + "\n"
                         + spacer + "     Team: " + this.team + "\n"
                         + spacer + "     Image Resource: " + this.imageResource + "\n"
-                        + spacer + "     Description: " + this.getDescription() + "\n");
+                        + spacer + "     Description: " + this.getDescription() + "\n"
+                        + spacer + "     Win Condition: " + this.getWinCondition() + "\n");
         this.power.PrintDetailed(spacer + "    ");
     }
 }

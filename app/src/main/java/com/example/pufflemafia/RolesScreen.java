@@ -44,6 +44,9 @@ public class RolesScreen extends CustomAppCompatActivityWrapper {
                     intent.putExtra("name", role.getName());
                     intent.putExtra("imageResourceId", role.getImageResource());
                     intent.putExtra("description", role.getDescription());
+                    intent.putExtra("winCondition", role.getWinCondition());
+                    intent.putExtra("team", role.getTeam());
+                    intent.putExtra("alliance", role.getAlliance());
                     startActivity(intent);
                 }
             });
