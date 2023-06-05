@@ -22,7 +22,7 @@ import java.util.Vector;
 public class SelectableRoleUIAdaptor extends RecyclerView.Adapter<SelectableRoleUIAdaptor.ViewHolder> {
 
     private Vector<Role> localDataSet;
-    private Context context;
+    protected Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //private final TextView textView;
