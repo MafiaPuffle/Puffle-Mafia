@@ -29,7 +29,7 @@ public class Power {
         this.name = "power";
         this.type = PowerType.PASSIVE;
         this.prompt = "";
-        this.token = new Token("Token", R.drawable.village_idiot_puffle, Token.TokenTypes.CLEAR_NEVER);
+        this.token = new Token("Token", "will give the player a funny feeling", R.drawable.village_idiot_puffle, Token.TokenTypes.CLEAR_NEVER);
         this.hasPowerBeenUsed = false;
     }
 
@@ -37,7 +37,7 @@ public class Power {
         this.name = name;
         this.type = type;
         this.prompt = prompt;
-        this.token = new Token("Empty", 0, Token.TokenTypes.CLEAR_NEVER);
+        this.token = new Token("Empty", "will give the player a funny feeling", 0, Token.TokenTypes.CLEAR_NEVER);
         this.hasPowerBeenUsed = false;
     }
 

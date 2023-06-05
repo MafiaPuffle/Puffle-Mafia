@@ -7,6 +7,8 @@ public class Token {
 
     private String name;
     public String getName(){return name;}
+    private String description;
+    public String getDescription(){return description;}
 
     private int imageResource;
     public int getImageResource() {
@@ -15,20 +17,23 @@ public class Token {
     private TokenTypes type;
     public TokenTypes getType(){ return type; }
 
-    public Token(String name, int imageResource, TokenTypes type){
+    public Token(String name, String description, int imageResource, TokenTypes type){
         this.name = name;
+        this.description = getDescription();
         this.imageResource = imageResource;
         this.type = type;
     }
 
     public Token(@NonNull Token other){
         this.name = other.getName();
+        this.description = other.getDescription();
         this.imageResource = other.getImageResource();
         this.type = other.getType();
     }
 
     public void Copy(@NonNull Token other){
         this.name = other.getName();
+        this.description = other.getDescription();
         this.imageResource = other.getImageResource();
         this.type = other.getType();
     }
