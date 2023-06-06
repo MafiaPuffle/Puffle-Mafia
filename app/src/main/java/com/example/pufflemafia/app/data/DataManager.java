@@ -34,13 +34,13 @@ public class DataManager {
         Token baker = new Token(
                 "Baker",
                 "will give the player a funny feeling",
-                R.drawable.puffle_o_croissant, Token.TokenTypes.CLEAR_NEVER, 1);
+                R.drawable.puffle_o_croissant, Token.TokenTypes.CLEAR_NEVER, 2);
         allTokens.put(baker.getName(), baker);
 
         Token cupid = new Token(
                 "Cupid",
                 "will give the player a funny feeling",
-                R.drawable.cupid_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
+                R.drawable.cupid_puffle, Token.TokenTypes.CLEAR_NEVER, 2);
         allTokens.put(cupid.getName(), cupid);
 
         Token cyborg = new Token(
