@@ -8,7 +8,10 @@ import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 
+import java.util.ArrayDeque;
 import java.util.Collections;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,6 +57,11 @@ public class PlayerManager {
         allDead.clear();
     }
 
+    private static Queue<Player> recentlyUpdatedPlayers;
+    public static void ClearRecentlyUpdatedPlayersQueue(){
+        recentlyUpdatedPlayers.clear();
+    }
+
     public static Event<Boolean> onPlayerDataUpdated;
     public static Event<Boolean> onPlayerKillOrRevive;
 
@@ -67,6 +75,8 @@ public class PlayerManager {
         logger = Logger.getLogger(PlayerManager.class.getName());
         // Set Logger level()
         logger.setLevel(Level.WARNING);
+
+        recentlyUpdatedPlayers = new ArrayDeque<Player>();
 
         onPlayerKillOrRevive = new Event<Boolean>();
         onPlayerDataUpdated = new Event<Boolean>();
@@ -340,7 +350,22 @@ public class PlayerManager {
 
     // Adds token from sourcePlayer onto targetPlayer
     public static void UseAbilityOnPlayer( @NonNull Role sourceRole, @NonNull Player targetPlayer){
-        targetPlayer.AddTokenOnToPlayer(sourceRole.getPower().getToken());
+        Token token = sourceRole.getPower().getToken();
+
+        // adds the token of the sourceRole to the targetPlayer
+        if( targetPlayer.AddTokenOnToPlayer(sourceRole.getPower().getToken()) ){
+            recentlyUpdatedPlayers.offer(targetPlayer);
+
+            if(recentlyUpdatedPlayers.size() > token.getMaxUsableAtNight()){
+                Player firstPlayerInQueue = recentlyUpdatedPlayers.peek();
+                assert firstPlayerInQueue != null;
+                firstPlayerInQueue.RemoveTokenAt(firstPlayerInQueue.getAllTokensOnPlayer().size() - 1);
+                recentlyUpdatedPlayers.remove();
+            }
+        }
+
+
+        // Marks the players with this role that their role has been used at least once
         for (int i = 0; i < allAlive.size(); i++) {
             if(allAlive.elementAt(i).getRole().getName() == sourceRole.getName()){
                 allAlive.elementAt(i).getRole().getPower().usePower();

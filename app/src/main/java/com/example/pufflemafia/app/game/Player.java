@@ -46,10 +46,12 @@ public class Player {
         tokensOnPlayer.removeElementAt(index);
         tokensOnPlayer.insertElementAt(token, index);
     }
-    public void AddTokenOnToPlayer(Token token){
+    public boolean AddTokenOnToPlayer(Token token){
         if(DoesPlayerAlreadyHaveToken(token) == false){
             this.tokensOnPlayer.add(token);
+            return true;
         }
+        return false;
     }
     public boolean DoesPlayerAlreadyHaveToken(Token token){
         for (Token t: this.tokensOnPlayer) {
