@@ -113,6 +113,7 @@ public class GameManager {
         }
 
         currentRoleActiveAtNight = ActiveRolesManager.StartNight(allAliveRoles, nightNumber);
+        PlayerManager.ClearRecentlyUpdatedPlayersQueue();
         if(currentRoleActiveAtNight == null){
             StartDay();
         }
@@ -123,6 +124,7 @@ public class GameManager {
     public static void GoToPreviousEventAtNight(){
         if(currentState != GameState.Night) return;
         currentIndexOfEventsAtNight--;
+        PlayerManager.ClearRecentlyUpdatedPlayersQueue();
         if(currentIndexOfEventsAtNight < 0){
             currentIndexOfEventsAtNight = 0;
             BackOutOfANight();
@@ -134,6 +136,7 @@ public class GameManager {
     public static void GoToNextEventAtNight(){
         if(currentState != GameState.Night) return;
         currentIndexOfEventsAtNight++;
+        PlayerManager.ClearRecentlyUpdatedPlayersQueue();
 
         currentRoleActiveAtNight = ActiveRolesManager.GetRoleForNight(currentIndexOfEventsAtNight);
         if(currentRoleActiveAtNight == null) StartDay();

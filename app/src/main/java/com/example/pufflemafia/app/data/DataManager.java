@@ -27,116 +27,116 @@ public class DataManager {
 
         Token alien = new Token(
                 "Alien",
-                R.drawable.alien_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.alien_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(alien.getName(), alien);
 
         Token baker = new Token(
                 "Baker",
-                R.drawable.puffle_o_croissant,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.puffle_o_croissant, Token.TokenTypes.CLEAR_NEVER, 2);
         allTokens.put(baker.getName(), baker);
 
         Token cupid = new Token(
                 "Cupid",
-                R.drawable.cupid_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.cupid_puffle, Token.TokenTypes.CLEAR_NEVER, 2);
         allTokens.put(cupid.getName(), cupid);
 
         Token cyborg = new Token(
                 "Cyborg",
-                R.drawable.cyborg_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.cyborg_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(cyborg.getName(), cyborg);
 
         Token dentist = new Token(
                 "Dentist",
-                R.drawable.dentist_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
+                "will give the player a funny feeling",
+                R.drawable.dentist_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(dentist.getName(), dentist);
 
         Token detective = new Token(
                 "Detective",
-                R.drawable.detective_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
+                "will give the player a funny feeling",
+                R.drawable.detective_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(detective.getName(), detective);
 
         Token doctor = new Token(
                 "Doctor",
-                R.drawable.doctor_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
+                "will give the player a funny feeling",
+                R.drawable.doctor_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(doctor.getName(), doctor);
 
         Token theFather = new Token(
                 "The Father",
-                R.drawable.the_father_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.the_father_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(theFather.getName(), theFather);
 
         Token holySpirit = new Token(
                 "Holy Spirit",
-                R.drawable.holy_spirit_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.holy_spirit_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(holySpirit.getName(), holySpirit);
 
         Token jackOfAllTrades = new Token(
                 "J.O.A.T.",
-                R.drawable.jack_of_all_trades,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
+                "will give the player a funny feeling",
+                R.drawable.jack_of_all_trades, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(jackOfAllTrades.getName(), jackOfAllTrades);
 
         Token jailKeeper = new Token(
                 "Jailkeeper",
-                R.drawable.jailkeeper_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
+                "will give the player a funny feeling",
+                R.drawable.jailkeeper_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(jailKeeper.getName(), jailKeeper);
 
         Token lawyer = new Token(
                 "Lawyer",
-                R.drawable.lawyer_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
+                "will give the player a funny feeling",
+                R.drawable.lawyer_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(lawyer.getName(), lawyer);
 
         Token lovers = new Token(
                 "Lovers",
-                R.drawable.lover_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.lover_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(lovers.getName(), lovers);
 
         Token mafia = new Token(
                 "Mafia",
-                R.drawable.mafia_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
+                "will give the player a funny feeling",
+                R.drawable.mafia_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(mafia.getName(), mafia);
 
         Token mafiaRival = new Token(
                 "Mafia Rival",
-                R.drawable.rival_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
+                "will give the player a funny feeling",
+                R.drawable.rival_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(mafiaRival.getName(), mafiaRival);
 
         Token satan = new Token(
                 "Satan",
-                R.drawable.satan,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.satan, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(satan.getName(), satan);
 
         Token terrorist = new Token(
                 "Terrorist",
-                R.drawable.terrorist_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.terrorist_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(terrorist.getName(), terrorist);
 
         Token witness = new Token(
                 "Witness",
-                R.drawable.witness_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.witness_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(witness.getName(), witness);
 
         Token wizard = new Token(
                 "Wizard",
-                R.drawable.wizard_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
+                "will give the player a funny feeling",
+                R.drawable.wizard_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(wizard.getName(), wizard);
 
     }
