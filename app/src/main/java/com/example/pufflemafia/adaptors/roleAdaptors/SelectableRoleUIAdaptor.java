@@ -22,7 +22,7 @@ import java.util.Vector;
 public class SelectableRoleUIAdaptor extends RecyclerView.Adapter<SelectableRoleUIAdaptor.ViewHolder> {
 
     private Vector<Role> localDataSet;
-    private Context context;
+    protected Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //private final TextView textView;
@@ -113,6 +113,9 @@ public class SelectableRoleUIAdaptor extends RecyclerView.Adapter<SelectableRole
         intent.putExtra("name", role.getName());
         intent.putExtra("imageResourceId", role.getImageResource());
         intent.putExtra("description", role.getDescription());
+        intent.putExtra("winCondition", role.getWinCondition());
+        intent.putExtra("team", role.getTeam());
+        intent.putExtra("alliance", role.getAlliance());
         context.startActivity(intent);
     }
 

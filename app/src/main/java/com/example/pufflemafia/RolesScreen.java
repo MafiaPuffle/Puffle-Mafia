@@ -1,6 +1,8 @@
 package com.example.pufflemafia;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 
+import com.example.pufflemafia.adaptors.roleAdaptors.AllRolesRoleUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
@@ -22,51 +25,28 @@ import java.util.Vector;
 public class RolesScreen extends CustomAppCompatActivityWrapper {
 
     private Vector<Role> allRoles;
-    private GridLayout gridLayout;
+    private RecyclerView allRolesRecyclerView;
+    private RecyclerView.LayoutManager allRolesLayoutManager;
+    private AllRolesRoleUIAdaptor allRolesRoleUIAdaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roles);
 
-        gridLayout = findViewById(R.id.AddingTokenBox);
-
-        allRoles = DataManager.GetAllRoles();
-
-        for(Role role: allRoles){
-            ImageButton imageButton = addImageButtonToGrid(gridLayout, role.getImageResource());
-
-            imageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    SoundManager.playSfx("Click");
-                    Intent intent = new Intent(RolesScreen.this, RoleDetails.class);
-                    intent.putExtra("name", role.getName());
-                    intent.putExtra("imageResourceId", role.getImageResource());
-                    intent.putExtra("description", role.getDescription());
-                    startActivity(intent);
-                }
-            });
-        }
-
+        configureRecyclerView();
         configureBackToMainMenu();
     }
 
-    private ImageButton addImageButtonToGrid(GridLayout gridLayout, int drawableId) {
-        Log.d("CharacterSelectScreen", "Adding image button to grid");
-        ImageButton imageButton = new ImageButton(this);
-        imageButton.setBackgroundResource(drawableId); // Set the image as the background
-        imageButton.setImageResource(0); // Remove the image source
+    private void configureRecyclerView(){
+        allRoles = DataManager.GetAllRoles();
 
-        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-        params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        params.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, getResources().getDisplayMetrics());
-        params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, getResources().getDisplayMetrics());
-        imageButton.setLayoutParams(params);
-        gridLayout.addView(imageButton);
+        allRolesRecyclerView = findViewById(R.id.AllRolesRecyclerView);
+        allRolesLayoutManager = new GridLayoutManager(this, 5);
+        allRolesRoleUIAdaptor = new AllRolesRoleUIAdaptor(allRoles, this);
 
-        return imageButton;
+        allRolesRecyclerView.setAdapter(allRolesRoleUIAdaptor);
+        allRolesRecyclerView.setLayoutManager(allRolesLayoutManager);
     }
 
     private void configureBackToMainMenu(){

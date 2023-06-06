@@ -1,6 +1,7 @@
 package com.example.pufflemafia.adaptors.playerAdaptors;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.RoleDetails;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.GameManager;
@@ -149,6 +151,21 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
 
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
         viewHolder.getRoleButton().setImageResource(0);
+        viewHolder.getRoleButton().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(context, RoleDetails.class);
+                intent.putExtra("name", role.getName());
+                intent.putExtra("imageResourceId", role.getImageResource());
+                intent.putExtra("description", role.getDescription());
+                intent.putExtra("winCondition", role.getWinCondition());
+                intent.putExtra("team", role.getTeam());
+                intent.putExtra("alliance", role.getAlliance());
+                context.startActivity(intent);
+                return false;
+            }
+        });
         viewHolder.getLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
