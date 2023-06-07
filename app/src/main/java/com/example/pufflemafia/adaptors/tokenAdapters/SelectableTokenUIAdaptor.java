@@ -78,12 +78,12 @@ public class SelectableTokenUIAdaptor extends RecyclerView.Adapter<SelectableTok
             public boolean onLongClick(View view) {
                 SoundManager.playSfx("Click");
                 String name = token.getName();
-                Integer imageId = token.getImageResource();
-                String description = token.getDescription();
+//                Integer imageId = token.getImageResource();
+//                String description = token.getDescription();
                 Intent intent = new Intent(context, TokenDetails.class);
                 intent.putExtra("name", name);
-                intent.putExtra("imageResourceId", imageId);
-                intent.putExtra("description", description);
+//                intent.putExtra("imageResourceId", imageId);
+//                intent.putExtra("description", description);
                 context.startActivity(intent);
                 return true;
             }

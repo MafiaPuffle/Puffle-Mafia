@@ -24,7 +24,7 @@ public class Token {
 
     public Token(String name, String description, int imageResource, TokenTypes type, int maxUsableAtNight){
         this.name = name;
-        this.description = getDescription();
+        this.description = description;
         this.imageResource = imageResource;
         this.type = type;
         this.maxUsableAtNight = maxUsableAtNight;
