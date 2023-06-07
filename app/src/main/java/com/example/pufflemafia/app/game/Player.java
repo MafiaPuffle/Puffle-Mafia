@@ -63,6 +63,9 @@ public class Player {
         if(tokenIndex >= tokensOnPlayer.size()) return;
         tokensOnPlayer.removeElementAt(tokenIndex);
     }
+    public void RemoveToken(Token token){
+        tokensOnPlayer.remove(token);
+    }
 
     public void UpdateTokens(Vector<Token> newTokens){
         tokensOnPlayer.clear();
