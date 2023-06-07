@@ -35,11 +35,11 @@ public class RoleDetails extends CustomAppCompatActivityWrapper {
 
         intent = getIntent();
 
-        selectedRoleImageView = findViewById(R.id.RoleImage);
+        selectedRoleImageView = findViewById(R.id.TokenRoleImage);
         selectedRoleAllianceImageView = findViewById(R.id.GoodorEvil);
 
-        selectedRoleNameTextView = findViewById(R.id.RoleName);
-        selectedRoleDescriptionTextView = findViewById(R.id.AbilityEffect);
+        selectedRoleNameTextView = findViewById(R.id.TokenRoleName);
+        selectedRoleDescriptionTextView = findViewById(R.id.TokenAbilityEffect);
         selectedRoleWinConditionTextView = findViewById(R.id.WinConditionEffect);
         selectedRoleTeamTextView = findViewById(R.id.TeamTextView);
 
@@ -92,8 +92,8 @@ public class RoleDetails extends CustomAppCompatActivityWrapper {
     }
 
     private void configureTeamInfo(String teamName, int BackgroundID){
-        TextView RoleName = findViewById(R.id.RoleName);
-        TextView RoleAbility = findViewById(R.id.AbilityEffect);
+        TextView RoleName = findViewById(R.id.TokenRoleName);
+        TextView RoleAbility = findViewById(R.id.TokenAbilityEffect);
         TextView WinCondition = findViewById(R.id.WinConditionEffect);
         TextView RoleTeam = findViewById(R.id.TeamTextView);
 

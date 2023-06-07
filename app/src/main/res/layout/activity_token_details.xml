@@ -16,7 +16,6 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TokenRoleName"
         app:layout_constraintVertical_bias="0.0"
@@ -56,7 +55,7 @@
         android:fontFamily="@font/horizon"
         android:gravity="center"
         android:padding="5dp"
-        android:text="Ability"
+        android:text="Token Ability"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,56 +76,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.981" />
 
-    <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/TokenAbilityName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.59"
-        app:layout_constraintStart_toEndOf="@+id/TokenRoleImage"
-        app:layout_constraintTop_toBottomOf="@+id/TokenRoleName"
-        app:layout_constraintVertical_bias="0.032">
-
-        <TextView
-            android:id="@+id/Team"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/grey_rectangle"
-            android:fontFamily="@font/horizon"
-            android:padding="5dp"
-            android:text="Team"
-            android:textColor="@color/white"
-            android:layout_gravity="center"/>
-
-        <TextView
-            android:id="@+id/TeamTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/red_rectangle"
-            android:padding="5dp"
-            android:fontFamily="@font/horizon"
-            android:textColor="@color/white"
-            android:text="Mafia"
-            android:layout_gravity="center"/>
-
-        <ImageView
-            android:id="@+id/GoodorEvil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/thumbs_up" />
-    </LinearLayout>
-
     <TextView
         android:id="@+id/TokenAbilityEffect"
         android:layout_width="wrap_content"
@@ -144,46 +93,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TokenAbilityName"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/WinCondition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/grey_rectangle"
-        android:fontFamily="@font/horizon"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="Win Condition"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TokenAbilityEffect"
-        app:layout_constraintVertical_bias="0.008" />
-
-    <TextView
-        android:id="@+id/WinConditionEffect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/green_rectangle"
-        android:padding="5dp"
-        android:text="This role wins with ..."
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WinCondition"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
