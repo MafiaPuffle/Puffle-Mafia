@@ -81,8 +81,10 @@
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SelectedTokensRecyclerView">
+        app:layout_constraintTop_toBottomOf="@+id/SelectedTokensRecyclerView"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/TokenEfectsTitleText"
@@ -158,9 +160,24 @@
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AddedTokenTitleBox"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/TokenEffectsRecyclerView"
+        android:layout_width="65dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_rectangle"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/BackToMainMafiaPageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TokenEffectsTitleBox"
         app:layout_constraintVertical_bias="0.0" />
 
 
