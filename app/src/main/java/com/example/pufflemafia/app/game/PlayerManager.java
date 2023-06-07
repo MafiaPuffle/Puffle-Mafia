@@ -354,14 +354,7 @@ public class PlayerManager {
 
         // adds the token of the sourceRole to the targetPlayer
         if( targetPlayer.AddTokenOnToPlayer(sourceRole.getPower().getToken()) ){
-            recentlyUpdatedPlayers.offer(targetPlayer);
-
-            if(recentlyUpdatedPlayers.size() > token.getMaxUsableAtNight()){
-                Player firstPlayerInQueue = recentlyUpdatedPlayers.peek();
-                assert firstPlayerInQueue != null;
-                firstPlayerInQueue.RemoveTokenAt(firstPlayerInQueue.getAllTokensOnPlayer().size() - 1);
-                recentlyUpdatedPlayers.remove();
-            }
+            ActiveRolesManager.UpdatePlayerMemory(GameManager.getCurrentIndexOfEventsAtNight(), targetPlayer, sourceRole.getPower().getToken());
         }
 
 
