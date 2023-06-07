@@ -2,12 +2,14 @@ package com.example.pufflemafia;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
+import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.SoundManager;
 
@@ -18,6 +20,7 @@ public class TokenDetails extends CustomAppCompatActivityWrapper {
     private ImageView tokenImageView;
     private TextView tokenNameTextView;
     private TextView tokenDescriptionTextView;
+    private Token token;
     private String tokenName;
     private int tokenImageResource;
     private String tokenDescription;
@@ -34,13 +37,16 @@ public class TokenDetails extends CustomAppCompatActivityWrapper {
         tokenDescriptionTextView = findViewById(R.id.TokenAbilityEffect);
 
         tokenName = intent.getStringExtra("name");
-        tokenImageResource = intent.getIntExtra("imageResourceId",0);
-        tokenDescription = intent.getStringExtra("description");
+        token = DataManager.GetToken(tokenName);
+        tokenImageResource = token.getImageResource();
+        tokenDescription = token.getDescription();
 
         tokenNameTextView.setText(tokenName);
         tokenDescriptionTextView.setText(tokenDescription);
 //        tokenImageView.setBackgroundResource(tokenImageResource);
         tokenImageView.setImageResource(tokenImageResource);
+
+        Log.d("TokenDetails", "Token Description: " + tokenDescription);
 
         configureBackButton();
     }
