@@ -27,115 +27,115 @@ public class DataManager {
 
         Token alien = new Token(
                 "Alien",
-                "will give the player a funny feeling",
+                "Infected by the Alien and will contribute to the victory condition of the Alien",
                 R.drawable.alien_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(alien.getName(), alien);
 
         Token baker = new Token(
                 "Baker",
-                "will give the player a funny feeling",
+                "Bread given by the Baker will keep this character alive if a famine occurs",
                 R.drawable.puffle_o_croissant, Token.TokenTypes.CLEAR_NEVER, 2);
         allTokens.put(baker.getName(), baker);
 
         Token cupid = new Token(
                 "Cupid",
-                "will give the player a funny feeling",
+                "This player is linked to all other characters with the Cupid token, all role actions will be applied to all Cupid token players",
                 R.drawable.cupid_puffle, Token.TokenTypes.CLEAR_NEVER, 2);
         allTokens.put(cupid.getName(), cupid);
 
         Token cyborg = new Token(
                 "Cyborg",
-                "will give the player a funny feeling",
+                "This player had their role copied by the Cyborg",
                 R.drawable.cyborg_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(cyborg.getName(), cyborg);
 
         Token dentist = new Token(
                 "Dentist",
-                "will give the player a funny feeling",
+                "Player cannot speak for the rest of this day",
                 R.drawable.dentist_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(dentist.getName(), dentist);
 
         Token detective = new Token(
                 "Detective",
-                "will give the player a funny feeling",
+                "This player had their alliance revealed to the Detective",
                 R.drawable.detective_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(detective.getName(), detective);
 
         Token doctor = new Token(
                 "Doctor",
-                "will give the player a funny feeling",
+                "This player will not die by the ONLY the Mafia",
                 R.drawable.doctor_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(doctor.getName(), doctor);
 
-        Token theFather = new Token(
-                "The Father",
-                "will give the player a funny feeling",
-                R.drawable.the_father_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
-        allTokens.put(theFather.getName(), theFather);
-
-        Token holySpirit = new Token(
-                "Holy Spirit",
-                "will give the player a funny feeling",
-                R.drawable.holy_spirit_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
-        allTokens.put(holySpirit.getName(), holySpirit);
+//        Token theFather = new Token(
+//                "The Father",
+//                "will give the player a funny feeling",
+//                R.drawable.the_father_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
+//        allTokens.put(theFather.getName(), theFather);
+//
+//        Token holySpirit = new Token(
+//                "Holy Spirit",
+//                "will give the player a funny feeling",
+//                R.drawable.holy_spirit_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
+//        allTokens.put(holySpirit.getName(), holySpirit);
 
         Token jackOfAllTrades = new Token(
                 "J.O.A.T.",
-                "will give the player a funny feeling",
+                "This player had the Jack-Of-All-Trades use their role on them",
                 R.drawable.jack_of_all_trades, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(jackOfAllTrades.getName(), jackOfAllTrades);
 
         Token jailKeeper = new Token(
                 "Jailkeeper",
-                "will give the player a funny feeling",
+                "This player cannot use their ability this night or during the day",
                 R.drawable.jailkeeper_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(jailKeeper.getName(), jailKeeper);
 
         Token lawyer = new Token(
                 "Lawyer",
-                "will give the player a funny feeling",
+                "This player will not die by ONLY the town vote",
                 R.drawable.lawyer_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(lawyer.getName(), lawyer);
 
-        Token lovers = new Token(
-                "Lovers",
-                "will give the player a funny feeling",
-                R.drawable.lover_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
-        allTokens.put(lovers.getName(), lovers);
+//        Token lovers = new Token(
+//                "Lovers",
+//                "will give the player a funny feeling",
+//                R.drawable.lover_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
+//        allTokens.put(lovers.getName(), lovers);
 
         Token mafia = new Token(
                 "Mafia",
-                "will give the player a funny feeling",
+                "This player dies by the Mafia",
                 R.drawable.mafia_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(mafia.getName(), mafia);
 
         Token mafiaRival = new Token(
                 "Mafia Rival",
-                "will give the player a funny feeling",
+                "This player dies by the Rival Mafia",
                 R.drawable.rival_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(mafiaRival.getName(), mafiaRival);
 
-        Token satan = new Token(
-                "Satan",
-                "will give the player a funny feeling",
-                R.drawable.satan, Token.TokenTypes.CLEAR_NEVER, 1);
-        allTokens.put(satan.getName(), satan);
+//        Token satan = new Token(
+//                "Satan",
+//                "will give the player a funny feeling",
+//                R.drawable.satan, Token.TokenTypes.CLEAR_NEVER, 1);
+//        allTokens.put(satan.getName(), satan);
 
         Token terrorist = new Token(
                 "Terrorist",
-                "will give the player a funny feeling",
+                "This player dies when the Terrorist dies",
                 R.drawable.terrorist_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(terrorist.getName(), terrorist);
 
-        Token witness = new Token(
-                "Witness",
-                "will give the player a funny feeling",
-                R.drawable.witness_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
-        allTokens.put(witness.getName(), witness);
+//        Token witness = new Token(
+//                "Witness",
+//                "will give the player a funny feeling",
+//                R.drawable.witness_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
+//        allTokens.put(witness.getName(), witness);
 
         Token wizard = new Token(
                 "Wizard",
-                "will give the player a funny feeling",
+                "This player had their role switched with the Wizard",
                 R.drawable.wizard_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(wizard.getName(), wizard);
 
@@ -241,7 +241,7 @@ public class DataManager {
         Power lovers = new Power(
                 "Lovers",
                 Power.PowerType.FIRSTNIGHT,
-                "");
+                "Lovers wake up and look at each other, you are linked");
         allPowers.put(lovers.getName(), lovers);
 
         Power mafia = new Power(
@@ -288,8 +288,7 @@ public class DataManager {
 
         Power witness = new Power("Witness",
                 Power.PowerType.ONETIMEUSE,
-                "DID YOU WITNESS A MURDER",
-                GetToken("Witness"));
+                "DID YOU WITNESS A MURDER");
         allPowers.put(witness.getName(), witness);
 
         Power wizard = new Power("Wizard",
