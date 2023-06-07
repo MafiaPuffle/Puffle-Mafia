@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.TokenDetails;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.SoundManager;
 
@@ -72,18 +73,21 @@ public class SelectableTokenUIAdaptor extends RecyclerView.Adapter<SelectableTok
             }
         });
 
-//        viewHolder.getTokenLinearLayout().setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                SoundManager.playSfx("Click");
-//                Intent intent = new Intent(context, TokenDetails.class);
-//                intent.putExtra("name", token.getName());
-//                intent.putExtra("imageResourceId", token.getImageResource());
-//                intent.putExtra("description", token.getDescription());
-//                context.startActivity(intent);
-//                return true;
-//            }
-//        });
+        viewHolder.getTokenLinearLayout().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
+                String name = token.getName();
+                Integer imageId = token.getImageResource();
+                String description = token.getDescription();
+                Intent intent = new Intent(context, TokenDetails.class);
+                intent.putExtra("name", name);
+                intent.putExtra("imageResourceId", imageId);
+                intent.putExtra("description", description);
+                context.startActivity(intent);
+                return true;
+            }
+        });
 
         viewHolder.getTokenImageView().setImageResource(token.getImageResource());
         viewHolder.getTokenNameTextView().setText(token.getName());
