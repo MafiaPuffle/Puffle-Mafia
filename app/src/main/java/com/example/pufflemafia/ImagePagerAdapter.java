@@ -24,7 +24,7 @@ public class ImagePagerAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_image, container, false);
 
-        ImageView imageView = view.findViewById(R.id.RoleImage);
+        ImageView imageView = view.findViewById(R.id.TokenRoleImage);
         imageView.setImageResource(imageIds[position]);
 
         container.addView(view);
