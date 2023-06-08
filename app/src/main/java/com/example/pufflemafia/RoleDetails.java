@@ -106,7 +106,7 @@ public class RoleDetails extends CustomAppCompatActivityWrapper {
     }
 
     private void configureBackToMainMenu(){
-        Button BackToMainMenuButton = (Button) findViewById(R.id.BackToMainMenu);
+        Button BackToMainMenuButton = (Button) findViewById(R.id.BackToMainMafiaScreen);
         BackToMainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
