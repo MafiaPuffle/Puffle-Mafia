@@ -14,6 +14,7 @@ public class Timer {
 
     public void Start(){
         countDownTimer.start();
+        Log.d("Timer","Starting a timer");
     }
 
     public void Pause(){
@@ -21,10 +22,14 @@ public class Timer {
     }
 
     public void Stop(){
-        countDownTimer.start();
+        countDownTimer.cancel();
     }
 
     public Timer(int totalMinuets, int totalSeconds){
+
+        onFinish = new Event<Boolean>();
+        onUpdate = new Event<Long>();
+
         countDownTimer = new CountDownTimer((totalMinuets * 60000) + (totalSeconds * 1000), 1000) {
             @Override
             public void onTick(long millisUntilFinished) {

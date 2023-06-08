@@ -56,26 +56,9 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         Button button = findViewById(R.id.helpButton);
         button.setBackgroundTintList(blueColorStateList);
 
-        PlayerManager.onPlayerKillOrRevive.AddListener(this);
-        PlayerManager.onPlayerDataUpdated.AddListener(this);
-        GameManager.onStartDay.AddListener(this);
+        configurePlayerManager();
 
-        //GameManager.StartNewGame(AppManager.gameSetup);
-
-        allAlivePlayers = PlayerManager.getAllAlive();
-        allDeadPlayers = PlayerManager.getAllDead();
-
-        allAliveRecycleView = findViewById(R.id.AllAliveRecycleView);
-        allDeadRecycleView = findViewById(R.id.AllDeadRecycleView);
-        allAliveLayoutManager = new LinearLayoutManager(this);
-        allDeadLayoutManager = new LinearLayoutManager(this);
-        allAlivePlayerDayUIAdaptor = new PlayerDayUIAdaptor(allAlivePlayers, this, PlayerManager.PlayerMangerListType.ALIVE);
-        allDeadPlayerDayUIAdaptor = new PlayerDayUIAdaptor(allDeadPlayers, this, PlayerManager.PlayerMangerListType.DEAD);
-
-        allAliveRecycleView.setAdapter(allAlivePlayerDayUIAdaptor);
-        allDeadRecycleView.setAdapter(allDeadPlayerDayUIAdaptor);
-        allAliveRecycleView.setLayoutManager(allAliveLayoutManager);
-        allDeadRecycleView.setLayoutManager(allDeadLayoutManager);
+        configureRecyclerViews();
 
         PlayerManager.sortAllAliveByTokens();
         PlayerManager.sortAllDeadByTokens();
@@ -83,6 +66,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         // Configure Button
         configureDayBacktoChooseYourCharactersButton();
         configureStartTheNightButton();
+        configureTimerButton();
 
         // Initialize buttons
         Handler h =new Handler() ;
@@ -109,6 +93,29 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
     }
 
+    private void configurePlayerManager(){
+        PlayerManager.onPlayerKillOrRevive.AddListener(this);
+        PlayerManager.onPlayerDataUpdated.AddListener(this);
+        GameManager.onStartDay.AddListener(this);
+    }
+
+    private void configureRecyclerViews(){
+        allAlivePlayers = PlayerManager.getAllAlive();
+        allDeadPlayers = PlayerManager.getAllDead();
+
+        allAliveRecycleView = findViewById(R.id.AllAliveRecycleView);
+        allDeadRecycleView = findViewById(R.id.AllDeadRecycleView);
+        allAliveLayoutManager = new LinearLayoutManager(this);
+        allDeadLayoutManager = new LinearLayoutManager(this);
+        allAlivePlayerDayUIAdaptor = new PlayerDayUIAdaptor(allAlivePlayers, this, PlayerManager.PlayerMangerListType.ALIVE);
+        allDeadPlayerDayUIAdaptor = new PlayerDayUIAdaptor(allDeadPlayers, this, PlayerManager.PlayerMangerListType.DEAD);
+
+        allAliveRecycleView.setAdapter(allAlivePlayerDayUIAdaptor);
+        allDeadRecycleView.setAdapter(allDeadPlayerDayUIAdaptor);
+        allAliveRecycleView.setLayoutManager(allAliveLayoutManager);
+        allDeadRecycleView.setLayoutManager(allDeadLayoutManager);
+    }
+
     private void configureHelpButton(){
         helpButton = findViewById(R.id.helpButton);
         Vector<ViewToPointTo> allViewsToPointTo = new Vector<ViewToPointTo>();
@@ -121,6 +128,22 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
 
         HelpPromptManager.InitializeHelpPopups(this, this, helpButton, allViewsToPointTo);
 
+    }
+
+    private void configureTimerButton(){
+        Button timerButton = findViewById(R.id.Timerbutton);
+        ImageButton timer = findViewById(R.id.Timer);
+
+        timerButton.setVisibility(View.GONE);
+//        timer.setVisibility(View.GONE);
+
+        timer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMafiaPage.this, TimerScreen.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // Start The Night Button

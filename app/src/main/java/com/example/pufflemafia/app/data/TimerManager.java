@@ -20,6 +20,7 @@ public class TimerManager {
         if(isTimerGoing = true){
             if (currentTimer != null){
                 currentTimer.Stop();
+                //TODO remove all listeners of old timer
             }
         }
 
@@ -27,6 +28,7 @@ public class TimerManager {
         currentTimer.onFinish.AddListener(new IListener<Boolean>() {
             @Override
             public void Response() {
+                Log.d("TimerManager", "Timer Done!");
                 onFinish.Invoke();
             }
 
@@ -43,6 +45,7 @@ public class TimerManager {
 
             @Override
             public void Response(Long aLong) {
+                Log.d("TimerManager", "Current time: " + aLong);
                 onUpdate.Invoke(aLong);
             }
         });
@@ -52,6 +55,7 @@ public class TimerManager {
         if(currentTimer == null) return;
         if(isTimerGoing = true) return;
 
+        Log.d("TimerManager","Starting a timer");
         currentTimer.Start();
         isTimerGoing = true;
     }
@@ -74,5 +78,6 @@ public class TimerManager {
 
     public TimerManager(){
         instance = this;
+        isTimerGoing = false;
     }
 }
