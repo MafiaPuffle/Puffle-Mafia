@@ -1,17 +1,11 @@
 package com.example.pufflemafia;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.ImageButton;
 
 import com.example.pufflemafia.adaptors.roleAdaptors.AllRolesRoleUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
@@ -50,7 +44,7 @@ public class RolesScreen extends CustomAppCompatActivityWrapper {
     }
 
     private void configureBackToMainMenu(){
-        Button BackToMainMenuButton = (Button) findViewById(R.id.BackToMainMenu);
+        Button BackToMainMenuButton = (Button) findViewById(R.id.BackToMainMafiaScreen);
         BackToMainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
