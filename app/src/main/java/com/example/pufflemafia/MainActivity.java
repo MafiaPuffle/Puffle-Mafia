@@ -15,6 +15,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.ViewToPointTo;
+import com.example.pufflemafia.app.data.TimerManager;
 import com.example.pufflemafia.app.game.HelpPromptManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
