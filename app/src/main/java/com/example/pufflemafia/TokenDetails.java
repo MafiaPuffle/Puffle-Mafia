@@ -52,7 +52,7 @@ public class TokenDetails extends CustomAppCompatActivityWrapper {
     }
 
     private void configureBackButton(){
-        Button BackToMainMenuButton = (Button) findViewById(R.id.BackToMainMenu);
+        Button BackToMainMenuButton = (Button) findViewById(R.id.BackToMainMafiaScreen);
         BackToMainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

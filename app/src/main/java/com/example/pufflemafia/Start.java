@@ -114,7 +114,7 @@ public class Start extends CustomAppCompatActivityWrapper implements IListener<B
 
     // BACK BUTTON
     private void configureBackToMainMenu() {
-        Button backToMainMenuButton = findViewById(R.id.BackToMainMenu);
+        Button backToMainMenuButton = findViewById(R.id.BackToMainMafiaScreen);
         backToMainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
