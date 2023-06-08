@@ -9,7 +9,7 @@ public class Timer {
 
     private CountDownTimer countDownTimer;
     private long currentTime;
-    public Event<Long> onFinish;
+    public Event<Boolean> onFinish;
     public Event<Long> onUpdate;
 
     public void Start(){
@@ -35,7 +35,7 @@ public class Timer {
             @Override
             public void onFinish() {
                 long zero = 0;
-                onFinish.Invoke(zero);
+                onFinish.Invoke();
             }
         };
     }

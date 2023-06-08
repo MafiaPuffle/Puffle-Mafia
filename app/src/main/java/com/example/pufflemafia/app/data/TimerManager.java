@@ -5,8 +5,9 @@ import android.util.Log;
 
 import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.Listener;
 
-public class TimerManager implements IListener<Long> {
+public class TimerManager {
     private static Timer currentTimer;
     private static TimerManager instance;
 
@@ -23,7 +24,28 @@ public class TimerManager implements IListener<Long> {
         }
 
         currentTimer = timer;
-        currentTimer.onFinish.AddListener(instance);
+        currentTimer.onFinish.AddListener(new IListener<Boolean>() {
+            @Override
+            public void Response() {
+                onFinish.Invoke();
+            }
+
+            @Override
+            public void Response(Boolean aBoolean) {
+
+            }
+        });
+        currentTimer.onUpdate.AddListener(new IListener<Long>() {
+            @Override
+            public void Response() {
+
+            }
+
+            @Override
+            public void Response(Long aLong) {
+                onUpdate.Invoke(aLong);
+            }
+        });
     }
 
     public static void Play(){
@@ -52,20 +74,5 @@ public class TimerManager implements IListener<Long> {
 
     public TimerManager(){
         instance = this;
-    }
-
-    @Override
-    public void Response() {
-
-    }
-
-    @Override
-    public void Response(Long value) {
-        if(value != 0){
-            onUpdate.Invoke(value);
-        }
-        else {
-            onFinish.Invoke();
-        }
     }
 }
