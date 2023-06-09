@@ -43,6 +43,7 @@ public class AppManager {
 
         gameManager = new GameManager();
         dataManager = new DataManager();
+        timerManager = new TimerManager();
 
         logger = Logger.getLogger(AppManager.class.getName());
         // Set Logger level()

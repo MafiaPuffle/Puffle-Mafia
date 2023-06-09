@@ -23,6 +23,8 @@ import com.example.pufflemafia.adaptors.playerAdaptors.PlayerDayUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.ViewToPointTo;
+import com.example.pufflemafia.app.data.Time;
+import com.example.pufflemafia.app.data.TimerManager;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.HelpPromptManager;
 import com.example.pufflemafia.app.game.Player;
@@ -30,6 +32,7 @@ import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
 
 public class MainMafiaPage extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
 
@@ -44,6 +47,9 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
 
     private Button helpButton;
 
+    Button timerButton;
+    ImageButton timer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,26 +62,9 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         Button button = findViewById(R.id.helpButton);
         button.setBackgroundTintList(blueColorStateList);
 
-        PlayerManager.onPlayerKillOrRevive.AddListener(this);
-        PlayerManager.onPlayerDataUpdated.AddListener(this);
-        GameManager.onStartDay.AddListener(this);
+        configurePlayerManager();
 
-        //GameManager.StartNewGame(AppManager.gameSetup);
-
-        allAlivePlayers = PlayerManager.getAllAlive();
-        allDeadPlayers = PlayerManager.getAllDead();
-
-        allAliveRecycleView = findViewById(R.id.AllAliveRecycleView);
-        allDeadRecycleView = findViewById(R.id.AllDeadRecycleView);
-        allAliveLayoutManager = new LinearLayoutManager(this);
-        allDeadLayoutManager = new LinearLayoutManager(this);
-        allAlivePlayerDayUIAdaptor = new PlayerDayUIAdaptor(allAlivePlayers, this, PlayerManager.PlayerMangerListType.ALIVE);
-        allDeadPlayerDayUIAdaptor = new PlayerDayUIAdaptor(allDeadPlayers, this, PlayerManager.PlayerMangerListType.DEAD);
-
-        allAliveRecycleView.setAdapter(allAlivePlayerDayUIAdaptor);
-        allDeadRecycleView.setAdapter(allDeadPlayerDayUIAdaptor);
-        allAliveRecycleView.setLayoutManager(allAliveLayoutManager);
-        allDeadRecycleView.setLayoutManager(allDeadLayoutManager);
+        configureRecyclerViews();
 
         PlayerManager.sortAllAliveByTokens();
         PlayerManager.sortAllDeadByTokens();
@@ -83,6 +72,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         // Configure Button
         configureDayBacktoChooseYourCharactersButton();
         configureStartTheNightButton();
+        configureTimerButton();
 
         // Initialize buttons
         Handler h =new Handler() ;
@@ -107,6 +97,46 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
     private void Refresh() {
         allAlivePlayerDayUIAdaptor.notifyDataSetChanged();
         allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
+
+        RefreshTimerButtons();
+    }
+
+    private void RefreshTimerButtons(){
+        try{
+            if(TimerManager.isTimerGoing){
+                timer.setVisibility(View.GONE);
+                timerButton.setVisibility(View.VISIBLE);
+            }
+            else{
+                timer.setVisibility(View.VISIBLE);
+                timerButton.setVisibility(View.GONE);
+            }
+        }catch (Exception ignored){
+
+        }
+    }
+
+    private void configurePlayerManager(){
+        PlayerManager.onPlayerKillOrRevive.AddListener(this);
+        PlayerManager.onPlayerDataUpdated.AddListener(this);
+        GameManager.onStartDay.AddListener(this);
+    }
+
+    private void configureRecyclerViews(){
+        allAlivePlayers = PlayerManager.getAllAlive();
+        allDeadPlayers = PlayerManager.getAllDead();
+
+        allAliveRecycleView = findViewById(R.id.AllAliveRecycleView);
+        allDeadRecycleView = findViewById(R.id.AllDeadRecycleView);
+        allAliveLayoutManager = new LinearLayoutManager(this);
+        allDeadLayoutManager = new LinearLayoutManager(this);
+        allAlivePlayerDayUIAdaptor = new PlayerDayUIAdaptor(allAlivePlayers, this, PlayerManager.PlayerMangerListType.ALIVE);
+        allDeadPlayerDayUIAdaptor = new PlayerDayUIAdaptor(allDeadPlayers, this, PlayerManager.PlayerMangerListType.DEAD);
+
+        allAliveRecycleView.setAdapter(allAlivePlayerDayUIAdaptor);
+        allDeadRecycleView.setAdapter(allDeadPlayerDayUIAdaptor);
+        allAliveRecycleView.setLayoutManager(allAliveLayoutManager);
+        allDeadRecycleView.setLayoutManager(allDeadLayoutManager);
     }
 
     private void configureHelpButton(){
@@ -121,6 +151,44 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
 
         HelpPromptManager.InitializeHelpPopups(this, this, helpButton, allViewsToPointTo);
 
+    }
+
+    private void configureTimerButton(){
+        timerButton = findViewById(R.id.Timerbutton);
+        timer = findViewById(R.id.Timer);
+
+        timer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(MainMafiaPage.this, TimerScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        timerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(MainMafiaPage.this, TimerScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        TimerManager.onUpdate.AddListener(new IListener<Time>() {
+            @Override
+            public void Response() {
+
+            }
+
+            @Override
+            public void Response(Time time) {
+                timerButton.setText(time.minute + ":" + time.second);
+                RefreshTimerButtons();
+            }
+        });
+
+        RefreshTimerButtons();
     }
 
     // Start The Night Button
