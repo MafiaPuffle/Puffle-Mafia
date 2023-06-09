@@ -9,6 +9,7 @@ import com.example.pufflemafia.app.Listener;
 
 public class TimerManager {
     private static Timer currentTimer;
+    public static Timer getCurrentTimer(){return currentTimer;}
     private static TimerManager instance;
 
     public static Boolean isTimerGoing;

@@ -23,6 +23,7 @@ public class TimerScreen extends CustomAppCompatActivityWrapper {
     private Button fourMinutesButton;
     private Button threeMinutesButton;
     private Button thirtySecondsButton;
+    private ToggleButton pauseButton;
     private TextView TimerNumbers;
 
     @Override
@@ -30,8 +31,8 @@ public class TimerScreen extends CustomAppCompatActivityWrapper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer_screen);
 
-        configureTimerTextView();
         configureTimerButtons();
+        configureTimerTextView();
         configureBackButton();
         configureResetButton();
     }
@@ -50,20 +51,36 @@ public class TimerScreen extends CustomAppCompatActivityWrapper {
                 TimerNumbers.setText(time.minute + ":" + time.second);
             }
         });
+
+        try{
+            Timer timer = TimerManager.getCurrentTimer();
+            TimerNumbers.setText(timer.getCurrentTime().minute + ":" + timer.getCurrentTime().second);
+        }catch (Exception ignored){
+
+        }
+
+        if(TimerManager.isTimerGoing == true){
+            updateToggleButton(false);
+        }
+        else{
+            updateToggleButton(true);
+        }
     }
 
     private void configureTimerButtons(){
-        ToggleButton pauseButton = findViewById(R.id.PausePlay);
+        pauseButton = findViewById(R.id.PausePlay);
         pauseButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean paused) {
                 if(paused){
                     SoundManager.playSfx("Click");
                     TimerManager.Pause();
+                    pauseButton.setBackgroundResource(R.drawable.red_rectangle);
                 }
                 else{
                     SoundManager.playSfx("Click");
                     TimerManager.Resume();
+                    pauseButton.setBackgroundResource(R.drawable.green_rectangle);
                 }
             }
         });
@@ -75,7 +92,7 @@ public class TimerScreen extends CustomAppCompatActivityWrapper {
                 SoundManager.playSfx("Click");
                 TimerManager.setCurrentTimer(new Timer(5,0));
                 TimerManager.Play();
-                pauseButton.setChecked(false);
+                updateToggleButton(false);
                 Log.d("TimerScreen","Starting 5 minute timer");
             }
         });
@@ -86,7 +103,7 @@ public class TimerScreen extends CustomAppCompatActivityWrapper {
                 SoundManager.playSfx("Click");
                 TimerManager.setCurrentTimer(new Timer(4,0));
                 TimerManager.Play();
-                pauseButton.setChecked(false);
+                updateToggleButton(false);
             }
         });
         threeMinutesButton = findViewById(R.id.ThreeMinutes);
@@ -96,7 +113,7 @@ public class TimerScreen extends CustomAppCompatActivityWrapper {
                 SoundManager.playSfx("Click");
                 TimerManager.setCurrentTimer(new Timer(3,0));
                 TimerManager.Play();
-                pauseButton.setChecked(false);
+                updateToggleButton(false);
             }
         });
         thirtySecondsButton = findViewById(R.id.ThirtySeconds);
@@ -106,7 +123,7 @@ public class TimerScreen extends CustomAppCompatActivityWrapper {
                 SoundManager.playSfx("Click");
                 TimerManager.setCurrentTimer(new Timer(0,30));
                 TimerManager.Play();
-                pauseButton.setChecked(false);
+                updateToggleButton(false);
             }
         });
     }
@@ -132,4 +149,11 @@ public class TimerScreen extends CustomAppCompatActivityWrapper {
             }
         });
     }
+
+    private void updateToggleButton(Boolean value) {
+        pauseButton.setChecked(value);
+        int sfxBackgroundResId = value ? R.drawable.red_rectangle : R.drawable.green_rectangle;
+        pauseButton.setBackgroundResource(sfxBackgroundResId);
+    }
+
 }

@@ -10,6 +10,7 @@ public class Timer {
     private CountDownTimer countDownTimer;
     private Time startingTime;
     private Time currentTime;
+    public Time getCurrentTime(){return currentTime;}
     private Boolean isTimerGoing;
     public Event<Boolean> onFinish;
     public Event<Time> onUpdate;
