@@ -1,7 +1,9 @@
 package com.example.pufflemafia.app;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,8 +19,12 @@ import android.widget.PopupWindow;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.app.data.TimerManager;
 
 public class CustomAppCompatActivityWrapper extends AppCompatActivity {
     private ScreenLifeCycleWatcher screenLifeCycleWatcher;
@@ -30,6 +36,45 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
         screenLifeCycleWatcher = new ScreenLifeCycleWatcher();
         getLifecycle().addObserver(screenLifeCycleWatcher);
         screenLifeCycleWatcher.Setup();
+
+        CustomAppCompatActivityWrapper instance = this;
+
+        try{
+            TimerManager.onFinish.AddListener(new IListener<Boolean>() {
+                @Override
+                public void Response() {
+                    // Build the notification
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(instance)
+                            .setSmallIcon(R.drawable.mafia_puffle)
+                            .setContentTitle("Times Up!")
+                            .setContentText("Your timer finished")
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                    // Show the notification
+                    int notificationId = 1; // An ID unique to this notification
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(instance);
+                    if (ActivityCompat.checkSelfPermission(instance, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    notificationManager.notify(notificationId, builder.build());
+                }
+
+                @Override
+                public void Response(Boolean aBoolean) {
+
+                }
+            });
+        }catch (Exception ignored){
+
+        }
+
     }
 
     public void InitializeHelpPopups(Activity activity, Context context, Button button, View rootView, View anchor){
