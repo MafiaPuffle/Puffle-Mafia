@@ -13,18 +13,20 @@ public class TimerManager {
 
     public static Boolean isTimerGoing;
 
-    public static Event<Long> onFinish;
-    public static Event<Long> onUpdate;
+    public static Event<Boolean> onFinish;
+    public static Event<Time> onUpdate;
 
     public static void setCurrentTimer(Timer timer){
-        if(isTimerGoing = true){
+        if(isTimerGoing == true){
             if (currentTimer != null){
                 currentTimer.Stop();
+                isTimerGoing = false;
                 //TODO remove all listeners of old timer
             }
         }
 
         currentTimer = timer;
+        Log.d("TimerManager","Set a new timer");
         currentTimer.onFinish.AddListener(new IListener<Boolean>() {
             @Override
             public void Response() {
@@ -37,32 +39,47 @@ public class TimerManager {
 
             }
         });
-        currentTimer.onUpdate.AddListener(new IListener<Long>() {
+
+        currentTimer.onUpdate.AddListener(new IListener<Time>() {
             @Override
             public void Response() {
 
             }
 
             @Override
-            public void Response(Long aLong) {
-                Log.d("TimerManager", "Current time: " + aLong);
-                onUpdate.Invoke(aLong);
+            public void Response(Time time) {
+                Log.d("TimeManager",time.minute + ": " + time.second);
+                onUpdate.Invoke(time);
             }
         });
     }
 
     public static void Play(){
-        if(currentTimer == null) return;
-        if(isTimerGoing = true) return;
+        if(currentTimer == null) {
+            Log.d("TimerManager","Not starting TimerManager.play() because currentTimer == null");
+            return;
+        }
+        if(isTimerGoing == true) {
+            Log.d("TimerManager","Not staring TimerManager.play() because the current timer is already going");
+            return;
+        }
 
         Log.d("TimerManager","Starting a timer");
         currentTimer.Start();
         isTimerGoing = true;
     }
 
+    public static void Resume(){
+        if(currentTimer == null) return;
+        if(isTimerGoing == true) return;
+
+        currentTimer.Resume();
+        isTimerGoing = true;
+    }
+
     public static void Pause(){
         if(currentTimer == null) return;
-        if(isTimerGoing = false) return;
+        if(isTimerGoing == false) return;
 
         currentTimer.Pause();
         isTimerGoing = false;
@@ -70,14 +87,25 @@ public class TimerManager {
 
     public static void Stop(){
         if(currentTimer == null) return;
-        if(isTimerGoing = false) return;
+        if(isTimerGoing == false) return;
 
         currentTimer.Stop();
         isTimerGoing = false;
     }
 
+    public static void Restart(){
+        if(currentTimer == null) return;
+        if(isTimerGoing == false) return;
+
+        currentTimer.Restart();
+        isTimerGoing = true;
+    }
+
     public TimerManager(){
         instance = this;
         isTimerGoing = false;
+
+        onFinish = new Event<Boolean>();
+        onUpdate = new Event<Time>();
     }
 }
