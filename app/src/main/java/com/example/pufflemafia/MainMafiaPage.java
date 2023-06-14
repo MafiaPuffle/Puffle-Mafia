@@ -54,7 +54,6 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mafia_page);
-//        makeTimerNotification();
 
         ColorStateList blueColorStateList = ColorStateList.valueOf(Color.BLUE);
         ColorStateList greenColorStateList = ColorStateList.valueOf(Color.GREEN);
@@ -92,6 +91,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         PlayerManager.onPlayerKillOrRevive.RemoveListener(this);
         PlayerManager.onPlayerDataUpdated.RemoveListener(this);
         GameManager.onStartDay.AddListener(this);
+        TimerManager.Clear();
         super.onDestroy();
     }
 
@@ -199,6 +199,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
+                TimerManager.Clear();
                 startActivity(new Intent(MainMafiaPage.this, NightActions.class));
             }
         });
@@ -211,6 +212,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
+                TimerManager.Clear();
                 finish();
             }
         });

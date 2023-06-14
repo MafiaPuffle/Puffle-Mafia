@@ -109,6 +109,14 @@ public class TimerManager {
         isTimerGoing = false;
     }
 
+    public static void Clear(){
+        if(currentTimer == null) return;
+        if(isTimerGoing == false) return;
+
+        currentTimer.Clear();
+        isTimerGoing = false;
+    }
+
     public static void Restart(){
         if(currentTimer == null) return;
         if(isTimerGoing == false) return;
