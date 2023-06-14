@@ -43,6 +43,13 @@ public class Timer {
         isTimerGoing = false;
     }
 
+    public void Clear(){
+        countDownTimer.cancel();
+        isTimerGoing = false;
+        currentTime = new Time(0,0);
+        startingTime = new Time(0,0);
+    }
+
     public Timer(int totalMinuets, int totalSeconds){
 
         onFinish = new Event<Boolean>();

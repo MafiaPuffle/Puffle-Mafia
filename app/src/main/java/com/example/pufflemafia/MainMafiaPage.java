@@ -91,6 +91,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         PlayerManager.onPlayerKillOrRevive.RemoveListener(this);
         PlayerManager.onPlayerDataUpdated.RemoveListener(this);
         GameManager.onStartDay.AddListener(this);
+        TimerManager.Clear();
         super.onDestroy();
     }
 
@@ -198,6 +199,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
+                TimerManager.Clear();
                 startActivity(new Intent(MainMafiaPage.this, NightActions.class));
             }
         });
@@ -210,6 +212,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
+                TimerManager.Clear();
                 finish();
             }
         });
