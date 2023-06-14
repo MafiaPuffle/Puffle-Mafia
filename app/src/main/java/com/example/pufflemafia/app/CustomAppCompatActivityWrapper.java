@@ -2,9 +2,17 @@ package com.example.pufflemafia.app;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -24,10 +32,17 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.TimerScreen;
 import com.example.pufflemafia.app.data.TimerManager;
 
 public class CustomAppCompatActivityWrapper extends AppCompatActivity {
     private ScreenLifeCycleWatcher screenLifeCycleWatcher;
+    private final String CHANNEL_ID = "default";
+    private final String CHANNEL_NAME = "Timer";
+    private final String CHANNEL_DESCRIPTION = "For when the timer goes off";
+    private final int NOTIFICATION_ID = 1;
+    private NotificationManager notificationManager;
+    public static CustomAppCompatActivityWrapper instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,43 +52,11 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
         getLifecycle().addObserver(screenLifeCycleWatcher);
         screenLifeCycleWatcher.Setup();
 
-        CustomAppCompatActivityWrapper instance = this;
+        instance = this;
 
-        try{
-            TimerManager.onFinish.AddListener(new IListener<Boolean>() {
-                @Override
-                public void Response() {
-                    // Build the notification
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(instance)
-                            .setSmallIcon(R.drawable.mafia_puffle)
-                            .setContentTitle("Times Up!")
-                            .setContentText("Your timer finished")
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-                    // Show the notification
-                    int notificationId = 1; // An ID unique to this notification
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(instance);
-                    if (ActivityCompat.checkSelfPermission(instance, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                        return;
-                    }
-                    notificationManager.notify(notificationId, builder.build());
-                }
-
-                @Override
-                public void Response(Boolean aBoolean) {
-
-                }
-            });
-        }catch (Exception ignored){
-
-        }
+        String[] permissions = {Manifest.permission.VIBRATE, Manifest.permission.RECEIVE_BOOT_COMPLETED, Manifest.permission.POST_NOTIFICATIONS};
+        int requestCode = 1;
+        ActivityCompat.requestPermissions(this, permissions, requestCode);
 
     }
 
@@ -150,6 +133,75 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
                 View innerView = ((ViewGroup) rootView).getChildAt(i);
                 makeKeyboardHidealbe(innerView);
             }
+        }
+    }
+
+    public void makeTimerNotification(){
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.mafia_puffle)
+                .setContentTitle("Times up!")
+                .setContentText("Lets get back to the game")
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                // Set the intent that will fire when the user taps the notification
+                .setAutoCancel(true);
+
+        createNotificationChannel();
+
+
+        try {
+            TimerManager.onFinish.AddListener(new IListener<Boolean>() {
+                @Override
+                public void Response() {
+
+                    Log.d("CustomAppCompActivityWrapper", "I heard that the timer is done");
+
+
+
+                    // notificationId is a unique int for each notification that you must define
+                    if (ActivityCompat.checkSelfPermission(instance, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        Log.d("CustomAppCompatActivityWrapper","Could not display notification because the permission was not enabled");
+                        return;
+                    }
+                    notificationManager.notify(NOTIFICATION_ID, builder.build());
+
+                    Log.d("CustomAppCompatActivityWrapper","A notification should have appeared");
+
+                    Intent intent = new Intent(instance, TimerScreen.class);
+                    startActivity(intent);
+
+                }
+
+                @Override
+                public void Response(Boolean aBoolean) {
+
+                }
+            });
+        }catch (Exception ignored){
+
+        }
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance);
+            channel.setDescription(CHANNEL_DESCRIPTION);
+            channel.setShowBadge(true);
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
         }
     }
 }

@@ -12,6 +12,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.Listener;
@@ -45,6 +46,7 @@ public class TimerManager {
             @Override
             public void Response() {
                 Log.d("TimerManager", "Timer Done!");
+                CustomAppCompatActivityWrapper.instance.makeTimerNotification();
                 onFinish.Invoke();
             }
 
@@ -104,6 +106,14 @@ public class TimerManager {
         if(isTimerGoing == false) return;
 
         currentTimer.Stop();
+        isTimerGoing = false;
+    }
+
+    public static void Clear(){
+        if(currentTimer == null) return;
+        if(isTimerGoing == false) return;
+
+        currentTimer.Clear();
         isTimerGoing = false;
     }
 
