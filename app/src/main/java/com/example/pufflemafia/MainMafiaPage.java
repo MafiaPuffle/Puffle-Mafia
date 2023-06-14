@@ -54,6 +54,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mafia_page);
+//        makeTimerNotification();
 
         ColorStateList blueColorStateList = ColorStateList.valueOf(Color.BLUE);
         ColorStateList greenColorStateList = ColorStateList.valueOf(Color.GREEN);
