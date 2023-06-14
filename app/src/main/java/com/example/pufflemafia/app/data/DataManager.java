@@ -217,7 +217,7 @@ public class DataManager {
 
         Power jackOfAllTrades = new Power("J.O.A.T.",
                 Power.PowerType.CONTINOUS,
-                "WOULD YOU LIKE TO USE DOCTOR, DETECTIVE, DENTIST OR LAWYER",
+                "WOULD YOU LIKE TO USE DOCTOR, DETECTIVE, DENTIST",
                 GetToken("J.O.A.T."));
         allPowers.put(jackOfAllTrades.getName(), jackOfAllTrades);
 
