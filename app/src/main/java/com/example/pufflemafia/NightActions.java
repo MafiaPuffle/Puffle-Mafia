@@ -178,11 +178,11 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
 
         switch (promptType){
             case ALL_PLAYERS:
-                allViewsToPointTo.add(new ViewToPointTo(recyclerView, 0, "Tap to apply effect", ViewToPointTo.ViewClickType.NORMAL));
+                allViewsToPointTo.add(new ViewToPointTo(recyclerView, 0, ViewToPointTo.ViewToPointToFlags.NIGHT, "Tap to apply effect", ViewToPointTo.ViewClickType.NORMAL));
                 break;
         }
 
-        allViewsToPointTo.add(new ViewToPointTo(activeRoleImageButton, "Hold to see more info", ViewToPointTo.ViewClickType.LONG));
+        allViewsToPointTo.add(new ViewToPointTo(activeRoleImageButton, "Hold for more info", ViewToPointTo.ViewClickType.LONG));
 
         HelpPromptManager.InitializeHelpPopups(this, this, helpButton, allViewsToPointTo);
     }

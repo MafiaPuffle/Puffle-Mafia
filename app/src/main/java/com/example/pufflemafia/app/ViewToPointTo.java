@@ -5,11 +5,12 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.adaptors.playerAdaptors.PlayerDayUIAdaptor;
+import com.example.pufflemafia.adaptors.playerAdaptors.PlayerNightUIAdaptor;
 
 public class ViewToPointTo {
     public enum ViewClickType {NONE, NORMAL, LONG}
     public enum ViewToPointToType {NORMAL, RECYCLE_VIEW, SOMETHING_IN_RECYCLER_VIEW}
-    public enum ViewToPointToFlags {DAY_NAME_AND_ROLE_LINEARLAYOUT, DAY_ROLE_BUTTON, DAY_TOKEN_HOLDER, DAY_KILL_OR_REVIVE_BUTTON}
+    public enum ViewToPointToFlags {DAY_NAME_AND_ROLE_LINEARLAYOUT, DAY_ROLE_BUTTON, DAY_TOKEN_HOLDER, DAY_KILL_OR_REVIVE_BUTTON, NIGHT}
     private ViewClickType clickType;
     public ViewClickType getClickType () {return clickType;}
     private ViewToPointToType type;
@@ -28,18 +29,25 @@ public class ViewToPointTo {
             return recyclerView.getLayoutManager().findViewByPosition(index);
         }
         else {
-            PlayerDayUIAdaptor.ViewHolder viewHolder = (PlayerDayUIAdaptor.ViewHolder) recyclerView.findViewHolderForAdapterPosition(index);
-            switch (flag){
-                case DAY_KILL_OR_REVIVE_BUTTON:
-                    return viewHolder.getKillOrReviveButton();
-                case DAY_ROLE_BUTTON:
-                    return viewHolder.getRoleButton();
-                case DAY_NAME_AND_ROLE_LINEARLAYOUT:
-                    return viewHolder.getPlayerAndRoleLinearLayout();
-                case DAY_TOKEN_HOLDER:
-                    return viewHolder.getTokenHolder();
-                default:
-                    return null;
+            try{
+                PlayerDayUIAdaptor.ViewHolder viewHolder = (PlayerDayUIAdaptor.ViewHolder) recyclerView.findViewHolderForAdapterPosition(index);
+
+                switch (flag) {
+                    case DAY_KILL_OR_REVIVE_BUTTON:
+                        return viewHolder.getKillOrReviveButton();
+                    case DAY_ROLE_BUTTON:
+                        return viewHolder.getRoleButton();
+                    case DAY_NAME_AND_ROLE_LINEARLAYOUT:
+                        return viewHolder.getPlayerAndRoleLinearLayout();
+                    case DAY_TOKEN_HOLDER:
+                        return viewHolder.getTokenHolder();
+                    default:
+                        return null;
+                }
+            }catch (Exception e){
+                PlayerNightUIAdaptor.ViewHolder viewHolder = (PlayerNightUIAdaptor.ViewHolder) recyclerView.findViewHolderForAdapterPosition(index);
+
+                return viewHolder.getLinearLayout();
             }
         }
     }
