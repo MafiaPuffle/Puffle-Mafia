@@ -10,11 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.graphics.drawable.AnimationDrawable;
-import android.widget.ImageView;
-import android.view.ViewGroup;
-
-
 
 
 import com.example.pufflemafia.adaptors.roleAdaptors.PossibleRoleUIAdaptor;
@@ -29,7 +24,6 @@ import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.HelpPromptManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
-import java.util.Objects;
 import java.util.Vector;
 
 public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
@@ -153,8 +147,8 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
 
         Vector<ViewToPointTo> allViewsToPointTo = new Vector<ViewToPointTo>();
 
-        allViewsToPointTo.add(new ViewToPointTo(allRolesRecyclerView, 0,"Tap to choose role"));
-        allViewsToPointTo.add(new ViewToPointTo(selectedRolesRecyclerView, 1, "Tap to remove role"));
+        allViewsToPointTo.add(new ViewToPointTo(allRolesRecyclerView, 0,"Tap to choose role", ViewToPointTo.ViewClickType.NORMAL));
+        allViewsToPointTo.add(new ViewToPointTo(selectedRolesRecyclerView, 1, "Tap to remove role", ViewToPointTo.ViewClickType.NORMAL));
 //        allViewsToPointTo.add(new ViewToPointTo(allRolesRecyclerView, 2));
 
         HelpPromptManager.InitializeHelpPopups(this,this,helpButton, allViewsToPointTo);

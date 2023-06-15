@@ -3,7 +3,6 @@ package com.example.pufflemafia;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,9 +14,12 @@ import android.widget.TextView;
 import com.example.pufflemafia.adaptors.playerAdaptors.PlayerNightUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.ViewToPointTo;
+import com.example.pufflemafia.app.data.Power;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.ActiveRolesManager;
 import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.HelpPromptManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
@@ -39,6 +41,8 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
     private LinearLayout YesOrNoHolder;
     private Button YesButton;
     private Button NoButton;
+    public Button helpButton;
+    private Power.PowerPromptType promptType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +99,8 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
             return;
         }
 
+        promptType = currentActiveRoleAtNight.getPower().getPromptType();
+
         switch (currentActiveRoleAtNight.getPower().getPromptType()){
             case ALL_PLAYERS:
                 recyclerView.setVisibility(View.VISIBLE);
@@ -113,6 +119,8 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
         RefreshActiveRoleImageButton();
 
         nightActionTitle.setText(currentActiveRoleAtNight.getPower().getPrompt());
+
+        configrueHelpButton();
     }
 
     private void RefreshActiveRoleImageButton(){
@@ -163,6 +171,20 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
                 Refresh();
             }
         });
+    }
+    private void configrueHelpButton(){
+        helpButton = findViewById(R.id.helpNightButton);
+        Vector<ViewToPointTo> allViewsToPointTo = new Vector<ViewToPointTo>();
+
+        switch (promptType){
+            case ALL_PLAYERS:
+                allViewsToPointTo.add(new ViewToPointTo(recyclerView, 0, ViewToPointTo.ViewToPointToFlags.NIGHT, "Tap to apply effect", ViewToPointTo.ViewClickType.NORMAL));
+                break;
+        }
+
+        allViewsToPointTo.add(new ViewToPointTo(activeRoleImageButton, "Hold for more info", ViewToPointTo.ViewClickType.LONG));
+
+        HelpPromptManager.InitializeHelpPopups(this, this, helpButton, allViewsToPointTo);
     }
 
     private void onYes(){
