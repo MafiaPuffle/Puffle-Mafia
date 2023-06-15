@@ -147,164 +147,164 @@ public class DataManager {
         Power alien = new Power("Alien",
                 Power.PowerType.CONTINOUS,
                 "WHO WOULD YOU LIKE TO INFECT",
-                GetToken("Alien"));
+                GetToken("Alien"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(alien.getName(), alien);
 
         Power baker = new Power("Baker",
                 Power.PowerType.CONTINOUS,
                 "WHO WOULD YOU LIKE TO GIVE BREAD TO",
-                GetToken("Baker"));
+                GetToken("Baker"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(baker.getName(), baker);
 
         Power civilian = new Power("Civilian",
                 Power.PowerType.PASSIVE,
-                "");
+                "", Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(civilian.getName(), civilian);
 
         Power cupid = new Power(
                 "Cupid",
                 Power.PowerType.FIRSTNIGHT,
                 "WHICH TWO PLAYERS WOULD YOU LIKE TO FALL IN LOVE",
-                GetToken("Cupid"));
+                GetToken("Cupid"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(cupid.getName(), cupid);
 
         Power cyborg = new Power("Cyborg",
                 Power.PowerType.FIRSTNIGHT,
                 "WHO WOULD YOU LIKE TO COPY",
-                GetToken("Cyborg"));
+                GetToken("Cyborg"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(cyborg.getName(), cyborg);
 
         Power dentist = new Power("Dentist",
                 Power.PowerType.CONTINOUS,
                 "WHO WOULD YOU LIKE TO SILENCE",
-                GetToken("Dentist"));
+                GetToken("Dentist"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(dentist.getName(), dentist);
 
         Power detective = new Power(
                 "Detective",
                 Power.PowerType.CONTINOUS,
                 "WHO WOULD YOU LIKE TO KNOW ABOUT",
-                GetToken("Detective"));
+                GetToken("Detective"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(detective.getName(), detective);
 
         Power doctor = new Power(
                 "Doctor",
                 Power.PowerType.CONTINOUS,
                 "WHO WOULD YOU LIKE TO SAVE",
-                GetToken("Doctor"));
+                GetToken("Doctor"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(doctor.getName(), doctor);
 
         Power doggie = new Power(
                 "Doggie",
                 Power.PowerType.PASSIVE,
-                "");
+                "", Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(doggie.getName(), doggie);
 
         Power theFather = new Power("The Father",
                 Power.PowerType.ONETIMEUSE,
-                "WOULD YOU LIKE TO BRING BACK TO LIFE EVERYONE WHO DIES THIS ROUND");
+                "WOULD YOU LIKE TO BRING BACK TO LIFE EVERYONE WHO DIES THIS ROUND", Power.PowerPromptType.YES_OR_NO);
         allPowers.put(theFather.getName(), theFather);
 
         Power godFather = new Power("GodFather",
                 Power.PowerType.PASSIVE,
-                "WHO WOULD YOU LIKE TO MURDER");
+                "WHO WOULD YOU LIKE TO MURDER", Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(godFather.getName(), godFather);
 
         Power holySpirit = new Power("Holy Spirit",
                 Power.PowerType.ONETIMEUSE,
-                "WOULD YOU LIKE TO DOUBLE ALL GOOD ROLE'S POWERS");
+                "WOULD YOU LIKE TO DOUBLE ALL GOOD ROLE'S POWERS", Power.PowerPromptType.YES_OR_NO);
         allPowers.put(holySpirit.getName(), holySpirit);
 
         Power jackOfAllTrades = new Power("J.O.A.T.",
                 Power.PowerType.CONTINOUS,
                 "WOULD YOU LIKE TO USE DOCTOR, DETECTIVE, DENTIST",
-                GetToken("J.O.A.T."));
+                GetToken("J.O.A.T."), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(jackOfAllTrades.getName(), jackOfAllTrades);
 
         Power jailKeeper = new Power("Jailkeeper",
                 Power.PowerType.CONTINOUS,
                 "WHO WOULD YOU LIKE TO LOCK OUT OF THEIR ABILITY",
-                GetToken("Jailkeeper"));
+                GetToken("Jailkeeper"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(jailKeeper.getName(), jailKeeper);
 
         Power jesus = new Power("Jesus",
                 Power.PowerType.PASSIVE,
-                "");
+                "", Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(jesus.getName(), jesus);
 
         Power lawyer = new Power("Lawyer",
                 Power.PowerType.CONTINOUS,
                 "WHO WOULD YOU LIKE TO SAVE FROM VOTE EXECTUION",
-                GetToken("Lawyer"));
+                GetToken("Lawyer"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(lawyer.getName(), lawyer);
 
         Power lovers = new Power(
                 "Lovers",
                 Power.PowerType.FIRSTNIGHT,
-                "Lovers wake up and look at each other, you are linked");
+                "Lovers wake up and look at each other, you are linked", Power.PowerPromptType.NOTHING);
         allPowers.put(lovers.getName(), lovers);
 
         Power mafia = new Power(
                 "Mafia",
                 Power.PowerType.CONTINOUS,
                 "WHO WOULD YOU LIKE TO MURDER",
-                GetToken("Mafia"));
+                GetToken("Mafia"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(mafia.getName(), mafia);
 
         Power rivalMafia = new Power("Mafia Rival",
                 Power.PowerType.CONTINOUS,
                 "WHO WOULD YOU LIKE TO MURDER",
-                GetToken("Mafia Rival"));
+                GetToken("Mafia Rival"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(rivalMafia.getName(), rivalMafia);
 
         Power president = new Power(
                 "President",
                 Power.PowerType.SELFACTIVE,
-                "");
+                "", Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(president.getName(), president);
 
         Power satan = new Power("Satan",
                 Power.PowerType.ONETIMEUSE,
-                "WOULD YOU LIKE TO DOUBLE ALL EVIL ROLE'S POWERS");
+                "WOULD YOU LIKE TO DOUBLE ALL EVIL ROLE'S POWERS", Power.PowerPromptType.YES_OR_NO);
         allPowers.put(satan.getName(), satan);
 
         Power terrorist = new Power(
                 "Terrorist",
                 Power.PowerType.FIRSTNIGHT,
                 "WHO WOULD YOU LIKE TO PLANT A BOMB ON",
-                GetToken("Terrorist"));
+                GetToken("Terrorist"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(terrorist.getName(), terrorist);
 
         Power veteran = new Power("Veteran",
                 Power.PowerType.PASSIVE,
-                "");
+                "", Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(veteran.getName(), veteran);
 
         Power villageIdiot = new Power(
                 "Village Idiot",
                 Power.PowerType.PASSIVE,
-                "");
+                "", Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(villageIdiot.getName(), villageIdiot);
 
         Power witness = new Power("Witness",
                 Power.PowerType.ONETIMEUSE,
-                "DID YOU WITNESS A MURDER");
+                "DID YOU WITNESS A MURDER", Power.PowerPromptType.YES_OR_NO);
         allPowers.put(witness.getName(), witness);
 
         Power wizard = new Power("Wizard",
                 Power.PowerType.ONETIMEUSE,
                 "WHO WOULD YOU LIKE TO SWITCH WITH",
-                GetToken("Wizard"));
+                GetToken("Wizard"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(wizard.getName(), wizard);
 
         Power zombieGood = new Power("Zombie Good",
                 Power.PowerType.PASSIVE,
-                "");
+                "", Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(zombieGood.getName(), zombieGood);
 
         Power zombieBad = new Power("Zombie Evil",
                 Power.PowerType.PASSIVE,
-                "");
+                "", Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(zombieBad.getName(), zombieBad);
     }
 
