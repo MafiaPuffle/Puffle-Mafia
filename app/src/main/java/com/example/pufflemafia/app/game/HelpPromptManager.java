@@ -192,7 +192,12 @@ public class HelpPromptManager {
             public boolean onTouch(View v, MotionEvent event) {
                 // Return false to indicate that touch events should pass through the PopupWindow
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    viewsToPointTo.get(viewsToPointToIndex).getPointsTo().callOnClick();
+                    if(viewsToPointTo.get(viewsToPointToIndex).getClickType() == ViewToPointTo.ViewClickType.NORMAL){
+                        viewsToPointTo.get(viewsToPointToIndex).getPointsTo().callOnClick();
+                    }
+                    else if(viewsToPointTo.get(viewsToPointToIndex).getClickType() == ViewToPointTo.ViewClickType.LONG){
+                        viewsToPointTo.get(viewsToPointToIndex).getPointsTo().performLongClick();
+                    }
                     NextHelp();
                 }
                 return false;

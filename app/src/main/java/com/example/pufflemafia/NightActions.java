@@ -3,7 +3,6 @@ package com.example.pufflemafia;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -179,11 +178,11 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
 
         switch (promptType){
             case ALL_PLAYERS:
-                allViewsToPointTo.add(new ViewToPointTo(recyclerView, 0, "Tap to apply effect"));
+                allViewsToPointTo.add(new ViewToPointTo(recyclerView, 0, "Tap to apply effect", ViewToPointTo.ViewClickType.NORMAL));
                 break;
         }
 
-        allViewsToPointTo.add(new ViewToPointTo(activeRoleImageButton, "Hold to see more info"));
+        allViewsToPointTo.add(new ViewToPointTo(activeRoleImageButton, "Hold to see more info", ViewToPointTo.ViewClickType.LONG));
 
         HelpPromptManager.InitializeHelpPopups(this, this, helpButton, allViewsToPointTo);
     }

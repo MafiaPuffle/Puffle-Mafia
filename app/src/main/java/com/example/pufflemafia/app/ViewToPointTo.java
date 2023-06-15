@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pufflemafia.adaptors.playerAdaptors.PlayerDayUIAdaptor;
 
 public class ViewToPointTo {
+    public enum ViewClickType {NONE, NORMAL, LONG}
     public enum ViewToPointToType {NORMAL, RECYCLE_VIEW, SOMETHING_IN_RECYCLER_VIEW}
     public enum ViewToPointToFlags {DAY_NAME_AND_ROLE_LINEARLAYOUT, DAY_ROLE_BUTTON, DAY_TOKEN_HOLDER, DAY_KILL_OR_REVIVE_BUTTON}
+    private ViewClickType clickType;
+    public ViewClickType getClickType () {return clickType;}
     private ViewToPointToType type;
     private ViewToPointToFlags flag;
     private View view;
@@ -41,24 +44,27 @@ public class ViewToPointTo {
         }
     }
 
-    public ViewToPointTo (View view, String prompt){
+    public ViewToPointTo (View view, String prompt, ViewClickType clickType){
         this.type = ViewToPointTo.ViewToPointToType.NORMAL;
         this.view = view;
         this.prompt = prompt;
+        this.clickType = clickType;
     }
 
-    public ViewToPointTo(RecyclerView recyclerView, int index, String prompt){
+    public ViewToPointTo(RecyclerView recyclerView, int index, String prompt, ViewClickType clickType){
         this.type = ViewToPointTo.ViewToPointToType.RECYCLE_VIEW;
         this.recyclerView = recyclerView;
         this.index = index;
         this.prompt = prompt;
+        this.clickType = clickType;
     }
 
-    public ViewToPointTo(RecyclerView recyclerView, int index, ViewToPointToFlags flag, String prompt){
+    public ViewToPointTo(RecyclerView recyclerView, int index, ViewToPointToFlags flag, String prompt, ViewClickType clickType){
         this.type = ViewToPointToType.SOMETHING_IN_RECYCLER_VIEW;
         this.recyclerView = recyclerView;
         this.index = index;
         this.flag = flag;
         this.prompt = prompt;
+        this.clickType = clickType;
     }
 }
