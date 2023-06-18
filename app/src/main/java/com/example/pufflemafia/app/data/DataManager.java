@@ -127,6 +127,12 @@ public class DataManager {
                 R.drawable.terrorist_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         allTokens.put(terrorist.getName(), terrorist);
 
+        Token tracker = new Token(
+                "Tracker",
+                "This player has been tracked by the Tracker",
+                R.drawable.tracker, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
+        allTokens.put(tracker.getName(), tracker);
+
 //        Token witness = new Token(
 //                "Witness",
 //                "will give the player a funny feeling",
@@ -274,6 +280,13 @@ public class DataManager {
                 "WHO WOULD YOU LIKE TO PLANT A BOMB ON",
                 GetToken("Terrorist"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(terrorist.getName(), terrorist);
+
+        Power tracker = new Power(
+                "Tracker",
+                Power.PowerType.CONTINOUS,
+                "WHO WOULD YOU LIKE TO SEE WHO THEY USED THEIR ABILITY ON",
+                GetToken("Tracker"), Power.PowerPromptType.ALL_PLAYERS);
+        allPowers.put(tracker.getName(), tracker);
 
         Power veteran = new Power("Veteran",
                 Power.PowerType.PASSIVE,
@@ -642,6 +655,19 @@ public class DataManager {
                 1,
                 1);
         allRoles.put(terrorist.getName(), terrorist);
+
+        Role tracker = new Role("Tracker",
+                R.drawable.tracker,
+                .25f,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA,
+                GetPower("Tracker"),
+                "Track one player and see who they used their ability on at night.",
+                "Wins if the player had a good time!",
+                "Did you know puffles are fluffy?",
+                1,
+                1);
+        allRoles.put(tracker.getName(), tracker);
 
         Role veteran = new Role("Veteran",
                 R.drawable.veteran_puffle,
