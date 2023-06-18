@@ -2,19 +2,11 @@ package com.example.pufflemafia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ImageButton;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.widget.Button;
-import android.widget.PopupWindow;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +24,6 @@ import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
-import java.util.concurrent.ExecutionException;
 
 public class MainMafiaPage extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
 
@@ -91,6 +82,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         PlayerManager.onPlayerKillOrRevive.RemoveListener(this);
         PlayerManager.onPlayerDataUpdated.RemoveListener(this);
         GameManager.onStartDay.AddListener(this);
+        TimerManager.Clear();
         super.onDestroy();
     }
 
@@ -143,11 +135,11 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         helpButton = findViewById(R.id.helpButton);
         Vector<ViewToPointTo> allViewsToPointTo = new Vector<ViewToPointTo>();
 
-        allViewsToPointTo.add( new ViewToPointTo(allAliveRecycleView, 0, ViewToPointTo.ViewToPointToFlags.DAY_KILL_OR_REVIVE_BUTTON, "Tap to kill"));
-        allViewsToPointTo.add( new ViewToPointTo(allDeadRecycleView, 0, ViewToPointTo.ViewToPointToFlags.DAY_KILL_OR_REVIVE_BUTTON, "Tap to revive"));
-        allViewsToPointTo.add( new ViewToPointTo(allAliveRecycleView, 0, ViewToPointTo.ViewToPointToFlags.DAY_ROLE_BUTTON, "Tap to change role"));
-        allViewsToPointTo.add( new ViewToPointTo(allAliveRecycleView, 0, ViewToPointTo.ViewToPointToFlags.DAY_NAME_AND_ROLE_LINEARLAYOUT, "Tap to change name"));
-        allViewsToPointTo.add( new ViewToPointTo(allAliveRecycleView, 0, ViewToPointTo.ViewToPointToFlags.DAY_TOKEN_HOLDER, "Tap to change tokens"));
+        allViewsToPointTo.add( new ViewToPointTo(allAliveRecycleView, 0, ViewToPointTo.ViewToPointToFlags.DAY_KILL_OR_REVIVE_BUTTON, "Tap to kill", ViewToPointTo.ViewClickType.NORMAL));
+        allViewsToPointTo.add( new ViewToPointTo(allDeadRecycleView, 0, ViewToPointTo.ViewToPointToFlags.DAY_KILL_OR_REVIVE_BUTTON, "Tap to revive", ViewToPointTo.ViewClickType.NORMAL));
+        allViewsToPointTo.add( new ViewToPointTo(allAliveRecycleView, 0, ViewToPointTo.ViewToPointToFlags.DAY_ROLE_BUTTON, "Tap to change role", ViewToPointTo.ViewClickType.NORMAL));
+        allViewsToPointTo.add( new ViewToPointTo(allAliveRecycleView, 0, ViewToPointTo.ViewToPointToFlags.DAY_NAME_AND_ROLE_LINEARLAYOUT, "Tap to change name", ViewToPointTo.ViewClickType.NORMAL));
+        allViewsToPointTo.add( new ViewToPointTo(allAliveRecycleView, 0, ViewToPointTo.ViewToPointToFlags.DAY_TOKEN_HOLDER, "Tap to change tokens", ViewToPointTo.ViewClickType.NORMAL));
 
         HelpPromptManager.InitializeHelpPopups(this, this, helpButton, allViewsToPointTo);
 
@@ -198,6 +190,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
+                TimerManager.Clear();
                 startActivity(new Intent(MainMafiaPage.this, NightActions.class));
             }
         });
@@ -210,6 +203,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
+                TimerManager.Clear();
                 finish();
             }
         });
