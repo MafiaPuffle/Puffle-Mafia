@@ -45,10 +45,12 @@
         android:layout_marginBottom="8dp"
         android:textOff="Pause"
         android:textOn="Play"
-        app:layout_constraintBottom_toTopOf="@+id/DiscussionTitleBox"
-        app:layout_constraintEnd_toStartOf="@+id/Timer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TimerTitleBox" />
+        app:layout_constraintTop_toBottomOf="@+id/Timer"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/Timer"
@@ -64,10 +66,10 @@
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.988"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108">
+        app:layout_constraintVertical_bias="0.083">
 
         <TextView
             android:id="@+id/TimerNumbers"
@@ -79,13 +81,15 @@
             android:text="0:00"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white"
-            android:textSize="100sp" />
+            android:textSize="130sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/DiscussionTitleBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/green_rectangle"
         android:gravity="center"
@@ -94,8 +98,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TimerTitleBox"
-        app:layout_constraintVertical_bias="0.309">
+        app:layout_constraintTop_toBottomOf="@+id/PausePlay"
+        app:layout_constraintVertical_bias="0.025">
 
         <TextView
             android:id="@+id/DiscussionTitleText"
@@ -124,10 +128,10 @@
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666">
+        app:layout_constraintTop_toBottomOf="@+id/ThreeMinutes"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/OnTrialTitleText"
@@ -149,13 +153,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/horizon"
         android:text="5 Minutes"
         android:textColor="@color/white"
-        android:fontFamily="@font/horizon"
-        app:layout_constraintBottom_toTopOf="@+id/OnTrialTitleBox"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DiscussionTitleBox"
         app:layout_constraintVertical_bias="0.0" />
@@ -167,13 +169,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/horizon"
         android:text="4 Minutes"
         android:textColor="@color/white"
-        android:fontFamily="@font/horizon"
-        app:layout_constraintBottom_toTopOf="@+id/OnTrialTitleBox"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FiveMinutes"
         app:layout_constraintVertical_bias="0.0" />
@@ -185,13 +186,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/horizon"
         android:text="3 Minutes"
         android:textColor="@color/white"
-        android:fontFamily="@font/horizon"
-        app:layout_constraintBottom_toTopOf="@+id/OnTrialTitleBox"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FourMinutes"
         app:layout_constraintVertical_bias="0.0" />
@@ -200,12 +199,16 @@
         android:id="@+id/ThirtySeconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/horizon"
         android:text="30 Seconds"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/BackToMainMafiaScreen"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/OnTrialTitleBox"
         app:layout_constraintVertical_bias="0.0" />
@@ -214,9 +217,9 @@
         android:id="@+id/BackToMainMafiaScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/horizon"
         android:text="BACK"
         android:textColor="@color/white"
-        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
