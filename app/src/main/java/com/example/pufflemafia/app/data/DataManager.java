@@ -43,6 +43,13 @@ public class DataManager {
                 R.drawable.cupid_puffle, Token.TokenTypes.CLEAR_NEVER, 2);
         allTokens.put(cupid.getName(), cupid);
 
+        Token corruptcop = new Token(
+                "Corrupt Cop",
+                "This player could not vote this round",
+                R.drawable.corrupt_cop, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
+        allTokens.put(corruptcop.getName(), corruptcop);
+
+
         Token cyborg = new Token(
                 "Cyborg",
                 "This player had their role copied by the Cyborg",
@@ -115,6 +122,12 @@ public class DataManager {
                 R.drawable.rival_puffle, Token.TokenTypes.CLEAR_ON_NIGHT, 1);
         allTokens.put(mafiaRival.getName(), mafiaRival);
 
+        Token necromancer = new Token(
+                "Necromancer",
+                "This player had their role taken by the Necromancer",
+                R.drawable.necromancer, Token.TokenTypes.CLEAR_NEVER, 1);
+        allTokens.put(necromancer.getName(), necromancer);
+
 //        Token satan = new Token(
 //                "Satan",
 //                "will give the player a funny feeling",
@@ -156,11 +169,21 @@ public class DataManager {
                 GetToken("Alien"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(alien.getName(), alien);
 
+        Power apprentice = new Power("Apprentice",
+                Power.PowerType.PASSIVE,
+                "", Power.PowerPromptType.ALL_PLAYERS);
+        allPowers.put(apprentice.getName(), apprentice);
+
         Power baker = new Power("Baker",
                 Power.PowerType.CONTINOUS,
                 "WHO WOULD YOU LIKE TO GIVE BREAD TO",
                 GetToken("Baker"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(baker.getName(), baker);
+
+        Power bribedjudge = new Power("Bribed Judge",
+                Power.PowerType.ACTIVE,
+                "During the next day vote, would you like to decide the final vote decision", Power.PowerPromptType.YES_OR_NO);
+        allPowers.put(bribedjudge.getName(), bribedjudge);
 
         Power civilian = new Power("Civilian",
                 Power.PowerType.PASSIVE,
@@ -173,6 +196,12 @@ public class DataManager {
                 "WHICH TWO PLAYERS WOULD YOU LIKE TO FALL IN LOVE",
                 GetToken("Cupid"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(cupid.getName(), cupid);
+
+        Power corruptcop = new Power("Corrupt Cop",
+                Power.PowerType.CONTINOUS,
+                "WHO WOULD YOU LIKE TO KEEP FROM VOTING THE NEXT DAY",
+                GetToken("Corrupt Cop"), Power.PowerPromptType.ALL_PLAYERS);
+        allPowers.put(corruptcop.getName(), corruptcop);
 
         Power cyborg = new Power("Cyborg",
                 Power.PowerType.FIRSTNIGHT,
@@ -221,6 +250,11 @@ public class DataManager {
                 "WOULD YOU LIKE TO DOUBLE ALL GOOD ROLE'S POWERS", Power.PowerPromptType.YES_OR_NO);
         allPowers.put(holySpirit.getName(), holySpirit);
 
+        Power insomniac = new Power("Insomniac",
+                Power.PowerType.CONTINOUS,
+                "THESE ARE THE PLAYERS THAT USED THEIR ABILITY ON YOU THIS NIGHT.", Power.PowerPromptType.ALL_PLAYERS);
+        allPowers.put(insomniac.getName(), insomniac);
+
         Power jackOfAllTrades = new Power("J.O.A.T.",
                 Power.PowerType.CONTINOUS,
                 "WOULD YOU LIKE TO USE DOCTOR, DETECTIVE, DENTIST",
@@ -263,6 +297,18 @@ public class DataManager {
                 GetToken("Mafia Rival"), Power.PowerPromptType.ALL_PLAYERS);
         allPowers.put(rivalMafia.getName(), rivalMafia);
 
+        Power mole = new Power(
+                "Mole",
+                Power.PowerType.FIRSTNIGHT,
+                "Mole wake up, Mafia member raise your hands to reveal your identity", Power.PowerPromptType.NOTHING);
+        allPowers.put(mole.getName(), mole);
+
+        Power necromancer = new Power("Necromancer",
+                Power.PowerType.CONTINOUS,
+                "Which dead player's role would you like to become?",
+                GetToken("Necromancer"), Power.PowerPromptType.ALL_PLAYERS);
+        allPowers.put(necromancer.getName(), necromancer);
+
         Power president = new Power(
                 "President",
                 Power.PowerType.SELFACTIVE,
@@ -273,6 +319,11 @@ public class DataManager {
                 Power.PowerType.ONETIMEUSE,
                 "WOULD YOU LIKE TO DOUBLE ALL EVIL ROLE'S POWERS", Power.PowerPromptType.YES_OR_NO);
         allPowers.put(satan.getName(), satan);
+
+        Power shotgungranny = new Power("Shotgun Granny",
+                Power.PowerType.ONETIMEUSE,
+                "Would you like to go on alert. When on alert, any player that uses their ability on Shotgun Granny will die.", Power.PowerPromptType.YES_OR_NO);
+        allPowers.put(shotgungranny.getName(), shotgungranny);
 
         Power terrorist = new Power(
                 "Terrorist",
@@ -339,6 +390,19 @@ public class DataManager {
                 1);
         allRoles.put(alien.getName(), alien);
 
+        Role apprentice = new Role("Apprentice",
+                R.drawable.apprentice,
+                -1,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN,
+                GetPower("Apprentice"),
+                "Announce that the Apprentice is using a Wizard spell and activate one Wizard spell. Only one Wizard spell can be used per game",
+                "Wins if the player had a good time!",
+                "Did you know puffles are fluffy?",
+                1,
+                1);
+        allRoles.put(apprentice.getName(), apprentice);
+
         Role baker = new Role("Baker",
                 R.drawable.baker_puffle,
                 3,
@@ -353,6 +417,19 @@ public class DataManager {
                 1,
                 1);
         allRoles.put(baker.getName(), baker);
+
+        Role bribedjudge = new Role("Bribed Judge",
+                R.drawable.bribed_judge,
+                3,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA,
+                GetPower("Bribed Judge"),
+                "For one day only, the Bribed Judge will be able to decide wether a person dies or live during the vote. They choose to activate it during the night and it will go off during the day vote",
+                "Wins if the player had a good time!",
+                "Did you know puffles are fluffy?",
+                1,
+                1);
+        allRoles.put(bribedjudge.getName(), bribedjudge);
 
         Role civilian = new Role("Civilian",
                 R.drawable.civilian_puffles,
@@ -370,6 +447,19 @@ public class DataManager {
                 1,
                 3);
         allRoles.put(civilian.getName(), civilian);
+
+        Role corruptcop = new Role("Corrupt Cop",
+                R.drawable.corrupt_cop,
+                3,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA,
+                GetPower("Corrupt Cop"),
+                "Choose one player and that player cannot vote the next day. This does not stop the President.",
+                "Wins if the player had a good time!",
+                "Did you know puffles are fluffy?",
+                1,
+                1);
+        allRoles.put(corruptcop.getName(), corruptcop);
 
         Role cupid = new Role("Cupid",
                 R.drawable.cupid_puffle,
@@ -463,7 +553,7 @@ public class DataManager {
 
         Role theFather = new Role("The Father",
                 R.drawable.the_father_puffle,
-                4,
+                5,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("The Father"),
@@ -505,6 +595,19 @@ public class DataManager {
                 1,
                 1);
         allRoles.put(holySpirit.getName(), holySpirit);
+
+        Role insomniac = new Role("Insomniac",
+                R.drawable.insomniac,
+                4.6f,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA,
+                GetPower("Insomniac"),
+                "Insomniac will know the players that used their ability at night on them. Their roles will not be revealed.",
+                "Wins if the player had a good time!",
+                "Did you know puffles are fluffy?",
+                1,
+                1);
+        allRoles.put(insomniac.getName(), insomniac);
 
         Role jackOfAllTrades = new Role("J.O.A.T.",
                 R.drawable.jack_of_all_trades,
@@ -611,6 +714,32 @@ public class DataManager {
                 2);
         allRoles.put(mafiaRival.getName(), mafiaRival);
 
+        Role mole = new Role("Mole",
+                R.drawable.mole,
+                0.25f,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA,
+                GetPower("Mole"),
+                "Have the Mafia members raise their hands to reveal their identities to the Mole",
+                "Wins if the player had a good time!",
+                "Did you know puffles are fluffy?",
+                1,
+                1);
+        allRoles.put(mole.getName(), mole);
+
+        Role necromancer = new Role("Necromancer",
+                R.drawable.necromancer,
+                4.25f,
+                Role.Alliances.GOOD,
+                Role.Teams.SELF,
+                GetPower("Necromancer"),
+                "Choose one dead player, Necromancer becomes that role. If they had their one time use ability activated already, they cannot use it again",
+                "Wins if the player had a good time!",
+                "Did you know puffles are fluffy?",
+                1,
+                1);
+        allRoles.put(necromancer.getName(), necromancer);
+
         Role president = new Role("President",
                 R.drawable.president_puffle,
                 -1,
@@ -629,7 +758,7 @@ public class DataManager {
         Role satan = new Role("Satan",
                 R.drawable.satan,
                 0.75f,
-                Role.Alliances.EVIL,
+                Role.Alliances.GOOD,
                 Role.Teams.MAFIA,
                 GetPower("Satan"),
                 "All Evil players this round will have their ability activated twice\n" +
@@ -640,6 +769,19 @@ public class DataManager {
                 1,
                 1);
         allRoles.put(satan.getName(), satan);
+
+        Role shotgungranny = new Role("Shotgun Granny",
+                R.drawable.grandma_puffle,
+                1.91f,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA,
+                GetPower("Shotgun Granny"),
+                "Go on alert. When on alert, any player that uses their ability on Shotgun Granny will die. Only 2 uses (maximum) per game",
+                "Wins if the player had a good time!",
+                "Did you know puffles are fluffy?",
+                1,
+                1);
+        allRoles.put(shotgungranny.getName(), shotgungranny);
 
         Role terrorist = new Role("Terrorist",
                 R.drawable.terrorist_puffle,
@@ -658,7 +800,7 @@ public class DataManager {
 
         Role tracker = new Role("Tracker",
                 R.drawable.tracker,
-                .25f,
+                4.5f,
                 Role.Alliances.GOOD,
                 Role.Teams.MAFIA,
                 GetPower("Tracker"),
@@ -716,7 +858,7 @@ public class DataManager {
 
         Role wizard = new Role("Wizard",
                 R.drawable.wizard_puffle,
-                4,
+                6,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN,
                 GetPower("Wizard"),
