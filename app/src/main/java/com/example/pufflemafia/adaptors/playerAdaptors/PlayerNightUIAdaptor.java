@@ -151,21 +151,21 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
 
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
         viewHolder.getRoleButton().setImageResource(0);
-//        viewHolder.getRoleButton().setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                SoundManager.playSfx("Click");
-//                Intent intent = new Intent(context, RoleDetails.class);
-//                intent.putExtra("name", role.getName());
-//                intent.putExtra("imageResourceId", role.getImageResource());
-//                intent.putExtra("description", role.getDescription());
-//                intent.putExtra("winCondition", role.getWinCondition());
-//                intent.putExtra("team", role.getTeam());
-//                intent.putExtra("alliance", role.getAlliance());
-//                context.startActivity(intent);
-//                return false;
-//            }
-//        });
+        viewHolder.getRoleButton().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(context, RoleDetails.class);
+                intent.putExtra("name", role.getName());
+                intent.putExtra("imageResourceId", role.getImageResource());
+                intent.putExtra("description", role.getDescription());
+                intent.putExtra("winCondition", role.getWinCondition());
+                intent.putExtra("team", role.getTeam());
+                intent.putExtra("alliance", role.getAlliance());
+                context.startActivity(intent);
+                return false;
+            }
+        });
         viewHolder.getLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
