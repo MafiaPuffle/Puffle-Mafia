@@ -120,7 +120,7 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
 
         nightActionTitle.setText(currentActiveRoleAtNight.getPower().getPrompt());
 
-        configrueHelpButton();
+//        configrueHelpButton();
     }
 
     private void RefreshActiveRoleImageButton(){
@@ -172,20 +172,20 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
             }
         });
     }
-    private void configrueHelpButton(){
-        helpButton = findViewById(R.id.helpNightButton);
-        Vector<ViewToPointTo> allViewsToPointTo = new Vector<ViewToPointTo>();
-
-        switch (promptType){
-            case ALL_PLAYERS:
-                allViewsToPointTo.add(new ViewToPointTo(recyclerView, 0, ViewToPointTo.ViewToPointToFlags.NIGHT, "Tap to apply effect", ViewToPointTo.ViewClickType.NORMAL));
-                break;
-        }
-
-        allViewsToPointTo.add(new ViewToPointTo(activeRoleImageButton, "Hold for more info", ViewToPointTo.ViewClickType.LONG));
-
-        HelpPromptManager.InitializeHelpPopups(this, this, helpButton, allViewsToPointTo);
-    }
+//    private void configrueHelpButton(){
+//        helpButton = findViewById(R.id.helpNightButton);
+//        Vector<ViewToPointTo> allViewsToPointTo = new Vector<ViewToPointTo>();
+//
+//        switch (promptType){
+//            case ALL_PLAYERS:
+//                allViewsToPointTo.add(new ViewToPointTo(recyclerView, 0, ViewToPointTo.ViewToPointToFlags.NIGHT, "Tap to apply effect", ViewToPointTo.ViewClickType.NORMAL));
+//                break;
+//        }
+//
+//        allViewsToPointTo.add(new ViewToPointTo(activeRoleImageButton, "Hold for more info", ViewToPointTo.ViewClickType.LONG));
+//
+//        HelpPromptManager.InitializeHelpPopups(this, this, helpButton, allViewsToPointTo);
+//    }
 
     private void onYes(){
         for (Player player: PlayerManager.getAllAlive()) {
