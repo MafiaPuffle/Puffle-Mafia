@@ -20,6 +20,14 @@ import java.util.logging.Logger;
 public class PlayerManager {
     public enum PlayerMangerListType {ALIVE, DEAD}
 
+    public static Vector<Player> getAllPlayers() {
+        Vector<Player> merge = new Vector<Player>();
+        merge.addAll(allAlive);
+        merge.addAll(allDead);
+        return merge;
+    }
+
+//    public static Player getPlayer
 
     private static Vector<Player> allAlive;
     public static int numberOfPlayersAlive() {return allAlive.size();}

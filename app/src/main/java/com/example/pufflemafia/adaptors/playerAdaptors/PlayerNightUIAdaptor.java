@@ -26,7 +26,7 @@ import java.util.Vector;
 
 public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdaptor.ViewHolder> {
 
-    private Vector<Player> localDataSet;
+    public Vector<Player> localDataSet;
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -170,8 +170,7 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
             @Override
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
-                //PlayerManager.AddTokenToPlayer(PlayerManager.PlayerMangerListType.ALIVE,viewHolder.getAdapterPosition(), GameManager.getCurrentRoleActiveAtNight().getPower().getToken());
-                PlayerManager.UseAbilityOnPlayer(GameManager.getCurrentRoleActiveAtNight(), PlayerManager.getAlivePlayerAt(viewHolder.getAdapterPosition()));
+                PlayerManager.UseAbilityOnPlayer(GameManager.getCurrentRoleActiveAtNight(), player);
                 notifyDataSetChanged();
                 PlayerManager.LogSummary();
             }
