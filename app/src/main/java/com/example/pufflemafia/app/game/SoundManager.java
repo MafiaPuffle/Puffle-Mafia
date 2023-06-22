@@ -6,14 +6,14 @@ import android.util.Log;
 
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.AppMinimizedWatcher;
-import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.events.IEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SoundManager implements IListener<Boolean> {
+public class SoundManager implements IEventListener<Boolean> {
 
     private static Map<String, MediaPlayer> songs;
     private static Map<String, MediaPlayer> sfxSounds;

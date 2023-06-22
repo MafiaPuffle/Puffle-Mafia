@@ -2,7 +2,6 @@ package com.example.pufflemafia.adaptors.tokenAdapters;
 
 import android.content.Context;
 
-import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.PlayerManager;
 

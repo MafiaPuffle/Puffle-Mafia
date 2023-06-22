@@ -4,7 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.pufflemafia.app.Event;
+import com.example.pufflemafia.app.events.Event;
 
 import java.util.Objects;
 import java.util.Vector;

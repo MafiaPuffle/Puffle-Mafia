@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.example.pufflemafia.adaptors.roleAdaptors.ChangingRoleUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
-import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.PlayerManager;
@@ -20,7 +20,7 @@ import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
-public class ChangeCharacterScreen extends CustomAppCompatActivityWrapper implements IListener<Role> {
+public class ChangeCharacterScreen extends CustomAppCompatActivityWrapper implements IEventListener<Role> {
 
     private Intent intent;
 

@@ -1,6 +1,8 @@
 package com.example.pufflemafia.app;
 
-public class Listener<T> implements IListener<T>{
+import com.example.pufflemafia.app.events.IEventListener;
+
+public class Listener<T> implements IEventListener<T> {
 
     public Listener(){
         // constructor

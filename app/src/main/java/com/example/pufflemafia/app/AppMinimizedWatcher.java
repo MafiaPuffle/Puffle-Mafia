@@ -2,11 +2,10 @@ package com.example.pufflemafia.app;
 
 import androidx.lifecycle.DefaultLifecycleObserver;
 
-import com.example.pufflemafia.app.game.SoundManager;
+import com.example.pufflemafia.app.events.Event;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
 public class AppMinimizedWatcher implements DefaultLifecycleObserver {
 

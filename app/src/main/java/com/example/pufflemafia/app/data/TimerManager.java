@@ -1,21 +1,10 @@
 package com.example.pufflemafia.app.data;
 
-import android.Manifest;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.pm.PackageManager;
-import android.os.CountDownTimer;
 import android.util.Log;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
-import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
-import com.example.pufflemafia.app.Event;
-import com.example.pufflemafia.app.IListener;
-import com.example.pufflemafia.app.Listener;
+import com.example.pufflemafia.app.events.Event;
+import com.example.pufflemafia.app.events.IEventListener;
 
 public class TimerManager {
     private static Timer currentTimer;
@@ -42,7 +31,7 @@ public class TimerManager {
 
         currentTimer = timer;
         Log.d("TimerManager", "Set a new timer");
-        currentTimer.onFinish.AddListener(new IListener<Boolean>() {
+        currentTimer.onFinish.AddListener(new IEventListener<Boolean>() {
             @Override
             public void Response() {
                 Log.d("TimerManager", "Timer Done!");
@@ -56,7 +45,7 @@ public class TimerManager {
             }
         });
 
-        currentTimer.onUpdate.AddListener(new IListener<Time>() {
+        currentTimer.onUpdate.AddListener(new IEventListener<Time>() {
             @Override
             public void Response() {
 

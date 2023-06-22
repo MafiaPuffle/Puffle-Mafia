@@ -18,13 +18,13 @@ import java.util.Vector;
 
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
-import com.example.pufflemafia.app.Event;
-import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.events.Event;
+import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.data.GameSetup;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
-public class Start extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
+public class Start extends CustomAppCompatActivityWrapper implements IEventListener<Boolean> {
     private EditText nameEditText;
     private GridView namesGridView;
     private ArrayList<String> namesList;

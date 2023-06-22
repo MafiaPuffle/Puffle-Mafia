@@ -3,7 +3,7 @@ package com.example.pufflemafia.app.data;
 import android.os.CountDownTimer;
 import android.util.Log;
 
-import com.example.pufflemafia.app.Event;
+import com.example.pufflemafia.app.events.Event;
 
 public class Timer {
 

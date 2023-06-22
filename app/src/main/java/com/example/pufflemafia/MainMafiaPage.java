@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.adaptors.playerAdaptors.PlayerDayUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
-import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.ViewToPointTo;
 import com.example.pufflemafia.app.data.Time;
 import com.example.pufflemafia.app.data.TimerManager;
@@ -25,7 +25,7 @@ import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
-public class MainMafiaPage extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
+public class MainMafiaPage extends CustomAppCompatActivityWrapper implements IEventListener<Boolean> {
 
     private RecyclerView allAliveRecycleView;
     private RecyclerView allDeadRecycleView;
@@ -167,7 +167,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
             }
         });
 
-        TimerManager.onUpdate.AddListener(new IListener<Time>() {
+        TimerManager.onUpdate.AddListener(new IEventListener<Time>() {
             @Override
             public void Response() {
 

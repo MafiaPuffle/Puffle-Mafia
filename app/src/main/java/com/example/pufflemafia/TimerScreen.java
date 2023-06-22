@@ -1,7 +1,5 @@
 package com.example.pufflemafia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +9,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
-import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.data.Time;
 import com.example.pufflemafia.app.data.Timer;
 import com.example.pufflemafia.app.data.TimerManager;
@@ -41,7 +39,7 @@ public class TimerScreen extends CustomAppCompatActivityWrapper {
     private void configureTimerTextView(){
         TimerNumbers = findViewById(R.id.TimerNumbers);
 
-        TimerManager.onUpdate.AddListener(new IListener<Time>() {
+        TimerManager.onUpdate.AddListener(new IEventListener<Time>() {
             @Override
             public void Response() {
 

@@ -4,7 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.example.pufflemafia.app.Event;
+import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.data.Power;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.SortByPriority;
@@ -12,9 +12,7 @@ import com.example.pufflemafia.app.data.Token;
 
 import java.util.ArrayDeque;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Vector;

@@ -3,7 +3,7 @@ package com.example.pufflemafia.adaptors.roleAdaptors;
 import android.content.Context;
 
 import com.example.pufflemafia.app.AppManager;
-import com.example.pufflemafia.app.Event;
+import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.data.Role;
 
 import java.util.Vector;

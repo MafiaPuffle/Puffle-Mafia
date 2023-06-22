@@ -2,7 +2,6 @@ package com.example.pufflemafia;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,16 +13,15 @@ import com.example.pufflemafia.adaptors.effectAddaptors.EffectUIAdaptor;
 import com.example.pufflemafia.adaptors.tokenAdapters.PossibleTokenUIAdaptor;
 import com.example.pufflemafia.adaptors.tokenAdapters.SelectedTokenUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
-import com.example.pufflemafia.app.IListener;
+import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Token;
-import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
-public class AddTokenScreen extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
+public class AddTokenScreen extends CustomAppCompatActivityWrapper implements IEventListener<Boolean> {
 
     private Intent intent;
     private int playerPosition;

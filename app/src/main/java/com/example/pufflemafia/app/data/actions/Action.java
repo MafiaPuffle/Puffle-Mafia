@@ -1,0 +1,94 @@
+package com.example.pufflemafia.app.data.actions;
+
+import com.example.pufflemafia.app.events.Event;
+import com.example.pufflemafia.app.data.actions.conditions.Condition;
+import com.example.pufflemafia.app.data.actions.result.Result;
+import com.example.pufflemafia.app.game.Player;
+
+import java.util.Vector;
+
+public class Action {
+
+    public enum WhenTOResolve {END_OF_NIGHT, INSTANT}
+    public enum ValidTargets {ALL_PLAYERS, ALL_ALIVE_PLAYERS, ALL_DEAD_PLAYERS, SELF, WITNESS}
+
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private boolean hasBeenUsed;
+    public boolean HasBeenUsed() {
+        return hasBeenUsed;
+    }
+    public void setHasBeenUsed(boolean hasBeenUsed) {
+        this.hasBeenUsed = hasBeenUsed;
+    }
+
+    private WhenTOResolve whenTOResolve;
+    public void setWhenTOResolve(WhenTOResolve whenTOResolve) {
+        this.whenTOResolve = whenTOResolve;
+    }
+    public WhenTOResolve getWhenTOResolve() {
+        return whenTOResolve;
+    }
+
+    private ValidTargets validTargets;
+    public ValidTargets getValidTargets() {
+        return validTargets;
+    }
+    public void setValidTargets(ValidTargets validTargets) {
+        this.validTargets = validTargets;
+    }
+
+    private Vector<Player> targets;
+    public Vector<Player> getTargets() {
+        return targets;
+    }
+    public void setTargets(Vector<Player> targets) {
+        this.targets = targets;
+    }
+
+    private Vector<Player> initiators;
+    public Vector<Player> getInitiators() {
+        return initiators;
+    }
+    public void setInitiators(Vector<Player> initiators) {
+        this.initiators = initiators;
+    }
+
+    private Vector<Condition> conditions;
+    public Vector<Condition> getConditions() {
+        return conditions;
+    }
+    public void setConditions(Vector<Condition> conditions) {
+        this.conditions = conditions;
+    }
+
+    private Vector<Result> results;
+    public Vector<Result> getResults() {
+        return results;
+    }
+    public void setResults(Vector<Result> results) {
+        this.results = results;
+    }
+
+
+    public Event<Boolean> OnActionResolve;
+    public void resolve(){
+        for (Condition condition: conditions) {
+            if(!condition.check(this)) {
+                OnActionResolve.Invoke(false);
+                return;
+            }
+        }
+
+        for (Result result: results) {
+            result.trigger(this);
+        }
+        OnActionResolve.Invoke(true);
+    }
+}
