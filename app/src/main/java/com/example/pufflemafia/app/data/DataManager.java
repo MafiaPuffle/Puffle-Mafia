@@ -119,7 +119,7 @@ public class DataManager {
                R.drawable.corrupt_cop,
                Token.TokenTypes.CLEAR_ON_NIGHT,
                Power.PowerType.CONTINOUS,
-               Power.PowerPromptType.ALL_PLAYERS,
+               Power.PowerPromptType.ALL_Alive_PLAYERS,
                Role.Alliances.GOOD,
                Role.Teams.MAFIA);
 
@@ -464,6 +464,21 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.MAFIA);
 
+        LoadRole("Shotgun Granny",
+               "Decide if you will go on alert at night and kill anyone who uses their ability on you. Can only go on alert twice per game.\n",
+               "Wins if the Mafia are voted out",
+               "Blow em Up",
+               "Shotgun Granny Wake up, DO YOU WANNA GO on alert at night and kill anyone who uses their ability on you.",
+               1.01f,
+               1,
+               1,
+               R.drawable.grandma_puffle,
+               Power.PowerType.ONETIMEUSE,
+               Power.PowerPromptType.YES_OR_NO,
+               Role.Alliances.GOOD,
+               Role.Teams.TOWN);
+        
+        
         LoadRole("Terrorist",
                 "Plants a bomb on one player, if they die the bomb goes off, killing the player its attached to",
                 "Wins if the Mafia equal half of the living players",
@@ -582,7 +597,7 @@ public class DataManager {
                 -1,
                 1,
                 1,
-                R.drawable.alien_puffle,
+                R.drawable.evil_zombie_puffle,
                 Power.PowerType.PASSIVE,
                 Power.PowerPromptType.NOTHING,
                 Role.Alliances.EVIL,
