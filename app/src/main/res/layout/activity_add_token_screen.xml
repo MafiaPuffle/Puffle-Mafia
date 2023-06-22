@@ -31,33 +31,10 @@
             android:text="Add a Token"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:fontFamily="@font/horizon"/>
     </LinearLayout>
 
-
-    <GridLayout
-        android:id="@+id/AddingTokenBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/green_rectangle"
-        android:columnCount="7"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:rowCount="8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddTokenTitleBox"
-        app:layout_constraintVertical_bias="0.009">
-
-
-
-    </GridLayout>
 
     <LinearLayout
         android:id="@+id/AddedTokenTitleBox"
@@ -74,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddingTokenBox"
+        app:layout_constraintTop_toBottomOf="@+id/AllTokensRecyclerView"
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
@@ -82,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
+            android:fontFamily="@font/horizon"
             android:gravity="center"
             android:text="Added Tokens"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -90,25 +68,35 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/AddTokenBox"
+        android:id="@+id/TokenEffectsTitleBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/green_rectangle"
         android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddedTokenTitleBox"
-        app:layout_constraintVertical_bias="0.025">
+        app:layout_constraintTop_toBottomOf="@+id/SelectedTokensRecyclerView"
+        app:layout_constraintVertical_bias="0.0">
 
-
-
+        <TextView
+            android:id="@+id/TokenEfectsTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:fontFamily="@font/horizon"
+            android:gravity="center"
+            android:text="Effects"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FEFAFD"
+            android:textSize="25sp" />
     </LinearLayout>
 
     <Button
@@ -119,6 +107,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Next"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"
@@ -134,6 +123,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="BACK"
+        android:padding="8dp"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/DoneChangingCharactersButton"
         app:layout_constraintHorizontal_bias="0.023"
@@ -141,7 +132,53 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.98" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AllTokensRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="9dp"
+        android:padding="5dp"
+        android:background="@drawable/green_rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddTokenTitleBox"
+        app:layout_constraintVertical_bias="0.0" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/SelectedTokensRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_rectangle"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddedTokenTitleBox"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/TokenEffectsRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_rectangle"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/BackToMainMafiaPageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TokenEffectsTitleBox"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

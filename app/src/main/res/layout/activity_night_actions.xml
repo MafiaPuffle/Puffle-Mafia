@@ -4,13 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".NightActions">
 
     <!--Actioner Box-->
+
+    <!--Action Box Text-->
+
+    <!--Actionee Boxes-->
+
+    <!--Buttons-->
+
+
     <LinearLayout
         android:id="@+id/ActionerCharacterBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/purple_rectangle"
         android:gravity="center"
         android:orientation="vertical"
@@ -19,8 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035">
+        app:layout_constraintTop_toBottomOf="@+id/moon"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:id="@+id/CharacterUIINBox"
@@ -56,20 +69,15 @@
                     android:id="@+id/ActiveRoleUITextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/horizon"
                     android:text="ROLE"
-                    android:textSize="35dp" />
+                    android:textColor="@color/white"
+                    android:textSize="30dp" />
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <!--Action Box Text-->
-
-    <!--Actionee Boxes-->
-
-    <!--Buttons-->
-
 
     <LinearLayout
         android:id="@+id/NightActionBox"
@@ -93,11 +101,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
+            android:fontFamily="@font/horizon"
             android:gravity="center"
             android:text="WHO WOULD YOU LIKE TO -INSERT-"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="20dp" />
+            android:textSize="15dp" />
     </LinearLayout>
 
     <Button
@@ -105,6 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -118,12 +128,40 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="BACK"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ToNextActionButton"
         app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.981" />
+
+    <LinearLayout
+        android:id="@+id/YesOrNoHolder"
+        android:layout_width="235dp"
+        android:layout_height="392dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NightActionBox">
+
+        <Button
+            android:id="@+id/Yes_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="YES" />
+
+        <Button
+            android:id="@+id/No_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NO" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/AllAlivePlayersForThisNightRecycleView"
@@ -139,7 +177,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NightActionBox"
-        app:layout_constraintVertical_bias="0.011" />
+        app:layout_constraintVertical_bias="0.011" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/moon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.884"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/moon" />
+
+    <TextView
+        android:id="@+id/NightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/purple_rectangle"
+        android:fontFamily="@font/horizon"
+        android:padding="5dp"
+        android:text="NIGHT"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/moon"
+        app:layout_constraintHorizontal_bias="0.708"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.015" />
+
+    <Button
+        android:id="@+id/helpNightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/horizon"
+        android:text="HELP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ToNextActionButton"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toEndOf="@+id/BacktoLastActionButton"
+        app:layout_constraintTop_toTopOf="@+id/BacktoLastActionButton"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

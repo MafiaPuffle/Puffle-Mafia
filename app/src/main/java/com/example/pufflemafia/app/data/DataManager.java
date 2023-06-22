@@ -4,6 +4,7 @@ import com.example.pufflemafia.R;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Vector;
 
 public class DataManager {
@@ -12,575 +13,682 @@ public class DataManager {
     public static Map<String, Role> allRoles;
 
     public DataManager(){
-        InitializeAllDictionaries();
+        LoadAllRoles();
     }
 
     private static void InitializeAllDictionaries(){
-        InitializeAllTokens();
-        InitializeAllPowers();
-        InitializeAllRoles();
-    }
-
-    private static void InitializeAllTokens(){
         allTokens = new HashMap<String, Token>();
-
-        Token alien = new Token(
-                "Alien",
-                R.drawable.alien_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(alien.getName(), alien);
-
-        Token baker = new Token(
-                "Baker",
-                R.drawable.puffle_o_croissant,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(baker.getName(), baker);
-
-        Token cupid = new Token(
-                "Cupid",
-                R.drawable.cupid_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(cupid.getName(), cupid);
-
-        Token cyborg = new Token(
-                "Cyborg",
-                R.drawable.cyborg_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(cyborg.getName(), cyborg);
-
-        Token dentist = new Token(
-                "Dentist",
-                R.drawable.dentist_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
-        allTokens.put(dentist.getName(), dentist);
-
-        Token detective = new Token(
-                "Detective",
-                R.drawable.detective_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
-        allTokens.put(detective.getName(), detective);
-
-        Token doctor = new Token(
-                "Doctor",
-                R.drawable.doctor_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
-        allTokens.put(doctor.getName(), doctor);
-
-        Token theFather = new Token(
-                "The Father",
-                R.drawable.the_father_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(theFather.getName(), theFather);
-
-        Token holySpirit = new Token(
-                "Holy Spirit",
-                R.drawable.holy_spirit_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(holySpirit.getName(), holySpirit);
-
-        Token jackOfAllTrades = new Token(
-                "Jack-of-All-Trades",
-                R.drawable.jack_of_all_trades,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
-        allTokens.put(jackOfAllTrades.getName(), jackOfAllTrades);
-
-        Token jailKeeper = new Token(
-                "Jailkeeper",
-                R.drawable.jailkeeper_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
-        allTokens.put(jailKeeper.getName(), jailKeeper);
-
-        Token lawyer = new Token(
-                "Lawyer",
-                R.drawable.lawyer_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
-        allTokens.put(lawyer.getName(), lawyer);
-
-        Token lovers = new Token(
-                "Lovers",
-                R.drawable.lover_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(lovers.getName(), lovers);
-
-        Token mafia = new Token(
-                "Mafia",
-                R.drawable.mafia_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
-        allTokens.put(mafia.getName(), mafia);
-
-        Token mafiaRival = new Token(
-                "Mafia Rival",
-                R.drawable.rival_puffle,
-                Token.TokenTypes.CLEAR_ON_NIGHT);
-        allTokens.put(mafiaRival.getName(), mafiaRival);
-
-        Token satan = new Token(
-                "Satan",
-                R.drawable.satan,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(satan.getName(), satan);
-
-        Token terrorist = new Token(
-                "Terrorist",
-                R.drawable.terrorist_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(terrorist.getName(), terrorist);
-
-        Token witness = new Token(
-                "Witness",
-                R.drawable.witness_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(witness.getName(), witness);
-
-        Token wizard = new Token(
-                "Wizard",
-                R.drawable.wizard_puffle,
-                Token.TokenTypes.CLEAR_NEVER);
-        allTokens.put(wizard.getName(), wizard);
-
-    }
-
-    private static void InitializeAllPowers(){
         allPowers = new HashMap<String, Power>();
-
-        Power alien = new Power("Alien",
-                Power.PowerType.CONTINOUS,
-                "INFECT",
-                GetToken("Alien"));
-        allPowers.put(alien.getName(), alien);
-
-        Power baker = new Power("Baker",
-                Power.PowerType.CONTINOUS,
-                "GIVE BREAD TO",
-                GetToken("Baker"));
-        allPowers.put(baker.getName(), baker);
-
-        Power civilian = new Power("Civilian",
-                Power.PowerType.PASSIVE,
-                "");
-        allPowers.put(civilian.getName(), civilian);
-
-        Power cupid = new Power(
-                "Cupid",
-                Power.PowerType.FIRSTNIGHT,
-                "FALL IN LOVE",
-                GetToken("Cupid"));
-        allPowers.put(cupid.getName(), cupid);
-
-        Power cyborg = new Power("Cyborg",
-                Power.PowerType.FIRSTNIGHT,
-                "COPY",
-                GetToken("Cyborg"));
-        allPowers.put(cyborg.getName(), cyborg);
-
-        Power dentist = new Power("Dentist",
-                Power.PowerType.CONTINOUS,
-                "SILENCE",
-                GetToken("Dentist"));
-        allPowers.put(dentist.getName(), dentist);
-
-        Power detective = new Power(
-                "Detective",
-                Power.PowerType.CONTINOUS,
-                "KNOW ABOUT",
-                GetToken("Detective"));
-        allPowers.put(detective.getName(), detective);
-
-        Power doctor = new Power(
-                "Doctor",
-                Power.PowerType.CONTINOUS,
-                "SAVE",
-                GetToken("Doctor"));
-        allPowers.put(doctor.getName(), doctor);
-
-        Power doggie = new Power(
-                "Doggie",
-                Power.PowerType.PASSIVE,
-                "");
-        allPowers.put(doggie.getName(), doggie);
-
-        Power theFather = new Power("The Father",
-                Power.PowerType.ACTIVE,
-                "???",//);
-                GetToken("The Father"));
-        allPowers.put(theFather.getName(), theFather);
-
-        Power godFather = new Power("GodFather",
-                Power.PowerType.PASSIVE,
-                "MURDER");
-        allPowers.put(godFather.getName(), godFather);
-
-        Power holySpirit = new Power("Holy Spirit",
-                Power.PowerType.ACTIVE,
-                "???",
-                GetToken("Holy Spirit"));
-        allPowers.put(holySpirit.getName(), holySpirit);
-
-        Power jackOfAllTrades = new Power("Jack-of-All-Trades",
-                Power.PowerType.CONTINOUS,
-                "???",
-                GetToken("Jack-of-All-Trades"));
-        allPowers.put(jackOfAllTrades.getName(), jackOfAllTrades);
-
-        Power jailKeeper = new Power("Jailkeeper",
-                Power.PowerType.CONTINOUS,
-                "PUT IN JAIL",
-                GetToken("Jailkeeper"));
-        allPowers.put(jailKeeper.getName(), jailKeeper);
-
-        Power jesus = new Power("Jesus",
-                Power.PowerType.PASSIVE,
-                "???");
-        allPowers.put(jesus.getName(), jesus);
-
-        Power lawyer = new Power("Lawyer",
-                Power.PowerType.CONTINOUS,
-                "DEFEND",
-                GetToken("Lawyer"));
-        allPowers.put(lawyer.getName(), lawyer);
-
-        Power lovers = new Power(
-                "Lovers",
-                Power.PowerType.FIRSTNIGHT,
-                "");
-        allPowers.put(lovers.getName(), lovers);
-
-        Power mafia = new Power(
-                "Mafia",
-                Power.PowerType.CONTINOUS,
-                "MURDER",
-                GetToken("Mafia"));
-        allPowers.put(mafia.getName(), mafia);
-
-        Power rivalMafia = new Power("Mafia Rival",
-                Power.PowerType.CONTINOUS,
-                "MURDER",
-                GetToken("Mafia Rival"));
-        allPowers.put(rivalMafia.getName(), rivalMafia);
-
-        Power president = new Power(
-                "President",
-                Power.PowerType.SELFACTIVE,
-                "");
-        allPowers.put(president.getName(), president);
-
-        Power satan = new Power("Satan",
-                Power.PowerType.ACTIVE,
-                "???",
-                GetToken("Satan"));
-        allPowers.put(satan.getName(), satan);
-
-        Power terrorist = new Power(
-                "Terrorist",
-                Power.PowerType.FIRSTNIGHT,
-                "PLANT A BOMB ON",
-                GetToken("Terrorist"));
-        allPowers.put(terrorist.getName(), terrorist);
-
-        Power veteran = new Power("Veteran",
-                Power.PowerType.PASSIVE,
-                "");
-        allPowers.put(veteran.getName(), veteran);
-
-        Power villageIdiot = new Power(
-                "Village Idiot",
-                Power.PowerType.PASSIVE,
-                "");
-        allPowers.put(villageIdiot.getName(), villageIdiot);
-
-        Power witness = new Power("Witness",
-                Power.PowerType.ACTIVE,
-                "WITNESS",
-                GetToken("Witness"));
-        allPowers.put(witness.getName(), witness);
-
-        Power wizard = new Power("Wizard",
-                Power.PowerType.ACTIVE,
-                "SWITCH WITH",
-                GetToken("Wizard"));
-        allPowers.put(wizard.getName(), wizard);
-
-        Power wizardAfter = new Power("Wizard after Switch",
-                Power.PowerType.SELFACTIVE,
-                "");
-        allPowers.put(wizardAfter.getName(), wizardAfter);
-
-        Power zombieGood = new Power("Zombie Good",
-                Power.PowerType.PASSIVE,
-                "");
-        allPowers.put(zombieGood.getName(), zombieGood);
-
-        Power zombieBad = new Power("Zombie Evil",
-                Power.PowerType.PASSIVE,
-                "");
-        allPowers.put(zombieBad.getName(), zombieBad);
-    }
-
-    private static void InitializeAllRoles(){
         allRoles = new HashMap<String, Role>();
-
-        Role alien = new Role("Alien",
-                R.drawable.alien_puffle,
-                3,
-                Role.Alliances.EVIL,
-                Role.Teams.SELF,
-                GetPower("Alien"),
-                "Does something amazing!");
-        allRoles.put(alien.getName(), alien);
-
-        Role baker = new Role("Baker",
-                R.drawable.baker_puffle,
-                3,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Baker"),
-                "Does something amazing!");
-        allRoles.put(baker.getName(), baker);
-
-        Role civilian = new Role("Civilian",
-                R.drawable.civilian_puffles,
-                -1,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Civilian"),
-                "Does something amazing!");
-        allRoles.put(civilian.getName(), civilian);
-
-        Role cupid = new Role("Cupid",
-                R.drawable.cupid_puffle,
-                0,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Cupid"),
-                "Does something amazing!");
-        allRoles.put(cupid.getName(), cupid);
-
-        Role cyborg = new Role("Cyborg",
-                R.drawable.cyborg_puffle,
-                0,
-                Role.Alliances.NEUTRAL,
-                Role.Teams.NEUTRAL,
-                GetPower("Cyborg"),
-                "Does something amazing!");
-        allRoles.put(cyborg.getName(), cyborg);
-
-        Role dentist = new Role("Dentist",
-                R.drawable.dentist_puffle,
-                3,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Dentist"),
-                "Does something amazing!");
-        allRoles.put(dentist.getName(), dentist);
-
-        Role detective = new Role("Detective",
-                R.drawable.detective_puffle,
-                3,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Detective"),
-                "Does something amazing!");
-        allRoles.put(detective.getName(), detective);
-
-        Role doctor = new Role("Doctor",
-                R.drawable.doctor_puffle,
-                3,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Doctor"),
-                "Does something amazing!");
-        allRoles.put(doctor.getName(), doctor);
-
-        Role doggie = new Role("Doggie",
-                R.drawable.doggie_puffle,
-                -1,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Doggie"),
-                "Does something amazing!");
-        allRoles.put(doggie.getName(), doggie);
-
-        Role theFather = new Role("The Father",
-                R.drawable.the_father_puffle,
-                1,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("The Father"),
-                "Does something amazing!");
-        allRoles.put(theFather.getName(), theFather);
-
-        Role Godfather = new Role("GodFather",
-                R.drawable.godfather_puffle,
-                -1,
-                Role.Alliances.GOOD,
-                Role.Teams.MAFIA,
-                GetPower("GodFather"),
-                "Does something amazing!");
-        allRoles.put(Godfather.getName(), Godfather);
-
-        Role holySpirit = new Role("Holy Spirit",
-                R.drawable.holy_spirit_puffle,
-                0,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Holy Spirit"),
-                "Does something amazing!");
-        allRoles.put(holySpirit.getName(), holySpirit);
-
-        Role jackOfAllTrades = new Role("Jack-of-All-Trades",
-                R.drawable.jack_of_all_trades,
-                3,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Jack-of-All-Trades"),
-                "Does something amazing!");
-        allRoles.put(jackOfAllTrades.getName(), jackOfAllTrades);
-
-        Role jailkeeper = new Role("Jailkeeper",
-                R.drawable.jailkeeper_puffle,
-                1.1f,
-                Role.Alliances.GOOD,
-                Role.Teams.MAFIA,
-                GetPower("Jailkeeper"),
-                "Does something amazing!");
-        allRoles.put(jailkeeper.getName(), jailkeeper);
-
-        Role jesus = new Role("Jesus",
-                R.drawable.jesus_puffle,
-                -1,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Jesus"),
-                "Does something amazing!");
-        allRoles.put(jesus.getName(), jesus);
-
-        Role lawyer = new Role("Lawyer",
-                R.drawable.lawyer_puffle,
-                3,
-                Role.Alliances.GOOD,
-                Role.Teams.MAFIA,
-                GetPower("Lawyer"),
-                "Does something amazing!");
-        allRoles.put(lawyer.getName(), lawyer);
-
-        Role lovers = new Role("Lovers",
-                R.drawable.lover_puffle,
-                0,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Lovers"),
-                "Does something amazing!");
-        allRoles.put(lovers.getName(), lovers);
-
-        Role mafia = new Role("Mafia",
-                R.drawable.mafia_puffle,
-                2,
-                Role.Alliances.EVIL,
-                Role.Teams.MAFIA,
-                GetPower("Mafia"),
-                "Does something amazing!");
-        allRoles.put(mafia.getName(), mafia);
-
-        Role mafiaRival = new Role("Mafia Rival",
-                R.drawable.rival_puffle,
-                2.1f,
-                Role.Alliances.EVIL,
-                Role.Teams.RIVAL_MAFIA,
-                GetPower("Mafia Rival"),
-                "Does something amazing!");
-        allRoles.put(mafiaRival.getName(), mafiaRival);
-
-        Role president = new Role("President",
-                R.drawable.president_puffle,
-                -1,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("President"),
-                "Does something amazing!");
-        allRoles.put(president.getName(), president);
-
-        Role satan = new Role("Satan",
-                R.drawable.satan,
-                0,
-                Role.Alliances.EVIL,
-                Role.Teams.MAFIA,
-                GetPower("Satan"),
-                "Does something amazing!");
-        allRoles.put(satan.getName(), satan);
-
-        Role terrorist = new Role("Terrorist",
-                R.drawable.terrorist_puffle,
-                0,
-                Role.Alliances.EVIL,
-                Role.Teams.MAFIA,
-                GetPower("Terrorist"),
-                "Does something amazing!");
-        allRoles.put(terrorist.getName(), terrorist);
-
-        Role veteran = new Role("Veteran",
-                R.drawable.veteran_puffle,
-                -1,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Veteran"),
-                "Does something amazing!");
-        allRoles.put(veteran.getName(), veteran);
-
-        Role villageIdiot = new Role("Village Idiot",
-                R.drawable.village_idiot_puffle,
-                -1,
-                Role.Alliances.EVIL,
-                Role.Teams.SELF,
-                GetPower("Village Idiot"),
-                "Does something amazing!");
-        allRoles.put(villageIdiot.getName(), villageIdiot);
-
-        Role witness = new Role("Witness",
-                R.drawable.witness_puffle,
-                2.1f,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Witness"),
-                "Does something amazing!");
-        allRoles.put(witness.getName(), witness);
-
-        Role wizard = new Role("Wizard",
-                R.drawable.wizard_puffle,
-                4,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Wizard"),
-                "Does something amazing!");
-        allRoles.put(wizard.getName(), wizard);
-
-        Role wizardAfter = new Role("Wizard after Switch",
-                R.drawable.wizard_puffle,
-                -1,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Wizard after Switch"),
-                "Does something amazing!");
-        allRoles.put(wizardAfter.getName(), wizardAfter);
-
-        Role zombieGood = new Role("Zombie Good",
-                R.drawable.good_zombie_puffle,
-                -1,
-                Role.Alliances.GOOD,
-                Role.Teams.TOWN,
-                GetPower("Zombie Good"),
-                "Does something amazing!");
-        allRoles.put(zombieGood.getName(), zombieGood);
-
-        Role zombieEvil = new Role("Zombie Evil",
-                R.drawable.evil_zombie_puffle,
-                -1,
-                Role.Alliances.EVIL,
-                Role.Teams.TOWN,
-                GetPower("Zombie Evil"),
-                "Does something amazing!");
-        allRoles.put(zombieEvil.getName(), zombieEvil);
     }
 
+    private static void LoadAllRoles()
+    {
+        InitializeAllDictionaries();
+
+        LoadRole("Alien",
+                "Infect one player at night",
+                "If half of the players become infected",
+                "I'm not a fan of crop circles",
+                "Player has been infected by the alien",
+                "ALIEN WAKE UP, WHO DO YOU WANNA INFECT?",
+                3,
+                1,
+                1,
+                1,
+                R.drawable.alien_puffle,
+                R.drawable.alien_puffle,
+                Token.TokenTypes.CLEAR_NEVER,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.EVIL,
+                Role.Teams.SELF);
+
+        LoadRole("Apprentice",
+               "Announce that the Apprentice is using a Wizard spell and activate one Wizard spell. Only one Wizard spell can be used per game",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "",
+               -1,
+               1,
+               1,
+               R.drawable.apprentice,
+               Power.PowerType.PASSIVE,
+               Power.PowerPromptType.ALL_PLAYERS,
+               Role.Alliances.GOOD,
+               Role.Teams.TOWN);
+
+
+        LoadRole("Baker",
+                "Give bread to players at night.  If the Baker dies everyone without bread dies in 3 nights",
+                "Wins if the Mafia are voted out",
+                "I bake break for everyone",
+                "Players with this will not die once the baker dies",
+                "BAKER WAKE UP, WHO DO YOU WANNA GIVE BREAD TO?",
+                3,
+                1,
+                1,
+                2,
+                R.drawable.baker_puffle,
+                R.drawable.puffle_o_croissant,
+                Token.TokenTypes.CLEAR_NEVER,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Bribed Judge",
+               "For one day only, the Bribed Judge will be able to decide wether a person dies or live during the vote. They choose to activate it during the night and it will go off during the day vote",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "JUDGE WAKE UP, During the next day vote, would you like to decide the final vote decision",
+               3,
+               1,
+               1,
+               R.drawable.bribed_judge,
+               Power.PowerType.ONETIMEUSE,
+               Power.PowerPromptType.YES_OR_NO,
+               Role.Alliances.GOOD,
+               Role.Teams.MAFIA);
+
+        LoadRole("Civilian",
+                "Has no special ability",
+                "Wins if the Mafia are voted out",
+                "I hope the town stays peaceful",
+                "NOTHING",
+                1,
+                1,
+                2,
+                R.drawable.civilian_puffles,
+                Power.PowerType.PASSIVE,
+                Power.PowerPromptType.NOTHING,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Corrupt Cop",
+               "Choose one player and that player cannot vote the next day. This does not stop the President.",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "This player could not vote this round",
+               "COP WAKE UP, WHO WOULD YOU LIKE TO KEEP FROM VOTING THE NEXT DAY",
+               3,
+               1,
+               1,
+               1,
+               R.drawable.corrupt_cop,
+               R.drawable.corrupt_cop,
+               Token.TokenTypes.CLEAR_ON_NIGHT,
+               Power.PowerType.CONTINOUS,
+               Power.PowerPromptType.ALL_Alive_PLAYERS,
+               Role.Alliances.GOOD,
+               Role.Teams.MAFIA);
+
+
+        LoadRole("Cupid",
+                "Links two players together, whatever happens to one happens to the other",
+                "Wins if the Mafia are voted out",
+                "I just love bring people together",
+                "This player is liked to anther player with this same token,  whatever happens to one happens to the other",
+                "CUPID WAKE UP, WHO DO YOU WANNA LINK?",
+                .5f,
+                1,
+                1,
+                2,
+                R.drawable.cupid_puffle,
+                R.drawable.cupid_puffle,
+                Token.TokenTypes.CLEAR_NEVER,
+                Power.PowerType.FIRSTNIGHT,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Cyborg",
+                "At the start of the game choose one player, you are now the same role as them for the rest of the game",
+                "You win the same way whatever role you copy does",
+                "Its amazing what computers can do these days!",
+                "The cyborg has copied the role of this player",
+                "CYBORG WAKE UP, WHOSE ROLE DO YOU WANNA COPY?",
+                0,
+                1,
+                1,
+                1,
+                R.drawable.cyborg_puffle,
+                R.drawable.cyborg_puffle,
+                Token.TokenTypes.CLEAR_NEVER,
+                Power.PowerType.FIRSTNIGHT,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Dentist",
+                "Choose one player to mute for the day, that player can't speak for the next day",
+                "You win if the Mafia gets voted out",
+                "I'm the best dentist in the world, never hear a customer complain",
+                "This player has been muted and cannot talk for the day",
+                "DENTIST WAKE UP, WHO DO YOU WANNA MUTE?",
+                3,
+                1,
+                1,
+                1,
+                R.drawable.dentist_puffle,
+                R.drawable.dentist_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Detective",
+                "Discovers the alliance of one player each night",
+                "Wins if the Mafia are voted out",
+                "Never had a case I couldn't solve, except that one time.  But that doesn't count.",
+                "The detective has learned this players alliance",
+                "DETECTIVE WAKE UP, WHOSE ALLIANCE DO YOU WANNA KNOW ABOUT?",
+                3,
+                1,
+                1,
+                1,
+                R.drawable.detective_puffle,
+                R.drawable.detective_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Doctor",
+                "Protect one player from the Mafia each night",
+                "Wins if the Mafia are voted out",
+                "Never liked blood, but somebody's gotta do this job.",
+                "This player has been protected from the mafia.  Protected players are not killed by Mafia.",
+                "DOCTOR WAKE UP, WHO DO YOU WANNA SAVE FROM THE MAFIA?",
+                3,
+                1,
+                1,
+                1,
+                R.drawable.doctor_puffle,
+                R.drawable.doctor_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Doggie",
+                "Needs one extra vote to be voted out",
+                "Wins if the Mafia are voted out",
+                "Bark! Bark! *wags-tail*",
+                "",
+                -1,
+                1,
+                1,
+                R.drawable.doggie_puffle,
+                Power.PowerType.PASSIVE,
+                Power.PowerPromptType.NOTHING,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("The Father",
+                "Everybody that died this round will come back to life",
+                "Wins if the Mafia are voted out",
+                "Let there be life!",
+                "THE FATHER WAKE UP, DO YOU WANNA BRING EVERYONE BACK TO LIFE TODAY?",
+                5,
+                1,
+                1,
+                R.drawable.the_father_puffle,
+                Power.PowerType.ONETIMEUSE,
+                Power.PowerPromptType.YES_OR_NO,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("GodFather",
+                "Kills players with the Mafia.  However the appear as a thumbs up to the detective.",
+                "Wins if the Mafia equal half or more of the living players",
+                "I'm gonna make him an offer he can't refuse",
+                "",
+                -1,
+                1,
+                1,
+                R.drawable.godfather_puffle,
+                Power.PowerType.PASSIVE,
+                Power.PowerPromptType.NOTHING,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA);
+
+        LoadRole("Holy Spirit",
+                "All Good players can use their abilities twice this round",
+                "Wins if the Mafia are voted out",
+                "You can do it!",
+                "HOLY SPIRIT WAKE UP, DO YOU WANNA DOUBLE ALL TOWN POWERS?",
+                0.75f,
+                1,
+                1,
+                R.drawable.holy_spirit_puffle,
+                Power.PowerType.ONETIMEUSE,
+                Power.PowerPromptType.YES_OR_NO,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Insomniac",
+               "THESE ARE THE PLAYERS THAT USED THEIR ABILITY ON YOU THIS NIGHT",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "INSOMNIAC WAKE UP, THESE ARE THE PLAYERS THAT USED THEIR ABILITY ON YOU THIS NIGHT.",
+               4.6f,
+               1,
+               1,
+               R.drawable.insomniac,
+               Power.PowerType.CONTINOUS,
+               Power.PowerPromptType.ALL_PLAYERS,
+               Role.Alliances.GOOD,
+               Role.Teams.MAFIA);
+
+
+        LoadRole("J.O.A.T.",
+                "Can use one skill of the Town players each night.  You cannot use the same skill again until you have gone through each skill",
+                "Wins if the Mafia get voted out",
+                "I like to try a little of everything",
+                "The J.O.A.T. has used one of their abilities on this player",
+                "J.O.A.T. WAKE UP, WHAT DO YOU WANNA DO?",
+                3,
+                1,
+                1,
+                1,
+                R.drawable.jack_of_all_trades,
+                R.drawable.jack_of_all_trades,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Jailkeeper",
+                "Choose one player each night.  That player cannot activate their ability for the night or day.",
+                "Wins if the Mafia equal half of the alive players",
+                "flavor",
+                "This player can't use their ability for the night or day",
+                "JAILKEEPER WAKE UP, WHO DO YOU WANT TO LOCKOUT FROM THEIR ROLE?",
+                1.9f,
+                1,
+                1,
+                1,
+                R.drawable.jailkeeper_puffle,
+                R.drawable.jailkeeper_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA);
+
+        LoadRole("Jesus",
+                "Comes back to life after he dies",
+                "Wins if the Mafia get voted out",
+                "I am the way the truth and the life",
+                "",
+                -1,
+                1,
+                1,
+                R.drawable.jesus_puffle,
+                Power.PowerType.PASSIVE,
+                Power.PowerPromptType.NOTHING,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Lawyer",
+                "Save one player from being voted out",
+                "Wins if the Mafia equal half of the living players",
+                "I am the law",
+                "Is protected from being voted out",
+                "LAWYER WAKE UPM, WHO DO YOU WANNA SAVE FROM BEING VOTED OUT?",
+                3,
+                1,
+                1,
+                1,
+                R.drawable.lawyer_puffle,
+                R.drawable.lawyer_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA);
+
+        LoadRole("Lovers",
+                "Lovers are linked to each other, whatever happens to one happens to the other",
+                "Wins if the Mafia are voted out",
+                "Romeo and Juliet got nothing on us",
+                "LOVERS WAKE UP, YOU ARE LINKED FOR THE REST OF THE GAME",
+                0.25f,
+                2,
+                2,
+                R.drawable.lover_puffle,
+                Power.PowerType.FIRSTNIGHT,
+                Power.PowerPromptType.NOTHING,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Mafia",
+                "Kill one player every night",
+                "Wins if the Mafia equal half of the living players",
+                "We own this town",
+                "This player will be killed",
+                "MAFIA WAKE UP, WHO DO YOU WANNA KILL?",
+                2,
+                1,
+                3,
+                1,
+                R.drawable.mafia_puffle,
+                R.drawable.mafia_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.EVIL,
+                Role.Teams.MAFIA);
+
+        LoadRole("Mafia Rival",
+                "Kill one player every night",
+                "Wins if the Mafia Rival players equal half of the living players",
+                "Gun Gang for life!",
+                "This player will be killed",
+                "RIVAL MAFIA WAKE UP, WHO DO YOU WANNA KILL?",
+                2.25f,
+                1,
+                2,
+                1,
+                R.drawable.rival_puffle,
+                R.drawable.rival_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.EVIL,
+                Role.Teams.RIVAL_MAFIA);
+
+        LoadRole("Mole",
+               "Have the Mafia members raise their hands to reveal their identities to the Mole",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "Mole wake up, Mafia member raise your hands to reveal your identity",
+               0.25f,
+               1,
+               1,
+               R.drawable.mole,
+               Power.PowerType.FIRSTNIGHT,
+               Power.PowerPromptType.NOTHING,
+               Role.Alliances.GOOD,
+               Role.Teams.MAFIA);
+
+        LoadRole("Necromancer",
+               "Choose one dead player, Necromancer becomes that role. If they had their one time use ability activated already, they cannot use it again",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "This player had their role taken by the Necromancer",
+               "NECROMANCER WAKE UP, Which dead player's role would you like to become?",
+               4.25f,
+               1,
+               1,
+               1,
+               R.drawable.necromancer,
+               R.drawable.necromancer,
+               Token.TokenTypes.CLEAR_NEVER,
+               Power.PowerType.ONETIMEUSE,
+               Power.PowerPromptType.ALL_DEAD_PLAYERS,
+               Role.Alliances.GOOD,
+               Role.Teams.SELF);
+
+
+        LoadRole("President",
+                "Once per game the President can veto one vote and vote out another player instead.",
+                "Wins if the Mafia are voted out",
+                "AMERICA!",
+                "",
+                1,
+                1,
+                1,
+                R.drawable.president_puffle,
+                Power.PowerType.SELFACTIVE,
+                Power.PowerPromptType.NOTHING,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Satan",
+                "Once per game, lets all Evil players active their ability twice that round",
+                "Wins if the Mafia equal half of the living players",
+                "You can't do it",
+                "SATAN WAKE UP, DO YOU WANNA DOUBLE ALL TEAM MAFIA POWERS?",
+                0.75f,
+                1,
+                1,
+                R.drawable.satan,
+                Power.PowerType.ONETIMEUSE,
+                Power.PowerPromptType.YES_OR_NO,
+                Role.Alliances.EVIL,
+                Role.Teams.MAFIA);
+
+        LoadRole("Shotgun Granny",
+               "Decide if you will go on alert at night and kill anyone who uses their ability on you. Can only go on alert twice per game.\n",
+               "Wins if the Mafia are voted out",
+               "Blow em Up",
+               "Shotgun Granny Wake up, DO YOU WANNA GO on alert at night and kill anyone who uses their ability on you.",
+               1.01f,
+               1,
+               1,
+               R.drawable.grandma_puffle,
+               Power.PowerType.ONETIMEUSE,
+               Power.PowerPromptType.YES_OR_NO,
+               Role.Alliances.GOOD,
+               Role.Teams.TOWN);
+        
+        
+        LoadRole("Terrorist",
+                "Plants a bomb on one player, if they die the bomb goes off, killing the player its attached to",
+                "Wins if the Mafia equal half of the living players",
+                "Viva la Revolution",
+                "This player will die if the Terrorist dies",
+                "TERRORIST WAKE UP, WHO DO YOU WANNA PLANT A BOMB ON?",
+                0.5f,
+                1,
+                1,
+                1,
+                R.drawable.terrorist_puffle,
+                R.drawable.terrorist_puffle,
+                Token.TokenTypes.CLEAR_NEVER,
+                Power.PowerType.FIRSTNIGHT,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.EVIL,
+                Role.Teams.MAFIA);
+
+        LoadRole("Tracker",
+                "Track on player and see who they used their ability on at night.",
+                "Wins if the Mafia get voted out",
+                "The nose knows",
+                "This player is being tacked by the tracker.  The tracker knows who they used their ability on the previous night.",
+                "TRACKER WAKE UP, WHO DO YOU WANNA TRACK?",
+                4.5f,
+                1,
+                1,
+                1,
+                R.drawable.tracker,
+                R.drawable.tracker,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.MAFIA);
+
+        LoadRole("Veteran",
+                "If the Mafia tries to kill the Veteran the Mafia are killed instead",
+                "Wins if the Mafia are voted out",
+                "War, war never changes",
+                "",
+                -1,
+                1,
+                1,
+                R.drawable.veteran_puffle,
+                Power.PowerType.PASSIVE,
+                Power.PowerPromptType.NOTHING,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Village Idiot",
+                "Wins if they are voted out during the day.",
+                "Wins if they are voted out during the day",
+                "What happens if I stick my hand in this blender?",
+                "",
+                -1,
+                1,
+                1,
+                R.drawable.village_idiot_puffle,
+                Power.PowerType.PASSIVE,
+                Power.PowerPromptType.NOTHING,
+                Role.Alliances.EVIL,
+                Role.Teams.SELF);
+
+        LoadRole("Witness",
+                "For one night they can try to peek and see who the Mafia is.",
+                "Wins if the Mafia get voted out",
+                "*stares into the middle distance*",
+                "WTNESS WAKE UP, DID YOU WITNESS ANYTHING?",
+                2.5f,
+                1,
+                1,
+                R.drawable.witness_puffle,
+                Power.PowerType.ONETIMEUSE,
+                Power.PowerPromptType.YES_OR_NO,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Wizard",
+                "Switch roles with one player",
+                "Wins if the Mafia are voted out",
+                "Abracadabra",
+                "This player got their role switched with the wizard",
+                "WIZARD WAKE UP, WHO DO YOU WANNA SWITCH ROLES WITH?",
+                6,
+                1,
+                1,
+                1,
+                R.drawable.wizard_puffle,
+                R.drawable.wizard_puffle,
+                Token.TokenTypes.CLEAR_NEVER,
+                Power.PowerType.ONETIMEUSE,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Zombie Good",
+                "Zombies cannot talk or raise their arms.  They can only grunt.",
+                "Wins if the Mafia get voted out.",
+                "Grrr...",
+                "",
+                -1,
+                1,
+                1,
+                R.drawable.good_zombie_puffle,
+                Power.PowerType.PASSIVE,
+                Power.PowerPromptType.NOTHING,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Zombie Evil",
+                "Zombies cannot talk or raise their arms.  They can only grunt.",
+                "Wins if the Mafia equal half of the alive players",
+                "Brains....",
+                "",
+                -1,
+                1,
+                1,
+                R.drawable.evil_zombie_puffle,
+                Power.PowerType.PASSIVE,
+                Power.PowerPromptType.NOTHING,
+                Role.Alliances.EVIL,
+                Role.Teams.MAFIA);
+
+
+    }
+
+    private static void LoadRole(String name,
+                                 String roleDescription,
+                                 String winConditionDescription,
+                                 String flavorText,
+                                 String tokenDescription,
+                                 String promptAtNight,
+                                 float rolePriority,
+                                 int minimumAllowedPerGame,
+                                 int maximumAllowedPerGame,
+                                 int normalMaximumTokensAllowedPerNight,
+                                 int roleImage,
+                                 int tokenImage,
+                                 Token.TokenTypes tokenClearType,
+                                 Power.PowerType powerType,
+                                 Power.PowerPromptType promptType,
+                                 Role.Alliances alliance,
+                                 Role.Teams team){
+        Token token = new Token(
+                name,
+                tokenDescription,
+                tokenImage,
+                tokenClearType,
+                normalMaximumTokensAllowedPerNight);
+        allTokens.put(token.getName(), token);
+
+        Power power = new Power(
+                name,
+                powerType,
+                promptAtNight,
+                GetToken(name),
+                promptType);
+        allPowers.put(power.getName(), power);
+
+        Role role = new Role(
+                name,
+                roleImage,
+                rolePriority,
+                alliance,
+                team,
+                GetPower(name),
+                roleDescription,
+                winConditionDescription,
+                flavorText,
+                minimumAllowedPerGame,
+                maximumAllowedPerGame);
+        allRoles.put(role.getName(), role);
+    }
+
+    private static void LoadRole(String name,
+                                 String roleDescription,
+                                 String winConditionDescription,
+                                 String flavorText,
+                                 String promptAtNight,
+                                 float rolePriority,
+                                 int minimumAllowedPerGame,
+                                 int maximumAllowedPerGame,
+                                 int roleImage,
+                                 Power.PowerType powerType,
+                                 Power.PowerPromptType promptType,
+                                 Role.Alliances alliance,
+                                 Role.Teams team){
+
+        Power power = new Power(
+                name,
+                powerType,
+                promptAtNight,
+                promptType);
+        allPowers.put(power.getName(), power);
+
+        Role role = new Role(
+                name,
+                roleImage,
+                rolePriority,
+                alliance,
+                team,
+                GetPower(name),
+                roleDescription,
+                winConditionDescription,
+                flavorText,
+                minimumAllowedPerGame,
+                maximumAllowedPerGame);
+        allRoles.put(role.getName(), role);
+    }
 
     public static Token GetToken(String name){
         return allTokens.get(name);
@@ -620,6 +728,14 @@ public class DataManager {
 
         return output;
     }
+    public static Role GetRandomRole(){
+        Random generator = new Random();
+        Object[] values = allRoles.values().toArray();
+        Role randomRole = (Role) values[generator.nextInt(values.length)];
+        return randomRole;
+    }
+
+
 
     public static void PrintSummary(){
 

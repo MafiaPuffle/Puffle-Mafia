@@ -2,19 +2,43 @@ package com.example.pufflemafia.app.data;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.example.pufflemafia.app.Event;
+
+import java.util.Objects;
 import java.util.Vector;
 
 public class GameSetup {
-    public int numberOfPlayers() {return names.size();}
+    public int numberOfPlayers() {return this.names.size();}
+    public int numberOfRolesChosen() {return this.chosenRoles.size();}
     public Vector<String> names;
-    public Vector<Role> chosenRoles;
+    private Vector<Role> chosenRoles;
+    public Vector<Role> getChosenRoles(){return chosenRoles;}
     public boolean isValid;
+
+    public Event<Boolean> onDataUpdated;
 
     public GameSetup(){
         //this.numberOfPlayers = 0;
         this.names = new Vector<String>();
         this.chosenRoles = new Vector<Role>();
         this.isValid = false;
+        this.onDataUpdated = new Event<Boolean>();
+    }
+
+    public void SetUpRandomGame(Vector<String> names){
+        Log.d("GameSetup","Starting SetUpRandomGame");
+        this.reset();
+
+        this.names = names;
+
+        this.addRole(DataManager.GetRole("Mafia"));
+        if(this.numberOfPlayers() > 1){
+            while(checkIfIsValid() == false){
+                addRandomRole();
+            }
+        }
     }
 
     public void reset(){
@@ -24,10 +48,76 @@ public class GameSetup {
         this.isValid = false;
     }
 
+    public boolean tryAddRole(Role role){
+        Log.d("GameSetup", "Trying to add role: " + role.getName());
+        if(checkIfCanAddRole(role)) {
+            addRole(role);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void addRole(@NonNull Role role){
+        for (int i = 0; i < role.getMinimumAllowed(); i++) {
+            this.chosenRoles.add(role);
+            Log.d("GameSetup", "Added role: " + role.getName());
+        }
+        this.onDataUpdated.Invoke();
+    }
+
+    public void addRandomRole(){
+        Role randomRole = DataManager.GetRandomRole();
+
+        while(tryAddRole(randomRole) == false){
+            randomRole = DataManager.GetRandomRole();
+            Log.d("GameSetup","Adding a random role: " + randomRole.getName());
+        }
+    }
+
     public void addMultipleRoles(int amount, Role role){
         for(int i = 0; i < amount; ++i){
             this.chosenRoles.add(role);
         }
+        this.onDataUpdated.Invoke();
+    }
+
+    public void removeRole(Role role){
+        this.chosenRoles.remove(role);
+        this.onDataUpdated.Invoke();
+    }
+
+    public void removeAllRoles(){
+        this.chosenRoles.clear();
+    }
+
+    public boolean checkIfCanAddRole(Role roleToCheckFor){
+        if(numberOfRolesChosen() == numberOfPlayers()){
+            Log.d("GameSetup","Did not add the " + roleToCheckFor.getName() + "role since number of roles currently equals the number of players");
+            LogSummary();
+            return false;
+        } else if (roleWouldBeAddedToManyTimes(roleToCheckFor)) {
+            Log.d("GameSetup","Did not add the " + roleToCheckFor.getName() + " role since it would be added more than its maximum allowed amount");
+            LogSummary();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean roleWouldBeAddedToManyTimes(Role roleToCheckFor){
+        int amountFound = 0;
+
+        for (Role role: this.chosenRoles) {
+            if(role.getName() == roleToCheckFor.getName()) amountFound++;
+        }
+
+        int potentialAmountAfterAdding = amountFound + roleToCheckFor.getMinimumAllowed();
+
+       if(potentialAmountAfterAdding > roleToCheckFor.getMaximumAllowed()){
+           return true;
+       }
+       else return false;
     }
 
     public boolean checkIfIsValid(){
@@ -38,18 +128,21 @@ public class GameSetup {
             amountOfRolesEqualsAmountOfPlayers = true;
         }
 
-        boolean foundAtleastOneMafia = false;
-        for (Role role: chosenRoles) {
-            if(role.getName() == "Mafia") {
-                foundAtleastOneMafia = true;
-                break;
-            }
-        }
+        boolean foundAtleastOneMafia = mafiaHasBeenChosen();
 
         if(amountOfRolesEqualsAmountOfPlayers && foundAtleastOneMafia) output = true;
 
         this.isValid = output;
         return output;
+    }
+
+    public boolean mafiaHasBeenChosen(){
+        for (Role role: chosenRoles) {
+            if(Objects.equals(role.getName(), "Mafia") || Objects.equals(role.getName(), "Mafia Rival")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void LogSummary(){

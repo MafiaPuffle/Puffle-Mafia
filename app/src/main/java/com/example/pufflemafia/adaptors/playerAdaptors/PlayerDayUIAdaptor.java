@@ -1,4 +1,4 @@
-package com.example.pufflemafia.adaptors;
+package com.example.pufflemafia.adaptors.playerAdaptors;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +16,12 @@ import com.example.pufflemafia.AddTokenScreen;
 import com.example.pufflemafia.ChangeCharacterScreen;
 import com.example.pufflemafia.ChangeNameScreen;
 import com.example.pufflemafia.R;
+import com.example.pufflemafia.RoleDetails;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -68,6 +70,9 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
 
         public TextView getRoleNameView(){
             return roleNameView;
+        }
+        public void setRoleNameViewColor(int colorResourceId, Context context){
+            roleNameView.setTextColor(context.getResources().getColor(colorResourceId, context.getTheme()));
         }
 
         public ImageButton getRoleButton(){
@@ -130,6 +135,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         viewHolder.getPlayerAndRoleLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 Intent intent = new Intent(context, ChangeNameScreen.class);
                 intent.putExtra("position", viewHolder.getAdapterPosition());
                 intent.putExtra("name",player.name);
@@ -140,16 +146,57 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
 
         viewHolder.getPlayerNameView().setText(player.name);
         viewHolder.getRoleNameView().setText(player.getRole().getName());
+
+        Role.Teams team = role.getTeam();
+        switch (team){
+            case TOWN:
+                viewHolder.setRoleNameViewColor(R.color.white, context);
+                break;
+            case MAFIA:
+                viewHolder.setRoleNameViewColor(R.color.red, context);
+                break;
+            case RIVAL_MAFIA:
+                viewHolder.setRoleNameViewColor(R.color.red, context);
+                break;
+            case SELF:
+                viewHolder.setRoleNameViewColor(R.color.black, context);
+                break;
+            case NEUTRAL:
+                viewHolder.setRoleNameViewColor(R.color.black, context);
+                break;
+        }
+
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
         viewHolder.getRoleButton().setImageResource(0);
         viewHolder.getRoleButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 Intent intent = new Intent(context, ChangeCharacterScreen.class);
+                intent.putExtra("currentRoleName", role.getName());
                 intent.putExtra("currentRoleImageResource", role.getImageResource());
+                intent.putExtra("currentRoleDescription", role.getDescription());
+                intent.putExtra("currentRoleWinCondition", role.getWinCondition());
+                intent.putExtra("currentRoleTeam", role.getTeam());
+                intent.putExtra("currentRoleAlliance", role.getAlliance());
                 intent.putExtra("position", viewHolder.getAdapterPosition());
                 intent.putExtra("ListType", listType);
                 context.startActivity(intent);
+            }
+        });
+        viewHolder.getRoleButton().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(context, RoleDetails.class);
+                intent.putExtra("name", role.getName());
+                intent.putExtra("imageResourceId", role.getImageResource());
+                intent.putExtra("description", role.getDescription());
+                intent.putExtra("winCondition", role.getWinCondition());
+                intent.putExtra("team", role.getTeam());
+                intent.putExtra("alliance", role.getAlliance());
+                context.startActivity(intent);
+                return false;
             }
         });
 
@@ -163,6 +210,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         viewHolder.getKillOrReviveButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 if(listType == PlayerManager.PlayerMangerListType.ALIVE){
                     PlayerManager.KillPlayer(player);
                 }
@@ -180,6 +228,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         viewHolder.getTokenHolder().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SoundManager.playSfx("Click");
                 Intent intent = new Intent(context, AddTokenScreen.class);
                 intent.putExtra("position", viewHolder.getAdapterPosition());
                 intent.putExtra("ListType", listType);
@@ -189,6 +238,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         //TODO: update kill/revive button to show correct image
         //TODO: update all buttons to do stuff on click
     }
+
 
     @Override
     public int getItemCount() {

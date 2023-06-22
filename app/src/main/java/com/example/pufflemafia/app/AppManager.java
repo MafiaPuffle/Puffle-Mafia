@@ -2,6 +2,7 @@ package com.example.pufflemafia.app;
 
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.GameSetup;
+import com.example.pufflemafia.app.data.TimerManager;
 import com.example.pufflemafia.app.game.GameManager;
 
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ public class AppManager {
 
     public static GameManager gameManager;
     public static DataManager dataManager;
+    public static TimerManager timerManager;
 
     // Used for sending warning messages for debugging
     private static Logger logger;
@@ -26,6 +28,7 @@ public class AppManager {
 
         gameManager = new GameManager();
         dataManager = new DataManager();
+        timerManager = new TimerManager();
 
         logger = Logger.getLogger(AppManager.class.getName());
         // Set Logger level()
@@ -40,6 +43,7 @@ public class AppManager {
 
         gameManager = new GameManager();
         dataManager = new DataManager();
+        timerManager = new TimerManager();
 
         logger = Logger.getLogger(AppManager.class.getName());
         // Set Logger level()

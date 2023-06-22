@@ -8,12 +8,15 @@ import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.data.Power;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.SortByPriority;
+import com.example.pufflemafia.app.data.Token;
 
+import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Vector;
 
 public class ActiveRolesManager {
@@ -21,6 +24,7 @@ public class ActiveRolesManager {
     public static Event<Boolean> onLookingAtLastRoleForTheNight;
 
     private static Vector<Role> rolesWithAbilitiesForTheNight;
+    private static Vector<Queue<PlayerMemory>> updatedPlayersMemory;
     public static Role StartNight(Vector<Role> allAliveRoles, int nightNumber){
 
         // Filters out duplicate roles
@@ -79,7 +83,10 @@ public class ActiveRolesManager {
     }
     @Nullable
     public static Role GetRoleForNight(int index){
-        if(index >= rolesWithAbilitiesForTheNight.size()) return null;
+        if(index >= rolesWithAbilitiesForTheNight.size()) {
+            onLookingAtLastRoleForTheNight.Invoke(false);
+            return null;
+        }
         if(index == (rolesWithAbilitiesForTheNight.size() - 1)){
             onLookingAtLastRoleForTheNight.Invoke(true);
         }
@@ -87,10 +94,32 @@ public class ActiveRolesManager {
         return rolesWithAbilitiesForTheNight.get(index);
     }
 
+    public static void ResetPlayerMemory(){
+        updatedPlayersMemory.clear();
+    }
+
+    public static void UpdatePlayerMemory(int vectorIndex, Player player, Token token){
+        while (vectorIndex >= updatedPlayersMemory.size()){
+            Queue emptyQue = new ArrayDeque();
+            updatedPlayersMemory.add(emptyQue);
+        }
+
+        PlayerMemory playerMemory = new PlayerMemory(player, token);
+        updatedPlayersMemory.elementAt(vectorIndex).add(playerMemory);
+
+        if(updatedPlayersMemory.elementAt(vectorIndex).size() > token.getMaxUsableAtNight()){
+            Player firstPlayerInQueue = updatedPlayersMemory.elementAt(vectorIndex).peek().getPlayer();
+            assert firstPlayerInQueue != null;
+            firstPlayerInQueue.RemoveToken(token);
+            updatedPlayersMemory.elementAt(vectorIndex).remove();
+        }
+
+    }
 
     public ActiveRolesManager(){
         onLookingAtLastRoleForTheNight = new Event<Boolean>();
         rolesWithAbilitiesForTheNight = new Vector<Role>();
+        updatedPlayersMemory = new Vector<Queue<PlayerMemory>>();
     }
 
     public static void PrintSummary(){
@@ -107,5 +136,21 @@ public class ActiveRolesManager {
         for(Role role: rolesWithAbilitiesForTheNight){
             role.PrintDetailed("  ");
         }
+    }
+}
+
+class PlayerMemory{
+    private Player player;
+    public Player getPlayer() {
+        return player;
+    }
+    private Token token;
+    public Token getToken() {
+        return token;
+    }
+
+    public PlayerMemory(Player player, Token token){
+        this.player = player;
+        this.token = token;
     }
 }

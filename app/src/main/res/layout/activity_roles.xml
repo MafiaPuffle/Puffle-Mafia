@@ -32,43 +32,41 @@
             android:text="Roles"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FEFAFD"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/horizon"/>
     </LinearLayout>
 
     <!--Roles Box-->
-    <GridLayout
-        android:id="@+id/AddingTokenBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/green_rectangle"
-        android:columnCount="7"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:rowCount="8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddTokenTitleBox"
-        app:layout_constraintVertical_bias="0.146">
-
-
-
-    </GridLayout>
 
     <!--Button-->
     <Button
-        android:id="@+id/BackToMainMenu"
+        android:id="@+id/BackToMainMafiaScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BACK"
+        android:textColor="@color/white"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.981" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AllRolesRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddTokenTitleBox"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

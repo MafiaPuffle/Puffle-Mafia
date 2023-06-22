@@ -2,9 +2,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootFrameLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <!-- character_ui_layout.xml -->
+
+
 
     <LinearLayout
         android:id="@+id/CharacterUIINBox"
@@ -13,6 +16,8 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/grey_rectangle"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,14 +25,12 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:clickable="true"
-        android:focusable="true">
+        app:layout_constraintVertical_bias="1.0">
 
         <ImageButton
             android:id="@+id/CharacterUI"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/alien_puffle"
             android:clickable="false"
             android:contentDescription="Alien"
@@ -36,19 +39,11 @@
         <LinearLayout
             android:id="@+id/CharacterUITextsBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/grey_rectangle"
             android:clickable="false"
             android:focusable="false"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/CharacterUIName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:text="NAME" />
 
             <TextView
                 android:id="@+id/CharacterUIRole"
@@ -56,16 +51,63 @@
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 android:focusable="false"
-                android:text="ROLE" />
+                android:fontFamily="@font/horizon"
+                android:gravity="top"
+                android:text="ROLE"
+                android:textColor="@color/white"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/CharacterUIName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/horizon"
+                android:gravity="bottom"
+                android:text="NAME"
+                android:textColor="@color/white"
+                android:textSize="13dp" />
+
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/TokensLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="false"
-            android:focusable="false"
-            android:orientation="horizontal"></LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/thumbsUpOrDownImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/TokensLinearLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:orientation="horizontal"></LinearLayout>
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/thumbsUpOrDownImage"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:scaleType="fitEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/thumbs_down" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 </FrameLayout>

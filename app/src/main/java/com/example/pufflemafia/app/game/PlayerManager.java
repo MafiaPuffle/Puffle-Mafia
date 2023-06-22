@@ -8,6 +8,10 @@ import com.example.pufflemafia.app.Event;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 
+import java.util.ArrayDeque;
+import java.util.Collections;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,11 +20,55 @@ import java.util.logging.Logger;
 public class PlayerManager {
     public enum PlayerMangerListType {ALIVE, DEAD}
 
+    public static Vector<Player> getAllPlayers() {
+        Vector<Player> merge = new Vector<Player>();
+        merge.addAll(allAlive);
+        merge.addAll(allDead);
+        return merge;
+    }
 
-    public static Vector<Player> allAlive;
+//    public static Player getPlayer
+
+    private static Vector<Player> allAlive;
     public static int numberOfPlayersAlive() {return allAlive.size();}
-    public static Vector<Player> allDead;
+    public static Vector<Player> getAllAlive() {
+        //Collections.sort(allAlive, new SortPlayerByAmountOfTokensApplied());
+        //onPlayerDataUpdated.Invoke();
+        return allAlive;
+    }
+    public static void sortAllAliveByTokens(){
+        Collections.sort(allAlive, new SortPlayerByTokensApplied());
+        onPlayerDataUpdated.Invoke();
+    }
+    public static Player getAlivePlayerAt(int index){
+        return allAlive.elementAt(index);
+    }
+    public static void clearAllAlivePlayers(){
+        allAlive.clear();
+    }
+    private static Vector<Player> allDead;
     public static int numberOfPlayersDead() {return allDead.size();}
+    public static Vector<Player> getAllDead() {
+        //Collections.sort(allDead, new SortPlayerByAmountOfTokensApplied());
+        //onPlayerDataUpdated.Invoke();
+        return allDead;
+    }
+    public static void sortAllDeadByTokens(){
+        Collections.sort(allDead, new SortPlayerByTokensApplied());
+        onPlayerDataUpdated.Invoke();
+    }
+    public static Player getDeadPlayerAt(int index){
+        return allAlive.elementAt(index);
+    }
+
+    public static void clearAllDeadPlayers(){
+        allDead.clear();
+    }
+
+    private static Queue<Player> recentlyUpdatedPlayers;
+    public static void ClearRecentlyUpdatedPlayersQueue(){
+        recentlyUpdatedPlayers.clear();
+    }
 
     public static Event<Boolean> onPlayerDataUpdated;
     public static Event<Boolean> onPlayerKillOrRevive;
@@ -35,6 +83,8 @@ public class PlayerManager {
         logger = Logger.getLogger(PlayerManager.class.getName());
         // Set Logger level()
         logger.setLevel(Level.WARNING);
+
+        recentlyUpdatedPlayers = new ArrayDeque<Player>();
 
         onPlayerKillOrRevive = new Event<Boolean>();
         onPlayerDataUpdated = new Event<Boolean>();
@@ -205,6 +255,43 @@ public class PlayerManager {
         }
     }
 
+    public static void RemovePlayerToken(PlayerMangerListType listType, int playerIndex, Token token){
+        if(listType == PlayerMangerListType.ALIVE){
+            if(playerIndex >= allAlive.size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside of all alive");
+                return;
+            }
+
+            Vector<Token> allTokensOnPlayer = allAlive.elementAt(playerIndex).getAllTokensOnPlayer();
+            for (int i = 0; i < allTokensOnPlayer.size(); i++) {
+                if(allTokensOnPlayer.get(i).getName() == token.getName()){
+                    allAlive.elementAt(playerIndex).RemoveTokenAt(i);
+                    break;
+                }
+            }
+            onPlayerDataUpdated.Invoke();
+        }
+        else{
+            if(playerIndex >= allDead.size()){
+
+                // Call warning method
+                logger.warning("attempted to remove a player token outside of all dead");
+                return;
+            }
+
+            Vector<Token> allTokensOnPlayer = allDead.elementAt(playerIndex).getAllTokensOnPlayer();
+            for (int i = 0; i < allTokensOnPlayer.size(); i++) {
+                if(allTokensOnPlayer.get(i).getName() == token.getName()){
+                    allDead.elementAt(playerIndex).RemoveTokenAt(i);
+                    break;
+                }
+            }
+            onPlayerDataUpdated.Invoke();
+        }
+    }
+
     public static void RemovePlayerToken(PlayerMangerListType listType, int playerIndex, int tokenIndex){
         if(listType == PlayerMangerListType.ALIVE){
             if(playerIndex >= allAlive.size()){
@@ -271,7 +358,20 @@ public class PlayerManager {
 
     // Adds token from sourcePlayer onto targetPlayer
     public static void UseAbilityOnPlayer( @NonNull Role sourceRole, @NonNull Player targetPlayer){
-        targetPlayer.AddTokenOnToPlayer(sourceRole.getPower().getToken());
+        Token token = sourceRole.getPower().getToken();
+
+        // adds the token of the sourceRole to the targetPlayer
+        if( targetPlayer.AddTokenOnToPlayer(sourceRole.getPower().getToken()) ){
+            ActiveRolesManager.UpdatePlayerMemory(GameManager.getCurrentIndexOfEventsAtNight(), targetPlayer, sourceRole.getPower().getToken());
+        }
+
+
+        // Marks the players with this role that their role has been used at least once
+        for (int i = 0; i < allAlive.size(); i++) {
+            if(allAlive.elementAt(i).getRole().getName() == sourceRole.getName()){
+                allAlive.elementAt(i).getRole().getPower().usePower();
+            }
+        }
     }
 
 
@@ -298,16 +398,21 @@ public class PlayerManager {
             for(Token token: player.getAllTokensOnPlayer()){
                 output += "    " + token.getName() + "\n";
             }
+            player.getRole().getPower().LogSummary("   ");
         }
-        output += "\nDead:\n";
+        Log.d("PlayerManager", output);
+
+        String output2 = "";
+        output2 += "\nDead:\n";
         for(Player player: allDead){
-            output += "  " + player.name + "\n";
+            output2 += "  " + player.name + "\n";
             for(Token token: player.getAllTokensOnPlayer()){
-                output += "    " + token.getName() + "\n";
+                output2 += "    " + token.getName() + "\n";
             }
+            player.getRole().getPower().LogSummary("   ");
         }
 
-        Log.d("PlayerManager",output);
+        Log.d("PlayerManager",output2);
     }
 
     public static void PrintDetailed(){

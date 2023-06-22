@@ -1,5 +1,7 @@
 package com.example.pufflemafia.app.game;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.app.data.DataManager;
@@ -33,17 +35,50 @@ public class Player {
         else return null;
     }
     public Vector<Token> getAllTokensOnPlayer() { return tokensOnPlayer; }
+    public int getNumberOfTokensOnPlayerOfType(Token.TokenTypes tokenType){
+        int numOfTokens = 0;
+        for (Token token: tokensOnPlayer) {
+            if(token.getType() == tokenType)
+                numOfTokens++;
+        }
+        return numOfTokens;
+    }
     public void removeAllTokensOnPlayer(){tokensOnPlayer.clear();}
     public void setTokenAt(int index, Token token){
         tokensOnPlayer.removeElementAt(index);
         tokensOnPlayer.insertElementAt(token, index);
     }
+    public boolean AddTokenOnToPlayer(Token token){
+        if(DoesPlayerAlreadyHaveToken(token) == false){
+            this.tokensOnPlayer.add(token);
+            return true;
+        }
+        return false;
+    }
+    public boolean DoesPlayerAlreadyHaveToken(Token token){
+        for (Token t: this.tokensOnPlayer) {
+            if(token.getName() == t.getName()) return true;
+        }
+        return false;
+    }
+    public void RemoveTokenAt(int tokenIndex){
+        if(tokenIndex >= tokensOnPlayer.size()) return;
+        tokensOnPlayer.removeElementAt(tokenIndex);
+    }
+    public void RemoveToken(Token token){
+        tokensOnPlayer.remove(token);
+    }
 
+    public void UpdateTokens(Vector<Token> newTokens){
+        tokensOnPlayer.clear();
+        tokensOnPlayer = newTokens;
+    }
     public void clearAlTokensOfType(Token.TokenTypes typeToCLear){
         Predicate<Token> isTypeToClear = token -> (token.getType() == typeToCLear);
 
         tokensOnPlayer.removeIf(isTypeToClear);
     }
+
 
     // the token this player applies to others
     public Token getToken(){
@@ -57,19 +92,8 @@ public class Player {
         this.tokensOnPlayer = new Vector<Token>();
     }
 
-    // adds the token to tokensOnPlayer
-    public void AddTokenOnToPlayer(Token token){
-        tokensOnPlayer.add(token);
-    }
-
-    public void RemoveTokenAt(int tokenIndex){
-        if(tokenIndex >= tokensOnPlayer.size()) return;
-        tokensOnPlayer.removeElementAt(tokenIndex);
-    }
-
-    public void UpdateTokens(Vector<Token> newTokens){
-        tokensOnPlayer.clear();
-        tokensOnPlayer = newTokens;
+    public void LogSummary(){
+        Log.d("Player", this.name + "\n Role: " + this.getRole().getName());
     }
 
     public void PrintSummary(){

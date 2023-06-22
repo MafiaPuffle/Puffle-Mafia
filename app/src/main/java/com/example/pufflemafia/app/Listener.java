@@ -1,6 +1,6 @@
 package com.example.pufflemafia.app;
 
-public class Listener implements IListener<Integer>{
+public class Listener<T> implements IListener<T>{
 
     public Listener(){
         // constructor
@@ -11,7 +11,7 @@ public class Listener implements IListener<Integer>{
     }
 
     @Override
-    public void Response(Integer integer) {
+    public void Response(T t) {
         // do something
     }
 }

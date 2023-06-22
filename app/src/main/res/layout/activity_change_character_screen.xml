@@ -7,7 +7,6 @@
     tools:context=".ChangeCharacterScreen">
 
 
-
     <LinearLayout
         android:id="@+id/ChangeCharacterTitleBox"
         android:layout_width="wrap_content"
@@ -29,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
+            android:fontFamily="@font/horizon"
             android:gravity="center"
             android:text="Change Your Role"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -36,24 +36,21 @@
             android:textSize="25sp" />
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/ChangeCharactertoOtherCharacterBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/green_rectangle"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/BackToMainMafiaPageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EditAllCharacterBox"
-        app:layout_constraintVertical_bias="0.032">
+        app:layout_constraintTop_toBottomOf="@+id/AllRolesRecycleView"
+        app:layout_constraintVertical_bias="0.478">
 
 
         <ImageView
@@ -75,29 +72,6 @@
             app:srcCompat="@drawable/alien_puffle" />
     </LinearLayout>
 
-    <GridLayout
-        android:id="@+id/EditAllCharacterBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/green_rectangle"
-        android:columnCount="7"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:rowCount="8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChangeCharacterTitleBox"
-        app:layout_constraintVertical_bias="0.027">
-
-
-    </GridLayout>
-
     <Button
         android:id="@+id/DoneChangingCharactersButton"
         android:layout_width="wrap_content"
@@ -106,6 +80,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Next"
+        android:fontFamily="@font/horizon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"
@@ -120,15 +95,36 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/horizon"
         android:text="BACK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/DoneChangingCharactersButton"
-        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintVertical_bias="0.992" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AllRolesRecycleView"
+        android:layout_width="375dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/green_rectangle"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ChangeCharacterTitleBox"
+        app:layout_constraintVertical_bias="0.0" />
 
-
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
