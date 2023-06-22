@@ -138,7 +138,7 @@ public class DataManager {
                 R.drawable.cupid_puffle,
                 Token.TokenTypes.CLEAR_NEVER,
                 Power.PowerType.FIRSTNIGHT,
-                Power.PowerPromptType.ALL_DEAD_PLAYERS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
 
