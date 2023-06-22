@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 
+
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -64,6 +65,14 @@ public class Start extends CustomAppCompatActivityWrapper implements IListener<B
                 SoundManager.playSfx("Click");
                 addName();
                 return true;
+            }
+        });
+
+        Button addNameButton = findViewById(R.id.addNameButton);
+        addNameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addName();
             }
         });
 
@@ -123,6 +132,7 @@ public class Start extends CustomAppCompatActivityWrapper implements IListener<B
             }
         });
     }
+
 
     private void addName() {
         String name = nameEditText.getText().toString().trim();
