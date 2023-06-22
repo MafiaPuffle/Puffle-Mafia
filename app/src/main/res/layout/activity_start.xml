@@ -77,6 +77,15 @@
             android:orientation="horizontal"
             android:padding="0dp">
 
+            <Button
+                android:id="@+id/addNameButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="@font/horizon"
+                android:textColor="@color/white"
+                android:text="Tap Add Name" />
+
             <TextView
                 android:id="@+id/NumberofNames"
                 android:layout_width="wrap_content"
@@ -94,6 +103,7 @@
                 android:textSize="20dp">
 
             </TextView>
+
         </LinearLayout>
 
 
@@ -122,8 +132,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/horizon"
-        android:text="Random Characters"
         android:textColor="@color/white"
+        android:text="Random Characters"
         android:textSize="13.9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
