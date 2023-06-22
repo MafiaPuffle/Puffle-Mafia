@@ -21,7 +21,7 @@ public class DataManager {
         allPowers = new HashMap<String, Power>();
         allRoles = new HashMap<String, Role>();
     }
-
+  
     private static void LoadAllRoles()
     {
         InitializeAllDictionaries();
@@ -44,6 +44,21 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.SELF);
 
+        LoadRole("Apprentice",
+               "Announce that the Apprentice is using a Wizard spell and activate one Wizard spell. Only one Wizard spell can be used per game",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "",
+               -1,
+               1,
+               1,
+               R.drawable.apprentice,
+               Power.PowerType.PASSIVE,
+               Power.PowerPromptType.ALL_PLAYERS,
+               Role.Alliances.GOOD,
+               Role.Teams.TOWN);
+
+
         LoadRole("Baker",
                 "Give bread to players at night.  If the Baker dies everyone without bread dies in 3 nights",
                 "Wins if the Mafia are voted out",
@@ -62,6 +77,20 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
 
+        LoadRole("Bribed Judge",
+               "For one day only, the Bribed Judge will be able to decide wether a person dies or live during the vote. They choose to activate it during the night and it will go off during the day vote",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "During the next day vote, would you like to decide the final vote decision",
+               3,
+               1,
+               1,
+               R.drawable.bribed_judge,
+               Power.PowerType.ONETIMEUSE,
+               Power.PowerPromptType.YES_OR_NO,
+               Role.Alliances.GOOD,
+               Role.Teams.MAFIA);
+
         LoadRole("Civilian",
                 "Has no special ability",
                 "Wins if the Mafia are voted out",
@@ -69,12 +98,31 @@ public class DataManager {
                 "NOTHING",
                 1,
                 1,
-                30,
+                2,
                 R.drawable.civilian_puffles,
                 Power.PowerType.PASSIVE,
                 Power.PowerPromptType.NOTHING,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
+
+        LoadRole("Corrupt Cop",
+               "Choose one player and that player cannot vote the next day. This does not stop the President.",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "This player could not vote this round",
+               "WHO WOULD YOU LIKE TO KEEP FROM VOTING THE NEXT DAY",
+               3,
+               1,
+               1,
+               1,
+               R.drawable.corrupt_cop,
+               R.drawable.corrupt_cop,
+               Token.TokenTypes.CLEAR_ON_NIGHT,
+               Power.PowerType.CONTINOUS,
+               Power.PowerPromptType.ALL_PLAYERS,
+               Role.Alliances.GOOD,
+               Role.Teams.MAFIA);
+
 
         LoadRole("Cupid",
                 "Links two players together, whatever happens to one happens to the other",
@@ -84,7 +132,7 @@ public class DataManager {
                 "WHO DO YOU WANNA LINK?",
                 .5f,
                 1,
-                3,
+                1,
                 2,
                 R.drawable.cupid_puffle,
                 R.drawable.cupid_puffle,
@@ -102,7 +150,7 @@ public class DataManager {
                 "WHO DO YOU WANNA COPY?",
                 0,
                 1,
-                3,
+                1,
                 1,
                 R.drawable.cyborg_puffle,
                 R.drawable.cyborg_puffle,
@@ -120,7 +168,7 @@ public class DataManager {
                 "WHO DO YOU WANNA MUTE?",
                 3,
                 1,
-                3,
+                1,
                 1,
                 R.drawable.dentist_puffle,
                 R.drawable.dentist_puffle,
@@ -138,7 +186,7 @@ public class DataManager {
                 "WHO DO YOU WANNA KNOW ABOUT?",
                 3,
                 1,
-                2,
+                1,
                 1,
                 R.drawable.detective_puffle,
                 R.drawable.detective_puffle,
@@ -156,7 +204,7 @@ public class DataManager {
                 "WHO DO YOU WANNA SAVE?",
                 3,
                 1,
-                2,
+                1,
                 1,
                 R.drawable.doctor_puffle,
                 R.drawable.doctor_puffle,
@@ -185,7 +233,7 @@ public class DataManager {
                 "Wins if the Mafia are voted out",
                 "Let there be life!",
                 "DO YOU WANNA BRING EVERYONE BACK THIS DAY?",
-                4,
+                5,
                 1,
                 1,
                 R.drawable.the_father_puffle,
@@ -222,6 +270,21 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
 
+        LoadRole("Insomniac",
+               "THESE ARE THE PLAYERS THAT USED THEIR ABILITY ON YOU THIS NIGHT",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "THESE ARE THE PLAYERS THAT USED THEIR ABILITY ON YOU THIS NIGHT.",
+               4.6f,
+               1,
+               1,
+               R.drawable.insomniac,
+               Power.PowerType.CONTINOUS,
+               Power.PowerPromptType.ALL_PLAYERS,
+               Role.Alliances.GOOD,
+               Role.Teams.MAFIA);
+
+
         LoadRole("J.O.A.T.",
                 "Can use one skill of the Town players each night.  You cannot use the same skill again until you have gone through each skill",
                 "Wins if the Mafia get voted out",
@@ -230,7 +293,7 @@ public class DataManager {
                 "WHAT DO YOU WANNA DO?",
                 3,
                 1,
-                2,
+                1,
                 1,
                 R.drawable.jack_of_all_trades,
                 R.drawable.jack_of_all_trades,
@@ -330,7 +393,7 @@ public class DataManager {
                 "WHO DO YOU WANNA KILL?",
                 2.25f,
                 1,
-                3,
+                2,
                 1,
                 R.drawable.rival_puffle,
                 R.drawable.rival_puffle,
@@ -339,6 +402,39 @@ public class DataManager {
                 Power.PowerPromptType.ALL_Alive_PLAYERS,
                 Role.Alliances.EVIL,
                 Role.Teams.RIVAL_MAFIA);
+
+        LoadRole("Mole",
+               "Have the Mafia members raise their hands to reveal their identities to the Mole",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "Mole wake up, Mafia member raise your hands to reveal your identity",
+               0.25f,
+               1,
+               1,
+               R.drawable.mole,
+               Power.PowerType.FIRSTNIGHT,
+               Power.PowerPromptType.NOTHING,
+               Role.Alliances.GOOD,
+               Role.Teams.MAFIA);
+
+        LoadRole("Necromancer",
+               "Choose one dead player, Necromancer becomes that role. If they had their one time use ability activated already, they cannot use it again",
+               "Wins if the player had a good time!",
+               "Did you know puffles are fluffy?",
+               "This player had their role taken by the Necromancer",
+               "Which dead player's role would you like to become?",
+               4.25f,
+               1,
+               1,
+               1,
+               R.drawable.necromancer,
+               R.drawable.necromancer,
+               Token.TokenTypes.CLEAR_NEVER,
+               Power.PowerType.ONETIMEUSE,
+               Power.PowerPromptType.ALL_PLAYERS,
+               Role.Alliances.GOOD,
+               Role.Teams.SELF);
+
 
         LoadRole("President",
                 "Once per game the President can veto one vote and vote out another player instead.",
@@ -392,7 +488,7 @@ public class DataManager {
                 "The nose knows",
                 "This player is being tacked by the tracker.  The tracker knows who they used their ability on the previous night.",
                 "WHO DO YOU WANNA TRACK?",
-                0.25f,
+                4.5f,
                 1,
                 1,
                 1,
@@ -402,7 +498,7 @@ public class DataManager {
                 Power.PowerType.CONTINOUS,
                 Power.PowerPromptType.ALL_DEAD_PLAYERS,
                 Role.Alliances.GOOD,
-                Role.Teams.TOWN);
+                Role.Teams.MAFIA);
 
         LoadRole("Veteran",
                 "If the Mafia tries to kill the Veteran the Mafia are killed instead",
@@ -452,7 +548,7 @@ public class DataManager {
                 "Abracadabra",
                 "This player got their role switched with the wizard",
                 "WHO DO YOU WANNA SWITCH ROLES WITH?",
-                4,
+                6,
                 1,
                 1,
                 1,
