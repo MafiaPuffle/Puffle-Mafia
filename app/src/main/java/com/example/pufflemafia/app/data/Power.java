@@ -7,7 +7,7 @@ import com.example.pufflemafia.R;
 // Handles all data and logic for a single power/ability of a playere
 public class Power {
     public enum PowerType {PASSIVE, ACTIVE, CONTINOUS, FIRSTNIGHT, SELFACTIVE, ONETIMEUSE};
-    public enum PowerPromptType {ALL_PLAYERS, YES_OR_NO, NOTHING}
+    public enum PowerPromptType {ALL_Alive_PLAYERS, ALL_DEAD_PLAYERS, ALL_PLAYERS, YES_OR_NO, NOTHING}
 
     private String name;
     public String getName(){return name;}
@@ -33,7 +33,7 @@ public class Power {
         this.name = "power";
         this.type = PowerType.PASSIVE;
         this.prompt = "";
-        this.promptType = PowerPromptType.ALL_PLAYERS;
+        this.promptType = PowerPromptType.ALL_Alive_PLAYERS;
         this.token = new Token("Token", "will give the player a funny feeling", R.drawable.village_idiot_puffle, Token.TokenTypes.CLEAR_NEVER, 1);
         this.hasPowerBeenUsed = false;
     }
