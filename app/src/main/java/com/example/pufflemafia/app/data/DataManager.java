@@ -119,7 +119,7 @@ public class DataManager {
                R.drawable.corrupt_cop,
                Token.TokenTypes.CLEAR_ON_NIGHT,
                Power.PowerType.CONTINOUS,
-               Power.PowerPromptType.ALL_PLAYERS,
+               Power.PowerPromptType.ALL_Alive_PLAYERS,
                Role.Alliances.GOOD,
                Role.Teams.MAFIA);
 
@@ -138,7 +138,7 @@ public class DataManager {
                 R.drawable.cupid_puffle,
                 Token.TokenTypes.CLEAR_NEVER,
                 Power.PowerType.FIRSTNIGHT,
-                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Power.PowerPromptType.ALL_DEAD_PLAYERS,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
 
@@ -431,7 +431,7 @@ public class DataManager {
                R.drawable.necromancer,
                Token.TokenTypes.CLEAR_NEVER,
                Power.PowerType.ONETIMEUSE,
-               Power.PowerPromptType.ALL_PLAYERS,
+               Power.PowerPromptType.ALL_DEAD_PLAYERS,
                Role.Alliances.GOOD,
                Role.Teams.SELF);
 
@@ -511,7 +511,7 @@ public class DataManager {
                 R.drawable.tracker,
                 Token.TokenTypes.CLEAR_ON_NIGHT,
                 Power.PowerType.CONTINOUS,
-                Power.PowerPromptType.ALL_DEAD_PLAYERS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
                 Role.Alliances.GOOD,
                 Role.Teams.MAFIA);
 
@@ -571,7 +571,7 @@ public class DataManager {
                 R.drawable.wizard_puffle,
                 Token.TokenTypes.CLEAR_NEVER,
                 Power.PowerType.ONETIMEUSE,
-                Power.PowerPromptType.ALL_PLAYERS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
 
