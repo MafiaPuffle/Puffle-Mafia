@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,12 +15,10 @@ import android.widget.TextView;
 import com.example.pufflemafia.adaptors.playerAdaptors.PlayerNightUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
-import com.example.pufflemafia.app.ViewToPointTo;
 import com.example.pufflemafia.app.data.Power;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.ActiveRolesManager;
 import com.example.pufflemafia.app.game.GameManager;
-import com.example.pufflemafia.app.game.HelpPromptManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
@@ -28,7 +27,7 @@ import java.util.Vector;
 
 public class NightActions extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
 
-    private Vector<Player> allAlivePlayers;
+    private Vector<Player> allRelevantPlayers;
     private Role currentActiveRoleAtNight;
 
     private TextView activeRoleTextView;
@@ -49,7 +48,8 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_night_actions);
 
-        allAlivePlayers = PlayerManager.getAllAlive();
+        //configureAllRelevantPlayers();
+        allRelevantPlayers = PlayerManager.getAllAlive();
 
         activeRoleTextView = findViewById(R.id.ActiveRoleUITextView);
         nightActionTitle = findViewById(R.id.NightActionTitleText);
@@ -57,7 +57,7 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
 
         recyclerView = findViewById(R.id.AllAlivePlayersForThisNightRecycleView);
         layoutManager = new LinearLayoutManager(this);
-        adaptor = new PlayerNightUIAdaptor(allAlivePlayers, this);
+        adaptor = new PlayerNightUIAdaptor(allRelevantPlayers, this);
 
         YesOrNoHolder = findViewById(R.id.YesOrNoHolder);
         YesButton = findViewById(R.id.Yes_button);
@@ -91,8 +91,8 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
     }
 
     private void Refresh(){
-        allAlivePlayers = PlayerManager.getAllAlive();
         currentActiveRoleAtNight = GameManager.getCurrentRoleActiveAtNight();
+        configureAllRelevantPlayers();
         if(currentActiveRoleAtNight == null){
             PlayerManager.sortAllAliveByTokens();
             finish();
@@ -102,7 +102,7 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
         promptType = currentActiveRoleAtNight.getPower().getPromptType();
 
         switch (currentActiveRoleAtNight.getPower().getPromptType()){
-            case ALL_PLAYERS:
+            case ALL_Alive_PLAYERS:
                 recyclerView.setVisibility(View.VISIBLE);
                 YesOrNoHolder.setVisibility(View.INVISIBLE);
                 break;
@@ -114,6 +114,11 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
                 recyclerView.setVisibility(View.INVISIBLE);
                 YesOrNoHolder.setVisibility(View.INVISIBLE);
                 break;
+        }
+
+        if(allRelevantPlayers.size() == 0){
+            recyclerView.setVisibility(View.INVISIBLE);
+            YesOrNoHolder.setVisibility(View.INVISIBLE);
         }
 
         RefreshActiveRoleImageButton();
@@ -143,6 +148,39 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
         });
 
         activeRoleTextView.setText(currentActiveRoleAtNight.getName());
+    }
+
+    private void configureAllRelevantPlayers()
+    {
+        if(currentActiveRoleAtNight == null)
+        {
+            Log.d("NightActions","Current Active Role At Night is null");
+            allRelevantPlayers = PlayerManager.getAllAlive();
+            return;
+        }
+//        allRelevantPlayers.clear();
+        switch (currentActiveRoleAtNight.getPower().getPromptType())
+        {
+            case ALL_DEAD_PLAYERS:
+                allRelevantPlayers = PlayerManager.getAllDead();
+                Log.d("NightActions","Should be showing ALL_DEAD_PLAYERS");
+                break;
+            case ALL_PLAYERS:
+                allRelevantPlayers = PlayerManager.getAllPlayers();
+                Log.d("NightActions","Should be showing ALL_PLAYERS");
+                break;
+            default:
+                allRelevantPlayers = PlayerManager.getAllAlive();
+                Log.d("NightActions","Should be showing ALL_ALIVE_PLAYERS");
+                break;
+        }
+
+        for (Player player: allRelevantPlayers) {
+            player.LogSummary();
+        }
+
+        adaptor.localDataSet = allRelevantPlayers;
+        adaptor.notifyDataSetChanged();
     }
 
     // Next Button

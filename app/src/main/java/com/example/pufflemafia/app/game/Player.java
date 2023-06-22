@@ -1,5 +1,7 @@
 package com.example.pufflemafia.app.game;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.app.data.DataManager;
@@ -89,6 +91,11 @@ public class Player {
         this.role = new Role();
         this.tokensOnPlayer = new Vector<Token>();
     }
+
+    public void LogSummary(){
+        Log.d("Player", this.name + "\n Role: " + this.getRole().getName());
+    }
+
     public void PrintSummary(){
         System.out.print("Player: " + this.name + "\n");
         this.role.PrintSummary("    ");
