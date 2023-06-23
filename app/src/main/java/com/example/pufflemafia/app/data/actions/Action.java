@@ -93,6 +93,8 @@ public class Action {
     }
 
     public Action(String name, WhenTOResolve whenTOResolve, ValidTargets validTargets, Vector<Condition> conditions, Vector<Result> results){
+        OnActionResolve = new Event<Boolean>();
+
         setName(name);
         setWhenTOResolve(whenTOResolve);
         setValidTargets(validTargets);

@@ -39,24 +39,41 @@ public class Player {
     }
 
     private Vector<Effect> effects;
-    public Event<Effect> OnGiveEffect;
+    public Event<Effect> OnReceiveEffect;
     public Vector<Effect> getEffects(){
         return effects;
     }
     public void giveEffect(Effect effect){
-        OnGiveEffect.Invoke(effect);
+        OnReceiveEffect.Invoke(effect);
         effects.add(effect);
     }
     public boolean hasEffect(Effect effect){
         if(effects.contains(effect)) return true;
         else return false;
     }
+    public boolean hasEffectWithName(String name){
+        for (Effect effect: effects) {
+            if(effect.getName() == name) return true;
+        }
+        return false;
+    }
 
     public Player(String name, Role role){
+        OnChangeRole = new Event<Role>();
+        OnReceiveEffect = new Event<Effect>();
+
         setName(name);
         this.effects = new Vector<Effect>();
 
         changeRole(role);
+    }
+
+    public void printSummary(){
+        System.out.print(name + " is " + role.getName() + "\n  and has the following effects: ");
+        for (Effect effect: effects) {
+            System.out.print(effect.getName());
+        }
+        System.out.print("\n");
     }
 }
 
