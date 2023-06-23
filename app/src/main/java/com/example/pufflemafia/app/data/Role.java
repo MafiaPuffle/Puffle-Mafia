@@ -55,5 +55,23 @@ public class Role {
     public void setStartingEffects(Vector<Effect> startingEffects) {
         this.startingEffects = startingEffects;
     }
+
+    public Role(String name, int imageResource, String description, String flavorText, Vector<Action> actions, Vector<Effect> startingEffects){
+        setName(name);
+        setImageResource(imageResource);
+        setDescription(description);
+        setFlavorText(flavorText);
+        setActions(actions);
+        setStartingEffects(startingEffects);
+    }
+
+    public Role(String name, int imageResource, String description, String flavorText, Vector<Action> actions){
+        setName(name);
+        setImageResource(imageResource);
+        setDescription(description);
+        setFlavorText(flavorText);
+        setActions(actions);
+        startingEffects = new Vector<Effect>();
+    }
 }
 

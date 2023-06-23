@@ -91,4 +91,13 @@ public class Action {
         }
         OnActionResolve.Invoke(true);
     }
+
+    public Action(String name, WhenTOResolve whenTOResolve, ValidTargets validTargets, Vector<Condition> conditions, Vector<Result> results){
+        setName(name);
+        setWhenTOResolve(whenTOResolve);
+        setValidTargets(validTargets);
+        setConditions(conditions);
+        setResults(results);
+
+    }
 }

@@ -1,40 +1,53 @@
 package com.example.pufflemafia.app.game;
 
+import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.events.Event;
+import com.example.pufflemafia.app.events.Event2;
 
 import java.util.Vector;
 
 // Handles all data and logic for all player in the game
 public class PlayerManager {
 
-    public Event OnAddPlayer;
-    public Event OnRevivePlayer;
-    private Vector<Player> allAlivePlayers;
-    public Vector<Player> getAllAlivePlayers() {
+    public static Event<Player> OnAddPlayer;
+    public static Event<Player> OnRevivePlayer;
+    private static Vector<Player> allAlivePlayers;
+    public static Vector<Player> getAllAlivePlayers() {
         return allAlivePlayers;
     }
-    public void setAllAlivePlayers(Vector<Player> allAlivePlayers) {
-        this.allAlivePlayers = allAlivePlayers;
+    public static void setAllAlivePlayers(Vector<Player> _allAlivePlayers) {
+        allAlivePlayers = _allAlivePlayers;
     }
-    public void addPlayerToGame(Player player){
+    public static void addPlayerToGame(Player player){
         allAlivePlayers.add(player);
         OnAddPlayer.Invoke(player);
     }
-    public void revivePlayer(Player player){
+    public static void revivePlayer(Player player){
         allAlivePlayers.add(player);
         allDeadPlayers.remove(player);
         OnRevivePlayer.Invoke(player);
     }
 
-    public Event OnKillPlayer;
-    private Vector<Player> allDeadPlayers;
-    public Vector<Player> getAllDeadPlayers() {
+    public static Event2<Player, Result.KillType> OnKillPlayer;
+    private static Vector<Player> allDeadPlayers;
+    public static Vector<Player> getAllDeadPlayers() {
         return allDeadPlayers;
     }
-    public void setAllDeadPlayers(Vector<Player> allDeadPlayers) {
-        this.allDeadPlayers = allDeadPlayers;
+    public static void setAllDeadPlayers(Vector<Player> _allDeadPlayers) {
+        allDeadPlayers = _allDeadPlayers;
     }
-    public void killPlayer(Player player){
+    public static void killPlayer(Player player, Result.KillType killType){
+        allAlivePlayers.remove(player);
+        allDeadPlayers.remove(player);
+        OnKillPlayer.Invoke(player,killType);
+    }
 
+    public static void Initialize(){
+        allAlivePlayers = new Vector<Player>();
+        allDeadPlayers = new Vector<Player>();
+
+        OnAddPlayer = new Event<Player>();
+        OnRevivePlayer = new Event<Player>();
+        OnKillPlayer = new Event2<Player, Result.KillType>();
     }
 }

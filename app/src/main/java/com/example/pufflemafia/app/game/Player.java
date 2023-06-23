@@ -47,6 +47,17 @@ public class Player {
         OnGiveEffect.Invoke(effect);
         effects.add(effect);
     }
+    public boolean hasEffect(Effect effect){
+        if(effects.contains(effect)) return true;
+        else return false;
+    }
+
+    public Player(String name, Role role){
+        setName(name);
+        this.effects = new Vector<Effect>();
+
+        changeRole(role);
+    }
 }
 
 

@@ -1,4 +1,4 @@
-package com.example.pufflemafia.app.data;
+package com.example.pufflemafia.app.game;
 
 import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.data.actions.Action;
@@ -27,11 +27,6 @@ public class ResolvingManager {
         }
     }
 
-    public static void Initialize() {
-        endOfNightActions = new ArrayDeque<Action>();
-        instantActions = new ArrayDeque<Action>();
-    }
-
     public static Event<Action> OnActionQue;
     public static void queAction(Action action){
         if(action.getWhenTOResolve() == Action.WhenTOResolve.END_OF_NIGHT){
@@ -43,5 +38,12 @@ public class ResolvingManager {
             OnActionQue.Invoke(action);
             resolveEndOfInstantActions();
         }
+    }
+
+    public static void Initialize() {
+        endOfNightActions = new ArrayDeque<Action>();
+        instantActions = new ArrayDeque<Action>();
+
+        OnActionQue = new Event<Action>();
     }
 }
