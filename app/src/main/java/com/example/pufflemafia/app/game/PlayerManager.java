@@ -94,14 +94,18 @@ public class PlayerManager {
     }
 
     public static void PrintSummary(){
+        System.out.print("\n == Player Manager ==\n");
         System.out.print("Alive\n");
         for (Player player : allAlivePlayers) {
             player.printSummary();
         }
+        if(allAlivePlayers.size() == 0) System.out.print("none\n");
 
         System.out.print("Dead\n");
         for (Player player : allDeadPlayers) {
             player.printSummary();
         }
+        if(allDeadPlayers.size() == 0) System.out.print("none\n");
+        System.out.print("\n");
     }
 }

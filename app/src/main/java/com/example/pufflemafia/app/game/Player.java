@@ -24,6 +24,12 @@ public class Player {
     public Role getRole() {
         return role;
     }
+    public boolean hasRoleWithName(String name){
+        if(role.getName() == name){
+            return true;
+        }
+        return false;
+    }
     public void changeRole(Role role) {
         OnChangeRole.Invoke(role);
         this.role = role;
@@ -42,6 +48,25 @@ public class Player {
     public Event<Effect> OnReceiveEffect;
     public Vector<Effect> getEffects(){
         return effects;
+    }
+    public Effect getEffectWithName(String name){
+        for (Effect effect: effects) {
+            if(effect.getName() == name){
+                return effect;
+            }
+        }
+        return null;
+    }
+    public Vector<Effect> getEffectsWithName(String name){
+        Vector<Effect> output = new Vector<Effect>();
+
+        for (Effect effect: effects) {
+            if(effect.getName() == name){
+               output.add(effect);
+            }
+        }
+
+        return output;
     }
     public void giveEffect(Effect effect){
         OnReceiveEffect.Invoke(effect);
@@ -71,7 +96,7 @@ public class Player {
     public void printSummary(){
         System.out.print(name + " is " + role.getName() + "\n  and has the following effects: ");
         for (Effect effect: effects) {
-            System.out.print(effect.getName() + ", ");
+           effect.PrintSummary();
         }
         System.out.print("\n");
     }

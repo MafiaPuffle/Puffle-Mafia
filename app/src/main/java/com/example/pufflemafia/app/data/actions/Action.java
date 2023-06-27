@@ -107,4 +107,16 @@ public class Action {
         setResults(results);
 
     }
+
+    public void PrintSummary(){
+        System.out.print(name + " initiated by ");
+        for (Player p: initiators) {
+            System.out.print(p.getName() + " ");
+        }
+        System.out.print("with targets ");
+        for (Player p: targets) {
+            System.out.print(p.getName() + " ");
+        }
+        System.out.print("\n");
+    }
 }

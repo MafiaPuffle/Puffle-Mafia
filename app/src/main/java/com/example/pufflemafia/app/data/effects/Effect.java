@@ -27,4 +27,8 @@ public class Effect {
         setName(name);
         setStartingEffect(isStartingEffect);
     }
+
+    public void PrintSummary(){
+        System.out.print(name + ", ");
+    }
 }

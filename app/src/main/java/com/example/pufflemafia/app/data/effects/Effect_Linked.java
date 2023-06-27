@@ -13,31 +13,31 @@ import java.util.Vector;
 public class Effect_Linked extends Effect{
 
     private final String name = "Linked";
+    private String linkType;
+    public String getLinkType() {
+        return linkType;
+    }
+    private Effect_Linked instance;
 
     private Vector<Player> allLinkedPlayers;
 
-    public Effect_Linked(){
+    public Effect_Linked(String linkType){
         super("Linked");
         allLinkedPlayers = new Vector<Player>();
+        this.linkType = linkType;
+        this.instance = this;
 
         PlayerManager.OnPlayerReceiveEffect.AddListener(new IEvent2Listener<Player, Effect>() {
             @Override
             public void Response(Player player, Effect effect) {
-                System.out.print(player.getName() + " received the effect " + effect.getName() + "\n");
-                if(Objects.equals(effect.getName(), name)) addPlayerToLink(player);
+                if(Objects.equals(effect.getName(), name)) {
+                    Effect_Linked e = (Effect_Linked) effect;
+                    if(e.getLinkType() == instance.getLinkType()){
+                        addPlayerToLink(player);
+                    }
+                }
             }
         });
-
-//        PlayerManager.OnKillPlayer.AddListener(new IEvent2Listener<Player, Result.KillType>() {
-//            @Override
-//            public void Response(Player player, Result.KillType killType) {
-//                if(playerIsLinked(player)){
-//                    for (Player p: allLinkedPlayers) {
-//                        if(p != player) PlayerManager.killPlayer_NOEVENT(p,killType);
-//                    }
-//                }
-//            }
-//        });
 
         PlayerManager.OnActionPrepped.AddListener(new IEventListener<Action>() {
             @Override
@@ -45,8 +45,17 @@ public class Effect_Linked extends Effect{
                 Vector<Player> targets = action.getTargets();
                 for (Player target: targets) {
                     if(target.hasEffectWithName(name)){
-                        addTargetsToAction(action);
-                        return;
+                        Vector<Effect> effects = target.getEffectsWithName(name);
+                        for (Effect effect: effects) {
+                            if( ((Effect_Linked) effect).getLinkType() == instance.getLinkType()){
+                                addTargetsToAction(action);
+                                return;
+                            }
+                        }
+//                        if(e.getLinkType() == instance.getLinkType()){
+//                            addTargetsToAction(action);
+//                            return;
+//                        }
                     }
                 }
             }
@@ -66,5 +75,10 @@ public class Effect_Linked extends Effect{
     private boolean playerIsLinked(Player player){
         if(allLinkedPlayers.contains(player)) return true;
         else return false;
+    }
+
+    @Override
+    public void PrintSummary(){
+        System.out.print(name + "(" + linkType + ")" + ", ");
     }
 }
