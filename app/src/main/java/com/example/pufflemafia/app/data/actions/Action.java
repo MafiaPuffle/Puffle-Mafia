@@ -51,6 +51,11 @@ public class Action {
     public void setTargets(Vector<Player> targets) {
         this.targets = targets;
     }
+    public void addUniqueTarget(Player newTarget) {
+        if(this.targets.contains(newTarget)) return;
+
+        this.targets.add(newTarget);
+    }
 
     private Vector<Player> initiators;
     public Vector<Player> getInitiators() {

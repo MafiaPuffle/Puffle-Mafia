@@ -1,7 +1,9 @@
 package com.example.pufflemafia.app.data.effects;
 
+import com.example.pufflemafia.app.data.actions.Action;
 import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.events.IEvent2Listener;
+import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 
@@ -26,16 +28,35 @@ public class Effect_Linked extends Effect{
             }
         });
 
-        PlayerManager.OnKillPlayer.AddListener(new IEvent2Listener<Player, Result.KillType>() {
+//        PlayerManager.OnKillPlayer.AddListener(new IEvent2Listener<Player, Result.KillType>() {
+//            @Override
+//            public void Response(Player player, Result.KillType killType) {
+//                if(playerIsLinked(player)){
+//                    for (Player p: allLinkedPlayers) {
+//                        if(p != player) PlayerManager.killPlayer_NOEVENT(p,killType);
+//                    }
+//                }
+//            }
+//        });
+
+        PlayerManager.OnActionPrepped.AddListener(new IEventListener<Action>() {
             @Override
-            public void Response(Player player, Result.KillType killType) {
-                if(playerIsLinked(player)){
-                    for (Player p: allLinkedPlayers) {
-                        if(p != player) PlayerManager.killPlayer_NOEVENT(p,killType);
+            public void Response(Action action) {
+                Vector<Player> targets = action.getTargets();
+                for (Player target: targets) {
+                    if(target.hasEffectWithName(name)){
+                        addTargetsToAction(action);
+                        return;
                     }
                 }
             }
         });
+    }
+
+    private void addTargetsToAction(Action action){
+        for (Player target: allLinkedPlayers) {
+            action.addUniqueTarget(target);
+        }
     }
 
     private void addPlayerToLink(Player player){

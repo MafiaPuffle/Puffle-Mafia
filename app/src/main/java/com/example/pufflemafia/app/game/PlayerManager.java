@@ -15,6 +15,7 @@ public class PlayerManager {
     public static Event2<Player, Effect> OnPlayerReceiveEffect;
     public static Event<Player> OnAddPlayer;
     public static Event<Player> OnRevivePlayer;
+    public static Event<Action> OnActionPrepped;
     private static Vector<Player> allAlivePlayers;
     public static Vector<Player> getAllAlivePlayers() {
         return allAlivePlayers;
@@ -75,6 +76,8 @@ public class PlayerManager {
 
             action.setInitiators(initiators);
 
+            OnActionPrepped.Invoke(action);
+
             ResolvingManager.queAction(action);
         }
     }
@@ -87,6 +90,7 @@ public class PlayerManager {
         OnAddPlayer = new Event<Player>();
         OnRevivePlayer = new Event<Player>();
         OnKillPlayer = new Event2<Player, Result.KillType>();
+        OnActionPrepped = new Event<Action>();
     }
 
     public static void PrintSummary(){

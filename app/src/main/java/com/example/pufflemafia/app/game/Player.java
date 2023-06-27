@@ -71,7 +71,7 @@ public class Player {
     public void printSummary(){
         System.out.print(name + " is " + role.getName() + "\n  and has the following effects: ");
         for (Effect effect: effects) {
-            System.out.print(effect.getName());
+            System.out.print(effect.getName() + ", ");
         }
         System.out.print("\n");
     }

@@ -128,7 +128,7 @@ public class UnitTestsTest {
         murderTargets.add(player3);
 
         Vector<Player> saveTargets = new Vector<Player>();
-        saveTargets.add(player4);
+        saveTargets.add(player1);
 
         PlayerManager.prepAction(player1, murder, murderTargets);
         PlayerManager.prepAction(player2, save, saveTargets);
