@@ -1,5 +1,6 @@
 package com.example.pufflemafia.app.game;
 
+import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.actions.Action;
 import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.data.effects.Effect;
@@ -13,6 +14,7 @@ import java.util.Vector;
 public class PlayerManager {
 
     public static Event2<Player, Effect> OnPlayerReceiveEffect;
+    public static Event2<Player, Role> OnPlayerChangeRole;
     public static Event<Player> OnAddPlayer;
     public static Event<Player> OnRevivePlayer;
     public static Event<Action> OnActionPrepped;
@@ -30,6 +32,13 @@ public class PlayerManager {
             @Override
             public void Response(Effect effect) {
                 OnPlayerReceiveEffect.Invoke(player, effect);
+            }
+        });
+
+        player.OnChangeRole.AddListener(new IEventListener<Role>() {
+            @Override
+            public void Response(Role role) {
+                OnPlayerChangeRole.Invoke(player, role);
             }
         });
 
@@ -87,6 +96,7 @@ public class PlayerManager {
         allDeadPlayers = new Vector<Player>();
 
         OnPlayerReceiveEffect = new Event2<Player,Effect>();
+        OnPlayerChangeRole = new Event2<Player,Role>();
         OnAddPlayer = new Event<Player>();
         OnRevivePlayer = new Event<Player>();
         OnKillPlayer = new Event2<Player, Result.KillType>();

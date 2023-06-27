@@ -34,45 +34,56 @@ public class UnitTestsTest {
         TestingListener.Initialize();
         DataManager.Initialize();
 
-        Player player1 = new Player("Jonathan", DataManager.getRole("mafia"));
-        Player player2 = new Player("Everette", DataManager.getRole("doctor"));
-        Player player3 = new Player("James", DataManager.getRole("lover"));
-        Player player4 = new Player("Jacob", DataManager.getRole("lover"));
-        Player player5 = new Player("Min", DataManager.getRole("terrorist"));
-        Player player6 = new Player("Ehud", DataManager.getRole("cupid"));
+        // MAKE PLAYERS
+        Vector<Player> allPlayers = new Vector<Player>();
+        allPlayers.add(new Player("Jonathan", DataManager.getRole("mafia")));
+        allPlayers.add(new Player("Everette", DataManager.getRole("terrorist")));
+        allPlayers.add(new Player("James", DataManager.getRole("necromancer")));
 
         System.out.print("Adding players to the game\n");
 
-        PlayerManager.addPlayerToGame(player1);
-        PlayerManager.addPlayerToGame(player2);
-        PlayerManager.addPlayerToGame(player3);
-        PlayerManager.addPlayerToGame(player4);
-        PlayerManager.addPlayerToGame(player5);
-        PlayerManager.addPlayerToGame(player6);
+        // ADD PLAYERS TO GAME
+        for (Player p: allPlayers) {
+            PlayerManager.addPlayerToGame(p);
+        }
 
         System.out.print("\nStarting the game\n");
 
         PlayerManager.PrintSummary();
 
+        // MAKE TARGETS FOR NIGHT 1
         Vector<Player> murderTargets = new Vector<Player>();
-        murderTargets.add(player4);
-
-        Vector<Player> saveTargets = new Vector<Player>();
-        saveTargets.add(player3);
+        murderTargets.add(PlayerManager.getAllAlivePlayers().get(1));
 
         Vector<Player> plantBombTargets = new Vector<Player>();
-        plantBombTargets.add(player1);
+        plantBombTargets.add(PlayerManager.getAllAlivePlayers().get(0));
 
-        Vector<Player> linkTargets = new Vector<Player>();
-        linkTargets.add(player3);
-        linkTargets.add(player1);
+        // PREP ACTIONS FOR NIGHT 1
+//        Player terroristPlayer = PlayerManager.getAllAlivePlayers().get(1);
+//        PlayerManager.prepAction(terroristPlayer, terroristPlayer.getRole().getActions().get(0), plantBombTargets);
 
-        PlayerManager.prepAction(player6, DataManager.getAction("matchMake"), linkTargets);
-        PlayerManager.prepAction(player1, DataManager.getAction("murder"), murderTargets);
-        PlayerManager.prepAction(player2, DataManager.getAction("save"), saveTargets);
+        Player mafiaPlayer = PlayerManager.getAllAlivePlayers().get(0);
+        PlayerManager.prepAction(mafiaPlayer, mafiaPlayer.getRole().getActions().get(0), murderTargets);
+
         ResolvingManager.resolveEndOfNightActions();
 
         System.out.print("\nAfter one night the game is in this state\n");
+
+        PlayerManager.PrintSummary();
+
+        System.out.print("\nStarting Night 2\n");
+
+        // MAKE TARGETS FOR NIGHT 2
+        Vector<Player> graveRobberyTargets = new Vector<Player>();
+        graveRobberyTargets.add(PlayerManager.getAllDeadPlayers().get(0));
+
+        // PREP ACTIONS FOR NIGHT 2
+        Player necromancerPlayer = PlayerManager.getAllAlivePlayers().get(1);
+        PlayerManager.prepAction(necromancerPlayer, necromancerPlayer.getRole().getActions().get(0), graveRobberyTargets);
+
+        ResolvingManager.resolveEndOfNightActions();
+
+        System.out.print("\nAfter the second night the game is in this state\n");
 
         PlayerManager.PrintSummary();
     }

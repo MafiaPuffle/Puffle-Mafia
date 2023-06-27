@@ -1,5 +1,6 @@
 package com.example.pufflemafia.app.events;
 
+import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.actions.Action;
 import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.data.effects.Effect;
@@ -16,6 +17,13 @@ public class TestingListener {
                 System.out.print(player.getName() + " received the effect ");
                 effect.PrintSummary();
                 System.out.print("\n");
+            }
+        });
+
+        PlayerManager.OnPlayerChangeRole.AddListener(new IEvent2Listener<Player, Role>() {
+            @Override
+            public void Response(Player player, Role role) {
+                System.out.print(player.getName() + " changed to the role " + role.getName() + "\n");
             }
         });
 

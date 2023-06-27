@@ -6,6 +6,7 @@ import com.example.pufflemafia.app.data.actions.conditions.Condition;
 import com.example.pufflemafia.app.data.actions.conditions.Condition_DoInitiatorsNOTHaveEffect;
 import com.example.pufflemafia.app.data.actions.conditions.Condition_DoTargetNOTHaveEffect;
 import com.example.pufflemafia.app.data.actions.result.Result;
+import com.example.pufflemafia.app.data.actions.result.Result_CopyRole;
 import com.example.pufflemafia.app.data.actions.result.Result_GiveTargetsEffect;
 import com.example.pufflemafia.app.data.actions.result.Result_KillTargets;
 import com.example.pufflemafia.app.data.effects.Effect;
@@ -72,6 +73,9 @@ public class DataManager {
         Result cupidLinkPlayers = new Result_GiveTargetsEffect(getEffect("Cupid_Linked"));
         allResults.put("cupidLinkPlayers",cupidLinkPlayers);
 
+        Result copyRole = new Result_CopyRole();
+        allResults.put("copyRole",copyRole);
+
     }
     private static void setUpAllActions(){
         allActions = new Hashtable<String, Action>();
@@ -132,6 +136,34 @@ public class DataManager {
                 matchMakeResults);
 
         allActions.put("matchMake",matchMake);
+
+        Vector<Condition> assimilateConditions = new Vector<Condition>();
+        assimilateConditions.add(getCondition("isNotBlocked"));
+
+        Vector<Result> assimilateResults = new Vector<Result>();
+        assimilateResults.add(getResult("copyRole"));
+
+        Action assimilate = new Action("Assimilate",
+                Action.WhenTOResolve.INSTANT,
+                Action.ValidTargets.ALL_ALIVE_PLAYERS,
+                assimilateConditions,
+                assimilateResults);
+
+        allActions.put("assimilate",assimilate);
+
+        Vector<Condition> graveRobberyConditions = new Vector<Condition>();
+        graveRobberyConditions.add(getCondition("isNotBlocked"));
+
+        Vector<Result> graveRobberyResults = new Vector<Result>();
+        graveRobberyResults.add(getResult("copyRole"));
+
+        Action graveRobbery = new Action("Grave Robbery",
+                Action.WhenTOResolve.INSTANT,
+                Action.ValidTargets.ALL_DEAD_PLAYERS,
+                graveRobberyConditions,
+                graveRobberyResults);
+
+        allActions.put("graveRobbery",graveRobbery);
     }
     private static void setUpAllRoles(){
         allRoles = new Hashtable<String, Role>();
@@ -220,6 +252,34 @@ public class DataManager {
                 cupidActions);
 
         allRoles.put("cupid",cupid);
+
+        Vector<Action> cyborgActions = new Vector<Action>();
+        cyborgActions.add(getAction("assimilate"));
+
+        Role cyborg = new Role("Cyborg",
+                R.drawable.cyborg_puffle,
+                Role.Teams.NEUTRAL,
+                Role.Alliances.NEUTRAL,
+                "Copies players roles",
+                "Wins however the role they copy wins",
+                "Isn't it amazing what technology can do",
+                cyborgActions);
+
+        allRoles.put("cyborg",cyborg);
+
+        Vector<Action> necromancerActions = new Vector<Action>();
+        necromancerActions.add(getAction("graveRobbery"));
+
+        Role necromancer = new Role("Necromancer",
+                R.drawable.necromancer,
+                Role.Teams.MAFIA,
+                Role.Alliances.EVIL,
+                "Copies dead players roles",
+                "Wins however the role they copy wins",
+                "RISE!",
+                necromancerActions);
+
+        allRoles.put("necromancer",necromancer);
     }
 
     public static Effect getEffect(String key){
