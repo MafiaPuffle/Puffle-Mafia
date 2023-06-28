@@ -2,12 +2,15 @@ package com.example.pufflemafia.app.game;
 
 import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.data.actions.Action;
+import com.example.pufflemafia.app.events.VoidEvent;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
 
 public class ResolvingManager {
 
+    public static VoidEvent OnAllNightActionsResolved;
+    public static VoidEvent OnAllInstantActionsResolved;
     private static Queue<Action> endOfNightActions;
     public static void resolveEndOfNightActions() {
         while (endOfNightActions.size() > 0){
@@ -16,6 +19,7 @@ public class ResolvingManager {
             action.resolve();
             endOfNightActions.remove();
         }
+        OnAllNightActionsResolved.Invoke();
     }
     private static Queue<Action> instantActions;
     public static void resolveEndOfInstantActions() {
@@ -25,6 +29,7 @@ public class ResolvingManager {
             action.resolve();
             instantActions.remove();
         }
+        OnAllInstantActionsResolved.Invoke();
     }
 
     public static Event<Action> OnActionQue;
@@ -38,17 +43,22 @@ public class ResolvingManager {
             OnActionQue.Invoke(action);
             resolveEndOfInstantActions();
         }
+        else{
+            System.out.print("RECEIVED ACTION WITH UNKNOWN RESOLVE STATE " + action.getWhenTOResolve() + "\n");
+        }
     }
 
     public static void Initialize() {
         endOfNightActions = new ArrayDeque<Action>();
         instantActions = new ArrayDeque<Action>();
 
+        OnAllNightActionsResolved = new VoidEvent();
+        OnAllInstantActionsResolved = new VoidEvent();
         OnActionQue = new Event<Action>();
     }
 
     public static void PrintSummary(){
         System.out.print("The Resolving Managers has " + endOfNightActions.size() + " end of night actions left\n" +
-                "   and " + instantActions.size() + " instant actions left");
+                "   and " + instantActions.size() + " instant actions left\n");
     }
 }

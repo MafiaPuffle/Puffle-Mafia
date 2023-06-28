@@ -49,6 +49,8 @@ public class PlayerManager {
         OnAddPlayer.Invoke(player);
     }
     public static void revivePlayer(Player player){
+        if(!allDeadPlayers.contains(player)) return;
+
         allAlivePlayers.add(player);
         allDeadPlayers.remove(player);
         OnRevivePlayer.Invoke(player);
@@ -63,6 +65,8 @@ public class PlayerManager {
         allDeadPlayers = _allDeadPlayers;
     }
     public static void killPlayer(Player player, Result.KillType killType){
+        if(!allAlivePlayers.contains(player)) return;
+
         allAlivePlayers.remove(player);
         allDeadPlayers.add(player);
         OnKillPlayer.Invoke(player,killType);
@@ -73,7 +77,14 @@ public class PlayerManager {
     }
 
     public static void prepAction(Player player, Action action, Vector<Player> chosenTargets){
-        Action actionToPrep = action;
+        Action actionToPrep = new Action();
+
+        actionToPrep.setName(action.getName());
+        actionToPrep.setWhenTOResolve(action.getWhenTOResolve());
+        actionToPrep.setValidTargets(action.getValidTargets());
+        actionToPrep.setConditions(action.getConditions());
+        actionToPrep.setResults(action.getResults());
+
         actionToPrep.setTargets(chosenTargets);
 
         Vector<Player> initiators = new Vector<Player>();

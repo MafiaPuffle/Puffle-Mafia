@@ -26,7 +26,7 @@ public class UnitTestsTest {
         allPlayers.add(new Player("Everette", DataManager.getRole("doctor")));
         allPlayers.add(new Player("Min", DataManager.getRole("lover")));
         allPlayers.add(new Player("Ehud", DataManager.getRole("lover")));
-        allPlayers.add(new Player("Kevin", DataManager.getRole("civilian")));
+        allPlayers.add(new Player("Kevin", DataManager.getRole("cyborg")));
         allPlayers.add(new Player("James", DataManager.getRole("baker")));
 
         System.out.print("Adding players to the game\n");
@@ -41,17 +41,29 @@ public class UnitTestsTest {
         PlayerManager.PrintSummary();
 
         // MAKE TARGETS FOR NIGHT 1
+        Vector<Player> assimilateTargets = new Vector<Player>();
+        assimilateTargets.add(PlayerManager.getAllAlivePlayers().get(2));
+
         Vector<Player> murderTargets = new Vector<Player>();
         murderTargets.add(PlayerManager.getAllAlivePlayers().get(5));
 
+        Vector<Player> saveTargets = new Vector<Player>();
+        saveTargets.add(PlayerManager.getAllAlivePlayers().get(2));
+
         Vector<Player> feedTargets = new Vector<Player>();
+        feedTargets.add(PlayerManager.getAllAlivePlayers().get(2));
         feedTargets.add(PlayerManager.getAllAlivePlayers().get(1));
-        feedTargets.add(PlayerManager.getAllAlivePlayers().get(4));
 
         // PREP ACTIONS FOR NIGHT 1
 
+        Player cyborgPlayer = PlayerManager.getAllAlivePlayers().get(4);
+        PlayerManager.prepAction(cyborgPlayer, cyborgPlayer.getRole().getActions().get(0), assimilateTargets);
+
         Player mafiaPlayer = PlayerManager.getAllAlivePlayers().get(0);
         PlayerManager.prepAction(mafiaPlayer, mafiaPlayer.getRole().getActions().get(0), murderTargets);
+
+        Player doctorPlayer = PlayerManager.getAllAlivePlayers().get(1);
+        PlayerManager.prepAction(doctorPlayer, doctorPlayer.getRole().getActions().get(0), saveTargets);
 
         Player bakerPlayer = PlayerManager.getAllAlivePlayers().get(5);
         PlayerManager.prepAction(bakerPlayer, bakerPlayer.getRole().getActions().get(0), feedTargets);

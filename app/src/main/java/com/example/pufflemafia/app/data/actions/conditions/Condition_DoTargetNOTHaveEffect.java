@@ -23,7 +23,7 @@ public class Condition_DoTargetNOTHaveEffect extends Condition{
     public boolean check(Action action) {
         for (Player target: action.getTargets()) {
             if(target.hasEffect(effectToLookFor)) {
-                System.out.print(target.getName() + " has effect " + effectToLookFor.getName() + "\n");
+//                System.out.print(target.getName() + " has effect " + effectToLookFor.getName() + "\n");
                 return false;
             }
         }
