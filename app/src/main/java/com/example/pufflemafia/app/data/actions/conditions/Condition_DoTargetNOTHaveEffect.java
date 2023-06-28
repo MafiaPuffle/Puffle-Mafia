@@ -15,13 +15,17 @@ public class Condition_DoTargetNOTHaveEffect extends Condition{
     }
 
     public Condition_DoTargetNOTHaveEffect(Effect effect){
+        super("Do Targets NOT have Effect");
         setEffectToLookFor(effect);
     }
 
     @Override
     public boolean check(Action action) {
         for (Player target: action.getTargets()) {
-            if(target.hasEffect(effectToLookFor)) return false;
+            if(target.hasEffect(effectToLookFor)) {
+                System.out.print(target.getName() + " has effect " + effectToLookFor.getName() + "\n");
+                return false;
+            }
         }
         return true;
     }

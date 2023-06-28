@@ -1,7 +1,8 @@
-package com.example.pufflemafia.app.data.actions;
+package com.example.pufflemafia.app.data;
 
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.data.actions.Action;
 import com.example.pufflemafia.app.data.actions.conditions.Condition;
 import com.example.pufflemafia.app.data.actions.conditions.Condition_DoInitiatorsNOTHaveEffect;
 import com.example.pufflemafia.app.data.actions.conditions.Condition_DoTargetNOTHaveEffect;
@@ -10,6 +11,7 @@ import com.example.pufflemafia.app.data.actions.result.Result_CopyRole;
 import com.example.pufflemafia.app.data.actions.result.Result_GiveTargetsEffect;
 import com.example.pufflemafia.app.data.actions.result.Result_KillTargets;
 import com.example.pufflemafia.app.data.effects.Effect;
+import com.example.pufflemafia.app.data.effects.Effect_Baker;
 import com.example.pufflemafia.app.data.effects.Effect_Bomb;
 import com.example.pufflemafia.app.data.effects.Effect_Linked;
 
@@ -30,6 +32,7 @@ public class DataManager {
         setUpAllConditions();
         setUpAllResults();
         setUpAllActions();
+        setUpStartingEffects();
         setUpAllRoles();
     }
 
@@ -38,6 +41,9 @@ public class DataManager {
 
         Effect Saved = new Effect("Saved");
         allEffects.put("Saved",Saved);
+
+        Effect Bread = new Effect("Bread");
+        allEffects.put("Bread",Bread);
 
         Effect Blocked = new Effect("Blocked");
         allEffects.put("Blocked",Blocked);
@@ -55,8 +61,12 @@ public class DataManager {
         allConditions = new Hashtable<String, Condition>();
         Condition isNotBlocked = new Condition_DoInitiatorsNOTHaveEffect(getEffect("Blocked"));
         allConditions.put("isNotBlocked",isNotBlocked);
+
         Condition checkForSavedEffect = new Condition_DoTargetNOTHaveEffect(getEffect("Saved"));
         allConditions.put("checkForSavedEffect",checkForSavedEffect);
+
+        Condition checkForBreadEffect = new Condition_DoTargetNOTHaveEffect(getEffect("Bread"));
+        allConditions.put("checkForBreadEffect",checkForBreadEffect);
     }
     private static void setUpAllResults(){
         allResults = new Hashtable<String, Result>();
@@ -64,11 +74,17 @@ public class DataManager {
         Result mafiaKill = new Result_KillTargets(Result.KillType.MAFIA);
         allResults.put("mafiaKill",mafiaKill);
 
+        Result famineKill = new Result_KillTargets(Result.KillType.FAMINE);
+        allResults.put("famineKill",famineKill);
+
         Result doctorSave = new Result_GiveTargetsEffect(getEffect("Saved"));
         allResults.put("doctorSave",doctorSave);
 
         Result giveBomb = new Result_GiveTargetsEffect(getEffect("Bomb"));
         allResults.put("giveBomb",giveBomb);
+
+        Result giveBread = new Result_GiveTargetsEffect(getEffect("Bread"));
+        allResults.put("giveBread",giveBread);
 
         Result cupidLinkPlayers = new Result_GiveTargetsEffect(getEffect("Cupid_Linked"));
         allResults.put("cupidLinkPlayers",cupidLinkPlayers);
@@ -164,6 +180,40 @@ public class DataManager {
                 graveRobberyResults);
 
         allActions.put("graveRobbery",graveRobbery);
+
+        Vector<Condition> feedConditions = new Vector<Condition>();
+        feedConditions.add(getCondition("isNotBlocked"));
+
+        Vector<Result> feedResults = new Vector<Result>();
+        feedResults.add(getResult("giveBread"));
+
+        Action feed = new Action("Feed",
+                Action.WhenTOResolve.INSTANT,
+                Action.ValidTargets.ALL_ALIVE_PLAYERS,
+                feedConditions,
+                feedResults);
+
+        allActions.put("feed",feed);
+    }
+
+    private static void setUpStartingEffects(){
+        Vector<Condition> famineConditions = new Vector<Condition>();
+        famineConditions.add(getCondition("isNotBlocked"));
+        famineConditions.add(getCondition("checkForBreadEffect"));
+
+        Vector<Result> famineResults = new Vector<Result>();
+        famineResults.add(getResult("famineKill"));
+
+        Action famine = new Action("Famine",
+                Action.WhenTOResolve.END_OF_NIGHT,
+                Action.ValidTargets.ALL_ALIVE_PLAYERS,
+                famineConditions,
+                famineResults);
+
+        allActions.put("famine",famine);
+
+        Effect Baker = new Effect_Baker();
+        allEffects.put("Baker",Baker);
     }
     private static void setUpAllRoles(){
         allRoles = new Hashtable<String, Role>();
@@ -280,6 +330,24 @@ public class DataManager {
                 necromancerActions);
 
         allRoles.put("necromancer",necromancer);
+
+        Vector<Action> bakerActions = new Vector<Action>();
+        bakerActions.add(getAction("feed"));
+
+        Vector<Effect> bakerStartingEffects = new Vector<Effect>();
+        bakerStartingEffects.add(getEffect("Baker"));
+
+        Role baker = new Role("Baker",
+                R.drawable.baker_puffle,
+                Role.Teams.TOWN,
+                Role.Alliances.GOOD,
+                "Gives players bread",
+                "Wins if the mafia get voted out",
+                "What would this town eat without me?",
+                bakerActions,
+                bakerStartingEffects);
+
+        allRoles.put("baker",baker);
     }
 
     public static Effect getEffect(String key){

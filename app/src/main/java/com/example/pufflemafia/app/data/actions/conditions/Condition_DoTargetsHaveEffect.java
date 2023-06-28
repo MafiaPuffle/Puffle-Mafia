@@ -15,6 +15,7 @@ public class Condition_DoTargetsHaveEffect extends Condition{
     }
 
     public Condition_DoTargetsHaveEffect(Effect effect){
+        super("Do Targets have Effect");
         setEffectToLookFor(effect);
     }
 

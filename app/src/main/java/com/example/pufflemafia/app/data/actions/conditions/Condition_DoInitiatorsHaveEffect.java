@@ -15,6 +15,7 @@ public class Condition_DoInitiatorsHaveEffect extends Condition{
     }
 
     public Condition_DoInitiatorsHaveEffect(Effect effect){
+        super("Do Initiators Have Effect");
         setEffectToLookFor(effect);
     }
 

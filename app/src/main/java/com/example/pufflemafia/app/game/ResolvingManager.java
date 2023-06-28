@@ -46,4 +46,9 @@ public class ResolvingManager {
 
         OnActionQue = new Event<Action>();
     }
+
+    public static void PrintSummary(){
+        System.out.print("The Resolving Managers has " + endOfNightActions.size() + " end of night actions left\n" +
+                "   and " + instantActions.size() + " instant actions left");
+    }
 }

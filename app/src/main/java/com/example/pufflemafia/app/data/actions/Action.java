@@ -87,6 +87,7 @@ public class Action {
         for (Condition condition: conditions) {
             if(!condition.check(this)) {
                 OnActionResolve.Invoke(false);
+                System.out.print(name + " failed to resolve because " + condition.getName() + " returned false\n");
                 return;
             }
         }
@@ -95,6 +96,7 @@ public class Action {
             result.trigger(this);
         }
         OnActionResolve.Invoke(true);
+        System.out.print(name + " resolved successfully\n");
     }
 
     public Action(String name, WhenTOResolve whenTOResolve, ValidTargets validTargets, Vector<Condition> conditions, Vector<Result> results){

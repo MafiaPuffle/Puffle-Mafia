@@ -73,22 +73,21 @@ public class PlayerManager {
     }
 
     public static void prepAction(Player player, Action action, Vector<Player> chosenTargets){
-        if(player.getRole().hasAction(action)){
-            action.setTargets(chosenTargets);
+        Action actionToPrep = action;
+        actionToPrep.setTargets(chosenTargets);
 
-            Vector<Player> initiators = new Vector<Player>();
-            for (Player p: allAlivePlayers) {
-                if(p.getRole() == player.getRole()){
-                    initiators.add(p);
-                }
+        Vector<Player> initiators = new Vector<Player>();
+        for (Player p: allAlivePlayers) {
+            if(p.getRole() == player.getRole()){
+                initiators.add(p);
             }
-
-            action.setInitiators(initiators);
-
-            OnActionPrepped.Invoke(action);
-
-            ResolvingManager.queAction(action);
         }
+
+        actionToPrep.setInitiators(initiators);
+
+        OnActionPrepped.Invoke(actionToPrep);
+
+        ResolvingManager.queAction(actionToPrep);
     }
 
     public static void Initialize(){

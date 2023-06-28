@@ -16,6 +16,7 @@ public class Result_KillTargets extends Result{
     public void trigger(Action action){
         for (Player target: action.getTargets()) {
             PlayerManager.killPlayer(target, killType);
+            System.out.print(target.getName() + " should have been killed by " + killType + "\n");
         }
     }
 }
