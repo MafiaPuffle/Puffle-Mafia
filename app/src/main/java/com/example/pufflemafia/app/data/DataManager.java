@@ -1,7 +1,6 @@
 package com.example.pufflemafia.app.data;
 
 import com.example.pufflemafia.R;
-import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.actions.Action;
 import com.example.pufflemafia.app.data.actions.conditions.Condition;
 import com.example.pufflemafia.app.data.actions.conditions.Condition_DoInitiatorsNOTHaveEffect;
@@ -11,6 +10,7 @@ import com.example.pufflemafia.app.data.actions.result.Result_CopyRole;
 import com.example.pufflemafia.app.data.actions.result.Result_GiveTargetsEffect;
 import com.example.pufflemafia.app.data.actions.result.Result_KillTargets;
 import com.example.pufflemafia.app.data.effects.Effect;
+import com.example.pufflemafia.app.data.effects.Effect_Alert;
 import com.example.pufflemafia.app.data.effects.Effect_Baker;
 import com.example.pufflemafia.app.data.effects.Effect_Bomb;
 import com.example.pufflemafia.app.data.effects.Effect_Linked;
@@ -77,8 +77,14 @@ public class DataManager {
         Result famineKill = new Result_KillTargets(Result.KillType.FAMINE);
         allResults.put("famineKill",famineKill);
 
+        Result alertKill = new Result_KillTargets(Result.KillType.ALERT);
+        allResults.put("alertKill",alertKill);
+
         Result doctorSave = new Result_GiveTargetsEffect(getEffect("Saved"));
         allResults.put("doctorSave",doctorSave);
+
+        Result jailkeeperBlock = new Result_GiveTargetsEffect(getEffect("Blocked"));
+        allResults.put("jailkeeperBlock",jailkeeperBlock);
 
         Result giveBomb = new Result_GiveTargetsEffect(getEffect("Bomb"));
         allResults.put("giveBomb",giveBomb);
@@ -194,6 +200,34 @@ public class DataManager {
                 feedResults);
 
         allActions.put("feed",feed);
+
+        Vector<Condition> blockConditions = new Vector<Condition>();
+        blockConditions.add(getCondition("isNotBlocked"));
+
+        Vector<Result> blockResults = new Vector<Result>();
+        blockResults.add(getResult("jailkeeperBlock"));
+
+        Action block = new Action("Block",
+                Action.WhenTOResolve.INSTANT,
+                Action.ValidTargets.ALL_ALIVE_PLAYERS,
+                blockConditions,
+                blockResults);
+
+        allActions.put("block",block);
+
+        Vector<Condition> alertKillConditions = new Vector<Condition>();
+        alertKillConditions.add(getCondition("isNotBlocked"));
+
+        Vector<Result> alertKillResults = new Vector<Result>();
+        alertKillResults.add(getResult("alertKill"));
+
+        Action alertKill = new Action("Alert Kill",
+                Action.WhenTOResolve.END_OF_NIGHT,
+                Action.ValidTargets.ALL_ALIVE_PLAYERS,
+                alertKillConditions,
+                alertKillResults);
+
+        allActions.put("alertKill",alertKill);
     }
 
     private static void setUpStartingEffects(){
@@ -214,6 +248,29 @@ public class DataManager {
 
         Effect Baker = new Effect_Baker();
         allEffects.put("Baker",Baker);
+
+
+
+
+        Effect Alert = new Effect_Alert();
+        allEffects.put("Alert",Alert);
+
+        Result giveSelfAlert = new Result_GiveTargetsEffect(getEffect("Alert"));
+        allResults.put("giveSelfAlert",giveSelfAlert);
+
+        Vector<Condition> goOnAlertConditions = new Vector<Condition>();
+        goOnAlertConditions.add(getCondition("isNotBlocked"));
+
+        Vector<Result> goOnAlertResults = new Vector<Result>();
+        goOnAlertResults.add(getResult("giveSelfAlert"));
+
+        Action goOnAlert = new Action("Go On Alert",
+                Action.WhenTOResolve.INSTANT,
+                Action.ValidTargets.SELF,
+                goOnAlertConditions,
+                goOnAlertResults);
+
+        allActions.put("goOnAlert",goOnAlert);
     }
     private static void setUpAllRoles(){
         allRoles = new Hashtable<String, Role>();
@@ -348,6 +405,34 @@ public class DataManager {
                 bakerStartingEffects);
 
         allRoles.put("baker",baker);
+
+        Vector<Action> jailkeeperActions = new Vector<Action>();
+        jailkeeperActions.add(getAction("block"));
+
+        Role jailkeeper = new Role("Jailkeeper",
+                R.drawable.jailkeeper_puffle,
+                Role.Teams.MAFIA,
+                Role.Alliances.EVIL,
+                "Keeps players from using their abilities",
+                "Wins if the mafia equal half of the alive players",
+                "A night in the cell should cheer you up",
+                jailkeeperActions);
+
+        allRoles.put("jailkeeper",jailkeeper);
+
+        Vector<Action> grannyWithAShotgunActions = new Vector<Action>();
+        grannyWithAShotgunActions.add(getAction("goOnAlert"));
+
+        Role grannyWithAShotgun = new Role("Granny with a Shotgun",
+                R.drawable.grandma_puffle,
+                Role.Teams.TOWN,
+                Role.Alliances.GOOD,
+                "Goes on alert once per game, when on alert she kills any player that interacts with her",
+                "Wins if the mafia get voted out",
+                "Get off my lawn!",
+                grannyWithAShotgunActions);
+
+        allRoles.put("grannyWithAShotgun",grannyWithAShotgun);
     }
 
     public static Effect getEffect(String key){
