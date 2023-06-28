@@ -69,6 +69,7 @@ public class UnitTestsTest {
         PlayerManager.prepAction(bakerPlayer, bakerPlayer.getRole().getActions().get(0), feedTargets);
 
         ResolvingManager.resolveEndOfNightActions();
+        ResolvingManager.resolveDelayedActions();
 
         System.out.print("\nAfter one night the game is in this state\n");
 

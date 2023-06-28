@@ -9,7 +9,7 @@ import java.util.Vector;
 
 public class Action {
 
-    public enum WhenTOResolve {END_OF_NIGHT, INSTANT}
+    public enum WhenTOResolve {END_OF_NIGHT, INSTANT, DELAY}
     public enum ValidTargets {ALL_PLAYERS, ALL_ALIVE_PLAYERS, ALL_DEAD_PLAYERS, SELF, WITNESS}
 
     private String name;
@@ -20,12 +20,12 @@ public class Action {
         this.name = name;
     }
 
-    private boolean hasBeenUsed;
-    public boolean HasBeenUsed() {
-        return hasBeenUsed;
+    private boolean hasBeenResolved;
+    public boolean HasBeenResolved() {
+        return hasBeenResolved;
     }
-    public void setHasBeenUsed(boolean hasBeenUsed) {
-        this.hasBeenUsed = hasBeenUsed;
+    public void setHasBeenResolved(boolean hasBeenResolved) {
+        this.hasBeenResolved = hasBeenResolved;
     }
 
     private WhenTOResolve whenTOResolve;
@@ -87,6 +87,7 @@ public class Action {
         for (Condition condition: conditions) {
             if(!condition.check(this)) {
                 OnActionResolve.Invoke(false);
+                setHasBeenResolved(false);
 //                System.out.print(name + " failed to resolve because " + condition.getName() + " returned false\n");
                 return;
             }
@@ -96,6 +97,7 @@ public class Action {
             result.trigger(this);
         }
         OnActionResolve.Invoke(true);
+        setHasBeenResolved(true);
 //        System.out.print(name + " resolved successfully\n");
     }
 

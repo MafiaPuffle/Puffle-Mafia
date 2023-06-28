@@ -6,11 +6,25 @@ import com.example.pufflemafia.app.events.VoidEvent;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.Vector;
 
 public class ResolvingManager {
 
     public static VoidEvent OnAllNightActionsResolved;
     public static VoidEvent OnAllInstantActionsResolved;
+
+    private static Vector<Action> delayedActions;
+    public static void resolveDelayedActions(){
+        Vector<Action> resolved = new Vector<Action>();
+        for (Action action: delayedActions) {
+            action.resolve();
+            if(action.HasBeenResolved()){
+                resolved.add(action);
+            }
+        }
+        delayedActions.removeAll(resolved);
+    }
+
     private static Queue<Action> endOfNightActions;
     public static void resolveEndOfNightActions() {
         while (endOfNightActions.size() > 0){
@@ -43,14 +57,16 @@ public class ResolvingManager {
             OnActionQue.Invoke(action);
             resolveEndOfInstantActions();
         }
-        else{
-            System.out.print("RECEIVED ACTION WITH UNKNOWN RESOLVE STATE " + action.getWhenTOResolve() + "\n");
+        else if(action.getWhenTOResolve() == Action.WhenTOResolve.DELAY) {
+            delayedActions.add(action);
+            OnActionQue.Invoke(action);
         }
     }
 
     public static void Initialize() {
         endOfNightActions = new ArrayDeque<Action>();
         instantActions = new ArrayDeque<Action>();
+        delayedActions = new Vector<Action>();
 
         OnAllNightActionsResolved = new VoidEvent();
         OnAllInstantActionsResolved = new VoidEvent();

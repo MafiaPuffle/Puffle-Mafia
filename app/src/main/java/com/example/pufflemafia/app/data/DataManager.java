@@ -205,7 +205,7 @@ public class DataManager {
         famineResults.add(getResult("famineKill"));
 
         Action famine = new Action("Famine",
-                Action.WhenTOResolve.END_OF_NIGHT,
+                Action.WhenTOResolve.DELAY,
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 famineConditions,
                 famineResults);
