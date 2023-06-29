@@ -467,5 +467,9 @@ public class DataManager {
         // Retrieve the random value from the ArrayList
         return valuesList.get(randomIndex);
     }
+    public static Vector<Role> getAllRoles(){
+        //TODO
+        return new Vector<Role>();
+    }
 
 }

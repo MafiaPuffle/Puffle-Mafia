@@ -30,6 +30,10 @@
             android:name=".app.screens.QRCode"
             android:label="QR Code">
         </activity>
+        <activity
+            android:name=".app.screens.RolesScreen"
+            android:label="Roles Screen">
+        </activity>
     </application>
 
 </manifest>
