@@ -12,9 +12,7 @@ import com.example.pufflemafia.app.data.Token;
 
 import java.util.ArrayDeque;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Vector;
@@ -23,59 +21,53 @@ public class ActiveRolesManager {
 
     public static Event<Boolean> onLookingAtLastRoleForTheNight;
 
-    private static Vector<Role> rolesWithAbilitiesForTheNight;
+    private static Vector<Role> rolesWithNightAbilitiesInTheGame;
     private static Vector<Queue<PlayerMemory>> updatedPlayersMemory;
-    public static Role StartNight(Vector<Role> allAliveRoles, int nightNumber){
+    public static Role StartNight(Vector<Role> allRoles, int nightNumber){
 
         // Filters out duplicate roles
         Map<String, Role> allUniqueRoles = new HashMap<String, Role>();
-        for (Role role: allAliveRoles) {
+        for (Role role: allRoles) {
             allUniqueRoles.put(role.getName(), role);
         }
-        allAliveRoles.clear();
+        allRoles.clear();
         for (Map.Entry<String, Role> entry: allUniqueRoles.entrySet()){
-            allAliveRoles.add(entry.getValue());
+            allRoles.add(entry.getValue());
         }
 
 
-        rolesWithAbilitiesForTheNight.clear();
+        rolesWithNightAbilitiesInTheGame.clear();
 
-        for(int i = 0; i < allAliveRoles.size(); ++i){
+        for(int i = 0; i < allRoles.size(); ++i){
 
             // filters out roles with NULL (-1) priority
-            Role role = allAliveRoles.get(i);
+            Role role = allRoles.get(i);
             if(role.getPriority() == -1) continue;
 
             // filters out powers that are PASSIVE, SELFACTIVE,
-            // and FIRSTNIGHT if it is not the first night
             Power power = role.getPower();
             if(power.getType() != Power.PowerType.PASSIVE && power.getType() != Power.PowerType.SELFACTIVE){
-                if(nightNumber == 1 && power.getType() == Power.PowerType.FIRSTNIGHT){
-                    rolesWithAbilitiesForTheNight.add(role);
-                }
-                else if(power.getType() != Power.PowerType.FIRSTNIGHT){
-                    rolesWithAbilitiesForTheNight.add(role);
-                }
+                rolesWithNightAbilitiesInTheGame.add(role);
             }
 
         }
 
         String message1 ="";
-        for (int i = 0; i < rolesWithAbilitiesForTheNight.size(); i++) {
-            message1 += rolesWithAbilitiesForTheNight.get(i).getName() + " ";
+        for (int i = 0; i < rolesWithNightAbilitiesInTheGame.size(); i++) {
+            message1 += rolesWithNightAbilitiesInTheGame.get(i).getName() + " ";
         }
         Log.d("ActiveRolesManager", "Order before sort: " + message1);
 
-        Collections.sort(rolesWithAbilitiesForTheNight, new SortByPriority());
+        Collections.sort(rolesWithNightAbilitiesInTheGame, new SortByPriority());
 
         String message2 ="";
-        for (int i = 0; i < rolesWithAbilitiesForTheNight.size(); i++) {
-            message2 += rolesWithAbilitiesForTheNight.get(i).getName() + " ";
+        for (int i = 0; i < rolesWithNightAbilitiesInTheGame.size(); i++) {
+            message2 += rolesWithNightAbilitiesInTheGame.get(i).getName() + " ";
         }
         Log.d("ActiveRolesManager", "Order after sort: " + message2);
 
-        if(rolesWithAbilitiesForTheNight.size() > 0){
-            return rolesWithAbilitiesForTheNight.get(0);
+        if(rolesWithNightAbilitiesInTheGame.size() > 0){
+            return rolesWithNightAbilitiesInTheGame.get(0);
         }
         else{
             return null;
@@ -83,15 +75,15 @@ public class ActiveRolesManager {
     }
     @Nullable
     public static Role GetRoleForNight(int index){
-        if(index >= rolesWithAbilitiesForTheNight.size()) {
+        if(index >= rolesWithNightAbilitiesInTheGame.size()) {
             onLookingAtLastRoleForTheNight.Invoke(false);
             return null;
         }
-        if(index == (rolesWithAbilitiesForTheNight.size() - 1)){
+        if(index == (rolesWithNightAbilitiesInTheGame.size() - 1)){
             onLookingAtLastRoleForTheNight.Invoke(true);
         }
 
-        return rolesWithAbilitiesForTheNight.get(index);
+        return rolesWithNightAbilitiesInTheGame.get(index);
     }
 
     public static void ResetPlayerMemory(){
@@ -118,14 +110,14 @@ public class ActiveRolesManager {
 
     public ActiveRolesManager(){
         onLookingAtLastRoleForTheNight = new Event<Boolean>();
-        rolesWithAbilitiesForTheNight = new Vector<Role>();
+        rolesWithNightAbilitiesInTheGame = new Vector<Role>();
         updatedPlayersMemory = new Vector<Queue<PlayerMemory>>();
     }
 
     public static void PrintSummary(){
         System.out.print("ActiveRolesManager current state:\n" +
                         " Roles with abilities for this night:\n");
-        for(Role role: rolesWithAbilitiesForTheNight){
+        for(Role role: rolesWithNightAbilitiesInTheGame){
             role.PrintSummary("  ");
         }
     }
@@ -133,7 +125,7 @@ public class ActiveRolesManager {
     public static void PrintDetailed(){
         System.out.print("ActiveRolesManager current state:\n" +
                 " Roles with abilities for this night:\n");
-        for(Role role: rolesWithAbilitiesForTheNight){
+        for(Role role: rolesWithNightAbilitiesInTheGame){
             role.PrintDetailed("  ");
         }
     }

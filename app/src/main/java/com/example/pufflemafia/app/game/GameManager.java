@@ -100,8 +100,8 @@ public class GameManager {
         onStartNight.Invoke();
 
         // Gets all alive roles and sends the to the ActiveRolesManager
-        Vector<Role> allAliveRoles = new Vector<Role>();
-        for (Player player: PlayerManager.getAllAlive()) {
+        Vector<Role> allRoles = new Vector<Role>();
+        for (Player player: PlayerManager.getAllPlayers()) {
             Role role = player.getRole();
             Power power = role.getPower();
 
@@ -109,11 +109,11 @@ public class GameManager {
             if(power.getType() == Power.PowerType.ONETIMEUSE && power.checkIfPowerHasBeenUsed() == true){
                 continue;
             }else{
-                allAliveRoles.add(role);
+                allRoles.add(role);
             }
         }
 
-        currentRoleActiveAtNight = ActiveRolesManager.StartNight(allAliveRoles, nightNumber);
+        currentRoleActiveAtNight = ActiveRolesManager.StartNight(allRoles, nightNumber);
         ActiveRolesManager.ResetPlayerMemory();
         if(currentRoleActiveAtNight == null){
             StartDay();

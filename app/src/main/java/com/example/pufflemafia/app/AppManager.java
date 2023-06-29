@@ -48,7 +48,7 @@ public class AppManager {
         dataManager = new DataManager();
         timerManager = new TimerManager();
 
-        buildVersion = "Tracker_1.0";
+        buildVersion = "Tracker_1.1";
 
         logger = Logger.getLogger(AppManager.class.getName());
         // Set Logger level()
