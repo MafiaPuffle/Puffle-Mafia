@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.content.res.AppCompatResources;
@@ -44,6 +45,7 @@ public class MainActivity extends CustomAppCompatActivityWrapper {
         configureRoles();
         configureInstructions();
         configureQRCode();
+        configureBuildNumber();
 
         musicToggleButton = findViewById(R.id.toggleButton);
         musicToggleButton.setChecked(true);
@@ -86,6 +88,11 @@ public class MainActivity extends CustomAppCompatActivityWrapper {
 
 
         updateToggleButtonBackground();
+    }
+
+    private void configureBuildNumber(){
+        TextView buildNumberTextView = findViewById(R.id.BuildNumber);
+        buildNumberTextView.setText(AppManager.buildVersion);
     }
 
     private void configureStart() {

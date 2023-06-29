@@ -18,6 +18,7 @@ public class AppManager {
     public static GameManager gameManager;
     public static DataManager dataManager;
     public static TimerManager timerManager;
+    public static String buildVersion;
 
     // Used for sending warning messages for debugging
     private static Logger logger;
@@ -29,6 +30,8 @@ public class AppManager {
         gameManager = new GameManager();
         dataManager = new DataManager();
         timerManager = new TimerManager();
+
+        buildVersion = "Tracker_1.0";
 
         logger = Logger.getLogger(AppManager.class.getName());
         // Set Logger level()
@@ -44,6 +47,8 @@ public class AppManager {
         gameManager = new GameManager();
         dataManager = new DataManager();
         timerManager = new TimerManager();
+
+        buildVersion = "Tracker_1.0";
 
         logger = Logger.getLogger(AppManager.class.getName());
         // Set Logger level()
