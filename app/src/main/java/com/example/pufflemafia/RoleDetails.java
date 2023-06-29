@@ -21,12 +21,18 @@ public class RoleDetails extends CustomAppCompatActivityWrapper {
     private TextView selectedRoleDescriptionTextView;
     private TextView selectedRoleWinConditionTextView;
     private TextView selectedRoleTeamTextView;
+
+//    private TextView selectedRoleFlavorTextView;
     private String roleName;
     private Integer roleImageResourceId;
     private String roleDescription;
     private String roleWinCondition;
+
+    private String roleFlavor;
     private Role.Teams roleTeam;
     private Role.Alliances roleAlliance;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +48,15 @@ public class RoleDetails extends CustomAppCompatActivityWrapper {
         selectedRoleDescriptionTextView = findViewById(R.id.TokenAbilityEffect);
         selectedRoleWinConditionTextView = findViewById(R.id.WinConditionEffect);
         selectedRoleTeamTextView = findViewById(R.id.TeamTextView);
+//        selectedRoleFlavorTextView = findViewById(R.id.FlavorEffect);
+
 
         roleImageResourceId = intent.getIntExtra("imageResourceId",0);
 
         roleName = intent.getStringExtra("name");
         roleDescription = intent.getStringExtra("description");
         roleWinCondition = intent.getStringExtra("winCondition");
+//        roleFlavor = intent.getStringExtra("flavorText");
 
         roleTeam = (Role.Teams) intent.getSerializableExtra("team");
         roleAlliance = (Role.Alliances) intent.getSerializableExtra("alliance");
@@ -70,6 +79,7 @@ public class RoleDetails extends CustomAppCompatActivityWrapper {
         selectedRoleNameTextView.setText(roleName);
         selectedRoleDescriptionTextView.setText(roleDescription);
         selectedRoleWinConditionTextView.setText(roleWinCondition);
+//        selectedRoleFlavorTextView.setText(roleFlavor);
         switch (roleTeam){
             case TOWN:
                 configureTeamInfo("TOWN", R.drawable.green_rectangle);
@@ -96,11 +106,13 @@ public class RoleDetails extends CustomAppCompatActivityWrapper {
         TextView RoleAbility = findViewById(R.id.TokenAbilityEffect);
         TextView WinCondition = findViewById(R.id.WinConditionEffect);
         TextView RoleTeam = findViewById(R.id.TeamTextView);
+//        TextView RoleFlavor = findViewById(R.id.FlavorEffect);
 
         RoleName.setBackgroundResource(BackgroundID);
         RoleAbility.setBackgroundResource(BackgroundID);
         WinCondition.setBackgroundResource(BackgroundID);
         RoleTeam.setBackgroundResource(BackgroundID);
+//        RoleFlavor.setBackgroundResource(BackgroundID);
 
         RoleTeam.setText(teamName);
     }
