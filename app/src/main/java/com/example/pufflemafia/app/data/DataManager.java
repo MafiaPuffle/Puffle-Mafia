@@ -15,8 +15,14 @@ import com.example.pufflemafia.app.data.effects.Effect_Baker;
 import com.example.pufflemafia.app.data.effects.Effect_Bomb;
 import com.example.pufflemafia.app.data.effects.Effect_Linked;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 import java.util.Vector;
 
 public class DataManager {
@@ -38,7 +44,7 @@ public class DataManager {
 
     private static void setUpAllEffects(){
         allEffects = new Hashtable<String, Effect>();
-
+        
         Effect Saved = new Effect("Saved");
         allEffects.put("Saved",Saved);
 
@@ -449,6 +455,17 @@ public class DataManager {
     }
     public static Role getRole(String key){
         return allRoles.get(key);
+    }
+    public static Role getRandomRole(){
+        // Convert values of the Dictionary to an ArrayList
+        ArrayList<Role> valuesList = Collections.list(allRoles.elements());
+
+        // Generate a random index
+        Random random = new Random();
+        int randomIndex = random.nextInt(valuesList.size());
+
+        // Retrieve the random value from the ArrayList
+        return valuesList.get(randomIndex);
     }
 
 }
