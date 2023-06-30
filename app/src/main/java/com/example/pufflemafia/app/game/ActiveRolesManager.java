@@ -47,7 +47,15 @@ public class ActiveRolesManager {
             // filters out powers that are PASSIVE, SELFACTIVE,
             Power power = role.getPower();
             if(power.getType() != Power.PowerType.PASSIVE && power.getType() != Power.PowerType.SELFACTIVE){
-                rolesWithNightAbilitiesInTheGame.add(role);
+                // filters out powers that are FIRSTNIGHT
+                if(GameManager.getNightNumber() == 1){
+                    rolesWithNightAbilitiesInTheGame.add(role);
+                } else if (power.getType() != Power.PowerType.FIRSTNIGHT && !power.checkIfPowerHasBeenUsed()) {
+                    rolesWithNightAbilitiesInTheGame.add(role);
+                }
+
+                // PROMPT ALL ROLES
+//                rolesWithNightAbilitiesInTheGame.add(role);
             }
 
         }

@@ -101,7 +101,7 @@ public class GameManager {
 
         // Gets all alive roles and sends the to the ActiveRolesManager
         Vector<Role> allRoles = new Vector<Role>();
-        for (Player player: PlayerManager.getAllPlayers()) {
+        for (Player player: PlayerManager.getAllAlive()) {
             Role role = player.getRole();
             Power power = role.getPower();
 
