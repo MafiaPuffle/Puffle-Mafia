@@ -14,6 +14,10 @@ public class Event<T> {
         listeners.remove(toRemove);
     }
 
+    public void RemoveAllListeners(){
+        listeners.clear();
+    }
+
     public void Invoke(){
         for (IListener<T> listener : listeners){
             listener.Response();

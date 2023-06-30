@@ -150,40 +150,28 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
 
 
         try {
-            TimerManager.onFinish.AddListener(new IListener<Boolean>() {
-                @Override
-                public void Response() {
-
-                    Log.d("CustomAppCompActivityWrapper", "I heard that the timer is done");
+            Log.d("CustomAppCompActivityWrapper", "I heard that the timer is done");
 
 
 
-                    // notificationId is a unique int for each notification that you must define
-                    if (ActivityCompat.checkSelfPermission(instance, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                        Log.d("CustomAppCompatActivityWrapper","Could not display notification because the permission was not enabled");
-                        return;
-                    }
-                    notificationManager.notify(NOTIFICATION_ID, builder.build());
+            // notificationId is a unique int for each notification that you must define
+            if (ActivityCompat.checkSelfPermission(instance, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                Log.d("CustomAppCompatActivityWrapper","Could not display notification because the permission was not enabled");
+                return;
+            }
+            notificationManager.notify(NOTIFICATION_ID, builder.build());
 
-                    Log.d("CustomAppCompatActivityWrapper","A notification should have appeared");
+            Log.d("CustomAppCompatActivityWrapper","A notification should have appeared");
 
-                    Intent intent = new Intent(instance, TimerScreen.class);
-                    startActivity(intent);
-
-                }
-
-                @Override
-                public void Response(Boolean aBoolean) {
-
-                }
-            });
+            Intent intent = new Intent(instance, TimerScreen.class);
+            startActivity(intent);
         }catch (Exception ignored){
 
         }

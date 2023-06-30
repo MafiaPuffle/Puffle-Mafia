@@ -31,17 +31,55 @@ public class TimerManager {
     public static Event<Boolean> onFinish;
     public static Event<Time> onUpdate;
 
+    private static boolean eventsHaveBeenSetUp;
+
+    public static void SetUpEvents(){
+        currentTimer.onFinish.AddListener(new IListener<Boolean>() {
+            @Override
+            public void Response() {
+                Log.d("TimerManager", "Timer Done!");
+                CustomAppCompatActivityWrapper.instance.makeTimerNotification();
+                onFinish.Invoke();
+            }
+
+            @Override
+            public void Response(Boolean aBoolean) {
+
+            }
+        });
+
+//        currentTimer.onUpdate.AddListener(new IListener<Time>() {
+//            @Override
+//            public void Response() {
+//
+//            }
+//
+//            @Override
+//            public void Response(Time time) {
+//                Log.d("TimeManager",time.minute + ": " + time.second);
+//                onUpdate.Invoke(time);
+//            }
+//        });
+
+        eventsHaveBeenSetUp = true;
+    }
+
     public static void setCurrentTimer(Timer timer) {
         if (isTimerGoing == true) {
             if (currentTimer != null) {
                 currentTimer.Stop();
                 isTimerGoing = false;
-                //TODO remove all listeners of old timer
+                
+                currentTimer.onFinish.RemoveAllListeners();
+                currentTimer.onUpdate.RemoveAllListeners();
             }
         }
 
         currentTimer = timer;
         Log.d("TimerManager", "Set a new timer");
+//        if(!eventsHaveBeenSetUp){
+//            SetUpEvents();
+//        }
         currentTimer.onFinish.AddListener(new IListener<Boolean>() {
             @Override
             public void Response() {
@@ -131,5 +169,7 @@ public class TimerManager {
 
         onFinish = new Event<Boolean>();
         onUpdate = new Event<Time>();
+
+        eventsHaveBeenSetUp = false;
     }
 }
