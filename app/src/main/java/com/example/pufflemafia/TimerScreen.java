@@ -123,22 +123,22 @@ public class TimerScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
-                TimerManager.setCurrentTimer(new Timer(0,5));
+                TimerManager.setCurrentTimer(new Timer(0,30));
                 TimerManager.Play();
                 updateToggleButton(false);
             }
         });
 
-        fiveSecondsButton = findViewById(R.id.fiveSeconds);
-        fiveSecondsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SoundManager.playSfx("Click");
-                TimerManager.setCurrentTimer(new Timer(0,5));
-                TimerManager.Play();
-                updateToggleButton(false);
-            }
-        });
+//        fiveSecondsButton = findViewById(R.id.fiveSeconds);
+//        fiveSecondsButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SoundManager.playSfx("Click");
+//                TimerManager.setCurrentTimer(new Timer(0,5));
+//                TimerManager.Play();
+//                updateToggleButton(false);
+//            }
+//        });
     }
 
     private void configureResetButton(){

@@ -214,23 +214,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/fiveSeconds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/horizon"
-        android:text="5 Seconds"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/BackToMainMafiaScreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ThirtySeconds"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
         android:id="@+id/BackToMainMafiaScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
