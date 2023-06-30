@@ -8,9 +8,11 @@ import android.widget.ImageButton;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pufflemafia.adaptors.RecyclerRowMoverCallBack;
 import com.example.pufflemafia.adaptors.playerAdaptors.PlayerDayUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
@@ -115,6 +117,7 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
     }
 
     private void configureRecyclerViews(){
+
         allAlivePlayers = PlayerManager.getAllAlive();
         allDeadPlayers = PlayerManager.getAllDead();
 
@@ -124,6 +127,10 @@ public class MainMafiaPage extends CustomAppCompatActivityWrapper implements ILi
         allDeadLayoutManager = new LinearLayoutManager(this);
         allAlivePlayerDayUIAdaptor = new PlayerDayUIAdaptor(allAlivePlayers, this, PlayerManager.PlayerMangerListType.ALIVE);
         allDeadPlayerDayUIAdaptor = new PlayerDayUIAdaptor(allDeadPlayers, this, PlayerManager.PlayerMangerListType.DEAD);
+
+        ItemTouchHelper.Callback callback = new RecyclerRowMoverCallBack(allAlivePlayerDayUIAdaptor);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(allAliveRecycleView);
 
         allAliveRecycleView.setAdapter(allAlivePlayerDayUIAdaptor);
         allDeadRecycleView.setAdapter(allDeadPlayerDayUIAdaptor);

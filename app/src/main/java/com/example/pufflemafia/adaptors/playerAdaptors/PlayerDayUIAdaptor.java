@@ -17,22 +17,54 @@ import com.example.pufflemafia.ChangeCharacterScreen;
 import com.example.pufflemafia.ChangeNameScreen;
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.RoleDetails;
+import com.example.pufflemafia.adaptors.RecyclerRowMoverCallBack;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.Token;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
+import java.util.Collections;
 import java.util.Vector;
 
-public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.ViewHolder> {
+public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.ViewHolder> implements RecyclerRowMoverCallBack.RecyclerViewRowTouchHelperContract {
 
     private Vector<Player> localDataSet;
     private Context context;
     private PlayerManager.PlayerMangerListType listType;
 
+    @Override
+    public void onRowMoved(int from, int to) {
+        if(from < to)
+        {
+            for(int i=from; i<to; i++)
+            {
+                Collections.swap(localDataSet,i,i+1);
+            }
+        }
+        else
+        {
+            for(int i=from; i>to; i--)
+            {
+                Collections.swap(localDataSet,i,i-1);
+            }
+        }
+        notifyItemMoved(from,to);
+    }
+
+    @Override
+    public void onRowSelected(ViewHolder myViewHolder) {
+        myViewHolder.getMainLayout().setBackgroundResource(R.drawable.purple_rectangle);
+    }
+
+    @Override
+    public void onRowClear(ViewHolder myViewHolder) {
+        myViewHolder.getMainLayout().setBackgroundResource(R.drawable.grey_rectangle);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //private final TextView textView;
+        private final LinearLayout mainLayout;
         private final LinearLayout playerAndRoleLinearLayout;
         private final TextView playerNameView;
         private final TextView roleNameView;
@@ -48,6 +80,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
             // Define click listener for the ViewHolder's View
 
             //textView = (TextView) view.findViewById(R.id.textView);
+            mainLayout = (LinearLayout) view.findViewById(R.id.CharacterUIINBox);
             playerAndRoleLinearLayout = (LinearLayout) view.findViewById(R.id.CharacterUITextsBox);
             playerNameView = (TextView) view.findViewById(R.id.CharacterUIName);
             roleNameView = (TextView) view.findViewById(R.id.CharacterUIRole);
@@ -60,6 +93,9 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
             //return textView;
         //}
 
+        public LinearLayout getMainLayout(){
+            return mainLayout;
+        }
         public LinearLayout getPlayerAndRoleLinearLayout(){
             return playerAndRoleLinearLayout;
         }
