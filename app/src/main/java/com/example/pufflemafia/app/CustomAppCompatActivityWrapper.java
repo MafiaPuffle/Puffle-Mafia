@@ -50,7 +50,7 @@ public class CustomAppCompatActivityWrapper extends AppCompatActivity {
 
         screenLifeCycleWatcher = new ScreenLifeCycleWatcher();
         getLifecycle().addObserver(screenLifeCycleWatcher);
-        screenLifeCycleWatcher.Setup();
+        screenLifeCycleWatcher.Setup(getIntent());
 
         instance = this;
 

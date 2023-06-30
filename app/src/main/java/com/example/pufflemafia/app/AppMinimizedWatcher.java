@@ -1,5 +1,8 @@
 package com.example.pufflemafia.app;
 
+import android.content.Intent;
+import android.util.Log;
+
 import androidx.lifecycle.DefaultLifecycleObserver;
 
 import com.example.pufflemafia.app.game.SoundManager;
@@ -18,6 +21,8 @@ public class AppMinimizedWatcher implements DefaultLifecycleObserver {
 
     public static AppMinimizedWatcher instance;
 
+    public static Intent latestIntent;
+
     private AppMinimizedWatcher(){
         //
     }
@@ -33,6 +38,8 @@ public class AppMinimizedWatcher implements DefaultLifecycleObserver {
         if(allRegisteredScreens == null) Initialize();
         ScreenState state = ScreenState.ACTIVE;
         allRegisteredScreens.put(screenLifeCycleWatcher, state);
+        latestIntent = screenLifeCycleWatcher.intent;
+        Log.d("AppMinimizedWatcher","latestIntent: " + latestIntent);
     }
 
     public static void UnregisterScreen(ScreenLifeCycleWatcher screenLifeCycleWatcher){
