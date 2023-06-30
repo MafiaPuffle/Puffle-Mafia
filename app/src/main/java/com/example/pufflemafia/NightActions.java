@@ -88,12 +88,18 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
         configureToNextActionButton();
         configureBacktoLastActionButton();
         ActiveRolesManager.onLookingAtLastRoleForTheNight.AddListener(this);
+        configureNightActions();
+    }
+
+    private void configureNightActions(){
+        PlayerManager.onPlayerDataUpdated.AddListener(this);
     }
 
     private void Refresh(){
         currentActiveRoleAtNight = GameManager.getCurrentRoleActiveAtNight();
         configureAllRelevantPlayers();
         if(currentActiveRoleAtNight == null){
+            PlayerManager.onPlayerDataUpdated.RemoveListener(this);
             PlayerManager.sortAllAliveByTokens();
             finish();
             return;
@@ -246,12 +252,13 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
     @Override
     protected void onDestroy() {
         ActiveRolesManager.onLookingAtLastRoleForTheNight.RemoveListener(this);
+        PlayerManager.onPlayerDataUpdated.RemoveListener(this);
         super.onDestroy();
     }
 
     @Override
     public void Response() {
-
+        Refresh();
     }
 
     @Override
@@ -263,5 +270,6 @@ public class NightActions extends CustomAppCompatActivityWrapper implements ILis
         else {
             ToNextActionButton.setText("NEXT");
         }
+        Refresh();
     }
 }

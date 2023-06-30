@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pufflemafia.AddTokenScreen;
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.RoleDetails;
 import com.example.pufflemafia.app.data.Role;
@@ -76,6 +77,9 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
 
         public ImageView getThumbsUpOrDownImageView(){
             return thumbsUpOrDownImageView;
+        }
+        public LinearLayout getTokenHolder(){
+            return tokenHolder;
         }
 
         public void setThumbsUpOrDownImageView(int imageResourceId){
@@ -173,6 +177,23 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
                 PlayerManager.UseAbilityOnPlayer(GameManager.getCurrentRoleActiveAtNight(), player);
                 notifyDataSetChanged();
                 PlayerManager.LogSummary();
+            }
+        });
+
+        viewHolder.getRoleNameView().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(context, AddTokenScreen.class);
+                intent.putExtra("position", PlayerManager.getAllAlive().indexOf(player));
+                if(PlayerManager.getAllAlive().contains(player)){
+                    intent.putExtra("ListType", PlayerManager.PlayerMangerListType.ALIVE);
+                }
+                else {
+                    intent.putExtra("ListType", PlayerManager.PlayerMangerListType.DEAD);
+                }
+                context.startActivity(intent);
+                return false;
             }
         });
 
