@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 
 import com.example.pufflemafia.R;
 
+import java.util.Comparator;
+
 // Handles all data and logic for a single role
 public class Role {
     // Enums

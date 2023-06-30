@@ -20,10 +20,12 @@ import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.ViewToPointTo;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.data.SortByTeam;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.HelpPromptManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
+import java.util.Collections;
 import java.util.Vector;
 
 public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implements IListener<Boolean> {
@@ -58,6 +60,7 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper implem
         AppManager.gameSetup.addRole(DataManager.GetRole("Mafia"));
 
         allRoles = DataManager.GetAllRoles();
+        allRoles.sort(new SortByTeam());
         selectedRoles = AppManager.gameSetup.getChosenRoles();
 
         countTextView = findViewById(R.id.ChosenCharacterCountText);

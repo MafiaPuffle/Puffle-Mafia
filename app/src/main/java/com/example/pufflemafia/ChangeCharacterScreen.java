@@ -15,6 +15,7 @@ import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.IListener;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.data.SortByTeam;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
@@ -49,6 +50,7 @@ public class ChangeCharacterScreen extends CustomAppCompatActivityWrapper implem
         setContentView(R.layout.activity_change_character_screen);
 
         allRoles = DataManager.GetAllRoles();
+        allRoles.sort(new SortByTeam());
         intent = getIntent();
 
         newRole = new Role();
