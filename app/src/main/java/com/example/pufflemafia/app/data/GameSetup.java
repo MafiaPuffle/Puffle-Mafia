@@ -71,6 +71,10 @@ public class GameSetup {
         Role randomRole = DataManager.GetRandomRole();
 
         while(tryAddRole(randomRole) == false){
+            while (numberOfRolesChosen() > numberOfPlayers()){
+                chosenRoles.removeElementAt(chosenRoles.size() - 1);
+            }
+
             randomRole = DataManager.GetRandomRole();
             Log.d("GameSetup","Adding a random role: " + randomRole.getName());
         }
