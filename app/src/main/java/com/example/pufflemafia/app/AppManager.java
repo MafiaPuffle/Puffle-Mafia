@@ -1,80 +1,33 @@
 package com.example.pufflemafia.app;
 
 import com.example.pufflemafia.app.data.DataManager;
-import com.example.pufflemafia.app.data.GameSetup;
-import com.example.pufflemafia.app.data.TimerManager;
 import com.example.pufflemafia.app.game.GameManager;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.ResolvingManager;
+import com.example.pufflemafia.app.game.states.Accusations;
+import com.example.pufflemafia.app.game.states.Day;
+import com.example.pufflemafia.app.game.states.Night;
+import com.example.pufflemafia.app.game.states.NightSummary;
+import com.example.pufflemafia.app.game.states.Setup;
+import com.example.pufflemafia.app.game.states.Trial;
+import com.example.pufflemafia.app.game.states.Voting;
 
 public class AppManager {
-    public enum AppState {MaimMenu, RoleSelect, Game}
-    private static AppState currentAppState;
-    public static AppState getCurrentAppState(){return currentAppState;}
 
-    public static GameSetup gameSetup;
+    public static void Initialize(){
+        GameManager.Initialize();
+        Setup.Initialize();
+        Day.Initialize();
+        Accusations.Initialize();
+        Trial.Initialize();
+        Voting.Initialize();
+        Night.Initialize();
+        NightSummary.Initialize();
 
-    public static GameManager gameManager;
-    public static DataManager dataManager;
-    public static TimerManager timerManager;
+        PlayerManager.Initialize();
+        ResolvingManager.Initialize();
+        DataManager.Initialize();
 
-    // Used for sending warning messages for debugging
-    private static Logger logger;
-
-    public AppManager(){
-        currentAppState = AppState.MaimMenu;
-        gameSetup = new GameSetup();
-
-        gameManager = new GameManager();
-        dataManager = new DataManager();
-        timerManager = new TimerManager();
-
-        logger = Logger.getLogger(AppManager.class.getName());
-        // Set Logger level()
-        logger.setLevel(Level.WARNING);
-
-        onMainMenu();
+        GameManager.setCurrentGameState(GameManager.gameState.SETUP);
     }
-
-    public static void setup(){
-        currentAppState = AppState.MaimMenu;
-        gameSetup = new GameSetup();
-
-        gameManager = new GameManager();
-        dataManager = new DataManager();
-        timerManager = new TimerManager();
-
-        logger = Logger.getLogger(AppManager.class.getName());
-        // Set Logger level()
-        logger.setLevel(Level.WARNING);
-
-        onMainMenu();
-    }
-
-
-    public static void onMainMenu(){
-        currentAppState = AppState.MaimMenu;
-    }
-
-    public static void onGoToRoleSelect(){
-        currentAppState = AppState.RoleSelect;
-
-        // role select logic
-    }
-
-    public static void onStartGame(){
-        if(!gameSetup.checkIfIsValid()){
-            logger.warning("Attempted to start a game with an INVALID GameSetup class\n" +
-                                "Returning to RoleSelectState");
-
-            onGoToRoleSelect();
-            return;
-        }
-
-        currentAppState = AppState.Game;
-
-        GameManager.StartNewGame(gameSetup);
-    }
-
 }
