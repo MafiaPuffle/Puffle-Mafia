@@ -19,19 +19,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.Vector;
 
 public class DataManager {
 
-    private static Dictionary<String, Effect> allEffects;
-    private static Dictionary<String, Condition> allConditions;
-    private static Dictionary<String, Result> allResults;
-    private static Dictionary<String, Action> allActions;
-    private static Dictionary<String, Role> allRoles;
+    private static Map<String, Effect> allEffects;
+    private static Map<String, Condition> allConditions;
+    private static Map<String, Result> allResults;
+    private static Map<String, Action> allActions;
+    private static Map<String, Role> allRoles;
 
     public static void Initialize(){
         setUpAllEffects();
@@ -43,7 +45,7 @@ public class DataManager {
     }
 
     private static void setUpAllEffects(){
-        allEffects = new Hashtable<String, Effect>();
+        allEffects = new HashMap<String, Effect>();
         
         Effect Saved = new Effect("Saved");
         allEffects.put("Saved",Saved);
@@ -64,7 +66,7 @@ public class DataManager {
         allEffects.put("Bomb",Bomb);
     }
     private static void setUpAllConditions(){
-        allConditions = new Hashtable<String, Condition>();
+        allConditions = new HashMap<String, Condition>();
         Condition isNotBlocked = new Condition_DoInitiatorsNOTHaveEffect(getEffect("Blocked"));
         allConditions.put("isNotBlocked",isNotBlocked);
 
@@ -75,7 +77,7 @@ public class DataManager {
         allConditions.put("checkForBreadEffect",checkForBreadEffect);
     }
     private static void setUpAllResults(){
-        allResults = new Hashtable<String, Result>();
+        allResults = new HashMap<String, Result>();
 
         Result mafiaKill = new Result_KillTargets(Result.KillType.MAFIA);
         allResults.put("mafiaKill",mafiaKill);
@@ -106,7 +108,7 @@ public class DataManager {
 
     }
     private static void setUpAllActions(){
-        allActions = new Hashtable<String, Action>();
+        allActions = new HashMap<String, Action>();
 
         Vector<Condition> murderConditions = new Vector<Condition>();
         murderConditions.add(getCondition("isNotBlocked"));
@@ -279,7 +281,7 @@ public class DataManager {
         allActions.put("goOnAlert",goOnAlert);
     }
     private static void setUpAllRoles(){
-        allRoles = new Hashtable<String, Role>();
+        allRoles = new HashMap<String, Role>();
 
         Vector<Action> mafiaActions = new Vector<Action>();
         mafiaActions.add(getAction("murder"));
@@ -457,19 +459,23 @@ public class DataManager {
         return allRoles.get(key);
     }
     public static Role getRandomRole(){
-        // Convert values of the Dictionary to an ArrayList
-        ArrayList<Role> valuesList = Collections.list(allRoles.elements());
+        Vector<Role> allRoles = getAllRoles();
 
         // Generate a random index
         Random random = new Random();
-        int randomIndex = random.nextInt(valuesList.size());
+        int randomIndex = random.nextInt(allRoles.size());
 
-        // Retrieve the random value from the ArrayList
-        return valuesList.get(randomIndex);
+        // Retrieve the random role from the allRoles vector
+        return allRoles.get(randomIndex);
     }
     public static Vector<Role> getAllRoles(){
-        //TODO
-        return new Vector<Role>();
+        Vector<Role> output = new Vector<Role>();
+
+        for (Map.Entry<String,Role> entry: allRoles.entrySet()) {
+            output.add(entry.getValue());
+        }
+
+        return output;
     }
 
 }

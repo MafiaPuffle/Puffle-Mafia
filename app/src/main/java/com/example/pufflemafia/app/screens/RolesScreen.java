@@ -1,15 +1,15 @@
 package com.example.pufflemafia.app.screens;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.pufflemafia.R;
-import com.example.pufflemafia.adaptors.roleAdaptors.AllRolesRoleUIAdaptor;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
+import com.example.pufflemafia.app.adapters.AllRolesRoleUIAdaptor;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.SoundManager;
@@ -34,7 +34,7 @@ public class RolesScreen extends CustomAppCompatActivityWrapper {
     }
 
     private void configureRecyclerView(){
-        allRoles = DataManager.GetAllRoles();
+        allRoles = DataManager.getAllRoles();
 
         allRolesRecyclerView = findViewById(R.id.AllRolesRecyclerView);
         allRolesLayoutManager = new GridLayoutManager(this, 5);
