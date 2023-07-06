@@ -2,15 +2,10 @@ package com.example.pufflemafia.app.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.PopupWindow;
 import android.widget.ToggleButton;
-
-import androidx.appcompat.content.res.AppCompatResources;
 
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.AppManager;
@@ -112,7 +107,7 @@ public class StartScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
-                startActivity(new Intent(StartScreen.this, QRCode.class));
+                startActivity(new Intent(StartScreen.this, QRCodeScreen.class));
             }
         });
     }

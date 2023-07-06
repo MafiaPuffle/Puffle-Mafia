@@ -27,12 +27,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".app.screens.QRCode"
-            android:label="QR Code">
+            android:name=".app.screens.QRCodeScreen"
+            android:label="QR Code Screen">
         </activity>
         <activity
             android:name=".app.screens.RolesScreen"
             android:label="Roles Screen">
+        </activity>
+        <activity
+            android:name=".app.screens.EnterNamesScreen"
+            android:label="Enter Names Screen">
         </activity>
     </application>
 

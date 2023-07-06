@@ -14,6 +14,10 @@ public class VoidEvent {
         listeners.remove(toRemove);
     }
 
+    public void RemoveAllListeners(){
+        listeners.clear();
+    }
+
     public void Invoke() {
         for (IVoidEventListener listener : listeners) {
             listener.Response();
