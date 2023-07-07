@@ -21,6 +21,7 @@ public class PlayerManager {
     public static Event2<Player, Effect> OnPlayerReceiveEffect;
     public static Event2<Player, Role> OnPlayerChangeRole;
     public static Event<Player> OnAddPlayer;
+    public static Event<Player> OnRemovePlayer;
     public static Event<Player> OnRevivePlayer;
     public static Event<Action> OnActionPrepped;
     private static Vector<Player> allAlivePlayers;
@@ -53,6 +54,18 @@ public class PlayerManager {
 
         OnAddPlayer.Invoke(player);
     }
+    public static void removePlayerFromGame(Player player){
+        allAlivePlayers.remove(player);
+        allDeadPlayers.remove(player);
+
+        OnRemovePlayer.Invoke(player);
+    }
+
+    public static void removeAllPlayersFromGame(){
+        allAlivePlayers.clear();
+        allDeadPlayers.clear();
+    }
+
     public static void revivePlayer(Player player){
         if(!allDeadPlayers.contains(player)) return;
 
@@ -144,6 +157,7 @@ public class PlayerManager {
         OnPlayerReceiveEffect = new Event2<Player,Effect>();
         OnPlayerChangeRole = new Event2<Player,Role>();
         OnAddPlayer = new Event<Player>();
+        OnRemovePlayer = new Event<Player>();
         OnRevivePlayer = new Event<Player>();
         OnKillPlayer = new Event2<Player, Result.KillType>();
         OnPlayerDataUpdated = new VoidEvent();

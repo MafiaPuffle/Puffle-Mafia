@@ -187,5 +187,5 @@ public class ChangeRoleScreen extends CustomAppCompatActivityWrapper {
         adaptor.onSelectRole.RemoveListener(refreshListener);
         super.onDestroy();
     }
-    
+
 }

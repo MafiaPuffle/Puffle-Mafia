@@ -109,6 +109,7 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
         PlayerManager.OnKillPlayer.RemoveListener(playerKillTypeListener);
         PlayerManager.OnRevivePlayer.RemoveListener(playerReviveListener);
         PlayerManager.OnPlayerDataUpdated.RemoveListener(refreshListener);
+        PlayerManager.removeAllPlayersFromGame();
 //        PlayerManager.onPlayerDataUpdated.RemoveListener(refreshListener);
 //        GameManager.onStartDay.AddListener(refreshListener);
 //        TimerManager.Clear();
@@ -243,15 +244,5 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
             }
         });
     }
-
-//    @Override
-//    public void Response() {
-//        Refresh();
-//    }
-//
-//    @Override
-//    public void Response(Boolean aBoolean) {
-//        Refresh();
-//    }
 
 }

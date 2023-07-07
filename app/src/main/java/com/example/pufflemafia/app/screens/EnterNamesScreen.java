@@ -107,7 +107,7 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
             public void onClick(View v) {
                 if(namesList.size() > 0){
                     SoundManager.playSfx("Click");
-                    namesAdapter.onDataChanged.RemoveListener(refreshListener);
+//                    namesAdapter.onDataChanged.RemoveListener(refreshListener);
                     startActivity(new Intent(EnterNamesScreen.this, SelectRolesScreen.class));
                 }
             }
@@ -122,7 +122,7 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
                 if(namesList.size() > 0){
                     Vector<String> names = new Vector<String>(namesList);
                     SoundManager.playSfx("Click");
-                    namesAdapter.onDataChanged.RemoveListener(refreshListener);
+//                    namesAdapter.onDataChanged.RemoveListener(refreshListener);
                     Setup.SetUpGame();
                     startActivity(new Intent(EnterNamesScreen.this, DayScreen.class));
                 }

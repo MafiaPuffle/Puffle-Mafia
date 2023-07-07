@@ -67,7 +67,7 @@ public class Setup {
     }
 
     public static void Start(){
-
+        PlayerManager.removeAllPlayersFromGame();
     }
 
     public static void SetUpGame(){
