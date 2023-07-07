@@ -22,9 +22,12 @@ import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
+import java.util.UUID;
 import java.util.Vector;
 
 public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
+    private String name;
+    private UUID ID;
     private Player player;
     private Vector<Player> allPlayersToEdit;
 
@@ -34,7 +37,7 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
 
     private PlayerEditorScreen instance;
 
-    private IVoidEventListener refreshListener;
+    public IVoidEventListener refreshListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,8 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
         ConfigureUseAbilityButton();
         ConfigureEditEffectsButton();
         ConfigureBackButton();
+
+        RefreshUI();
     }
 
     private void setUpListeners(){
@@ -72,18 +77,18 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
     private void getDataFromIntent(){
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("playerName");
-        Log.d("Custom_PlayerEditorScreen","player name is " + name);
-        player = PlayerManager.getPlayerByName(name);
+        ID = UUID.fromString(intent.getStringExtra("playerID"));
+        Log.d("Custom_PlayerEditorScreen","player ID is " + ID);
+        player = PlayerManager.getPlayerByID(ID);
         Log.d("Custom_PlayerEditorScreen","player is " + player);
 
         allPlayersToEdit = new Vector<Player>();
         allPlayersToEdit.add(player);
-
-        RefreshUI();
     }
 
     private void RefreshUI(){
+        player = PlayerManager.getPlayerByID(ID);
+
         ImageButton reviveOrKillButton = findViewById(R.id.reviveOrKillButton);
         TextView reviveOrKillTextView = findViewById(R.id.reviveOrKillTextView);
         ImageButton currentRoleImageButton = findViewById(R.id.currentRoleButton);
@@ -103,6 +108,8 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
 
         currentRoleImageButton.setImageResource(0);
         currentRoleImageButton.setBackgroundResource(player.getRole().getImageResource());
+
+        adaptor.notifyDataSetChanged();
     }
 
     private void ConfigureRecyclerViews(){
@@ -144,7 +151,7 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
                 Intent intent = new Intent(instance, ChangeNameScreen.class);
-                intent.putExtra("playerName", player.getName());
+                intent.putExtra("playerID", player.getID().toString());
                 startActivity(intent);
             }
         });

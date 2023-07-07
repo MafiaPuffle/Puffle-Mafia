@@ -31,10 +31,12 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
     private Vector<String> namesList;
     private NamesAdapter namesAdapter;
     private TextView numberOfNamesTextView;
+    private IVoidEventListener refreshListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("Custom_VoidEvent","EnterNamesScreen onCreate() was called");
         setContentView(R.layout.activity_start);
         makeKeyboardHidealbe(findViewById(R.id.rootConstraintLayout));
 
@@ -45,13 +47,15 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
 
         namesList = Setup.getNames();
         namesAdapter = new NamesAdapter();
-        namesAdapter.onDataChanged.AddListener(new IVoidEventListener() {
+
+        refreshListener = new IVoidEventListener() {
             @Override
             public void Response() {
                 namesAdapter.notifyDataSetChanged();
                 Refresh();
             }
-        });
+        };
+        namesAdapter.onDataChanged.AddListener(refreshListener);
         namesGridView.setAdapter(namesAdapter);
 
         // Configure Buttons
@@ -107,6 +111,7 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
             public void onClick(View v) {
                 if(namesList.size() > 0){
                     SoundManager.playSfx("Click");
+                    namesAdapter.onDataChanged.RemoveListener(refreshListener);
                     startActivity(new Intent(EnterNamesScreen.this, CharacterSelectScreen.class));
                 }
             }
@@ -121,6 +126,7 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
                 if(namesList.size() > 0){
                     Vector<String> names = new Vector<String>(namesList);
                     SoundManager.playSfx("Click");
+                    namesAdapter.onDataChanged.RemoveListener(refreshListener);
                     Setup.SetUpGame();
                     startActivity(new Intent(EnterNamesScreen.this, DayScreen.class));
                 }
@@ -158,6 +164,7 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
 
         public NamesAdapter(){
             super();
+            Log.d("Custom_VoidEvent","EnterNamesScreen NamesAdapter was created");
             onDataChanged = new VoidEvent();
         }
 
@@ -206,7 +213,8 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
 
     @Override
     protected void onDestroy() {
-        namesAdapter.onDataChanged.RemoveAllListeners();
+        Log.d("Custom_VoidEvent","EnterNamesScreen onDestroy() was called");
+        namesAdapter.onDataChanged.RemoveListener(refreshListener);
         super.onDestroy();
     }
 }

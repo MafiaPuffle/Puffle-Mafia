@@ -60,27 +60,6 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
         Button button = findViewById(R.id.helpButton);
         button.setBackgroundTintList(blueColorStateList);
 
-        configurePlayerManager();
-
-        configureRecyclerViews();
-
-        // TODO add sorting players by tokens
-//        PlayerManager.sortAllAliveByTokens();
-//        PlayerManager.sortAllDeadByTokens();
-
-        // Configure Button
-        configureDayBacktoChooseYourCharactersButton();
-        configureStartTheNightButton();
-        configureTimerButton();
-
-        // Initialize buttons
-        Handler h = new Handler();
-        h.postDelayed(new Runnable() {
-            public void run() {
-                configureHelpButton();
-            }
-        }, 10);
-
         refreshListener = new IVoidEventListener() {
             @Override
             public void Response() {
@@ -101,6 +80,27 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
                 Refresh();
             }
         };
+
+        configurePlayerManager();
+
+        configureRecyclerViews();
+
+        // TODO add sorting players by tokens
+//        PlayerManager.sortAllAliveByTokens();
+//        PlayerManager.sortAllDeadByTokens();
+
+        // Configure Button
+        configureDayBacktoChooseYourCharactersButton();
+        configureStartTheNightButton();
+        configureTimerButton();
+
+        // Initialize buttons
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            public void run() {
+                configureHelpButton();
+            }
+        }, 10);
     }
 
 
@@ -108,6 +108,7 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
     protected void onDestroy() {
         PlayerManager.OnKillPlayer.RemoveListener(playerKillTypeListener);
         PlayerManager.OnRevivePlayer.RemoveListener(playerReviveListener);
+        PlayerManager.OnPlayerDataUpdated.RemoveListener(refreshListener);
 //        PlayerManager.onPlayerDataUpdated.RemoveListener(refreshListener);
 //        GameManager.onStartDay.AddListener(refreshListener);
 //        TimerManager.Clear();

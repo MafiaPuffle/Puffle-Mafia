@@ -10,6 +10,7 @@ import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.events.VoidEvent;
 
 import java.util.Objects;
+import java.util.UUID;
 import java.util.Vector;
 
 // Handles all data and logic for all player in the game
@@ -82,29 +83,29 @@ public class PlayerManager {
         allDeadPlayers.add(player);
     }
 
-    public static Player getPlayerByName(String name){
+    public static Player getPlayerByID(UUID ID){
         for (Player player: allAlivePlayers) {
-            if(Objects.equals(player.getName(), name)) return player;
+            if(Objects.equals(player.getID(), ID)) return player;
         }
 
         for (Player player: allDeadPlayers) {
-            if(Objects.equals(player.getName(), name)) return player;
+            if(Objects.equals(player.getID(), ID)) return player;
         }
 
         return null;
     }
 
     public static VoidEvent OnPlayerDataUpdated;
-    public static void updatePlayerByName(String name, Player newPlayer){
+    public static void updatePlayerByID(UUID ID, Player newPlayer){
         for (Player player : allAlivePlayers) {
-            if(Objects.equals(player.getName(), name)){
+            if(Objects.equals(player.getID(), ID)){
                 player = newPlayer;
                 OnPlayerDataUpdated.Invoke();
             }
         }
 
         for (Player player : allDeadPlayers) {
-            if(Objects.equals(player.getName(), name)){
+            if(Objects.equals(player.getID(), ID)){
                 player = newPlayer;
                 OnPlayerDataUpdated.Invoke();
             }

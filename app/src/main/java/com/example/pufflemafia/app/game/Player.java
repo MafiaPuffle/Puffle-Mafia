@@ -4,6 +4,7 @@ import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.data.effects.Effect;
 import com.example.pufflemafia.app.data.Role;
 
+import java.util.UUID;
 import java.util.Vector;
 
 // Handles all data and logic for a single player
@@ -19,6 +20,16 @@ public class Player {
     public void setCurrentState(PlayerState currentState) {
         this.currentState = currentState;
         OnStateChange.Invoke(currentState);
+    }
+
+    private UUID ID;
+
+    public UUID getID() {
+        return ID;
+    }
+
+    public void regenerateID() {
+        this.ID = UUID.randomUUID();
     }
 
     // Properties
@@ -105,6 +116,7 @@ public class Player {
         this.effects = new Vector<Effect>();
 
         changeRole(role);
+        regenerateID();
     }
 
     public void printSummary(){

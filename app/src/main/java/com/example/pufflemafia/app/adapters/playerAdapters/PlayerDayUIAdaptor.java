@@ -216,7 +216,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
                 if(!isInteractable) return;
                 SoundManager.playSfx("Click");
                 Intent intent = new Intent(context, PlayerEditorScreen.class);
-                intent.putExtra("playerName", player.getName());
+                intent.putExtra("playerID", player.getID().toString());
                 context.startActivity(intent);
             }
         });

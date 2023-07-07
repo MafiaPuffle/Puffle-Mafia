@@ -16,12 +16,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class ChangeNameScreen extends CustomAppCompatActivityWrapper {
 
     private Intent intent;
     private Player player;
-    private String name;
+    private UUID ID;
     private int position;
 //    private PlayerManager.PlayerMangerListType listType;
     private TextInputEditText editText;
@@ -43,7 +44,7 @@ public class ChangeNameScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
-                editText.setHint(name);
+                editText.setHint(player.getName());
             }
         });
 
@@ -60,7 +61,7 @@ public class ChangeNameScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
-                editText.setHint(name);
+                editText.setHint(player.getName());
             }
         });
 
@@ -73,8 +74,8 @@ public class ChangeNameScreen extends CustomAppCompatActivityWrapper {
     private void getDataFromIntent(){
         intent = getIntent();
 
-        name = intent.getStringExtra("playerName");
-        player = PlayerManager.getPlayerByName(name);
+        ID = UUID.fromString(intent.getStringExtra("playerID"));
+        player = PlayerManager.getPlayerByID(ID);
 //        position = intent.getIntExtra("position",0);
     }
 
@@ -105,7 +106,7 @@ public class ChangeNameScreen extends CustomAppCompatActivityWrapper {
         if(!newName.isEmpty()){
 //            PlayerManager.EditPlayerName(listType, position, newName);
             player.setName(newName);
-            PlayerManager.updatePlayerByName(name, player);
+            PlayerManager.updatePlayerByID(ID, player);
         }
         finish();
     }
