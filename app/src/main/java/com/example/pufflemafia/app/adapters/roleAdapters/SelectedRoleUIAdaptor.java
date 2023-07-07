@@ -1,8 +1,7 @@
-package com.example.pufflemafia.app.adapters;
+package com.example.pufflemafia.app.adapters.roleAdapters;
 
 import android.content.Context;
 
-import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.states.Setup;
 

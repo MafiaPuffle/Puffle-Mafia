@@ -13,6 +13,8 @@ import java.util.Vector;
 // Handles all data and logic for all player in the game
 public class PlayerManager {
 
+    public enum PlayerManagerListType {ALIVE, DEAD}
+
     public static Event2<Player, Effect> OnPlayerReceiveEffect;
     public static Event2<Player, Role> OnPlayerChangeRole;
     public static Event<Player> OnAddPlayer;

@@ -1,10 +1,8 @@
-package com.example.pufflemafia.app.adapters;
+package com.example.pufflemafia.app.adapters.roleAdapters;
 
 import android.content.Context;
-import android.content.Intent;
 
 import com.example.pufflemafia.app.data.Role;
-import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 

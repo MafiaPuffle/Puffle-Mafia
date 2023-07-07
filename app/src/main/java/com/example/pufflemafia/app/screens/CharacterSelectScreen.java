@@ -1,6 +1,5 @@
 package com.example.pufflemafia.app.screens;
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,18 +12,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.R;
-import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
-import com.example.pufflemafia.app.adapters.PossibleRoleUIAdaptor;
-import com.example.pufflemafia.app.adapters.SelectedRoleUIAdaptor;
+import com.example.pufflemafia.app.adapters.roleAdapters.PossibleRoleUIAdaptor;
+import com.example.pufflemafia.app.adapters.roleAdapters.SelectedRoleUIAdaptor;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.events.IVoidEventListener;
-import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.SoundManager;
 import com.example.pufflemafia.app.game.states.Setup;
 
-import java.util.Set;
 import java.util.Vector;
 
 public class CharacterSelectScreen extends CustomAppCompatActivityWrapper {
