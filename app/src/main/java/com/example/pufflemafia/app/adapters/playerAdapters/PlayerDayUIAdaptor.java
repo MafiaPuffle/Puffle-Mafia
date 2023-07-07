@@ -3,6 +3,7 @@ package com.example.pufflemafia.app.adapters.playerAdapters;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -18,6 +19,7 @@ import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
+import com.example.pufflemafia.app.screens.PlayerEditorScreen;
 
 import java.util.Collections;
 import java.util.Vector;
@@ -27,6 +29,10 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
     private Vector<Player> localDataSet;
     private Context context;
     private PlayerManager.PlayerManagerListType listType;
+    private boolean isInteractable;
+    public void setInteractable(boolean interactable) {
+        isInteractable = interactable;
+    }
 
     @Override
     public void onRowMoved(int from, int to) {
@@ -64,7 +70,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         private final TextView playerNameView;
         private final TextView roleNameView;
         private final ImageButton roleButton;
-        private final ImageButton killOrReviveButton;
+//        private final ImageButton killOrReviveButton;
 
         private final LinearLayout tokenHolder;
 
@@ -80,7 +86,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
             playerNameView = (TextView) view.findViewById(R.id.CharacterUIName);
             roleNameView = (TextView) view.findViewById(R.id.CharacterUIRole);
             roleButton = (ImageButton) view.findViewById(R.id.RoleUIButton);
-            killOrReviveButton = (ImageButton) view.findViewById(R.id.KillOrReviveButton);
+//            killOrReviveButton = (ImageButton) view.findViewById(R.id.KillOrReviveButton);
             tokenHolder = (LinearLayout) view.findViewById(R.id.TokenUIBox);
         }
 
@@ -110,9 +116,6 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
             return roleButton;
         }
 
-        public ImageButton getKillOrReviveButton(){
-            return killOrReviveButton;
-        }
 
         public LinearLayout getTokenHolder(){
             return tokenHolder;
@@ -146,6 +149,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         localDataSet = dataSet;
         this.context = context;
         this.listType = listType;
+        isInteractable = true;
     }
 
     @NonNull
@@ -163,17 +167,6 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         Role role = player.getRole();
 
 
-        viewHolder.getPlayerAndRoleLinearLayout().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                SoundManager.playSfx("Click");
-//                Intent intent = new Intent(context, ChangeNameScreen.class);
-//                intent.putExtra("position", viewHolder.getAdapterPosition());
-//                intent.putExtra("name",player.name);
-//                intent.putExtra("ListType", listType);
-//                context.startActivity(intent);
-            }
-        });
 
         viewHolder.getPlayerNameView().setText(player.getName());
         viewHolder.getRoleNameView().setText(player.getRole().getName());
@@ -199,71 +192,32 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
 
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
         viewHolder.getRoleButton().setImageResource(0);
-        viewHolder.getRoleButton().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SoundManager.playSfx("Click");
-//                Intent intent = new Intent(context, ChangeCharacterScreen.class);
-//                intent.putExtra("currentRoleName", role.getName());
-//                intent.putExtra("currentRoleImageResource", role.getImageResource());
-//                intent.putExtra("currentRoleDescription", role.getDescription());
-//                intent.putExtra("currentRoleWinCondition", role.getWinCondition());
-//                intent.putExtra("currentRoleTeam", role.getTeam());
-//                intent.putExtra("currentRoleAlliance", role.getAlliance());
-//                intent.putExtra("position", viewHolder.getAdapterPosition());
-//                intent.putExtra("ListType", listType);
-//                context.startActivity(intent);
-            }
-        });
-        viewHolder.getRoleButton().setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                SoundManager.playSfx("Click");
-//                Intent intent = new Intent(context, RoleDetails.class);
-//                intent.putExtra("name", role.getName());
-//                intent.putExtra("imageResourceId", role.getImageResource());
-//                intent.putExtra("description", role.getDescription());
-//                intent.putExtra("winCondition", role.getWinCondition());
-//                intent.putExtra("team", role.getTeam());
-//                intent.putExtra("alliance", role.getAlliance());
-//                context.startActivity(intent);
-                return false;
-            }
-        });
-
-//        if(listType == PlayerManager.PlayerMangerListType.ALIVE){
-//            viewHolder.getKillOrReviveButton().setBackgroundResource(R.drawable.dead_button);
-//        }
-//        else {
-//            viewHolder.getKillOrReviveButton().setBackgroundResource(R.drawable.alive_button);
-//        }
-        viewHolder.getKillOrReviveButton().setImageResource(0);
-        viewHolder.getKillOrReviveButton().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SoundManager.playSfx("Click");
-//                if(listType == PlayerManager.PlayerMangerListType.ALIVE){
-//                    PlayerManager.KillPlayer(player);
-//                }
-//                else {
-//                    PlayerManager.RevivePlayer(player);
-//                }
-//                notifyDataSetChanged();
-            }
-        });
 
         viewHolder.removeAllTokens();
 //        for(Token token: player.getAllTokensOnPlayer()){
 //            viewHolder.addToken(token.getImageResource());
 //        }
-        viewHolder.getTokenHolder().setOnClickListener(new View.OnClickListener() {
+
+//        viewHolder.getMainLayout().setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                SoundManager.playSfx("Click");
+//                Intent intent = new Intent(context, PlayerEditorScreen.class);
+//                intent.putExtra("playerName", player.getName());
+//                context.startActivity(intent);
+//
+//                return false;
+//            }
+//        });
+
+        viewHolder.getMainLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                SoundManager.playSfx("Click");
-//                Intent intent = new Intent(context, AddTokenScreen.class);
-//                intent.putExtra("position", viewHolder.getAdapterPosition());
-//                intent.putExtra("ListType", listType);
-//                context.startActivity(intent);
+                if(!isInteractable) return;
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(context, PlayerEditorScreen.class);
+                intent.putExtra("playerName", player.getName());
+                context.startActivity(intent);
             }
         });
     }

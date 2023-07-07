@@ -46,6 +46,10 @@
             android:name=".app.screens.DayScreen"
             android:label="Day Screen">
         </activity>
+        <activity
+            android:name=".app.screens.PlayerEditorScreen"
+            android:label="Player Editor Screen">
+        </activity>
     </application>
 
 </manifest>

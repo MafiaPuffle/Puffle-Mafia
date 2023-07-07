@@ -8,6 +8,7 @@ import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.events.Event2;
 import com.example.pufflemafia.app.events.IEventListener;
 
+import java.util.Objects;
 import java.util.Vector;
 
 // Handles all data and logic for all player in the game
@@ -76,6 +77,18 @@ public class PlayerManager {
     public static void killPlayer_NOEVENT(Player player, Result.KillType killType){
         allAlivePlayers.remove(player);
         allDeadPlayers.add(player);
+    }
+
+    public static Player getPlayerByName(String name){
+        for (Player player: allAlivePlayers) {
+            if(Objects.equals(player.getName(), name)) return player;
+        }
+
+        for (Player player: allDeadPlayers) {
+            if(Objects.equals(player.getName(), name)) return player;
+        }
+
+        return null;
     }
 
     public static void prepAction(Player player, Action action, Vector<Player> chosenTargets){
