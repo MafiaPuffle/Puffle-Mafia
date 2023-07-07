@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.adapters.playerAdapters.PlayerDayUIAdaptor;
+import com.example.pufflemafia.app.events.IVoidEventListener;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
@@ -31,10 +32,18 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
 
+    private PlayerEditorScreen instance;
+
+    private IVoidEventListener refreshListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_editor_ui);
+
+        instance = this;
+
+        setUpListeners();
 
         getDataFromIntent();
 
@@ -47,6 +56,17 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
         ConfigureUseAbilityButton();
         ConfigureEditEffectsButton();
         ConfigureBackButton();
+    }
+
+    private void setUpListeners(){
+        refreshListener = new IVoidEventListener() {
+            @Override
+            public void Response() {
+                RefreshUI();
+            }
+        };
+
+        PlayerManager.OnPlayerDataUpdated.AddListener(refreshListener);
     }
 
     private void getDataFromIntent(){
@@ -123,6 +143,9 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
+                Intent intent = new Intent(instance, ChangeNameScreen.class);
+                intent.putExtra("playerName", player.getName());
+                startActivity(intent);
             }
         });
     }
@@ -156,5 +179,11 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        PlayerManager.OnPlayerDataUpdated.RemoveListener(refreshListener);
+        super.onDestroy();
     }
 }

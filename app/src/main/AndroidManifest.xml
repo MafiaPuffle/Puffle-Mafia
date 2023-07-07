@@ -50,6 +50,10 @@
             android:name=".app.screens.PlayerEditorScreen"
             android:label="Player Editor Screen">
         </activity>
+        <activity
+            android:name=".app.screens.ChangeNameScreen"
+            android:label="Change Name Screen">
+        </activity>
     </application>
 
 </manifest>

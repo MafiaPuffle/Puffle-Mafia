@@ -7,6 +7,7 @@ import com.example.pufflemafia.app.data.effects.Effect;
 import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.events.Event2;
 import com.example.pufflemafia.app.events.IEventListener;
+import com.example.pufflemafia.app.events.VoidEvent;
 
 import java.util.Objects;
 import java.util.Vector;
@@ -93,6 +94,23 @@ public class PlayerManager {
         return null;
     }
 
+    public static VoidEvent OnPlayerDataUpdated;
+    public static void updatePlayerByName(String name, Player newPlayer){
+        for (Player player : allAlivePlayers) {
+            if(Objects.equals(player.getName(), name)){
+                player = newPlayer;
+                OnPlayerDataUpdated.Invoke();
+            }
+        }
+
+        for (Player player : allDeadPlayers) {
+            if(Objects.equals(player.getName(), name)){
+                player = newPlayer;
+                OnPlayerDataUpdated.Invoke();
+            }
+        }
+    }
+
     public static void prepAction(Player player, Action action, Vector<Player> chosenTargets){
         Action actionToPrep = new Action();
 
@@ -127,6 +145,7 @@ public class PlayerManager {
         OnAddPlayer = new Event<Player>();
         OnRevivePlayer = new Event<Player>();
         OnKillPlayer = new Event2<Player, Result.KillType>();
+        OnPlayerDataUpdated = new VoidEvent();
         OnActionPrepped = new Event<Action>();
     }
 

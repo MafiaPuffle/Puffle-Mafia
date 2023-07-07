@@ -138,6 +138,7 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
     private void configurePlayerManager() {
         PlayerManager.OnKillPlayer.AddListener(playerKillTypeListener);
         PlayerManager.OnRevivePlayer.AddListener(playerReviveListener);
+        PlayerManager.OnPlayerDataUpdated.AddListener(refreshListener);
 //        PlayerManager.onPlayerDataUpdated.AddListener(refreshListener);
 //        GameManager.onStartDay.AddListener(refreshListener);
     }
