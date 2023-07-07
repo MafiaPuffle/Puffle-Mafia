@@ -107,8 +107,7 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
             public void onClick(View v) {
                 if(namesList.size() > 0){
                     SoundManager.playSfx("Click");
-                    Setup.SetUpGame();
-//                    startActivity(new Intent(EnterNamesScreen.this, CharacterSelectScreen.class));
+                    startActivity(new Intent(EnterNamesScreen.this, CharacterSelectScreen.class));
                 }
             }
         });

@@ -38,6 +38,10 @@
             android:name=".app.screens.EnterNamesScreen"
             android:label="Enter Names Screen">
         </activity>
+        <activity
+            android:name=".app.screens.CharacterSelectScreen"
+            android:label="Character Select Screen">
+        </activity>
     </application>
 
 </manifest>
