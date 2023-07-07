@@ -17,49 +17,44 @@
         android:padding="5dp">
 
         <ImageButton
-            android:id="@+id/KillOrReviveButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/alive_button"
-            android:contentDescription="Kill or Revive Button" />
-
-        <ImageButton
             android:id="@+id/RoleUIButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/alien_puffle"
-            android:contentDescription="Alien" />
+            android:clickable="false"
+            android:contentDescription="Alien"
+            android:focusable="false" />
 
         <LinearLayout
             android:id="@+id/CharacterUITextsBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/grey_rectangle"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true">
+            android:clickable="false"
+            android:focusable="false"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/CharacterUIRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="13dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:fontFamily="@font/horizon"
-                android:text="ROLE" />
+                android:text="ROLE"
+                android:textColor="@color/white"
+                android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/CharacterUIName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="13dp"
                 android:clickable="false"
                 android:focusable="false"
+                android:fontFamily="@font/horizon"
                 android:text="NAME"
-                android:fontFamily="@font/horizon"/>
+                android:textColor="@color/white"
+                android:textSize="13dp" />
 
         </LinearLayout>
 
@@ -68,8 +63,8 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="?attr/listChoiceBackgroundIndicator"
-            android:clickable="true"
-            android:focusable="true"
+            android:clickable="false"
+            android:focusable="false"
             android:orientation="horizontal"
             android:visibility="visible" />
 

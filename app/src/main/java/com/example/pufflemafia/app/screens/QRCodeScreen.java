@@ -8,7 +8,7 @@ import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.game.SoundManager;
 
-public class QRCode extends CustomAppCompatActivityWrapper {
+public class QRCodeScreen extends CustomAppCompatActivityWrapper {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

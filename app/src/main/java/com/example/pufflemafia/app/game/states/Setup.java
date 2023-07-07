@@ -42,6 +42,10 @@ public class Setup {
         roles.remove(role);
         OnRemoveRole.Invoke();
     }
+    public static void removeAllRoles(){
+        roles.clear();
+        OnRemoveRole.Invoke();
+    }
 
     public static void Initialize(){
         names = new Vector<String>();

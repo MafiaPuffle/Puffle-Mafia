@@ -7,11 +7,15 @@ import com.example.pufflemafia.app.data.effects.Effect;
 import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.events.Event2;
 import com.example.pufflemafia.app.events.IEventListener;
+import com.example.pufflemafia.app.events.VoidEvent;
 
+import java.util.Objects;
 import java.util.Vector;
 
 // Handles all data and logic for all player in the game
 public class PlayerManager {
+
+    public enum PlayerManagerListType {ALIVE, DEAD}
 
     public static Event2<Player, Effect> OnPlayerReceiveEffect;
     public static Event2<Player, Role> OnPlayerChangeRole;
@@ -53,6 +57,7 @@ public class PlayerManager {
 
         allAlivePlayers.add(player);
         allDeadPlayers.remove(player);
+        player.setCurrentState(Player.PlayerState.ALIVE);
         OnRevivePlayer.Invoke(player);
     }
 
@@ -69,11 +74,41 @@ public class PlayerManager {
 
         allAlivePlayers.remove(player);
         allDeadPlayers.add(player);
+        player.setCurrentState(Player.PlayerState.DEAD);
         OnKillPlayer.Invoke(player,killType);
     }
     public static void killPlayer_NOEVENT(Player player, Result.KillType killType){
         allAlivePlayers.remove(player);
         allDeadPlayers.add(player);
+    }
+
+    public static Player getPlayerByName(String name){
+        for (Player player: allAlivePlayers) {
+            if(Objects.equals(player.getName(), name)) return player;
+        }
+
+        for (Player player: allDeadPlayers) {
+            if(Objects.equals(player.getName(), name)) return player;
+        }
+
+        return null;
+    }
+
+    public static VoidEvent OnPlayerDataUpdated;
+    public static void updatePlayerByName(String name, Player newPlayer){
+        for (Player player : allAlivePlayers) {
+            if(Objects.equals(player.getName(), name)){
+                player = newPlayer;
+                OnPlayerDataUpdated.Invoke();
+            }
+        }
+
+        for (Player player : allDeadPlayers) {
+            if(Objects.equals(player.getName(), name)){
+                player = newPlayer;
+                OnPlayerDataUpdated.Invoke();
+            }
+        }
     }
 
     public static void prepAction(Player player, Action action, Vector<Player> chosenTargets){
@@ -110,6 +145,7 @@ public class PlayerManager {
         OnAddPlayer = new Event<Player>();
         OnRevivePlayer = new Event<Player>();
         OnKillPlayer = new Event2<Player, Result.KillType>();
+        OnPlayerDataUpdated = new VoidEvent();
         OnActionPrepped = new Event<Action>();
     }
 
