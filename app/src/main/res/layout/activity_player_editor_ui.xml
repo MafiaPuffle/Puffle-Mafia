@@ -10,6 +10,35 @@
     tools:context=".app.screens.PlayerEditorScreen">
 
 
+    <LinearLayout
+        android:id="@+id/TitleBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_rectangle"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:fontFamily="@font/horizon"
+            android:gravity="center"
+            android:text="Edit Player"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FEFAFD"
+            android:textSize="25sp" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/CurrentPlayerRecyclerView"
         android:layout_width="match_parent"
@@ -20,7 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleBox"
         app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
@@ -43,13 +72,13 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/reviveOrKillButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/alive_button" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/reviveOrKillTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -80,7 +109,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/currentRoleButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/alien_puffle" />

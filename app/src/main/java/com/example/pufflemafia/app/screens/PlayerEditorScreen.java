@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
@@ -57,6 +59,30 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
 
         allPlayersToEdit = new Vector<Player>();
         allPlayersToEdit.add(player);
+
+        RefreshUI();
+    }
+
+    private void RefreshUI(){
+        ImageButton reviveOrKillButton = findViewById(R.id.reviveOrKillButton);
+        TextView reviveOrKillTextView = findViewById(R.id.reviveOrKillTextView);
+        ImageButton currentRoleImageButton = findViewById(R.id.currentRoleButton);
+
+        if(player.getCurrentState() == Player.PlayerState.ALIVE){
+            reviveOrKillButton.setImageResource(0);
+            reviveOrKillButton.setBackgroundResource(R.drawable.dead_button);
+
+            reviveOrKillTextView.setText("KILL");
+        }
+        else{
+            reviveOrKillButton.setImageResource(0);
+            reviveOrKillButton.setBackgroundResource(R.drawable.alive_button);
+
+            reviveOrKillTextView.setText("REVIVE");
+        }
+
+        currentRoleImageButton.setImageResource(0);
+        currentRoleImageButton.setBackgroundResource(player.getRole().getImageResource());
     }
 
     private void ConfigureRecyclerViews(){

@@ -9,6 +9,18 @@ import java.util.Vector;
 // Handles all data and logic for a single player
 public class Player {
 
+    public enum PlayerState {ALIVE, DEAD}
+
+    public Event<PlayerState> OnStateChange;
+    private PlayerState currentState;
+    public PlayerState getCurrentState() {
+        return currentState;
+    }
+    public void setCurrentState(PlayerState currentState) {
+        this.currentState = currentState;
+        OnStateChange.Invoke(currentState);
+    }
+
     // Properties
     private String name;
     public String getName() {
@@ -84,9 +96,11 @@ public class Player {
     }
 
     public Player(String name, Role role){
+        OnStateChange = new Event<PlayerState>();
         OnChangeRole = new Event<Role>();
         OnReceiveEffect = new Event<Effect>();
 
+        setCurrentState(PlayerState.ALIVE);
         setName(name);
         this.effects = new Vector<Effect>();
 

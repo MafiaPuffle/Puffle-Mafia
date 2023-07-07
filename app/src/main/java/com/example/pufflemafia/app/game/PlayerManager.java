@@ -56,6 +56,7 @@ public class PlayerManager {
 
         allAlivePlayers.add(player);
         allDeadPlayers.remove(player);
+        player.setCurrentState(Player.PlayerState.ALIVE);
         OnRevivePlayer.Invoke(player);
     }
 
@@ -72,6 +73,7 @@ public class PlayerManager {
 
         allAlivePlayers.remove(player);
         allDeadPlayers.add(player);
+        player.setCurrentState(Player.PlayerState.DEAD);
         OnKillPlayer.Invoke(player,killType);
     }
     public static void killPlayer_NOEVENT(Player player, Result.KillType killType){
