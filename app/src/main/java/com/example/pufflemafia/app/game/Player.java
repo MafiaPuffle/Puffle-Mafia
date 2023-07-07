@@ -1,159 +1,105 @@
 package com.example.pufflemafia.app.game;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-
-import com.example.pufflemafia.app.data.DataManager;
+import com.example.pufflemafia.app.events.Event;
+import com.example.pufflemafia.app.data.effects.Effect;
 import com.example.pufflemafia.app.data.Role;
-import com.example.pufflemafia.app.data.Token;
 
-import java.util.Comparator;
 import java.util.Vector;
-import java.util.function.Predicate;
 
 // Handles all data and logic for a single player
 public class Player {
 
     // Properties
-    public String name;
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     private Role role;
-    public Role getRole() { return role; }
-    public void setRole (Role role) {
-        this.role.Copy(role);
+    public Event<Role> OnChangeRole;
+    public Role getRole() {
+        return role;
     }
-    public void setRole (String name) {
-        this.role.Copy(DataManager.GetRole(name));
-    }
-
-    // the tokens applied to this player
-    private Vector<Token> tokensOnPlayer;
-    public Token getTokenOnPlayer(int index) {
-        if(index < tokensOnPlayer.size())
-            return tokensOnPlayer.get(index);
-        else return null;
-    }
-    public Vector<Token> getAllTokensOnPlayer() { return tokensOnPlayer; }
-    public int getNumberOfTokensOnPlayerOfType(Token.TokenTypes tokenType){
-        int numOfTokens = 0;
-        for (Token token: tokensOnPlayer) {
-            if(token.getType() == tokenType)
-                numOfTokens++;
-        }
-        return numOfTokens;
-    }
-    public void removeAllTokensOnPlayer(){tokensOnPlayer.clear();}
-    public void setTokenAt(int index, Token token){
-        tokensOnPlayer.removeElementAt(index);
-        tokensOnPlayer.insertElementAt(token, index);
-    }
-    public boolean AddTokenOnToPlayer(Token token){
-        if(DoesPlayerAlreadyHaveToken(token) == false){
-            this.tokensOnPlayer.add(token);
+    public boolean hasRoleWithName(String name){
+        if(role.getName() == name){
             return true;
         }
         return false;
     }
-    public boolean DoesPlayerAlreadyHaveToken(Token token){
-        for (Token t: this.tokensOnPlayer) {
-            if(token.getName() == t.getName()) return true;
+    public void changeRole(Role role) {
+        OnChangeRole.Invoke(role);
+        this.role = role;
+        for (Effect effect: effects) {
+            if(effect.isStartingEffect())
+            {
+                effects.remove(effect);
+            }
+        }
+        for (Effect effect: getRole().getStartingEffects()) {
+            giveEffect(effect);
+        }
+    }
+
+    private Vector<Effect> effects;
+    public Event<Effect> OnReceiveEffect;
+    public Vector<Effect> getEffects(){
+        return effects;
+    }
+    public Effect getEffectWithName(String name){
+        for (Effect effect: effects) {
+            if(effect.getName() == name){
+                return effect;
+            }
+        }
+        return null;
+    }
+    public Vector<Effect> getEffectsWithName(String name){
+        Vector<Effect> output = new Vector<Effect>();
+
+        for (Effect effect: effects) {
+            if(effect.getName() == name){
+               output.add(effect);
+            }
+        }
+
+        return output;
+    }
+    public void giveEffect(Effect effect){
+        OnReceiveEffect.Invoke(effect);
+        effects.add(effect);
+    }
+    public boolean hasEffect(Effect effect){
+        if(effects.contains(effect)) return true;
+        else return false;
+    }
+    public boolean hasEffectWithName(String name){
+        for (Effect effect: effects) {
+            if(effect.getName() == name) return true;
         }
         return false;
     }
-    public void RemoveTokenAt(int tokenIndex){
-        if(tokenIndex >= tokensOnPlayer.size()) return;
-        tokensOnPlayer.removeElementAt(tokenIndex);
-    }
-    public void RemoveToken(Token token){
-        tokensOnPlayer.remove(token);
-    }
 
-    public void UpdateTokens(Vector<Token> newTokens){
-        tokensOnPlayer.clear();
-        tokensOnPlayer = newTokens;
-    }
-    public void clearAlTokensOfType(Token.TokenTypes typeToCLear){
-        Predicate<Token> isTypeToClear = token -> (token.getType() == typeToCLear);
+    public Player(String name, Role role){
+        OnChangeRole = new Event<Role>();
+        OnReceiveEffect = new Event<Effect>();
 
-        tokensOnPlayer.removeIf(isTypeToClear);
+        setName(name);
+        this.effects = new Vector<Effect>();
+
+        changeRole(role);
     }
 
-
-    // the token this player applies to others
-    public Token getToken(){
-        return this.role.getPower().getToken();
-    }
-
-    // Fills a player with "blank" values
-    public Player(){
-        this.name = "name";
-        this.role = new Role();
-        this.tokensOnPlayer = new Vector<Token>();
-    }
-
-    public void LogSummary(){
-        Log.d("Player", this.name + "\n Role: " + this.getRole().getName());
-    }
-
-    public void PrintSummary(){
-        System.out.print("Player: " + this.name + "\n");
-        this.role.PrintSummary("    ");
-        System.out.print("  Tokens applied:\n");
-        if(this.tokensOnPlayer.size() == 0){
-            System.out.print("        NONE\n");
+    public void printSummary(){
+        System.out.print(name + " is " + role.getName() + "\n  and has the following effects: ");
+        for (Effect effect: effects) {
+           effect.PrintSummary();
         }
-        for (Token token: this.tokensOnPlayer) {
-            token.PrintSummary("        ");
-        }
+        System.out.print("\n");
     }
-
-    public void PrintSummary(String spacer){
-        System.out.print(spacer + "Player: " + this.name + "\n");
-        this.role.PrintSummary(spacer + "    ");
-        System.out.print(spacer + "  Tokens applied:\n");
-        if(this.tokensOnPlayer.size() == 0){
-            System.out.print(spacer + "        NONE\n");
-        }
-        for (Token token: this.tokensOnPlayer) {
-            token.PrintSummary(spacer + "        ");
-        }
-    }
-
-    public void PrintDetailed(){
-        System.out.print("Player\n");
-        System.out.print("  Name: " + this.name + "\n");
-        this.role.PrintDetailed("    ");
-        System.out.print("  Tokens applied:\n");
-        if(this.tokensOnPlayer.size() == 0){
-            System.out.print("        NONE\n");
-        }
-        for (Token token: this.tokensOnPlayer) {
-            token.PrintDetailed("        ");
-        }
-    }
-
-    public void PrintDetailed(String spacer){
-        System.out.print(spacer + "Player\n");
-        System.out.print(spacer + "  Name: " + this.name + "\n");
-        this.role.PrintDetailed(spacer + "    ");
-        System.out.print(spacer + "  Tokens applied:\n");
-        if(this.tokensOnPlayer.size() == 0){
-            System.out.print(spacer + "        NONE\n");
-        }
-        for (Token token: this.tokensOnPlayer) {
-            token.PrintDetailed(spacer + "        ");
-        }
-    }
-
 }
 
-// Helper class used to sort players by their role priority
-class SortPlayerByPriority implements Comparator<Player> {
-    public int compare(@NonNull Player a, @NonNull Player b)
-    {
-        if(a.getRole().getPriority() < b.getRole().getPriority()) return -1;
-        else if (a.getRole().getPriority() == b.getRole().getPriority()) return 0;
-        else return 1;
-    }
-}
+

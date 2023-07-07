@@ -16,62 +16,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PuffleMafia"
         tools:targetApi="31">
+
         <activity
-<<<<<<< Updated upstream
-=======
-            android:name=".PlayerEditorUI"
-            android:exported="false" />
-        <activity
->>>>>>> Stashed changes
-            android:name=".TimerScreen"
-            android:exported="false" />
-        <activity
-            android:name=".QRCode"
-            android:exported="false" />
-        <activity
-            android:name=".Instructions"
-            android:exported="false" />
-        <activity
-            android:name=".ChangeNameScreen"
-            android:exported="false" />
-        <activity
-            android:name=".AddTokenScreen"
-            android:exported="false" />
-        <activity
-            android:name=".ChangeCharacterScreen"
-            android:exported="false" />
-        <activity
-            android:name=".Test"
-            android:exported="false" />
-        <activity
-            android:name=".NightActions"
-            android:exported="false" />
-        <activity
-            android:name=".MainMafiaPage"
-            android:exported="false" />
-        <activity
-            android:name=".CharacterSelectScreen"
-            android:exported="false" />
-        <activity
-            android:name=".Start"
-            android:exported="false" />
-        <activity
-            android:name=".RolesScreen"
-            android:exported="false" />
-        <activity
-            android:name=".RoleDetails"
-            android:exported="false" />
-        <activity
-            android:name=".TokenDetails"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".app.screens.StartScreen"
+            android:label="Start Screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".app.screens.QRCodeScreen"
+            android:label="QR Code Screen">
+        </activity>
+        <activity
+            android:name=".app.screens.RolesScreen"
+            android:label="Roles Screen">
+        </activity>
+        <activity
+            android:name=".app.screens.EnterNamesScreen"
+            android:label="Enter Names Screen">
+        </activity>
+        <activity
+            android:name=".app.screens.CharacterSelectScreen"
+            android:label="Character Select Screen">
+        </activity>
+        <activity
+            android:name=".app.screens.DayScreen"
+            android:label="Day Screen">
         </activity>
     </application>
 
