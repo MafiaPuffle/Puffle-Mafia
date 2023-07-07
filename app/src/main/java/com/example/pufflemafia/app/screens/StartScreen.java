@@ -10,6 +10,7 @@ import android.widget.ToggleButton;
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
+import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
 public class StartScreen extends CustomAppCompatActivityWrapper {
@@ -85,7 +86,8 @@ public class StartScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
-//                startActivity(new Intent(StartScreen.this, Start.class));
+                GameManager.setCurrentGameState(GameManager.gameState.SETUP);
+                startActivity(new Intent(StartScreen.this, EnterNamesScreen.class));
             }
         });
     }

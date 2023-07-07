@@ -19,14 +19,16 @@ import com.example.pufflemafia.app.events.IVoidEventListener;
 import com.example.pufflemafia.app.events.VoidEvent;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.SoundManager;
+import com.example.pufflemafia.app.game.states.Setup;
 
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.Vector;
 
 public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
     private EditText nameEditText;
     private GridView namesGridView;
-    private ArrayList<String> namesList;
+    private Vector<String> namesList;
     private NamesAdapter namesAdapter;
     private TextView numberOfNamesTextView;
 
@@ -41,20 +43,16 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
         namesGridView = findViewById(R.id.namesGridView);
         numberOfNamesTextView = findViewById(R.id.NumberofNames);
 
-        namesList = new ArrayList<>();
+        namesList = Setup.getNames();
         namesAdapter = new NamesAdapter();
         namesAdapter.onDataChanged.AddListener(new IVoidEventListener() {
             @Override
             public void Response() {
+                namesAdapter.notifyDataSetChanged();
                 Refresh();
             }
         });
         namesGridView.setAdapter(namesAdapter);
-
-        AppManager.gameSetup = new GameSetup();
-
-        int numberOfNames = namesList.size();
-        numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
 
         // Configure Buttons
         configureBackToMainMenu();
@@ -85,7 +83,13 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
     private void Refresh(){
         Button chooseCharactersButton = findViewById(R.id.ChooseCharactersButton);
         Button randomCharactersButton = findViewById(R.id.RandomCharactersButton);
-        if(namesList.size() > 0){
+
+        namesList = Setup.getNames();
+
+        int numberOfNames = namesList.size();
+        numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
+
+        if(numberOfNames > 0){
             chooseCharactersButton.setVisibility(View.VISIBLE);
             randomCharactersButton.setVisibility(View.VISIBLE);
         }
@@ -103,7 +107,8 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
             public void onClick(View v) {
                 if(namesList.size() > 0){
                     SoundManager.playSfx("Click");
-                    startActivity(new Intent(EnterNamesScreen.this, CharacterSelectScreen.class));
+                    Setup.SetUpGame();
+//                    startActivity(new Intent(EnterNamesScreen.this, CharacterSelectScreen.class));
                 }
             }
         });
@@ -117,9 +122,8 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
                 if(namesList.size() > 0){
                     Vector<String> names = new Vector<String>(namesList);
                     SoundManager.playSfx("Click");
-                    AppManager.gameSetup.SetUpRandomGame(names);
-                    GameManager.StartNewGame(AppManager.gameSetup);
-                    startActivity(new Intent(EnterNamesScreen.this, MainMafiaPage.class));
+                    Setup.SetUpGame();
+//                    startActivity(new Intent(EnterNamesScreen.this, MainMafiaPage.class));
                 }
             }
         });
@@ -141,13 +145,10 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
     private void addName() {
         String name = nameEditText.getText().toString().trim();
         if (!name.isEmpty()) {
-            namesList.add(name);
-            AppManager.gameSetup.names.add(name);
+            Setup.addName(name);
             nameEditText.setText(""); // Clear the input field
-            namesAdapter.notifyDataSetChanged();
+            namesAdapter.onDataChanged.Invoke();
 
-            int numberOfNames = namesList.size();
-            numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
             Refresh();
         }
     }
@@ -194,13 +195,9 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
                 @Override
                 public void onClick(View v) {
                     SoundManager.playSfx("Click");
-                    AppManager.gameSetup.names.remove(position);
-                    namesList.remove(position);
-                    namesAdapter.notifyDataSetChanged();
+                    Setup.removeName(name);
                     onDataChanged.Invoke();
 
-                    int numberOfNames = namesList.size();
-                    numberOfNamesTextView.setText("Names Entered: " + numberOfNames);
                 }
             });
 
