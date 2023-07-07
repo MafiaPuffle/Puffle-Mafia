@@ -3,7 +3,6 @@ package com.example.pufflemafia.app.adapters.playerAdapters;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -19,7 +18,7 @@ import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
-import com.example.pufflemafia.app.screens.PlayerEditorScreen;
+import com.example.pufflemafia.app.screens.EditPlayerScreen;
 
 import java.util.Collections;
 import java.util.Vector;
@@ -215,7 +214,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
             public void onClick(View view) {
                 if(!isInteractable) return;
                 SoundManager.playSfx("Click");
-                Intent intent = new Intent(context, PlayerEditorScreen.class);
+                Intent intent = new Intent(context, EditPlayerScreen.class);
                 intent.putExtra("playerID", player.getID().toString());
                 context.startActivity(intent);
             }

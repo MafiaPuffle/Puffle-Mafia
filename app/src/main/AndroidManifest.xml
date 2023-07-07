@@ -31,7 +31,7 @@
             android:label="QR Code Screen">
         </activity>
         <activity
-            android:name=".app.screens.RolesScreen"
+            android:name=".app.screens.ShowAllRolesScreen"
             android:label="Roles Screen">
         </activity>
         <activity
@@ -39,7 +39,7 @@
             android:label="Enter Names Screen">
         </activity>
         <activity
-            android:name=".app.screens.CharacterSelectScreen"
+            android:name=".app.screens.SelectRolesScreen"
             android:label="Character Select Screen">
         </activity>
         <activity
@@ -47,12 +47,16 @@
             android:label="Day Screen">
         </activity>
         <activity
-            android:name=".app.screens.PlayerEditorScreen"
+            android:name=".app.screens.EditPlayerScreen"
             android:label="Player Editor Screen">
         </activity>
         <activity
             android:name=".app.screens.ChangeNameScreen"
             android:label="Change Name Screen">
+        </activity>
+        <activity
+            android:name=".app.screens.ChangeRoleScreen"
+            android:label="Change Role Screen">
         </activity>
     </application>
 

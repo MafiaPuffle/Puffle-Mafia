@@ -13,16 +13,12 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.pufflemafia.R;
-import com.example.pufflemafia.app.AppManager;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.events.IVoidEventListener;
 import com.example.pufflemafia.app.events.VoidEvent;
-import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.SoundManager;
 import com.example.pufflemafia.app.game.states.Setup;
 
-import java.util.ArrayList;
-import java.util.Set;
 import java.util.Vector;
 
 public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
@@ -112,7 +108,7 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
                 if(namesList.size() > 0){
                     SoundManager.playSfx("Click");
                     namesAdapter.onDataChanged.RemoveListener(refreshListener);
-                    startActivity(new Intent(EnterNamesScreen.this, CharacterSelectScreen.class));
+                    startActivity(new Intent(EnterNamesScreen.this, SelectRolesScreen.class));
                 }
             }
         });

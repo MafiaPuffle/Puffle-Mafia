@@ -17,7 +17,7 @@ import com.example.pufflemafia.app.game.SoundManager;
 import java.util.Vector;
 
 
-public class RolesScreen extends CustomAppCompatActivityWrapper {
+public class ShowAllRolesScreen extends CustomAppCompatActivityWrapper {
 
     private Vector<Role> allRoles;
     private RecyclerView allRolesRecyclerView;

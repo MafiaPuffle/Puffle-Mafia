@@ -24,7 +24,7 @@ import com.example.pufflemafia.app.game.states.Setup;
 
 import java.util.Vector;
 
-public class CharacterSelectScreen extends CustomAppCompatActivityWrapper {
+public class SelectRolesScreen extends CustomAppCompatActivityWrapper {
 
     private int buttonCount = 0;
     private TextView countTextView;
@@ -190,7 +190,7 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper {
 //                    startActivity(new Intent(CharacterSelectScreen.this, MainMafiaPage.class));
 //                }
                 Setup.SetUpGame();
-                startActivity(new Intent(CharacterSelectScreen.this, DayScreen.class));
+                startActivity(new Intent(SelectRolesScreen.this, DayScreen.class));
                 // TODO go to day screen
             }
         });

@@ -98,7 +98,7 @@ public class StartScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
-                startActivity(new Intent(StartScreen.this, RolesScreen.class));
+                startActivity(new Intent(StartScreen.this, ShowAllRolesScreen.class));
             }
         });
     }

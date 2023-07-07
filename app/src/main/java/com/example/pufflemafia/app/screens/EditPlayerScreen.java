@@ -1,10 +1,8 @@
 package com.example.pufflemafia.app.screens;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +23,7 @@ import com.example.pufflemafia.app.game.SoundManager;
 import java.util.UUID;
 import java.util.Vector;
 
-public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
+public class EditPlayerScreen extends CustomAppCompatActivityWrapper {
     private String name;
     private UUID ID;
     private Player player;
@@ -35,7 +33,7 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
 
-    private PlayerEditorScreen instance;
+    private EditPlayerScreen instance;
 
     public IVoidEventListener refreshListener;
 
@@ -140,6 +138,9 @@ public class PlayerEditorScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
+                Intent intent = new Intent(instance, ChangeRoleScreen.class);
+                intent.putExtra("playerID", player.getID().toString());
+                startActivity(intent);
             }
         });
     }

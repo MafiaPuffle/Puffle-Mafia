@@ -7,7 +7,7 @@
     android:background="@drawable/green_rectangle"
     android:orientation="vertical"
     android:padding="5dp"
-    tools:context=".app.screens.PlayerEditorScreen">
+    tools:context=".app.screens.EditPlayerScreen">
 
 
     <LinearLayout
