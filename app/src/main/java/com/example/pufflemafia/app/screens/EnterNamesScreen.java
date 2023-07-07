@@ -122,7 +122,7 @@ public class EnterNamesScreen extends CustomAppCompatActivityWrapper {
                     Vector<String> names = new Vector<String>(namesList);
                     SoundManager.playSfx("Click");
                     Setup.SetUpGame();
-//                    startActivity(new Intent(EnterNamesScreen.this, MainMafiaPage.class));
+                    startActivity(new Intent(EnterNamesScreen.this, DayScreen.class));
                 }
             }
         });

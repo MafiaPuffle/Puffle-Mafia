@@ -42,6 +42,10 @@
             android:name=".app.screens.CharacterSelectScreen"
             android:label="Character Select Screen">
         </activity>
+        <activity
+            android:name=".app.screens.DayScreen"
+            android:label="Day Screen">
+        </activity>
     </application>
 
 </manifest>

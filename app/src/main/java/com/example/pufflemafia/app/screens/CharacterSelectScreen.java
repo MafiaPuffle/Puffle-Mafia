@@ -1,5 +1,6 @@
 package com.example.pufflemafia.app.screens;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -189,6 +190,7 @@ public class CharacterSelectScreen extends CustomAppCompatActivityWrapper {
 //                    startActivity(new Intent(CharacterSelectScreen.this, MainMafiaPage.class));
 //                }
                 Setup.SetUpGame();
+                startActivity(new Intent(CharacterSelectScreen.this, DayScreen.class));
                 // TODO go to day screen
             }
         });
