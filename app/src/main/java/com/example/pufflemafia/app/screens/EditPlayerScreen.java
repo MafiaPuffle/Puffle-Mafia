@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.adapters.playerAdapters.PlayerDayUIAdaptor;
+import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.events.IVoidEventListener;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
@@ -50,7 +51,7 @@ public class EditPlayerScreen extends CustomAppCompatActivityWrapper {
 
         ConfigureRecyclerViews();
 
-        ConfigureReviveButton();
+        ConfigureKillReviveButton();
         ConfigureChangeRoleButton();
         ConfigureChangeNameButton();
         ConfigureUseAbilityButton();
@@ -122,12 +123,34 @@ public class EditPlayerScreen extends CustomAppCompatActivityWrapper {
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    private void ConfigureReviveButton(){
-        LinearLayout reviveButton = findViewById(R.id.ReviveButton);
-        reviveButton.setOnClickListener(new View.OnClickListener() {
+    private void ConfigureKillReviveButton(){
+        LinearLayout killReviveButton = findViewById(R.id.ReviveButton);
+        TextView reviveOrKillTextView = findViewById(R.id.reviveOrKillTextView);
+        ImageButton reviveOrKillButton = findViewById(R.id.reviveOrKillButton);
+
+        if(player.getCurrentState() == Player.PlayerState.ALIVE){
+            reviveOrKillTextView.setText("KILL");
+            reviveOrKillButton.setImageResource(0);
+            reviveOrKillButton.setBackgroundResource(R.drawable.dead_button);
+        }
+        else {
+            reviveOrKillTextView.setText("REVIVE");
+            reviveOrKillButton.setImageResource(0);
+            reviveOrKillButton.setBackgroundResource(R.drawable.alive_button);
+        }
+
+        killReviveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
+                if(player.getCurrentState() == Player.PlayerState.ALIVE){
+                    PlayerManager.killPlayer(player, Result.KillType.VOTE);
+                }
+                else {
+                    PlayerManager.revivePlayer(player);
+                }
+
+                finish();
             }
         });
     }
