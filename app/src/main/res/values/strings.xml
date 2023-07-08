@@ -45,4 +45,5 @@
     </string>
     <string name="element_text">text</string>
     <string name="title_activity_instructions">Instructions</string>
+    <string name="title_activity_options_screen">OptionsScreen</string>
 </resources>

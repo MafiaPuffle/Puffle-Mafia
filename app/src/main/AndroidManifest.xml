@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -15,48 +15,52 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PuffleMafia"
-        tools:targetApi="31">
-
+        tools:targetApi="31" >
         <activity
             android:name=".app.screens.StartScreen"
-            android:label="Start Screen"
-            android:exported="true">
+            android:exported="true"
+            android:label="Start Screen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".app.screens.QRCodeScreen"
-            android:label="QR Code Screen">
+            android:label="QR Code Screen" >
         </activity>
         <activity
             android:name=".app.screens.ShowAllRolesScreen"
-            android:label="Roles Screen">
+            android:label="Roles Screen" >
         </activity>
         <activity
             android:name=".app.screens.EnterNamesScreen"
-            android:label="Enter Names Screen">
+            android:label="Enter Names Screen" >
         </activity>
         <activity
             android:name=".app.screens.SelectRolesScreen"
-            android:label="Character Select Screen">
+            android:label="Character Select Screen" >
         </activity>
         <activity
             android:name=".app.screens.DayScreen"
-            android:label="Day Screen">
+            android:label="Day Screen" >
         </activity>
         <activity
             android:name=".app.screens.EditPlayerScreen"
-            android:label="Player Editor Screen">
+            android:label="Player Editor Screen" >
         </activity>
         <activity
             android:name=".app.screens.ChangeNameScreen"
-            android:label="Change Name Screen">
+            android:label="Change Name Screen" >
         </activity>
         <activity
             android:name=".app.screens.ChangeRoleScreen"
-            android:label="Change Role Screen">
+            android:label="Change Role Screen" >
+        </activity>
+        <activity
+            android:name=".app.screens.OptionsScreen"
+            android:label="Options Screen" >
         </activity>
     </application>
 

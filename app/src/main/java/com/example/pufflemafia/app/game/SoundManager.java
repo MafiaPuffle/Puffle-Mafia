@@ -24,6 +24,16 @@ public class SoundManager {
     private static float musicVolume;
     private static float sfxVolume;
 
+    public static boolean isMusicMuted(){
+        if(musicVolume == 0) return true;
+        else return false;
+    }
+
+    public static boolean isSFXMuted(){
+        if(sfxVolume == 0) return true;
+        else return false;
+    }
+
     private static SoundManager instance;
 
     private SoundManager(){
