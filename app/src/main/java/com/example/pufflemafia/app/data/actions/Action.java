@@ -1,5 +1,6 @@
 package com.example.pufflemafia.app.data.actions;
 
+import com.example.pufflemafia.app.data.prompts.Prompt;
 import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.data.actions.conditions.Condition;
 import com.example.pufflemafia.app.data.actions.result.Result;
@@ -18,6 +19,14 @@ public class Action {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    private Prompt prompt;
+    public Prompt getPrompt() {
+        return prompt;
+    }
+    public void setPrompt(Prompt prompt) {
+        this.prompt = prompt;
     }
 
     private boolean hasBeenResolved;

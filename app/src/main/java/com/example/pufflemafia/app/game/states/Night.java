@@ -1,7 +1,17 @@
 package com.example.pufflemafia.app.game.states;
 
+import android.util.Log;
+
+import com.example.pufflemafia.app.data.prompts.Prompt;
 import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.game.Player;
+import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.PromptsManager;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.Vector;
 
 public class Night {
 
@@ -17,6 +27,6 @@ public class Night {
     }
 
     public static void Start(){
-
+        PromptsManager.Start(PlayerManager.getAllAlivePlayers());
     }
 }

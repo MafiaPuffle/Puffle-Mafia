@@ -15,6 +15,8 @@ import com.example.pufflemafia.app.game.states.Voting;
 public class AppManager {
 
     public static void Initialize(){
+        PlayerManager.Initialize();
+
         GameManager.Initialize();
         Setup.Initialize();
         Day.Initialize();
@@ -24,7 +26,7 @@ public class AppManager {
         Night.Initialize();
         NightSummary.Initialize();
 
-        PlayerManager.Initialize();
+
         ResolvingManager.Initialize();
         DataManager.Initialize();
 

@@ -14,6 +14,7 @@ import com.example.pufflemafia.app.data.effects.Effect_Alert;
 import com.example.pufflemafia.app.data.effects.Effect_Baker;
 import com.example.pufflemafia.app.data.effects.Effect_Bomb;
 import com.example.pufflemafia.app.data.effects.Effect_Linked;
+import com.example.pufflemafia.app.data.prompts.PlayerPrompt;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -122,6 +123,10 @@ public class DataManager {
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 murderConditions,
                 murderResults);
+
+        PlayerPrompt murderPrompt = new PlayerPrompt();
+        murderPrompt.set_prompt("WHO DO YOU WANNA KILL");
+        murderPrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_DEAD);
 
         allActions.put("murder",murder);
 
