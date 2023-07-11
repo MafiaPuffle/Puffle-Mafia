@@ -14,7 +14,7 @@ public class Effect_Alert extends Effect {
     private final String name = "Alert";
 
     public Effect_Alert(){
-        super("Alert", R.drawable.doctor_puffle, true);
+        super("Alert", R.drawable.grandma_puffle, true);
 
         PlayerManager.OnActionPrepped.AddListener(new IEventListener<Action>() {
             @Override

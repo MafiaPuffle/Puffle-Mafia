@@ -14,6 +14,7 @@ import com.example.pufflemafia.app.data.effects.Effect_Alert;
 import com.example.pufflemafia.app.data.effects.Effect_Baker;
 import com.example.pufflemafia.app.data.effects.Effect_Bomb;
 import com.example.pufflemafia.app.data.effects.Effect_Linked;
+import com.example.pufflemafia.app.data.prompts.OptionsPrompt;
 import com.example.pufflemafia.app.data.prompts.PlayerPrompt;
 
 import java.util.ArrayList;
@@ -166,6 +167,12 @@ public class DataManager {
                 bombPlantConditions,
                 bombPlantResults);
 
+        PlayerPrompt bombPrompt = new PlayerPrompt();
+        bombPrompt.set_prompt("WHO DO YOU WANNA PLANT A BOMB ON?");
+        bombPrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_DEAD);
+
+        plantBomb.setPrompt(bombPrompt);
+
         allActions.put("plantBomb",plantBomb);
 
         Vector<Condition> matchMakeConditions = new Vector<Condition>();
@@ -179,6 +186,12 @@ public class DataManager {
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 matchMakeConditions,
                 matchMakeResults);
+
+        PlayerPrompt matchMakePrompt = new PlayerPrompt();
+        matchMakePrompt.set_prompt("WHO DO YOU WANNA LINK");
+        matchMakePrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_DEAD);
+
+        matchMake.setPrompt(matchMakePrompt);
 
         allActions.put("matchMake",matchMake);
 
@@ -194,6 +207,12 @@ public class DataManager {
                 assimilateConditions,
                 assimilateResults);
 
+        PlayerPrompt assimilatePrompt = new PlayerPrompt();
+        assimilatePrompt.set_prompt("WHO DO YOU WANNA COPY?");
+        assimilatePrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_DEAD);
+
+        assimilate.setPrompt(assimilatePrompt);
+
         allActions.put("assimilate",assimilate);
 
         Vector<Condition> graveRobberyConditions = new Vector<Condition>();
@@ -207,6 +226,12 @@ public class DataManager {
                 Action.ValidTargets.ALL_DEAD_PLAYERS,
                 graveRobberyConditions,
                 graveRobberyResults);
+
+        PlayerPrompt graveRobberyPrompt = new PlayerPrompt();
+        graveRobberyPrompt.set_prompt("WHO DO YOU WANNA COPY?");
+        graveRobberyPrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_DEAD);
+
+        graveRobbery.setPrompt(graveRobberyPrompt);
 
         allActions.put("graveRobbery",graveRobbery);
 
@@ -222,6 +247,13 @@ public class DataManager {
                 feedConditions,
                 feedResults);
 
+        PlayerPrompt feedPrompt = new PlayerPrompt();
+        feedPrompt.set_prompt("WHO DO YOU WANNA GIVE BREAD TO?");
+        feedPrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_ALIVE);
+        feedPrompt.addFilter(PlayerPrompt.PlayerFilterType.SELF);
+
+        feed.setPrompt(feedPrompt);
+
         allActions.put("feed",feed);
 
         Vector<Condition> blockConditions = new Vector<Condition>();
@@ -235,6 +267,12 @@ public class DataManager {
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 blockConditions,
                 blockResults);
+
+        PlayerPrompt blockPrompt = new PlayerPrompt();
+        blockPrompt.set_prompt("WHO DO YOU WANNA BLOCK?");
+        blockPrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_DEAD);
+
+        block.setPrompt(blockPrompt);
 
         allActions.put("block",block);
 
@@ -292,6 +330,11 @@ public class DataManager {
                 Action.ValidTargets.SELF,
                 goOnAlertConditions,
                 goOnAlertResults);
+
+        OptionsPrompt goOnAlertPrompt = new OptionsPrompt();
+        goOnAlertPrompt.set_prompt("DO YOU WANNA GO ON ALERT?");
+        goOnAlertPrompt.addOption("Yes", null);
+        goOnAlertPrompt.addOption("No", null);
 
         allActions.put("goOnAlert",goOnAlert);
     }

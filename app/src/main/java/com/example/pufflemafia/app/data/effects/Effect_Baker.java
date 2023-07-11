@@ -14,7 +14,7 @@ public class Effect_Baker extends Effect {
     private final String name = "Baker";
 
     public Effect_Baker(){
-        super("Baker", R.drawable.doctor_puffle, true);
+        super("Baker", R.drawable.baker_puffle, true);
 
         PlayerManager.OnKillPlayer.AddListener(new IEvent2Listener<Player, Result.KillType>() {
             @Override
