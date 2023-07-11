@@ -105,6 +105,13 @@ public class Player {
         }
         return false;
     }
+    public void clearEffectsOfType(Effect.EffectClearType clearType){
+        for (Effect effect: effects) {
+            if(effect.getClearType() == clearType){
+                effects.remove(effect);
+            }
+        }
+    }
 
     public Player(String name, Role role){
         OnStateChange = new Event<PlayerState>();

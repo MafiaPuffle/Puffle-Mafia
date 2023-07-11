@@ -53,6 +53,7 @@ public class DataManager {
         allEffects.put("Saved",Saved);
 
         Effect Bread = new Effect("Bread", R.drawable.puffle_o_croissant);
+        Bread.setClearType(Effect.EffectClearType.NEVER);
         allEffects.put("Bread",Bread);
 
         Effect Blocked = new Effect("Blocked", R.drawable.jailkeeper_puffle);
@@ -60,13 +61,16 @@ public class DataManager {
 
         Effect Lovers_Linked = new Effect_Linked("Lovers");
         Lovers_Linked.setImageResource(R.drawable.lover_puffle);
+        Lovers_Linked.setClearType(Effect.EffectClearType.NEVER);
         allEffects.put("Lovers_Linked",Lovers_Linked);
 
         Effect Cupid_Linked = new Effect_Linked("Cupid");
         Cupid_Linked.setImageResource(R.drawable.cupid_puffle);
+        Cupid_Linked.setClearType(Effect.EffectClearType.NEVER);
         allEffects.put("Cupid_Linked",Cupid_Linked);
 
         Effect Bomb = new Effect_Bomb();
+        Bomb.setClearType(Effect.EffectClearType.NEVER);
         allEffects.put("Bomb",Bomb);
     }
     private static void setUpAllConditions(){
@@ -308,6 +312,7 @@ public class DataManager {
         allActions.put("famine",famine);
 
         Effect Baker = new Effect_Baker();
+        Baker.setClearType(Effect.EffectClearType.NEVER);
         allEffects.put("Baker",Baker);
 
 

@@ -128,6 +128,17 @@ public class PlayerManager {
         }
     }
 
+    public static void clearAllEffectsOfType(Effect.EffectClearType clearType){
+        for (Player player: allAlivePlayers) {
+            player.clearEffectsOfType(clearType);
+        }
+        for (Player player: allDeadPlayers) {
+            player.clearEffectsOfType(clearType);
+        }
+
+        OnPlayerDataUpdated.Invoke();
+    }
+
     public static Integer getNumberOfPlayers(){
         return allAlivePlayers.size() + allDeadPlayers.size();
     }

@@ -4,6 +4,8 @@ import android.util.Log;
 
 public class Effect {
 
+    public enum EffectClearType {ON_NIGHT, NEVER}
+
     private String name;
     public String getName() {
         return name;
@@ -28,16 +30,26 @@ public class Effect {
         return isStartingEffect;
     }
 
+    private EffectClearType clearType;
+    public EffectClearType getClearType() {
+        return clearType;
+    }
+    public void setClearType(EffectClearType clearType) {
+        this.clearType = clearType;
+    }
+
     public Effect(String name, Integer imageResource){
         setName(name);
         setImageResource(imageResource);
         setStartingEffect(false);
+        setClearType(EffectClearType.ON_NIGHT);
     }
 
     public Effect(String name, Integer imageResource, boolean isStartingEffect){
         setName(name);
         setImageResource(imageResource);
         setStartingEffect(isStartingEffect);
+        setClearType(EffectClearType.ON_NIGHT);
     }
 
     public void PrintSummary(){

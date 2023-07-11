@@ -2,6 +2,7 @@ package com.example.pufflemafia.app.game.states;
 
 import android.util.Log;
 
+import com.example.pufflemafia.app.data.effects.Effect;
 import com.example.pufflemafia.app.data.prompts.Prompt;
 import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.game.GameManager;
@@ -27,6 +28,7 @@ public class Night {
     }
 
     public static void Start(){
+        PlayerManager.clearAllEffectsOfType(Effect.EffectClearType.ON_NIGHT);
         PromptsManager.Start(PlayerManager.getAllAlivePlayers());
     }
 }
