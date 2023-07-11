@@ -17,16 +17,9 @@ import com.example.pufflemafia.app.data.effects.Effect_Linked;
 import com.example.pufflemafia.app.data.prompts.OptionsPrompt;
 import com.example.pufflemafia.app.data.prompts.PlayerPrompt;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Dictionary;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 import java.util.Vector;
 
 public class DataManager {
@@ -126,7 +119,7 @@ public class DataManager {
         murderResults.add(getResult("mafiaKill"));
 
         Action murder = new Action("murder",
-                Action.WhenTOResolve.END_OF_NIGHT,
+                Action.ActionType.EVERY_NIGHT, Action.WhenTOResolve.END_OF_NIGHT,
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 murderConditions,
                 murderResults);
@@ -146,7 +139,7 @@ public class DataManager {
         saveResults.add(getResult("doctorSave"));
 
         Action save = new Action("Save",
-                Action.WhenTOResolve.INSTANT,
+                Action.ActionType.EVERY_NIGHT, Action.WhenTOResolve.INSTANT,
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 saveConditions,
                 saveResults);
@@ -166,7 +159,7 @@ public class DataManager {
         bombPlantResults.add(getResult("giveBomb"));
 
         Action plantBomb = new Action("Plant Bomb",
-                Action.WhenTOResolve.INSTANT,
+                Action.ActionType.ONE_TIME_USE, Action.WhenTOResolve.INSTANT,
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 bombPlantConditions,
                 bombPlantResults);
@@ -186,7 +179,7 @@ public class DataManager {
         matchMakeResults.add(getResult("cupidLinkPlayers"));
 
         Action matchMake = new Action("Match Make",
-                Action.WhenTOResolve.INSTANT,
+                Action.ActionType.ONE_TIME_USE, Action.WhenTOResolve.INSTANT,
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 matchMakeConditions,
                 matchMakeResults);
@@ -206,7 +199,7 @@ public class DataManager {
         assimilateResults.add(getResult("copyRole"));
 
         Action assimilate = new Action("Assimilate",
-                Action.WhenTOResolve.INSTANT,
+                Action.ActionType.ONE_TIME_USE, Action.WhenTOResolve.INSTANT,
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 assimilateConditions,
                 assimilateResults);
@@ -226,7 +219,7 @@ public class DataManager {
         graveRobberyResults.add(getResult("copyRole"));
 
         Action graveRobbery = new Action("Grave Robbery",
-                Action.WhenTOResolve.INSTANT,
+                Action.ActionType.ONE_TIME_USE, Action.WhenTOResolve.INSTANT,
                 Action.ValidTargets.ALL_DEAD_PLAYERS,
                 graveRobberyConditions,
                 graveRobberyResults);
@@ -246,7 +239,7 @@ public class DataManager {
         feedResults.add(getResult("giveBread"));
 
         Action feed = new Action("Feed",
-                Action.WhenTOResolve.INSTANT,
+                Action.ActionType.EVERY_NIGHT, Action.WhenTOResolve.INSTANT,
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 feedConditions,
                 feedResults);
@@ -267,7 +260,7 @@ public class DataManager {
         blockResults.add(getResult("jailkeeperBlock"));
 
         Action block = new Action("Block",
-                Action.WhenTOResolve.INSTANT,
+                Action.ActionType.EVERY_NIGHT, Action.WhenTOResolve.INSTANT,
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 blockConditions,
                 blockResults);
@@ -287,7 +280,7 @@ public class DataManager {
         alertKillResults.add(getResult("alertKill"));
 
         Action alertKill = new Action("Alert Kill",
-                Action.WhenTOResolve.END_OF_NIGHT,
+                Action.ActionType.EVERY_NIGHT, Action.WhenTOResolve.END_OF_NIGHT,
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 alertKillConditions,
                 alertKillResults);
@@ -304,7 +297,7 @@ public class DataManager {
         famineResults.add(getResult("famineKill"));
 
         Action famine = new Action("Famine",
-                Action.WhenTOResolve.DELAY,
+                Action.ActionType.EVERY_NIGHT, Action.WhenTOResolve.DELAY,
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 famineConditions,
                 famineResults);
@@ -331,7 +324,7 @@ public class DataManager {
         goOnAlertResults.add(getResult("giveSelfAlert"));
 
         Action goOnAlert = new Action("Go On Alert",
-                Action.WhenTOResolve.INSTANT,
+                Action.ActionType.ONE_TIME_USE, Action.WhenTOResolve.INSTANT,
                 Action.ValidTargets.SELF,
                 goOnAlertConditions,
                 goOnAlertResults);

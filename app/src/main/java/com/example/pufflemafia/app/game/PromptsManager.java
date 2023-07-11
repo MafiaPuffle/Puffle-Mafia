@@ -92,6 +92,19 @@ public class PromptsManager {
     }
 
     private static boolean ShouldActionBePrompted(Action action){
+
+        Action.ActionType type = action.getActionType();
+
+        switch (type){
+            case EVERY_NIGHT:
+                return true;
+            case ONE_TIME_USE:
+                if(action.hasBeenUsedOnce){
+                    return false;
+                }
+                else return true;
+        }
+
         return true;
     }
 }

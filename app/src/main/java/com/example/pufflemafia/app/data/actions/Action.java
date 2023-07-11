@@ -12,6 +12,7 @@ import java.util.Vector;
 
 public class Action {
 
+    public enum ActionType {EVERY_NIGHT, ONE_TIME_USE}
     public enum WhenTOResolve {END_OF_NIGHT, INSTANT, DELAY}
     public enum ValidTargets {ALL_PLAYERS, ALL_ALIVE_PLAYERS, ALL_DEAD_PLAYERS, SELF, WITNESS}
 
@@ -21,6 +22,14 @@ public class Action {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    private ActionType actionType;
+    public ActionType getActionType() {
+        return actionType;
+    }
+    public void setActionType(ActionType actionType) {
+        this.actionType = actionType;
     }
 
     private Prompt prompt;
@@ -38,6 +47,8 @@ public class Action {
     public void setHasBeenResolved(boolean hasBeenResolved) {
         this.hasBeenResolved = hasBeenResolved;
     }
+
+    public boolean hasBeenUsedOnce;
 
     private WhenTOResolve whenTOResolve;
     public void setWhenTOResolve(WhenTOResolve whenTOResolve) {
@@ -100,6 +111,7 @@ public class Action {
                 OnActionResolve.Invoke(false);
                 setHasBeenResolved(false);
 //                System.out.print(name + " failed to resolve because " + condition.getName() + " returned false\n");
+                hasBeenUsedOnce = true;
                 return;
             }
         }
@@ -108,13 +120,16 @@ public class Action {
             result.trigger(this);
         }
         OnActionResolve.Invoke(true);
+        hasBeenUsedOnce = true;
         setHasBeenResolved(true);
 //        System.out.print(name + " resolved successfully\n");
     }
 
-    public Action(String name, WhenTOResolve whenTOResolve, ValidTargets validTargets, Vector<Condition> conditions, Vector<Result> results){
+    public Action(String name, ActionType actionType, WhenTOResolve whenTOResolve, ValidTargets validTargets, Vector<Condition> conditions, Vector<Result> results){
         OnActionResolve = new Event<Boolean>();
+        hasBeenUsedOnce = false;
 
+        setActionType(actionType);
         setName(name);
         setWhenTOResolve(whenTOResolve);
         setValidTargets(validTargets);
@@ -125,6 +140,9 @@ public class Action {
 
     public Action(){
         OnActionResolve = new Event<Boolean>();
+        hasBeenUsedOnce = false;
+
+        setActionType(ActionType.EVERY_NIGHT);
     }
 
     public void PrintSummary(){
