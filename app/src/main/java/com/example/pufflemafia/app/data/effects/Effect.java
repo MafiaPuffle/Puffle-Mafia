@@ -12,6 +12,14 @@ public class Effect {
         this.name = name;
     }
 
+    private Integer imageResource;
+    public void setImageResource(Integer imageResource) {
+        this.imageResource = imageResource;
+    }
+    public Integer getImageResource() {
+        return imageResource;
+    }
+
     private boolean isStartingEffect;
     public void setStartingEffect(boolean startingEffect) {
         isStartingEffect = startingEffect;
@@ -20,13 +28,15 @@ public class Effect {
         return isStartingEffect;
     }
 
-    public Effect(String name){
+    public Effect(String name, Integer imageResource){
         setName(name);
+        setImageResource(imageResource);
         setStartingEffect(false);
     }
 
-    public Effect(String name, boolean isStartingEffect){
+    public Effect(String name, Integer imageResource, boolean isStartingEffect){
         setName(name);
+        setImageResource(imageResource);
         setStartingEffect(isStartingEffect);
     }
 

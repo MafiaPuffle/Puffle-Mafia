@@ -1,7 +1,6 @@
 package com.example.pufflemafia.app.adapters.playerAdapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.data.Role;
-import com.example.pufflemafia.app.game.GameManager;
+import com.example.pufflemafia.app.data.effects.Effect;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.PromptsManager;
@@ -33,7 +32,7 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
         private final TextView roleNameView;
         private final ImageButton roleButton;
         private final LinearLayout linearLayout;
-        private final LinearLayout tokenHolder;
+        private final LinearLayout effectsHolder;
         private final ImageView thumbsUpOrDownImageView;
 
         public ViewHolder(View view) {
@@ -42,7 +41,7 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
             roleNameView = (TextView) view.findViewById(R.id.CharacterUIRole);
             roleButton = (ImageButton) view.findViewById(R.id.CharacterUI);
             linearLayout = (LinearLayout) view.findViewById(R.id.CharacterUIINBox);
-            tokenHolder = (LinearLayout) view.findViewById(R.id.TokensLinearLayout);
+            effectsHolder = (LinearLayout) view.findViewById(R.id.TokensLinearLayout);
             thumbsUpOrDownImageView = (ImageView) view.findViewById(R.id.thumbsUpOrDownImage);
         }
 
@@ -70,16 +69,16 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
             return thumbsUpOrDownImageView;
         }
 
-        public LinearLayout getTokenHolder() {
-            return tokenHolder;
+        public LinearLayout getEffectsHolder() {
+            return effectsHolder;
         }
 
         public void setThumbsUpOrDownImageView(int imageResourceId) {
             thumbsUpOrDownImageView.setImageResource(imageResourceId);
         }
 
-        public void removeAllTokens() {
-            tokenHolder.removeAllViewsInLayout();
+        public void removeAllEffects() {
+            effectsHolder.removeAllViewsInLayout();
         }
 
         private int dpToPx(int dp) {
@@ -87,7 +86,7 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
             return Math.round((float) dp * density);
         }
 
-        public void addToken(int imageResource) {
+        public void addEffect(int imageResource) {
             ImageButton imageButton = new ImageButton(itemView.getContext());
             imageButton.setBackgroundResource(imageResource);
             imageButton.setImageResource(0);
@@ -97,7 +96,7 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
             imageButton.setClickable(false);
             imageButton.setFocusable(false);
 
-            tokenHolder.addView(imageButton);
+            effectsHolder.addView(imageButton);
         }
 
     }
@@ -169,6 +168,12 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
                 viewHolder.setThumbsUpOrDownImageView(R.drawable.fist_sideways);
                 break;
         }
+
+        viewHolder.removeAllEffects();
+        for(Effect effect: player.getEffects()){
+            viewHolder.addEffect(effect.getImageResource());
+        }
+
     }
 
     @Override

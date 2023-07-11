@@ -1,9 +1,8 @@
 package com.example.pufflemafia.app.data.effects;
 
+import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.actions.Action;
-import com.example.pufflemafia.app.data.actions.result.Result;
-import com.example.pufflemafia.app.events.IEvent2Listener;
 import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
@@ -15,7 +14,7 @@ public class Effect_Alert extends Effect {
     private final String name = "Alert";
 
     public Effect_Alert(){
-        super("Alert", true);
+        super("Alert", R.drawable.doctor_puffle, true);
 
         PlayerManager.OnActionPrepped.AddListener(new IEventListener<Action>() {
             @Override

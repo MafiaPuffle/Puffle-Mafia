@@ -1,5 +1,6 @@
 package com.example.pufflemafia.app.data.effects;
 
+import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.data.actions.Action;
 import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.events.IEvent2Listener;
@@ -22,7 +23,7 @@ public class Effect_Linked extends Effect{
     private Vector<Player> allLinkedPlayers;
 
     public Effect_Linked(String linkType){
-        super("Linked");
+        super("Linked", R.drawable.lover_puffle);
         allLinkedPlayers = new Vector<Player>();
         this.linkType = linkType;
         this.instance = this;

@@ -1,5 +1,6 @@
 package com.example.pufflemafia.app.data.effects;
 
+import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.events.IEvent2Listener;
 import com.example.pufflemafia.app.game.Player;
@@ -15,7 +16,7 @@ public class Effect_Bomb extends Effect {
     private Vector<Player> playersWithBombsOnThem;
 
     public Effect_Bomb(){
-        super("Bomb");
+        super("Bomb", R.drawable.terrorist_puffle);
         playersWithBombsOnThem = new Vector<Player>();
 
         PlayerManager.OnPlayerReceiveEffect.AddListener(new IEvent2Listener<Player, Effect>() {

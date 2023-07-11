@@ -14,6 +14,7 @@ import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.adapters.RecyclerRowMoverCallBack;
 import com.example.pufflemafia.app.adapters.playerAdapters.PlayerDayUIAdaptor;
 import com.example.pufflemafia.app.data.actions.result.Result;
+import com.example.pufflemafia.app.data.effects.Effect;
 import com.example.pufflemafia.app.events.IEvent2Listener;
 import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.events.IVoidEventListener;
@@ -37,6 +38,7 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
 
     private IVoidEventListener refreshListener;
     private IEvent2Listener<Player, Result.KillType> playerKillTypeListener;
+    private IEvent2Listener<Player, Effect> playerEffectListener;
     private IEventListener<Player> playerListener;
 
     Button optionsButton;
@@ -56,6 +58,13 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
         playerKillTypeListener = new IEvent2Listener<Player, Result.KillType>() {
             @Override
             public void Response(Player player, Result.KillType killType) {
+                Refresh();
+            }
+        };
+
+        playerEffectListener = new IEvent2Listener<Player, Effect>() {
+            @Override
+            public void Response(Player player, Effect effect) {
                 Refresh();
             }
         };
@@ -85,6 +94,7 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
         PlayerManager.OnKillPlayer.RemoveListener(playerKillTypeListener);
         PlayerManager.OnRevivePlayer.RemoveListener(playerListener);
         PlayerManager.OnAddPlayer.RemoveListener(playerListener);
+        PlayerManager.OnPlayerReceiveEffect.RemoveListener(playerEffectListener);
         PlayerManager.OnPlayerDataUpdated.RemoveListener(refreshListener);
         PlayerManager.OnRemoveAllPlayers.RemoveListener(refreshListener);
         PlayerManager.removeAllPlayersFromGame();
@@ -100,6 +110,7 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
         PlayerManager.OnKillPlayer.AddListener(playerKillTypeListener);
         PlayerManager.OnRevivePlayer.AddListener(playerListener);
         PlayerManager.OnAddPlayer.AddListener(playerListener);
+        PlayerManager.OnPlayerReceiveEffect.AddListener(playerEffectListener);
         PlayerManager.OnPlayerDataUpdated.AddListener(refreshListener);
         PlayerManager.OnRemoveAllPlayers.AddListener(refreshListener);
     }

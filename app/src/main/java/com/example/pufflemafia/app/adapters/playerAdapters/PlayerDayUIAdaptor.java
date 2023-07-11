@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.adapters.RecyclerRowMoverCallBack;
 import com.example.pufflemafia.app.data.Role;
+import com.example.pufflemafia.app.data.effects.Effect;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
@@ -71,7 +72,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         private final ImageButton roleButton;
 //        private final ImageButton killOrReviveButton;
 
-        private final LinearLayout tokenHolder;
+        private final LinearLayout effectsHolder;
 
 
 
@@ -86,7 +87,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
             roleNameView = (TextView) view.findViewById(R.id.CharacterUIRole);
             roleButton = (ImageButton) view.findViewById(R.id.RoleUIButton);
 //            killOrReviveButton = (ImageButton) view.findViewById(R.id.KillOrReviveButton);
-            tokenHolder = (LinearLayout) view.findViewById(R.id.TokenUIBox);
+            effectsHolder = (LinearLayout) view.findViewById(R.id.TokenUIBox);
         }
 
         //public TextView getTextView() {
@@ -116,12 +117,12 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         }
 
 
-        public LinearLayout getTokenHolder(){
-            return tokenHolder;
+        public LinearLayout getEffectsHolder(){
+            return effectsHolder;
         }
 
-        public void removeAllTokens(){
-            tokenHolder.removeAllViewsInLayout();
+        public void removeAllEffects(){
+            effectsHolder.removeAllViewsInLayout();
         }
 
 
@@ -130,7 +131,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
             return Math.round((float) dp * density);
         }
 
-        public void addToken(int imageResource){
+        public void addEffect(int imageResource){
             ImageButton imageButton = new ImageButton(itemView.getContext());
             imageButton.setBackgroundResource(imageResource);
             imageButton.setImageResource(0);
@@ -140,7 +141,7 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
             imageButton.setClickable(false);
             imageButton.setFocusable(false);
 
-            tokenHolder.addView(imageButton);
+            effectsHolder.addView(imageButton);
         }
     }
 
@@ -192,10 +193,10 @@ public class PlayerDayUIAdaptor extends RecyclerView.Adapter<PlayerDayUIAdaptor.
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
         viewHolder.getRoleButton().setImageResource(0);
 
-        viewHolder.removeAllTokens();
-//        for(Token token: player.getAllTokensOnPlayer()){
-//            viewHolder.addToken(token.getImageResource());
-//        }
+        viewHolder.removeAllEffects();
+        for(Effect effect: player.getEffects()){
+            viewHolder.addEffect(effect.getImageResource());
+        }
 
 //        viewHolder.getMainLayout().setOnTouchListener(new View.OnTouchListener() {
 //            @Override

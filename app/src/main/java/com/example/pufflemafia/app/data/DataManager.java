@@ -48,19 +48,21 @@ public class DataManager {
     private static void setUpAllEffects(){
         allEffects = new HashMap<String, Effect>();
         
-        Effect Saved = new Effect("Saved");
+        Effect Saved = new Effect("Saved", R.drawable.doctor_puffle);
         allEffects.put("Saved",Saved);
 
-        Effect Bread = new Effect("Bread");
+        Effect Bread = new Effect("Bread", R.drawable.puffle_o_croissant);
         allEffects.put("Bread",Bread);
 
-        Effect Blocked = new Effect("Blocked");
+        Effect Blocked = new Effect("Blocked", R.drawable.jailkeeper_puffle);
         allEffects.put("Blocked",Blocked);
 
         Effect Lovers_Linked = new Effect_Linked("Lovers");
+        Lovers_Linked.setImageResource(R.drawable.lover_puffle);
         allEffects.put("Lovers_Linked",Lovers_Linked);
 
         Effect Cupid_Linked = new Effect_Linked("Cupid");
+        Cupid_Linked.setImageResource(R.drawable.cupid_puffle);
         allEffects.put("Cupid_Linked",Cupid_Linked);
 
         Effect Bomb = new Effect_Bomb();
