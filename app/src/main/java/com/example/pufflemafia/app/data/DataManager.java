@@ -128,6 +128,8 @@ public class DataManager {
         murderPrompt.set_prompt("WHO DO YOU WANNA KILL");
         murderPrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_DEAD);
 
+        murder.setPrompt(murderPrompt);
+
         allActions.put("murder",murder);
 
         Vector<Condition> saveConditions = new Vector<Condition>();
@@ -141,6 +143,12 @@ public class DataManager {
                 Action.ValidTargets.ALL_ALIVE_PLAYERS,
                 saveConditions,
                 saveResults);
+
+        PlayerPrompt savePrompt = new PlayerPrompt();
+        savePrompt.set_prompt("WHO DO YOU WANNA SAVE");
+        savePrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_DEAD);
+
+        save.setPrompt(savePrompt);
 
         allActions.put("save",save);
 

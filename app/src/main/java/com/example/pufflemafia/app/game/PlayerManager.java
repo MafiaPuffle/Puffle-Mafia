@@ -132,7 +132,7 @@ public class PlayerManager {
         return allAlivePlayers.size() + allDeadPlayers.size();
     }
 
-    public static void prepAction(Player player, Action action, Vector<Player> chosenTargets){
+    public static void prepAction(Player initiator, Action action, Vector<Player> chosenTargets){
         Action actionToPrep = new Action();
 
         actionToPrep.setName(action.getName());
@@ -145,7 +145,7 @@ public class PlayerManager {
 
         Vector<Player> initiators = new Vector<Player>();
         for (Player p: allAlivePlayers) {
-            if(p.getRole() == player.getRole()){
+            if(p.getRole() == initiator.getRole()){
                 initiators.add(p);
             }
         }

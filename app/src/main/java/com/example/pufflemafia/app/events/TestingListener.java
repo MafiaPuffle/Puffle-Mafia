@@ -1,5 +1,7 @@
 package com.example.pufflemafia.app.events;
 
+import android.util.Log;
+
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.data.actions.Action;
 import com.example.pufflemafia.app.data.actions.result.Result;
@@ -17,6 +19,9 @@ public class TestingListener {
                 System.out.print(player.getName() + " received the effect ");
                 effect.PrintSummary();
                 System.out.print("\n");
+
+                Log.d("CustomTestingListener",player.getName() + " received the effect ");
+                effect.LogSummary();
             }
         });
 
@@ -24,6 +29,8 @@ public class TestingListener {
             @Override
             public void Response(Player player, Role role) {
                 System.out.print(player.getName() + " changed to the role " + role.getName() + "\n");
+
+                Log.d("CustomTestingListener", player.getName() + " changed to the role " + role.getName() + "\n");
             }
         });
 
@@ -31,6 +38,8 @@ public class TestingListener {
             @Override
             public void Response(Player player) {
                 System.out.print(player.getName() + " was added to the game\n");
+
+                Log.d("CustomTestingListener", player.getName() + " was added to the game\n");
             }
         });
 
@@ -38,6 +47,8 @@ public class TestingListener {
             @Override
             public void Response(Player player) {
                 System.out.print(player.getName() + " was revived\n");
+
+                Log.d("CustomTestingListener", player.getName() + " was revived\n");
             }
         });
 
@@ -45,6 +56,8 @@ public class TestingListener {
             @Override
             public void Response(Player player, Result.KillType killType) {
                 System.out.print(player.getName() + " was killed by " + killType + "\n");
+
+                Log.d("CustomTestingListener", player.getName() + " was killed by " + killType + "\n");
             }
         });
 
@@ -61,6 +74,8 @@ public class TestingListener {
             public void Response(Action action) {
                 System.out.print(action.getName() + " was queued\n");
                 action.PrintSummary();
+
+                Log.d("CustomTestingListener", action.getName() + " was queued\n");
             }
         });
     }

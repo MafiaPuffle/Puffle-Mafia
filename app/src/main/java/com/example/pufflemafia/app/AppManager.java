@@ -1,8 +1,10 @@
 package com.example.pufflemafia.app;
 
 import com.example.pufflemafia.app.data.DataManager;
+import com.example.pufflemafia.app.events.TestingListener;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.PromptsManager;
 import com.example.pufflemafia.app.game.ResolvingManager;
 import com.example.pufflemafia.app.game.states.Accusations;
 import com.example.pufflemafia.app.game.states.Day;
@@ -16,6 +18,7 @@ public class AppManager {
 
     public static void Initialize(){
         PlayerManager.Initialize();
+        PromptsManager.Initialize();
 
         GameManager.Initialize();
         Setup.Initialize();
@@ -29,6 +32,8 @@ public class AppManager {
 
         ResolvingManager.Initialize();
         DataManager.Initialize();
+
+        TestingListener.Initialize();
 
         GameManager.setCurrentGameState(GameManager.gameState.SETUP);
     }

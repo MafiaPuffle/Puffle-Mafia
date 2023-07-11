@@ -1,5 +1,7 @@
 package com.example.pufflemafia.app.data.effects;
 
+import android.util.Log;
+
 public class Effect {
 
     private String name;
@@ -30,5 +32,9 @@ public class Effect {
 
     public void PrintSummary(){
         System.out.print(name + ", ");
+    }
+
+    public void LogSummary(){
+        Log.d("CustomTestingListener", name + ", ");
     }
 }

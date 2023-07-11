@@ -18,6 +18,7 @@ import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.PromptsManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
@@ -28,7 +29,6 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        //private final TextView textView;
         private final TextView playerNameView;
         private final TextView roleNameView;
         private final ImageButton roleButton;
@@ -38,9 +38,6 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
-
-            //textView = (TextView) view.findViewById(R.id.textView);
             playerNameView = (TextView) view.findViewById(R.id.CharacterUIName);
             roleNameView = (TextView) view.findViewById(R.id.CharacterUIRole);
             roleButton = (ImageButton) view.findViewById(R.id.CharacterUI);
@@ -48,10 +45,6 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
             tokenHolder = (LinearLayout) view.findViewById(R.id.TokensLinearLayout);
             thumbsUpOrDownImageView = (ImageView) view.findViewById(R.id.thumbsUpOrDownImage);
         }
-
-        //public TextView getTextView() {
-        //return textView;
-        //}
 
         public TextView getPlayerNameView() {
             return playerNameView;
@@ -82,7 +75,6 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
         }
 
         public void setThumbsUpOrDownImageView(int imageResourceId) {
-            //thumbsUpOrDownImageView.setBackgroundResource(imageResourceId);
             thumbsUpOrDownImageView.setImageResource(imageResourceId);
         }
 
@@ -154,51 +146,16 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
 
         viewHolder.getRoleButton().setBackgroundResource(role.getImageResource());
         viewHolder.getRoleButton().setImageResource(0);
-//        viewHolder.getRoleButton().setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                SoundManager.playSfx("Click");
-//                Intent intent = new Intent(context, RoleDetails.class);
-//                intent.putExtra("name", role.getName());
-//                intent.putExtra("imageResourceId", role.getImageResource());
-//                intent.putExtra("description", role.getDescription());
-//                intent.putExtra("winCondition", role.getWinCondition());
-//                intent.putExtra("team", role.getTeam());
-//                intent.putExtra("alliance", role.getAlliance());
-//                context.startActivity(intent);
-//                return false;
-//            }
-//        });
         viewHolder.getLinearLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
-//                PlayerManager.UseAbilityOnPlayer(GameManager.getCurrentRoleActiveAtNight(), player);
-//                notifyDataSetChanged();
-//                PlayerManager.LogSummary();
+                // TODO select player as target for action
+                Vector<Player> targets = new Vector<Player>();
+                targets.add(player);
+                PlayerManager.prepAction(PromptsManager.currentPlayer, PromptsManager.currentAction, targets);
             }
         });
-
-//        viewHolder.getRoleNameView().setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                SoundManager.playSfx("Click");
-//                Intent intent = new Intent(context, AddTokenScreen.class);
-//                intent.putExtra("position", PlayerManager.getAllAlive().indexOf(player));
-//                if (PlayerManager.getAllAlive().contains(player)) {
-//                    intent.putExtra("ListType", PlayerManager.PlayerMangerListType.ALIVE);
-//                } else {
-//                    intent.putExtra("ListType", PlayerManager.PlayerMangerListType.DEAD);
-//                }
-//                context.startActivity(intent);
-//                return false;
-//            }
-//        });
-
-//        viewHolder.removeAllTokens();
-//        for (Token token : player.getAllTokensOnPlayer()) {
-//            viewHolder.addToken(token.getImageResource());
-//        }
 
         Role.Alliances alliance = role.getAlliance();
         switch (alliance) {

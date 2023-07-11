@@ -17,6 +17,7 @@ import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.events.IEvent2Listener;
 import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.events.IVoidEventListener;
+import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
@@ -142,6 +143,9 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
+                Intent intent = new Intent(instance, PromptScreen.class);
+                GameManager.setCurrentGameState(GameManager.gameState.NIGHT);
+                startActivity(intent);
             }
         });
     }

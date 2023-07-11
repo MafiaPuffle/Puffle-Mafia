@@ -62,6 +62,10 @@
             android:name=".app.screens.OptionsScreen"
             android:label="Options Screen" >
         </activity>
+        <activity
+            android:name=".app.screens.PromptScreen"
+            android:label="Prompt Screen" >
+        </activity>
     </application>
 
 </manifest>

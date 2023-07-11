@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.pufflemafia.app.data.actions.Action;
 import com.example.pufflemafia.app.data.prompts.Prompt;
+import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.events.VoidEvent;
 
 import java.util.ArrayDeque;
@@ -19,10 +20,12 @@ public class PromptsManager {
     private static int currentPlayerIndex;
     public static Action currentAction;
 
+    public static Event<Prompt> OnUpdatePrompt;
     public static VoidEvent OnEndAllPrompts;
     private static int currentActionIndex;
 
     public static void Initialize(){
+        OnUpdatePrompt = new Event<Prompt>();
         OnEndAllPrompts = new VoidEvent();
     }
 
@@ -38,7 +41,7 @@ public class PromptsManager {
             QuePrompt(currentAction.getPrompt());
         }
 
-        GetNextPrompt();
+//        GetNextPrompt();
     }
 
     public static void QuePrompt(Prompt prompt){
@@ -46,16 +49,23 @@ public class PromptsManager {
     }
 
     public static void GetNextPrompt(){
+        Log.d("CustomPromptScreen", "Get Next Prompt()");
         currentPrompt = prompts.peek();
         if(currentPrompt == null){
             Log.d("Night","current prompt is NULL");
             FindNextValidAction();
+            return;
         }
 
-        prompts.remove();
+        OnUpdatePrompt.Invoke(currentPrompt);
+
+        if(prompts.size() > 0){
+            prompts.remove();
+        }
     }
 
     public static void FindNextValidAction(){
+        Log.d("CustomPromptScreen", "Find Next Valid Action()");
         currentActionIndex++;
 
         while (currentActionIndex < currentPlayer.getRole().getActions().size()){
@@ -63,6 +73,7 @@ public class PromptsManager {
 
             if(ShouldActionBePrompted(currentAction)){
                 QuePrompt(currentAction.getPrompt());
+                GetNextPrompt();
                 return;
             }
 
@@ -74,6 +85,7 @@ public class PromptsManager {
             currentActionIndex = -1;
             currentPlayer = allActivePlayers.get(currentPlayerIndex);
             FindNextValidAction();
+            return;
         }
 
         OnEndAllPrompts.Invoke();

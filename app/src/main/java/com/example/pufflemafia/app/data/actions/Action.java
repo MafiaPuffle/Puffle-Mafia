@@ -1,5 +1,7 @@
 package com.example.pufflemafia.app.data.actions;
 
+import android.util.Log;
+
 import com.example.pufflemafia.app.data.prompts.Prompt;
 import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.data.actions.conditions.Condition;
@@ -135,5 +137,16 @@ public class Action {
             System.out.print(p.getName() + " ");
         }
         System.out.print("\n");
+    }
+
+    public void LogSummary(){
+        Log.d("CustomTestingListener",name + " initiated by ");
+        for (Player p: initiators) {
+            Log.d("CustomTestingListener",p.getName() + " ");
+        }
+        Log.d("CustomTestingListener","with targets ");
+        for (Player p: targets) {
+            Log.d("CustomTestingListener",p.getName() + " ");
+        }
     }
 }

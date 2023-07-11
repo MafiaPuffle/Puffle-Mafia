@@ -17,6 +17,7 @@ import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.adapters.playerAdapters.PlayerDayUIAdaptor;
 import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.events.IVoidEventListener;
+import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.SoundManager;
@@ -187,6 +188,8 @@ public class EditPlayerScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
+                Intent intent = new Intent(instance, PromptScreen.class);
+                startActivity(intent);
             }
         });
     }
