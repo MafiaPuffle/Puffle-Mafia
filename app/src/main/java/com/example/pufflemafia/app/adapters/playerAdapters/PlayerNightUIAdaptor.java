@@ -99,6 +99,15 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
             effectsHolder.addView(imageButton);
         }
 
+        public void select(boolean value){
+            if(value){
+                getLinearLayout().setBackgroundResource(R.drawable.green_rectangle);
+            }
+            else {
+                getLinearLayout().setBackgroundResource(R.drawable.grey_rectangle);
+            }
+        }
+
     }
 
     public PlayerNightUIAdaptor(Vector<Player> dataSet, Context context) {
@@ -153,6 +162,7 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
                 Vector<Player> targets = new Vector<Player>();
                 targets.add(player);
                 PlayerManager.prepAction(PromptsManager.currentPlayer, PromptsManager.currentAction, targets);
+                viewHolder.select(true);
             }
         });
 
@@ -179,5 +189,9 @@ public class PlayerNightUIAdaptor extends RecyclerView.Adapter<PlayerNightUIAdap
     @Override
     public int getItemCount() {
         return localDataSet.size();
+    }
+
+    public void clearAllSelected(){
+
     }
 }

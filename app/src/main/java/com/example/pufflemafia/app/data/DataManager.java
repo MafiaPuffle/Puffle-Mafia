@@ -229,7 +229,7 @@ public class DataManager {
 
         PlayerPrompt graveRobberyPrompt = new PlayerPrompt();
         graveRobberyPrompt.set_prompt("WHO DO YOU WANNA COPY?");
-        graveRobberyPrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_DEAD);
+        graveRobberyPrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_ALIVE);
 
         graveRobbery.setPrompt(graveRobberyPrompt);
 
@@ -249,7 +249,7 @@ public class DataManager {
 
         PlayerPrompt feedPrompt = new PlayerPrompt();
         feedPrompt.set_prompt("WHO DO YOU WANNA GIVE BREAD TO?");
-        feedPrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_ALIVE);
+        feedPrompt.addFilter(PlayerPrompt.PlayerFilterType.ALL_DEAD);
         feedPrompt.addFilter(PlayerPrompt.PlayerFilterType.SELF);
 
         feed.setPrompt(feedPrompt);

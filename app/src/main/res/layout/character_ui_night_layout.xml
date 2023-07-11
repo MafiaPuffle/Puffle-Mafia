@@ -8,7 +8,6 @@
     <!-- character_ui_layout.xml -->
 
 
-
     <LinearLayout
         android:id="@+id/CharacterUIINBox"
         android:layout_width="350dp"
