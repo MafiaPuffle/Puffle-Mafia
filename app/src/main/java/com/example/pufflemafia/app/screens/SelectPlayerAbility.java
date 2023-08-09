@@ -52,7 +52,7 @@ public class SelectPlayerAbility extends CustomAppCompatActivityWrapper {
     }
 
     private void ConfigureRecyclerViews(){
-        adaptor = new ActionUIAdaptor(playerAbilities, this);
+        adaptor = new ActionUIAdaptor(ID, playerAbilities, this);
 
         layoutManager = new LinearLayoutManager(this);
 

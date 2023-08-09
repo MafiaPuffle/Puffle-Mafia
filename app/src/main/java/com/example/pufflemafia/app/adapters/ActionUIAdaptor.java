@@ -1,6 +1,9 @@
 package com.example.pufflemafia.app.adapters;
 
+import static com.example.pufflemafia.app.CustomAppCompatActivityWrapper.instance;
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +16,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.data.actions.Action;
+import com.example.pufflemafia.app.game.Player;
+import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.PromptsManager;
+import com.example.pufflemafia.app.game.SoundManager;
+import com.example.pufflemafia.app.screens.PromptScreen;
+import com.example.pufflemafia.app.screens.SelectPlayerAbility;
 
+import java.util.UUID;
 import java.util.Vector;
 
 public class ActionUIAdaptor extends RecyclerView.Adapter<ActionUIAdaptor.ViewHolder> {
 
+    Player player;
     private Vector<Action> localDataSet;
     protected Context context;
 
@@ -51,7 +62,8 @@ public class ActionUIAdaptor extends RecyclerView.Adapter<ActionUIAdaptor.ViewHo
 
     }
 
-    public ActionUIAdaptor(Vector<Action> dataSet, Context context) {
+    public ActionUIAdaptor(UUID playerID, Vector<Action> dataSet, Context context) {
+        player = PlayerManager.getPlayerByID(playerID);
         localDataSet = dataSet;
         this.context = context;
     }
@@ -70,6 +82,16 @@ public class ActionUIAdaptor extends RecyclerView.Adapter<ActionUIAdaptor.ViewHo
         Action action = localDataSet.get(position);
 
         viewHolder.getActionNameTextView().setText(action.getName());
+
+        viewHolder.getActionLinearLayout().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SoundManager.playSfx("Click");
+                Intent intent = new Intent(instance, PromptScreen.class);
+                PromptsManager.Start(player,action);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -30,6 +30,22 @@ public class PromptsManager {
         OnEndAllPrompts = new VoidEvent();
     }
 
+    public static void Start(Player player, Action action){
+        prompts = new ArrayDeque<Prompt>();
+        allActivePlayers = new Vector<>();
+        allActivePlayers.add(player);
+
+        currentPlayer = player;
+        currentAction = action;
+
+        currentPlayerIndex = 0;
+        currentActionIndex = 0;
+
+        if(ShouldActionBePrompted(action)){
+            QuePrompt(action.getPrompt());
+        }
+    }
+
     public static void Start(Vector<Player> activePlayers){
         prompts = new ArrayDeque<Prompt>();
         allActivePlayers = activePlayers;
@@ -68,6 +84,10 @@ public class PromptsManager {
     }
 
     public static void FindNextValidAction(){
+//        if(currentActionIndex == -1 || currentPlayerIndex == -1){
+//            return;
+//        }
+
         Log.d("CustomPromptScreen", "Find Next Valid Action()");
         currentActionIndex++;
 
