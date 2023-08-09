@@ -56,7 +56,6 @@ public class EditPlayerScreen extends CustomAppCompatActivityWrapper {
         ConfigureChangeRoleButton();
         ConfigureChangeNameButton();
         ConfigureUseAbilityButton();
-        ConfigureUseAbilityButton();
         ConfigureEditEffectsButton();
         ConfigureBackButton();
 
@@ -188,7 +187,9 @@ public class EditPlayerScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View view) {
                 SoundManager.playSfx("Click");
-                Intent intent = new Intent(instance, PromptScreen.class);
+                Intent intent = new Intent(instance, SelectPlayerAbility.class);
+                String IDasString = ID.toString();
+                intent.putExtra("playerID",IDasString);
                 startActivity(intent);
             }
         });

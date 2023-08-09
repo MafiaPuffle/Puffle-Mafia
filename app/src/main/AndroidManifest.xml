@@ -66,6 +66,10 @@
             android:name=".app.screens.PromptScreen"
             android:label="Prompt Screen" >
         </activity>
+        <activity
+            android:name=".app.screens.SelectPlayerAbility"
+            android:label="Select Player Ability" >
+        </activity>
     </application>
 
 </manifest>
