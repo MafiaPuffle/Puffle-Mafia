@@ -343,7 +343,7 @@ public class DataManager {
         mafiaActions.add(getAction("murder"));
 
         Role mafia = new Role("Mafia",
-                R.drawable.mafia_puffle,
+                2.0f, R.drawable.mafia_puffle,
                 Role.Teams.MAFIA,
                 Role.Alliances.EVIL,
                 "Kills players",
@@ -357,7 +357,7 @@ public class DataManager {
         doctorActions.add(getAction("save"));
 
         Role doctor = new Role("Doctor",
-                R.drawable.doctor_puffle,
+                3.0f, R.drawable.doctor_puffle,
                 Role.Teams.TOWN,
                 Role.Alliances.GOOD,
                 "Saves players",
@@ -370,7 +370,7 @@ public class DataManager {
         Vector<Action> civilianActions = new Vector<Action>();
 
         Role civilian = new Role("Civilian",
-                R.drawable.civilian_puffles,
+                -1.0f, R.drawable.civilian_puffles,
                 Role.Teams.TOWN,
                 Role.Alliances.GOOD,
                 "Does nothing",
@@ -385,7 +385,7 @@ public class DataManager {
         loverStartingEffects.add(getEffect("Lovers_Linked"));
 
         Role lover = new Role("Lover",
-                R.drawable.lover_puffle,
+                0.25f, R.drawable.lover_puffle,
                 Role.Teams.TOWN,
                 Role.Alliances.GOOD,
                 "Is in love",
@@ -400,7 +400,7 @@ public class DataManager {
         terroristActions.add(getAction("plantBomb"));
 
         Role terrorist = new Role("Terrorist",
-                R.drawable.terrorist_puffle,
+                0.5f, R.drawable.terrorist_puffle,
                 Role.Teams.MAFIA,
                 Role.Alliances.EVIL,
                 "Plants bomb",
@@ -414,7 +414,7 @@ public class DataManager {
         cupidActions.add(getAction("matchMake"));
 
         Role cupid = new Role("Cupid",
-                R.drawable.cupid_puffle,
+                0.5f, R.drawable.cupid_puffle,
                 Role.Teams.TOWN,
                 Role.Alliances.GOOD,
                 "Links two other players",
@@ -428,7 +428,7 @@ public class DataManager {
         cyborgActions.add(getAction("assimilate"));
 
         Role cyborg = new Role("Cyborg",
-                R.drawable.cyborg_puffle,
+                0.0f, R.drawable.cyborg_puffle,
                 Role.Teams.NEUTRAL,
                 Role.Alliances.NEUTRAL,
                 "Copies players roles",
@@ -442,7 +442,7 @@ public class DataManager {
         necromancerActions.add(getAction("graveRobbery"));
 
         Role necromancer = new Role("Necromancer",
-                R.drawable.necromancer,
+                4.25f, R.drawable.necromancer,
                 Role.Teams.MAFIA,
                 Role.Alliances.EVIL,
                 "Copies dead players roles",
@@ -459,7 +459,7 @@ public class DataManager {
         bakerStartingEffects.add(getEffect("Baker"));
 
         Role baker = new Role("Baker",
-                R.drawable.baker_puffle,
+                3.0f, R.drawable.baker_puffle,
                 Role.Teams.TOWN,
                 Role.Alliances.GOOD,
                 "Gives players bread",
@@ -474,7 +474,7 @@ public class DataManager {
         jailkeeperActions.add(getAction("block"));
 
         Role jailkeeper = new Role("Jailkeeper",
-                R.drawable.jailkeeper_puffle,
+                1.9f, R.drawable.jailkeeper_puffle,
                 Role.Teams.MAFIA,
                 Role.Alliances.EVIL,
                 "Keeps players from using their abilities",
@@ -488,7 +488,7 @@ public class DataManager {
         grannyWithAShotgunActions.add(getAction("goOnAlert"));
 
         Role grannyWithAShotgun = new Role("Granny with a Shotgun",
-                R.drawable.grandma_puffle,
+                1.91f, R.drawable.grandma_puffle,
                 Role.Teams.TOWN,
                 Role.Alliances.GOOD,
                 "Goes on alert once per game, when on alert she kills any player that interacts with her",

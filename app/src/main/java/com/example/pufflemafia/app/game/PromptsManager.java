@@ -8,6 +8,7 @@ import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.events.VoidEvent;
 
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.Queue;
 import java.util.Vector;
 
@@ -32,6 +33,8 @@ public class PromptsManager {
     public static void Start(Vector<Player> activePlayers){
         prompts = new ArrayDeque<Prompt>();
         allActivePlayers = activePlayers;
+
+        Collections.sort(allActivePlayers, new SortPlayByPriority());
 
         currentPlayerIndex = 0;
         currentPlayer = allActivePlayers.get(currentPlayerIndex);

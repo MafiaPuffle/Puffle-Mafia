@@ -19,6 +19,16 @@ public class Role {
         this.name = name;
     }
 
+    private float priority;
+
+    public float getPriority() {
+        return priority;
+    }
+
+    public void setPriority(float priority) {
+        this.priority = priority;
+    }
+
     private int imageResource;
     public int getImageResource() {
         return imageResource;
@@ -87,8 +97,9 @@ public class Role {
         this.startingEffects = startingEffects;
     }
 
-    public Role(String name, int imageResource, Teams team, Alliances alliance, String description, String winDescription, String flavorText, Vector<Action> actions, Vector<Effect> startingEffects){
+    public Role(String name, float priority, int imageResource, Teams team, Alliances alliance, String description, String winDescription, String flavorText, Vector<Action> actions, Vector<Effect> startingEffects){
         setName(name);
+        setPriority(priority);
         setImageResource(imageResource);
         setTeam(team);
         setAlliance(alliance);
@@ -99,8 +110,9 @@ public class Role {
         setStartingEffects(startingEffects);
     }
 
-    public Role(String name, int imageResource, Teams team, Alliances alliance, String description, String winDescription, String flavorText, Vector<Action> actions){
+    public Role(String name, float priority, int imageResource, Teams team, Alliances alliance, String description, String winDescription, String flavorText, Vector<Action> actions){
         setName(name);
+        setPriority(priority);
         setImageResource(imageResource);
         setTeam(team);
         setAlliance(alliance);
