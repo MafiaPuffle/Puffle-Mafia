@@ -47,6 +47,8 @@ public class PromptsManager {
     }
 
     public static void Start(Vector<Player> activePlayers){
+        //TODO clean this up so some players aren't prompted
+
         prompts = new ArrayDeque<Prompt>();
         allActivePlayers = activePlayers;
 
@@ -55,7 +57,19 @@ public class PromptsManager {
         currentPlayerIndex = 0;
         currentPlayer = allActivePlayers.get(currentPlayerIndex);
         currentActionIndex = 0;
+//        currentAction = currentPlayer.getRole().getActions().get(currentActionIndex);
+
+        float currentPriority = allActivePlayers.get(currentPlayerIndex).getRole().getPriority();
+
+        while (currentPriority < 0){
+            currentPlayerIndex++;
+            currentPlayer = allActivePlayers.get(currentPlayerIndex);
+
+            currentPriority = currentPlayer.getRole().getPriority();
+        }
+
         currentAction = currentPlayer.getRole().getActions().get(currentActionIndex);
+
         if(ShouldActionBePrompted(currentAction)){
             QuePrompt(currentAction.getPrompt());
         }
@@ -84,9 +98,6 @@ public class PromptsManager {
     }
 
     public static void FindNextValidAction(){
-//        if(currentActionIndex == -1 || currentPlayerIndex == -1){
-//            return;
-//        }
 
         Log.d("CustomPromptScreen", "Find Next Valid Action()");
         currentActionIndex++;

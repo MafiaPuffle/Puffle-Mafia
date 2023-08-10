@@ -18,6 +18,7 @@ import com.example.pufflemafia.app.data.prompts.PlayerPrompt;
 import com.example.pufflemafia.app.data.prompts.Prompt;
 import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.events.IVoidEventListener;
+import com.example.pufflemafia.app.game.ActionLogManager;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
@@ -167,6 +168,9 @@ public class PromptScreen extends CustomAppCompatActivityWrapper {
         }
 
         ResolvingManager.resolveEndOfNightActions();
+
+        ActionLogManager.Summary();
+        ActionLogManager.clearAllLogs();
 
         finish();
     }

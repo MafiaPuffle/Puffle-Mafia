@@ -20,6 +20,7 @@ public class ResolvingManager {
             action.resolve();
             if(action.HasBeenResolved()){
                 resolved.add(action);
+                ActionLogManager.addLog(action.getLog());
             }
         }
         delayedActions.removeAll(resolved);
@@ -31,6 +32,7 @@ public class ResolvingManager {
             Action action = endOfNightActions.peek();
             assert action != null;
             action.resolve();
+            ActionLogManager.addLog(action.getLog());
             endOfNightActions.remove();
         }
         OnAllNightActionsResolved.Invoke();
@@ -41,6 +43,7 @@ public class ResolvingManager {
             Action action = instantActions.peek();
             assert action != null;
             action.resolve();
+            ActionLogManager.addLog(action.getLog());
             instantActions.remove();
         }
         OnAllInstantActionsResolved.Invoke();

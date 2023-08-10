@@ -103,12 +103,21 @@ public class Action {
         this.results = results;
     }
 
+    private ActionLog log;
+    public ActionLog getLog(){
+        return log;
+    }
+
 
     public Event<Boolean> OnActionResolve;
     public void resolve(){
+        log = new ActionLog();
+        log.setInitiatorNames(initiators).setTargetNames(targets).setAction(name);
+
         for (Condition condition: conditions) {
             if(!condition.check(this)) {
                 OnActionResolve.Invoke(false);
+                log.setResult("Failed to");
                 setHasBeenResolved(false);
 //                System.out.print(name + " failed to resolve because " + condition.getName() + " returned false\n");
                 hasBeenUsedOnce = true;
@@ -122,6 +131,7 @@ public class Action {
         OnActionResolve.Invoke(true);
         hasBeenUsedOnce = true;
         setHasBeenResolved(true);
+        log.setResult("Successfully");
 //        System.out.print(name + " resolved successfully\n");
     }
 

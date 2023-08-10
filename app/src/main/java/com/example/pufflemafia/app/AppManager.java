@@ -2,6 +2,7 @@ package com.example.pufflemafia.app;
 
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.events.TestingListener;
+import com.example.pufflemafia.app.game.ActionLogManager;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.PromptsManager;
@@ -32,6 +33,7 @@ public class AppManager {
 
         ResolvingManager.Initialize();
         DataManager.Initialize();
+        ActionLogManager.Initialize();
 
         TestingListener.Initialize();
 
