@@ -7,6 +7,7 @@ import com.example.pufflemafia.app.events.Event;
 import com.example.pufflemafia.app.data.actions.conditions.Condition;
 import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.game.Player;
+import com.example.pufflemafia.app.game.states.Night;
 
 import java.util.Vector;
 
@@ -108,17 +109,60 @@ public class Action {
         return log;
     }
 
+    private void writeLog(){
+
+        if(initiators.size() == 1){
+            log.addToMessage(initiators.get(0).getName());
+        } else if (initiators.size() == 2) {
+            log.addToMessage(initiators.get(0).getName() + " & " + initiators.get(1).getName());
+        } else {
+            for (int i = 0; i < initiators.size(); i++) {
+                int j = i++;
+
+                if(j == initiators.size()){
+                    log.addToMessage(" & " + initiators.get(i).getName());
+                }else {
+                    log.addToMessage(initiators.get(i).getName() + ", ");
+                }
+            }
+        }
+
+        if(hasBeenResolved){
+            log.addToMessage(" used ");
+        } else {
+            log.addToMessage(" failed to use ");
+        }
+
+        log.addToMessage(name + " on ");
+
+        if(targets.size() == 1){
+            log.addToMessage(targets.get(0).getName());
+        } else if (targets.size() == 2) {
+            log.addToMessage(targets.get(0).getName() + " & " + targets.get(1).getName());
+        } else {
+            for (int i = 0; i < targets.size(); i++) {
+                int j = i++;
+
+                if(j == targets.size()){
+                    log.addToMessage(" & " + targets.get(i).getName());
+                }else {
+                    log.addToMessage(targets.get(i).getName() + ", ");
+                }
+            }
+        }
+
+        log.addTag( "Night " + Night.getNightNumber());
+    }
 
     public Event<Boolean> OnActionResolve;
     public void resolve(){
         log = new ActionLog();
-        log.setInitiatorNames(initiators).setTargetNames(targets).setAction(name);
 
         for (Condition condition: conditions) {
             if(!condition.check(this)) {
                 OnActionResolve.Invoke(false);
-                log.setResult("Failed to");
                 setHasBeenResolved(false);
+                writeLog();
 //                System.out.print(name + " failed to resolve because " + condition.getName() + " returned false\n");
                 hasBeenUsedOnce = true;
                 return;
@@ -131,7 +175,7 @@ public class Action {
         OnActionResolve.Invoke(true);
         hasBeenUsedOnce = true;
         setHasBeenResolved(true);
-        log.setResult("Successfully");
+        writeLog();
 //        System.out.print(name + " resolved successfully\n");
     }
 

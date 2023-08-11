@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 android:focusable="false"
-                android:fontFamily="@font/horizon"
+                android:fontFamily="sans-serif-condensed"
                 android:text="NAME USED ACTION ON NAME"
                 android:textColor="@color/white"
                 android:textSize="15dp" />

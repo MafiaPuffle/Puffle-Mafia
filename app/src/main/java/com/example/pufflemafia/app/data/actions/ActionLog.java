@@ -8,100 +8,53 @@ import java.util.Vector;
 
 public class ActionLog {
 
-    private Vector<String> initiatorNames;
-
-    public Vector<String> getInitiatorNames() {
-        return initiatorNames;
+    private Vector<String> tags;
+    public void addTag(String tag){
+        tags.add(tag);
     }
-
-    private String actionName;
-
-    public String getActionName() {
-        return actionName;
+    public void addTags(Vector<String> tags){
+        this.tags.addAll(tags);
     }
-
-    private Vector<String> targetNames;
-
-    public Vector<String> getTargetNames() {
-        return targetNames;
-    }
-
-    private String result;
-    public String getResult() {
-        return result;
-    }
-
-    public ActionLog(){
-        initiatorNames = new Vector<String>();
-        targetNames = new Vector<String>();
-    }
-
-    public ActionLog addInitiatorName(String initiator){
-        this.initiatorNames.add(initiator);
-        return this;
-    }
-
-    public ActionLog setInitiatorNames(Vector<Player> initiators){
-        if(initiators == null){
-            this.initiatorNames.add("NULL");
-            return this;
+    public boolean doesLogContainTag(String tagToCheck){
+        for (String tag: tags) {
+            if(tag == tagToCheck)
+                return true;
         }
 
-        for (Player player: initiators) {
-            this.initiatorNames.add(player.getName());
-        }
-        return this;
+        return false;
     }
-
-    public ActionLog setAction(String actionName){
-        this.actionName = actionName;
-        return this;
-    }
-
-    public ActionLog addTargetName(String target){
-        this.targetNames.add(target);
-        return this;
-    }
-
-    public ActionLog setTargetNames(Vector<Player> targets){
-        if(targets == null){
-            this.initiatorNames.add("NULL");
-            return this;
+    public boolean doesLogContainAnyTag(Vector<String> tagsToCheck){
+        for (String tag: tagsToCheck) {
+            if(doesLogContainTag(tag))
+                return true;
         }
 
-        for (Player player: targets) {
-            this.targetNames.add(player.getName());
+        return false;
+    }
+    public boolean doesLogContainAllTags(Vector<String> tagsToCheck){
+        for (String tag: tagsToCheck) {
+            if(!doesLogContainTag(tag))
+                return false;
         }
-        return this;
+
+        return true;
     }
 
-    public ActionLog setResult(String result){
-        this.result = result;
-        return this;
+    private String message;
+    public void addToMessage(String addendum){
+        message += addendum;
     }
 
     public String read(){
-        String output = "";
+        return message;
+    }
 
-        for (String name: initiatorNames) {
-            output += (name + " ");
-        }
-
-        output += getResult();
-        output += " used ";
-        output += getActionName();
-        output += " on ";
-
-        for (String name: targetNames) {
-            output += (name + " ");
-        }
-
-        return output;
+    public ActionLog(){
+        tags = new Vector<String>();
+        message = "";
     }
 
     public void LogSummary(){
-        Log.d("ActionLog", ""
-                + initiatorNames.get(0) + " " + getResult() + " used "
-                + getActionName() + " on " + getTargetNames().get(0));
+        Log.d("ActionLog", message);
     }
 }

@@ -13,11 +13,13 @@ import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
 import com.example.pufflemafia.app.adapters.RecyclerRowMoverCallBack;
 import com.example.pufflemafia.app.adapters.playerAdapters.PlayerDayUIAdaptor;
+import com.example.pufflemafia.app.data.actions.ActionLog;
 import com.example.pufflemafia.app.data.actions.result.Result;
 import com.example.pufflemafia.app.data.effects.Effect;
 import com.example.pufflemafia.app.events.IEvent2Listener;
 import com.example.pufflemafia.app.events.IEventListener;
 import com.example.pufflemafia.app.events.IVoidEventListener;
+import com.example.pufflemafia.app.game.ActionLogManager;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
@@ -67,6 +69,9 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
 
     @Override
     protected void onDestroy() {
+        ActionLogManager.clearAllLogs();
+
+        PromptsManager.OnEndAllPrompts.RemoveListener(displaySummaryListener);
         PlayerManager.OnKillPlayer.RemoveListener(playerKillTypeListener);
         PlayerManager.OnRevivePlayer.RemoveListener(playerListener);
         PlayerManager.OnAddPlayer.RemoveListener(playerListener);
@@ -106,6 +111,10 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void Response(Player player, Result.KillType killType) {
                 Refresh();
+
+                ActionLog log = new ActionLog();
+                log.addToMessage(player.getName() + " was killed by " + killType);
+                ActionLogManager.addLog(log);
             }
         };
         PlayerManager.OnKillPlayer.AddListener(playerKillTypeListener);
