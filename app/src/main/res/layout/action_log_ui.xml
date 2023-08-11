@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <!-- character_ui_layout.xml -->
+    <LinearLayout
+        android:id="@+id/ActionUIINBox"
+        android:layout_width="375dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/grey_rectangle"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+
+
+        <LinearLayout
+            android:id="@+id/ActionUITextsBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grey_rectangle"
+            android:clickable="false"
+            android:focusable="false"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/LogText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/horizon"
+                android:text="NAME USED ACTION ON NAME"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</FrameLayout>
+<!--            <include layout="@layout/character_ui_day_layout" />             -->

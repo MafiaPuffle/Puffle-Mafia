@@ -1,5 +1,6 @@
 package com.example.pufflemafia.app.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -170,9 +171,10 @@ public class PromptScreen extends CustomAppCompatActivityWrapper {
         ResolvingManager.resolveEndOfNightActions();
 
         ActionLogManager.Summary();
-        ActionLogManager.clearAllLogs();
+//        ActionLogManager.clearAllLogs();
 
         finish();
+//        startActivity(new Intent(this, NightSummaryScreen.class));
     }
 
     @Override

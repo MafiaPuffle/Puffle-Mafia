@@ -21,6 +21,7 @@ import com.example.pufflemafia.app.events.IVoidEventListener;
 import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
+import com.example.pufflemafia.app.game.PromptsManager;
 import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
@@ -37,6 +38,7 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
     private Vector<Player> allDeadPlayers;
 
     private IVoidEventListener refreshListener;
+    private IVoidEventListener displaySummaryListener;
     private IEvent2Listener<Player, Result.KillType> playerKillTypeListener;
     private IEvent2Listener<Player, Effect> playerEffectListener;
     private IEventListener<Player> playerListener;
@@ -48,35 +50,7 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mafia_page);
 
-        refreshListener = new IVoidEventListener() {
-            @Override
-            public void Response() {
-                Refresh();
-            }
-        };
-
-        playerKillTypeListener = new IEvent2Listener<Player, Result.KillType>() {
-            @Override
-            public void Response(Player player, Result.KillType killType) {
-                Refresh();
-            }
-        };
-
-        playerEffectListener = new IEvent2Listener<Player, Effect>() {
-            @Override
-            public void Response(Player player, Effect effect) {
-                Refresh();
-            }
-        };
-
-        playerListener = new IEventListener<Player>() {
-            @Override
-            public void Response(Player player) {
-                Refresh();
-            }
-        };
-
-        configurePlayerManager();
+        configureListeners();
 
         configureRecyclerViews();
 
@@ -87,6 +61,8 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
         configureStartTheNightButton();
         configureOptionsButton();
     }
+
+
 
 
     @Override
@@ -106,13 +82,50 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
         allDeadPlayerDayUIAdaptor.notifyDataSetChanged();
     }
 
-    private void configurePlayerManager() {
-        PlayerManager.OnKillPlayer.AddListener(playerKillTypeListener);
-        PlayerManager.OnRevivePlayer.AddListener(playerListener);
-        PlayerManager.OnAddPlayer.AddListener(playerListener);
-        PlayerManager.OnPlayerReceiveEffect.AddListener(playerEffectListener);
+    private void configureListeners() {
+
+        refreshListener = new IVoidEventListener() {
+            @Override
+            public void Response() {
+                Refresh();
+            }
+        };
         PlayerManager.OnPlayerDataUpdated.AddListener(refreshListener);
         PlayerManager.OnRemoveAllPlayers.AddListener(refreshListener);
+
+        displaySummaryListener = new IVoidEventListener() {
+            @Override
+            public void Response() {
+                startActivity(new Intent(DayScreen.this, NightSummaryScreen.class));
+            }
+        };
+
+        PromptsManager.OnEndAllPrompts.AddListener(displaySummaryListener);
+
+        playerKillTypeListener = new IEvent2Listener<Player, Result.KillType>() {
+            @Override
+            public void Response(Player player, Result.KillType killType) {
+                Refresh();
+            }
+        };
+        PlayerManager.OnKillPlayer.AddListener(playerKillTypeListener);
+
+        playerEffectListener = new IEvent2Listener<Player, Effect>() {
+            @Override
+            public void Response(Player player, Effect effect) {
+                Refresh();
+            }
+        };
+        PlayerManager.OnPlayerReceiveEffect.AddListener(playerEffectListener);
+
+        playerListener = new IEventListener<Player>() {
+            @Override
+            public void Response(Player player) {
+                Refresh();
+            }
+        };
+        PlayerManager.OnRevivePlayer.AddListener(playerListener);
+        PlayerManager.OnAddPlayer.AddListener(playerListener);
     }
 
     private void configureRecyclerViews() {

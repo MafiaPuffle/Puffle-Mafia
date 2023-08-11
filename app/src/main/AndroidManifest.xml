@@ -70,6 +70,10 @@
             android:name=".app.screens.SelectPlayerAbility"
             android:label="Select Player Ability" >
         </activity>
+        <activity
+            android:name=".app.screens.NightSummaryScreen"
+            android:label="Night Summary Screen" >
+        </activity>
     </application>
 
 </manifest>

@@ -80,6 +80,25 @@ public class ActionLog {
         return this;
     }
 
+    public String read(){
+        String output = "";
+
+        for (String name: initiatorNames) {
+            output += (name + " ");
+        }
+
+        output += getResult();
+        output += " used ";
+        output += getActionName();
+        output += " on ";
+
+        for (String name: targetNames) {
+            output += (name + " ");
+        }
+
+        return output;
+    }
+
     public void LogSummary(){
         Log.d("ActionLog", ""
                 + initiatorNames.get(0) + " " + getResult() + " used "
