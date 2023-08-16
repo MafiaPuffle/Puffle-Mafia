@@ -286,6 +286,26 @@ public class DataManager {
                 alertKillResults);
 
         allActions.put("alertKill",alertKill);
+
+        Vector<Condition> trueLoveConditions = new Vector<Condition>();
+
+        Vector<Result> trueLoveResults = new Vector<Result>();
+
+        Action trueLove = new Action("trueLove",
+                Action.ActionType.EVERY_NIGHT,
+                Action.WhenTOResolve.INSTANT,
+                Action.ValidTargets.ALL_ALIVE_PLAYERS,
+                trueLoveConditions,
+                trueLoveResults
+                );
+
+        OptionsPrompt trueLovePrompt = new OptionsPrompt();
+        trueLovePrompt.set_prompt("LOVERS WAKE UP AND LOOK AT EACH OTHER");
+        trueLovePrompt.addOption("Continue", null);
+
+        trueLove.setPrompt(trueLovePrompt);
+
+        allActions.put("trueLove",trueLove);
     }
 
     private static void setUpStartingEffects(){
@@ -381,6 +401,7 @@ public class DataManager {
         allRoles.put("civilian",civilian);
 
         Vector<Action> loverActions = new Vector<Action>();
+        loverActions.add(getAction("trueLove"));
         Vector<Effect> loverStartingEffects = new Vector<Effect>();
         loverStartingEffects.add(getEffect("Lovers_Linked"));
 

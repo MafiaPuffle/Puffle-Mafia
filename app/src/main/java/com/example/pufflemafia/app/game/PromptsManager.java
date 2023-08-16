@@ -78,6 +78,7 @@ public class PromptsManager {
     }
 
     public static void QuePrompt(Prompt prompt){
+        if(prompt == null) return;
         prompts.add(prompt);
     }
 

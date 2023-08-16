@@ -14,6 +14,9 @@ public class OptionsPrompt extends Prompt{
     public Vector<Pair<String, Prompt>> getOptions() {
         return options;
     }
+    public int numberOfOptions(){
+        return options.size();
+    }
     public void addOption(String option, Prompt result){
         Pair<String, Prompt> p = new Pair<>(option, result);
         options.add(p);

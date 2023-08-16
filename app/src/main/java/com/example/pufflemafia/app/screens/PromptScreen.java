@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.CustomAppCompatActivityWrapper;
+import com.example.pufflemafia.app.adapters.ButtonAdaptor;
 import com.example.pufflemafia.app.adapters.playerAdapters.PlayerNightUIAdaptor;
 import com.example.pufflemafia.app.data.prompts.OptionsPrompt;
 import com.example.pufflemafia.app.data.prompts.PlayerPrompt;
@@ -112,7 +114,10 @@ public class PromptScreen extends CustomAppCompatActivityWrapper {
     }
 
     private void DisplayOptionsPromptData(OptionsPrompt optionsPrompt){
+        Vector<Pair<String, Prompt>> options = optionsPrompt.getOptions();
 
+        ButtonAdaptor adaptor = new ButtonAdaptor(optionsPrompt, this);
+        recyclerView.setAdapter(adaptor);
     }
 
     private void ConfigureListeners(){
