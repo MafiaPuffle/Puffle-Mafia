@@ -4,6 +4,8 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.Log;
 
+import androidx.core.util.Pair;
+
 import com.example.pufflemafia.R;
 import com.example.pufflemafia.app.AppMinimizedWatcher;
 import com.example.pufflemafia.app.events.IEventListener;
@@ -67,6 +69,7 @@ public class SoundManager {
     private static void initializeSongs(Context context){
         songs = new HashMap<String, MediaPlayer>();
         songs.put("Mystery",MediaPlayer.create(context, R.raw.mystery));
+        songs.put("Light",MediaPlayer.create(context, R.raw.sanholo_light));
     }
 
     private static void initializeSFX(Context context){
@@ -125,9 +128,11 @@ public class SoundManager {
 
     public static void playSong(String name){
         if(songs.containsKey(name)){
+//            stopCurrentSong();
             MediaPlayer mediaPlayer = songs.get(name);
             mediaPlayer.setLooping(true);
-            fadeIn(mediaPlayer, 1, 4000, 100);
+            mediaPlayer.start();
+//            fadeIn(mediaPlayer, 1, 4000, 100);
         }
         else {
             Log.w("SoundManager","Attempted to play song that does not exist: " + name);
@@ -138,11 +143,20 @@ public class SoundManager {
         if(songs.containsKey(name)){
             MediaPlayer mediaPlayer = songs.get(name);
             if(mediaPlayer.isPlaying()){
-                fadeOut(mediaPlayer, 1, 3000, 100);
+                mediaPlayer.pause();
+//                fadeOut(mediaPlayer, 1, 3000, 100);
             }
         }
         else {
             Log.w("SoundManager","Attempted to play song that does not exist: " + name);
+        }
+    }
+
+    private static void stopCurrentSong(){
+        for (Map.Entry<String, MediaPlayer> entry: songs.entrySet()) {
+            if(entry.getValue().isPlaying()){
+                stopSong(entry.getKey());
+            }
         }
     }
 
@@ -185,7 +199,11 @@ public class SoundManager {
             }
         };
 
-        fadeInTimer.schedule(timerTask, fadeInterval, fadeInterval);
+//        fadeInTimer.purge();
+//        fadeInTimer.schedule(timerTask, fadeInterval, fadeInterval);
+
+        Timer _fadeInTimer = new Timer();
+        _fadeInTimer.schedule(timerTask, fadeInterval, fadeInterval);
 
     }
 
@@ -211,7 +229,11 @@ public class SoundManager {
             }
         };
 
-        fadeOutTimer.schedule(timerTask, fadeInterval, fadeInterval);
+//        fadeOutTimer.purge();
+//        fadeOutTimer.schedule(timerTask, fadeInterval, fadeInterval);
+
+        Timer _fadeOutTimer = new Timer();
+        _fadeOutTimer.schedule(timerTask, fadeInterval, fadeInterval);
 
     }
 

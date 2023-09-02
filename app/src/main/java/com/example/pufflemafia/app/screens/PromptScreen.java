@@ -27,6 +27,7 @@ import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.PromptsManager;
 import com.example.pufflemafia.app.game.ResolvingManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.Vector;
 
@@ -41,6 +42,9 @@ public class PromptScreen extends CustomAppCompatActivityWrapper {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_night_actions);
+
+        SoundManager.stopSong("Light");
+        SoundManager.playSong("Mystery");
 
         ConfigureRecyclerView();
 
