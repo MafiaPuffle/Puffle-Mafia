@@ -52,8 +52,6 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_mafia_page);
 
-        SoundManager.stopSong("Mystery");
-        SoundManager.playSong("Light");
 
         configureListeners();
 

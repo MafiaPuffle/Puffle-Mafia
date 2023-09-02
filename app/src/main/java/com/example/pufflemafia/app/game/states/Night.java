@@ -11,6 +11,7 @@ import com.example.pufflemafia.app.game.GameManager;
 import com.example.pufflemafia.app.game.Player;
 import com.example.pufflemafia.app.game.PlayerManager;
 import com.example.pufflemafia.app.game.PromptsManager;
+import com.example.pufflemafia.app.game.SoundManager;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -39,6 +40,7 @@ public class Night {
     }
 
     public static void Start(){
+        SoundManager.playSong("Mystery");
         PlayerManager.clearAllEffectsOfType(Effect.EffectClearType.ON_NIGHT);
         PromptsManager.Start(PlayerManager.getAllAlivePlayers());
 

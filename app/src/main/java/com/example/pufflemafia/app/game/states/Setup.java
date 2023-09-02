@@ -1,5 +1,7 @@
 package com.example.pufflemafia.app.game.states;
 
+import android.util.Log;
+
 import com.example.pufflemafia.app.data.DataManager;
 import com.example.pufflemafia.app.data.Role;
 import com.example.pufflemafia.app.events.IEventListener;
@@ -100,6 +102,7 @@ public class Setup {
             }
         }
 
+        Log.d("Setup","Setup()");
         GameManager.setCurrentGameState(GameManager.gameState.DAY);
     }
 

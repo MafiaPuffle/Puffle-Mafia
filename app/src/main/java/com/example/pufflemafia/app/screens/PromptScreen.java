@@ -43,9 +43,6 @@ public class PromptScreen extends CustomAppCompatActivityWrapper {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_night_actions);
 
-        SoundManager.stopSong("Light");
-        SoundManager.playSong("Mystery");
-
         ConfigureRecyclerView();
 
         ConfigureListeners();

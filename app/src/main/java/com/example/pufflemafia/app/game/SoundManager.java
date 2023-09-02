@@ -128,11 +128,11 @@ public class SoundManager {
 
     public static void playSong(String name){
         if(songs.containsKey(name)){
-//            stopCurrentSong();
+            stopCurrentSong();
             MediaPlayer mediaPlayer = songs.get(name);
             mediaPlayer.setLooping(true);
-            mediaPlayer.start();
-//            fadeIn(mediaPlayer, 1, 4000, 100);
+//            mediaPlayer.start();
+            fadeIn(mediaPlayer, 1, 1000, 100);
         }
         else {
             Log.w("SoundManager","Attempted to play song that does not exist: " + name);
@@ -144,7 +144,7 @@ public class SoundManager {
             MediaPlayer mediaPlayer = songs.get(name);
             if(mediaPlayer.isPlaying()){
                 mediaPlayer.pause();
-//                fadeOut(mediaPlayer, 1, 3000, 100);
+//                fadeOut(mediaPlayer, 1, 1000, 100);
             }
         }
         else {
@@ -181,6 +181,7 @@ public class SoundManager {
 
 
         // Gradually increase the volume in small steps over time
+        Timer _fadeInTimer = new Timer();
         TimerTask timerTask = new TimerTask() {
             private float volume = 0; // Initial volume level
 
@@ -192,7 +193,8 @@ public class SoundManager {
                 if (volume >= maxVolume) {
                     volume = maxVolume;
                     mediaPlayer.setVolume(volume, volume); // Set final volume
-                    fadeInTimer.cancel();
+//                    fadeInTimer.cancel();
+                    _fadeInTimer.cancel();
                 } else {
                     mediaPlayer.setVolume(volume, volume); // Set current volume
                 }
@@ -202,7 +204,6 @@ public class SoundManager {
 //        fadeInTimer.purge();
 //        fadeInTimer.schedule(timerTask, fadeInterval, fadeInterval);
 
-        Timer _fadeInTimer = new Timer();
         _fadeInTimer.schedule(timerTask, fadeInterval, fadeInterval);
 
     }
@@ -210,6 +211,7 @@ public class SoundManager {
     private static void fadeOut(MediaPlayer mediaPlayer, float initialVolume, int fadeDuration, int fadeInterval){
 
         // Gradually decrease the volume in small steps over time
+        Timer _fadeOutTimer = new Timer();
         TimerTask timerTask = new TimerTask() {
             private float volume = initialVolume; // Initial volume level
 
@@ -221,8 +223,9 @@ public class SoundManager {
                 if (volume <= 0) {
                     volume = 0;
                     mediaPlayer.setVolume(volume, volume); // Set final volume
-                    mediaPlayer.stop(); // Stop playback after fade-out
-                    fadeOutTimer.cancel();
+                    mediaPlayer.pause(); // Stop playback after fade-out
+//                    fadeOutTimer.cancel();
+                    _fadeOutTimer.cancel();
                 } else {
                     mediaPlayer.setVolume(volume, volume); // Set current volume
                 }
@@ -232,7 +235,6 @@ public class SoundManager {
 //        fadeOutTimer.purge();
 //        fadeOutTimer.schedule(timerTask, fadeInterval, fadeInterval);
 
-        Timer _fadeOutTimer = new Timer();
         _fadeOutTimer.schedule(timerTask, fadeInterval, fadeInterval);
 
     }
