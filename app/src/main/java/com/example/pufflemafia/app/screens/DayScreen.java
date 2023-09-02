@@ -191,6 +191,7 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
             @Override
             public void onClick(View v) {
                 SoundManager.playSfx("Click");
+                GameManager.setCurrentGameState(GameManager.gameState.SETUP);
                 finish();
             }
         });

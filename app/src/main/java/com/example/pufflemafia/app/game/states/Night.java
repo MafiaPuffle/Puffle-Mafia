@@ -34,8 +34,13 @@ public class Night {
                 if(gameState == GameManager.gameState.NIGHT){
                     Start();
                 }
+
+                if(gameState == GameManager.gameState.SETUP){
+                    resetNightNumber();
+                }
             }
         });
+
         resetNightNumber();
     }
 
