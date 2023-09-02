@@ -115,6 +115,7 @@ public class DayScreen extends CustomAppCompatActivityWrapper {
 
                 ActionLog log = new ActionLog();
                 log.addToMessage(player.getName() + " was killed by " + killType);
+                log.addTag("TELL_ALL");
                 ActionLogManager.addLog(log);
             }
         };

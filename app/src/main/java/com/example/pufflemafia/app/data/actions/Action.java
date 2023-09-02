@@ -111,6 +111,8 @@ public class Action {
 
     private void writeLog(){
 
+        log.addTag("NIGHT_" + Night.getNightNumber());
+
         if(initiators.size() == 1){
             log.addToMessage(initiators.get(0).getName());
         } else if (initiators.size() == 2) {

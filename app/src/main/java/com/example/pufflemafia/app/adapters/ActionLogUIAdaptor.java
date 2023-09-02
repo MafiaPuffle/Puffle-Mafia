@@ -23,6 +23,7 @@ import com.example.pufflemafia.app.game.PromptsManager;
 import com.example.pufflemafia.app.game.SoundManager;
 import com.example.pufflemafia.app.screens.PromptScreen;
 
+import java.util.Collections;
 import java.util.UUID;
 import java.util.Vector;
 
@@ -62,6 +63,17 @@ public class ActionLogUIAdaptor extends RecyclerView.Adapter<ActionLogUIAdaptor.
 
     public ActionLogUIAdaptor(Vector<ActionLog> dataSet, Context context) {
         localDataSet = dataSet;
+        this.context = context;
+    }
+
+    public ActionLogUIAdaptor(Vector<ActionLog> dataSet, Vector<String> tagsToFilterBy, Context context) {
+//        localDataSet = dataSet;
+        localDataSet = new Vector<ActionLog>();
+        for (ActionLog log: dataSet) {
+            if(log.doesLogContainAnyTag(tagsToFilterBy)){
+                localDataSet.add(log);
+            }
+        }
         this.context = context;
     }
 

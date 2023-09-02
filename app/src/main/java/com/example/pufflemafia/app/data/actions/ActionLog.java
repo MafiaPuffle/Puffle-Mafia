@@ -3,6 +3,7 @@ package com.example.pufflemafia.app.data.actions;
 import android.util.Log;
 
 import com.example.pufflemafia.app.game.Player;
+import com.example.pufflemafia.app.game.states.Night;
 
 import java.util.Vector;
 
@@ -51,6 +52,7 @@ public class ActionLog {
 
     public ActionLog(){
         tags = new Vector<String>();
+//        addTag("NIGHT_" + Night.getNightNumber());
         message = "";
     }
 
