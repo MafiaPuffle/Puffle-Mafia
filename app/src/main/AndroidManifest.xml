@@ -17,6 +17,9 @@
         android:theme="@style/Theme.PuffleMafia"
         tools:targetApi="31">
         <activity
+            android:name=".Player_Editor"
+            android:exported="false" />
+        <activity
             android:name=".TimerScreen"
             android:exported="false"
             android:launchMode="singleTask"/>
