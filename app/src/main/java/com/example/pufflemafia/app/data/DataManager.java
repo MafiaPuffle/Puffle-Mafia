@@ -27,8 +27,8 @@ public class DataManager {
         InitializeAllDictionaries();
 
         LoadRole("Alien",
-                "Infect one player at night",
-                "If half of the players become infected",
+                "Infect one player at night. If half the players become Aliens, the Alien wins.",
+                "If half of the players become infected (not including self)",
                 "I'm not a fan of crop circles",
                 "Player has been infected by the alien",
                 "ALIEN WAKE UP, WHO DO YOU WANNA INFECT?",
@@ -45,9 +45,9 @@ public class DataManager {
                 Role.Teams.SELF);
 
         LoadRole("Apprentice",
-               "Announce that the Apprentice is using a Wizard spell and activate one Wizard spell. Only one Wizard spell can be used per game",
-               "Wins if the player had a good time!",
-               "Did you know puffles are fluffy?",
+               "Stand up ANYTIME during the day and announce that you are using one RANDOM Spell.",
+               "Wins if the Mafia are voted out",
+               "Bawk Bawk Baaaaaaawk",
                "",
                -1,
                1,
@@ -60,12 +60,12 @@ public class DataManager {
 
 
         LoadRole("Baker",
-                "Give bread to players at night.  If the Baker dies everyone without bread dies in 3 nights",
+                "Give bread to players at night.  If the Baker dies everyone without bread dies in 3 nights (1 night for every 5 players)",
                 "Wins if the Mafia are voted out",
-                "I bake break for everyone",
-                "Players with this will not die once the baker dies",
+                "Bread is the giver of life",
+                "Players with this will not die once the Baker dies",
                 "BAKER WAKE UP, WHO DO YOU WANNA GIVE BREAD TO?",
-                3,
+                2,
                 1,
                 1,
                 2,
@@ -77,26 +77,35 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
 
+
         LoadRole("Bribed Judge",
-               "For one day only, the Bribed Judge will be able to decide wether a person dies or live during the vote. They choose to activate it during the night and it will go off during the day vote",
-               "Wins if the player had a good time!",
-               "Did you know puffles are fluffy?",
-               "JUDGE WAKE UP, During the next day vote, would you like to decide the final vote decision",
-               3,
-               1,
-               1,
-               R.drawable.bribed_judge,
-               Power.PowerType.ONETIMEUSE,
-               Power.PowerPromptType.YES_OR_NO,
-               Role.Alliances.GOOD,
-               Role.Teams.MAFIA);
+                "Once per game, at night choose one player, they will die during the next trial (even if another player or no player is on trial).",
+                "Wins if the Mafia equal half of the alive players",
+                "Even justice has a price",
+                "Players with this will die during the vote no matter what.",
+                "JUDGE WAKE UP, who would you like to execute during the next day vote?",
+<<<<<<< Updated upstream
+                2.1f,
+=======
+                1.1f,
+>>>>>>> Stashed changes
+                1,
+                1,
+                1,
+                R.drawable.bribed_judge,
+                R.drawable.bribed_judge,
+                Token.TokenTypes.CLEAR_NEVER,
+                Power.PowerType.ONETIMEUSE,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.EVIL,
+                Role.Teams.MAFIA);
 
         LoadRole("Civilian",
                 "Has no special ability",
                 "Wins if the Mafia are voted out",
-                "I hope the town stays peaceful",
+                "I wish had an ability",
                 "NOTHING",
-                1,
+                -1,
                 1,
                 2,
                 R.drawable.civilian_puffles,
@@ -107,11 +116,15 @@ public class DataManager {
 
         LoadRole("Corrupt Cop",
                "Choose one player and that player cannot vote the next day. This does not stop the President.",
-               "Wins if the player had a good time!",
-               "Did you know puffles are fluffy?",
+               "Wins if the Mafia equal half of the alive players",
+               "You have the right to remain silent",
                "This player could not vote this round",
                "COP WAKE UP, WHO WOULD YOU LIKE TO KEEP FROM VOTING THE NEXT DAY",
-               3,
+<<<<<<< Updated upstream
+                2.1f,
+=======
+               1.1f,
+>>>>>>> Stashed changes
                1,
                1,
                1,
@@ -120,17 +133,35 @@ public class DataManager {
                Token.TokenTypes.CLEAR_ON_NIGHT,
                Power.PowerType.CONTINOUS,
                Power.PowerPromptType.ALL_Alive_PLAYERS,
-               Role.Alliances.GOOD,
+               Role.Alliances.EVIL,
                Role.Teams.MAFIA);
+
+        LoadRole("Cup Bearer",
+               "At the start of the game choose one player; if they die you die instead.",
+               "Wins if the Mafia are voted out",
+               "For the President!",
+               "Cup Bearer will die in the place of this player",
+               "Cup Bearer wake up, who would you like to die for?",
+                2,
+               1,
+               1,
+               1,
+               R.drawable.cup_bearer,
+               R.drawable.cup_bearer,
+               Token.TokenTypes.CLEAR_NEVER,
+               Power.PowerType.FIRSTNIGHT,
+               Power.PowerPromptType.ALL_PLAYERS,
+               Role.Alliances.GOOD,
+               Role.Teams.TOWN);
 
 
         LoadRole("Cupid",
                 "Links two players together, whatever happens to one happens to the other",
                 "Wins if the Mafia are voted out",
-                "I just love bring people together",
-                "This player is liked to anther player with this same token,  whatever happens to one happens to the other",
-                "CUPID WAKE UP, WHO DO YOU WANNA LINK?",
-                .5f,
+                "I just love bringing people together",
+                "This player is linked to anther player with this same token,  whatever happens to one, happens to the other",
+                "CUPID WAKE UP, WHO DO YOU WANNA LINK TOGETHER?",
+                .02f,
                 1,
                 1,
                 2,
@@ -144,11 +175,11 @@ public class DataManager {
 
         LoadRole("Cyborg",
                 "At the start of the game choose one player, you are now the same role as them for the rest of the game",
-                "You win the same way whatever role you copy does",
+                "You win the same way whatever role that was copied does",
                 "Its amazing what computers can do these days!",
                 "The cyborg has copied the role of this player",
                 "CYBORG WAKE UP, WHOSE ROLE DO YOU WANNA COPY?",
-                0,
+                0.0001f,
                 1,
                 1,
                 1,
@@ -157,16 +188,20 @@ public class DataManager {
                 Token.TokenTypes.CLEAR_NEVER,
                 Power.PowerType.FIRSTNIGHT,
                 Power.PowerPromptType.ALL_Alive_PLAYERS,
-                Role.Alliances.GOOD,
+                Role.Alliances.NEUTRAL,
                 Role.Teams.TOWN);
 
         LoadRole("Dentist",
                 "Choose one player to mute for the day, that player can't speak for the next day",
-                "You win if the Mafia gets voted out",
+                "Wins if the Mafia equal half of the alive players",
                 "I'm the best dentist in the world, never hear a customer complain",
                 "This player has been muted and cannot talk for the day",
                 "DENTIST WAKE UP, WHO DO YOU WANNA MUTE?",
-                3,
+<<<<<<< Updated upstream
+                2.1f,
+=======
+                2,
+>>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -176,7 +211,7 @@ public class DataManager {
                 Power.PowerType.CONTINOUS,
                 Power.PowerPromptType.ALL_Alive_PLAYERS,
                 Role.Alliances.GOOD,
-                Role.Teams.TOWN);
+                Role.Teams.MAFIA);
 
         LoadRole("Detective",
                 "Discovers the alliance of one player each night",
@@ -184,7 +219,7 @@ public class DataManager {
                 "Never had a case I couldn't solve, except that one time.  But that doesn't count.",
                 "The detective has learned this players alliance",
                 "DETECTIVE WAKE UP, WHOSE ALLIANCE DO YOU WANNA KNOW ABOUT?",
-                3,
+                2,
                 1,
                 1,
                 1,
@@ -199,10 +234,10 @@ public class DataManager {
         LoadRole("Doctor",
                 "Protect one player from the Mafia each night",
                 "Wins if the Mafia are voted out",
-                "Never liked blood, but somebody's gotta do this job.",
+                "This town is always so bloody",
                 "This player has been protected from the mafia.  Protected players are not killed by Mafia.",
                 "DOCTOR WAKE UP, WHO DO YOU WANNA SAVE FROM THE MAFIA?",
-                3,
+                2,
                 1,
                 1,
                 1,
@@ -215,7 +250,7 @@ public class DataManager {
                 Role.Teams.TOWN);
 
         LoadRole("Doggie",
-                "Needs one extra vote to be voted out",
+                "Doggie cannot die. Cannot vote. Does not count towards the count for the win condition of Mafia.\n",
                 "Wins if the Mafia are voted out",
                 "Bark! Bark! *wags-tail*",
                 "",
@@ -227,6 +262,30 @@ public class DataManager {
                 Power.PowerPromptType.NOTHING,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
+
+        LoadRole("Farmer",
+               "I like to plant spice crops for the town.",
+               "Wins if the Mafia equal half of the alive players",
+               "I like to plant spice crops for the town.",
+               "You have the HOT POTATO!",
+<<<<<<< Updated upstream
+               "Farmer wake up, who would you like to give the hot potato to or, kill the player with the hot potato?",
+                2.1f,
+=======
+               "Hot potato wake up, who would you like to give the hot potato to? Farmer wake up, would you like to kill the player with the hot potato?",
+               1.1f,
+>>>>>>> Stashed changes
+               1,
+               1,
+               1,
+               R.drawable.farmer_puffle,
+               R.drawable.potato,
+               Token.TokenTypes.CLEAR_ON_NIGHT,
+               Power.PowerType.CONTINOUS,
+               Power.PowerPromptType.ALL_Alive_PLAYERS,
+               Role.Alliances.EVIL,
+               Role.Teams.MAFIA);
+
 
         LoadRole("The Father",
                 "Everybody that died this round will come back to life",
@@ -242,26 +301,59 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
 
+        LoadRole("Gambler",
+               "Become one random role from the Extra Role Deck.\n",
+               "win",
+               "I'll let chance decide my fate!",
+               "Gambler wake up, would you like to choose a random role from the Extra Role Deck?",
+               4,
+               1,
+               1,
+               R.drawable.gambler,
+               Power.PowerType.ONETIMEUSE,
+               Power.PowerPromptType.ALL_Alive_PLAYERS,
+               Role.Alliances.NEUTRAL,
+               Role.Teams.SELF);
+
+
         LoadRole("GodFather",
                 "Kills players with the Mafia.  However the appear as a thumbs up to the detective.",
                 "Wins if the Mafia equal half or more of the living players",
                 "I'm gonna make him an offer he can't refuse",
                 "",
-                -1,
+                1,
                 1,
                 1,
                 R.drawable.godfather_puffle,
                 Power.PowerType.PASSIVE,
                 Power.PowerPromptType.NOTHING,
-                Role.Alliances.GOOD,
+                Role.Alliances.EVIL,
                 Role.Teams.MAFIA);
 
+        LoadRole("Hitman",
+                "At the start of the game, choose one player, if they are voted out, you win. If target is dead by other means, you become Village Idiot.\n",
+                "Wins if they vote out their target or if they are voted out as Village Idiot",
+                "Target Aquired",
+                "This player is targeted by the Hitman",
+                "HITMAN WAKE UP, WHO DO YOU WANT TO TARGET?",
+                .05f,
+                1,
+                1,
+                1,
+                R.drawable.hitman,
+                R.drawable.hitman,
+                Token.TokenTypes.CLEAR_NEVER,
+                Power.PowerType.FIRSTNIGHT,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.EVIL,
+                Role.Teams.SELF);
+        
         LoadRole("Holy Spirit",
-                "All Good players can use their abilities twice this round",
+                "All Town players can use their abilities twice this round",
                 "Wins if the Mafia are voted out",
-                "You can do it!",
+                "The Father and I are one",
                 "HOLY SPIRIT WAKE UP, DO YOU WANNA DOUBLE ALL TOWN POWERS?",
-                0.75f,
+                1.99f,
                 1,
                 1,
                 R.drawable.holy_spirit_puffle,
@@ -271,19 +363,44 @@ public class DataManager {
                 Role.Teams.TOWN);
 
         LoadRole("Insomniac",
-               "THESE ARE THE PLAYERS THAT USED THEIR ABILITY ON YOU THIS NIGHT",
-               "Wins if the player had a good time!",
-               "Did you know puffles are fluffy?",
+               "Once per night, open your eyes during another players role call.",
+               "Wins if the Mafia equal half of the alive players",
+               "Hello ... Whose there?!",
+<<<<<<< Updated upstream
+               "",
+=======
                "INSOMNIAC WAKE UP, THESE ARE THE PLAYERS THAT USED THEIR ABILITY ON YOU THIS NIGHT.",
-               4.6f,
+>>>>>>> Stashed changes
+               -1,
                1,
                1,
                R.drawable.insomniac,
-               Power.PowerType.CONTINOUS,
+               Power.PowerType.PASSIVE,
                Power.PowerPromptType.ALL_PLAYERS,
-               Role.Alliances.GOOD,
+               Role.Alliances.EVIL,
                Role.Teams.MAFIA);
 
+        LoadRole("Inquisitor",
+                "You can choose one player and guess their role: if you guess right they die or if you guess wrong you die.",
+                "Wins if the Mafia equal half of the alive players",
+                "Let me guess who you are!",
+                "This player had their role guessed by the inquisitor",
+                "Inquisitor wake up, would you like to guess a player's role, what is their role?",
+<<<<<<< Updated upstream
+                2.1f,
+=======
+                1.1f,
+>>>>>>> Stashed changes
+                1,
+                1,
+                1,
+                R.drawable.inquisitor_puffle,
+                R.drawable.inquisitor_puffle,
+                Token.TokenTypes.CLEAR_NEVER,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.EVIL,
+                Role.Teams.MAFIA);
 
         LoadRole("J.O.A.T.",
                 "Can use one skill of the Town players each night.  You cannot use the same skill again until you have gone through each skill",
@@ -291,7 +408,7 @@ public class DataManager {
                 "I like to try a little of everything",
                 "The J.O.A.T. has used one of their abilities on this player",
                 "J.O.A.T. WAKE UP, WHAT DO YOU WANNA DO?",
-                3,
+                2,
                 1,
                 1,
                 1,
@@ -306,10 +423,14 @@ public class DataManager {
         LoadRole("Jailkeeper",
                 "Choose one player each night.  That player cannot activate their ability for the night or day.",
                 "Wins if the Mafia equal half of the alive players",
-                "flavor",
+                "Its just part of the job",
                 "This player can't use their ability for the night or day",
                 "JAILKEEPER WAKE UP, WHO DO YOU WANT TO LOCKOUT FROM THEIR ROLE?",
-                1.9f,
+<<<<<<< Updated upstream
+                2.1f,
+=======
+                1.1f,
+>>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -318,7 +439,7 @@ public class DataManager {
                 Token.TokenTypes.CLEAR_ON_NIGHT,
                 Power.PowerType.CONTINOUS,
                 Power.PowerPromptType.ALL_Alive_PLAYERS,
-                Role.Alliances.GOOD,
+                Role.Alliances.EVIL,
                 Role.Teams.MAFIA);
 
         LoadRole("Jesus",
@@ -340,8 +461,12 @@ public class DataManager {
                 "Wins if the Mafia equal half of the living players",
                 "I am the law",
                 "Is protected from being voted out",
-                "LAWYER WAKE UPM, WHO DO YOU WANNA SAVE FROM BEING VOTED OUT?",
-                3,
+                "LAWYER WAKE UP, WHO DO YOU WANNA SAVE FROM BEING VOTED OUT? You cannot choose the same player twice.",
+<<<<<<< Updated upstream
+                2.1f,
+=======
+                1.1f,
+>>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -350,7 +475,7 @@ public class DataManager {
                 Token.TokenTypes.CLEAR_ON_NIGHT,
                 Power.PowerType.CONTINOUS,
                 Power.PowerPromptType.ALL_Alive_PLAYERS,
-                Role.Alliances.GOOD,
+                Role.Alliances.EVIL,
                 Role.Teams.MAFIA);
 
         LoadRole("Lovers",
@@ -358,7 +483,7 @@ public class DataManager {
                 "Wins if the Mafia are voted out",
                 "Romeo and Juliet got nothing on us",
                 "LOVERS WAKE UP, YOU ARE LINKED FOR THE REST OF THE GAME",
-                0.25f,
+                0.1f,
                 2,
                 2,
                 R.drawable.lover_puffle,
@@ -372,8 +497,12 @@ public class DataManager {
                 "Wins if the Mafia equal half of the living players",
                 "We own this town",
                 "This player will be killed",
-                "MAFIA WAKE UP, WHO DO YOU WANNA KILL?",
+                "TEAM MAFIA WAKE UP, WHO DO YOU WANNA KILL?",
+<<<<<<< Updated upstream
                 2,
+=======
+                1,
+>>>>>>> Stashed changes
                 1,
                 3,
                 1,
@@ -387,11 +516,11 @@ public class DataManager {
 
         LoadRole("Mafia Rival",
                 "Kill one player every night",
-                "Wins if the Mafia Rival players equal half of the living players",
+                "Wins if the Mafia Rival players equal half of the living players and all Mafia members are dead",
                 "Gun Gang for life!",
                 "This player will be killed",
                 "RIVAL MAFIA WAKE UP, WHO DO YOU WANNA KILL?",
-                2.25f,
+                1.2f,
                 1,
                 2,
                 1,
@@ -404,26 +533,45 @@ public class DataManager {
                 Role.Teams.RIVAL_MAFIA);
 
         LoadRole("Mole",
-               "Have the Mafia members raise their hands to reveal their identities to the Mole",
-               "Wins if the player had a good time!",
-               "Did you know puffles are fluffy?",
+               "Choose one role from the Extra Role Deck. You are a thumbs up when looked at by Detective",
+               "Wins if the Mafia equal half of the alive players",
+               "Im the Mafia's biggest fan",
                "Mole wake up, Mafia member raise your hands to reveal your identity",
-               0.25f,
+               0.04f,
                1,
                1,
                R.drawable.mole,
                Power.PowerType.FIRSTNIGHT,
                Power.PowerPromptType.NOTHING,
-               Role.Alliances.GOOD,
+               Role.Alliances.EVIL,
                Role.Teams.MAFIA);
+
+        LoadRole("Narrator",
+               "The true hero of the game",
+               "To enjoy the game and make everyone have fun!",
+               "To enjoy the game and make everyone have fun!",
+               "To enjoy the game and make everyone have fun!",
+<<<<<<< Updated upstream
+               0,
+=======
+               -1,
+>>>>>>> Stashed changes
+               1,
+               1,
+               R.drawable.game_master,
+               Power.PowerType.PASSIVE,
+               Power.PowerPromptType.NOTHING,
+               Role.Alliances.NEUTRAL,
+               Role.Teams.SELF);
+
 
         LoadRole("Necromancer",
                "Choose one dead player, Necromancer becomes that role. If they had their one time use ability activated already, they cannot use it again",
-               "Wins if the player had a good time!",
-               "Did you know puffles are fluffy?",
+               "You win the same way whatever role that was copied does",
+               "The dead shall rise!",
                "This player had their role taken by the Necromancer",
                "NECROMANCER WAKE UP, Which dead player's role would you like to become?",
-               4.25f,
+               4,
                1,
                1,
                1,
@@ -435,13 +583,56 @@ public class DataManager {
                Role.Alliances.GOOD,
                Role.Teams.SELF);
 
+        LoadRole("Optometrist",
+                "Choose one player, they must turn around or put a blindfold on during the day.\n",
+                "Wins if the Mafia equal half of the alive players",
+                "Open your eyes wide so I can see them!",
+                "This player must turn around or wear a blindfold on during the day.",
+                "Optometrist wake up, who would you like to blind?",
+<<<<<<< Updated upstream
+                2.1f,
+=======
+                2,
+>>>>>>> Stashed changes
+                1,
+                1,
+                1,
+                R.drawable.optometrist_puffle,
+                R.drawable.optometrist_puffle,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+        LoadRole("Politician",
+                "Choose one player, they will be forced to have the same vote as you (even if they do not vote).",
+                "Wins if the Mafia equal half of the alive players",
+                "HAHAHA vote for me and I will make your life better",
+                "This player votes the same as the Politician",
+                "POLITICIAN WAKE UP, WHOSE VOTE WOULD YOU LIKE TO STEAL?",
+<<<<<<< Updated upstream
+                2.1f,
+=======
+                1.1f,
+>>>>>>> Stashed changes
+                1,
+                1,
+                1,
+                R.drawable.politian,
+                R.drawable.politian,
+                Token.TokenTypes.CLEAR_ON_NIGHT,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.EVIL,
+                Role.Teams.MAFIA);
 
         LoadRole("President",
                 "Once per game the President can veto one vote and vote out another player instead.",
                 "Wins if the Mafia are voted out",
                 "AMERICA!",
                 "",
-                1,
+                -1,
                 1,
                 1,
                 R.drawable.president_puffle,
@@ -450,12 +641,30 @@ public class DataManager {
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
 
+        LoadRole("Pyromaniac",
+                "Choose one: cover one player in gasoline or kill all gasolined players. You win when you are the last one alive with Mafia.",
+                "Wins if the Mafia equal half of the alive players",
+                "The heat from the flame. What a pleasant feeling",
+                "This player is covered in gasoline",
+                "Pyromaniac wake up, who would you like to cover in gas or would you like to kill all gasolined players?",
+                3,
+                1,
+                1,
+                1,
+                R.drawable.pyromaniac,
+                R.drawable.pyromaniac,
+                Token.TokenTypes.CLEAR_NEVER,
+                Power.PowerType.CONTINOUS,
+                Power.PowerPromptType.ALL_Alive_PLAYERS,
+                Role.Alliances.EVIL,
+                Role.Teams.SELF);
+
         LoadRole("Satan",
-                "Once per game, lets all Evil players active their ability twice that round",
+                "Once per game, lets all Team Mafia players active their ability twice that round",
                 "Wins if the Mafia equal half of the living players",
-                "You can't do it",
+                "I will be like the most High",
                 "SATAN WAKE UP, DO YOU WANNA DOUBLE ALL TEAM MAFIA POWERS?",
-                0.75f,
+                .99f,
                 1,
                 1,
                 R.drawable.satan,
@@ -469,7 +678,7 @@ public class DataManager {
                "Wins if the Mafia are voted out",
                "Blow em Up",
                "Shotgun Granny Wake up, DO YOU WANNA GO on alert at night and kill anyone who uses their ability on you.",
-               1.01f,
+                .99f,
                1,
                1,
                R.drawable.grandma_puffle,
@@ -485,7 +694,7 @@ public class DataManager {
                 "Viva la Revolution",
                 "This player will die if the Terrorist dies",
                 "TERRORIST WAKE UP, WHO DO YOU WANNA PLANT A BOMB ON?",
-                0.5f,
+                0.05f,
                 1,
                 1,
                 1,
@@ -498,12 +707,16 @@ public class DataManager {
                 Role.Teams.MAFIA);
 
         LoadRole("Tracker",
-                "Track on player and see who they used their ability on at night.",
-                "Wins if the Mafia get voted out",
-                "The nose knows",
-                "This player is being tacked by the tracker.  The tracker knows who they used their ability on the previous night.",
+                "Choose one player, know their Role.",
+                "Wins if the Mafia equal half of the alive players",
+                "I know what you did",
+                "This player is being tacked by the tracker.  The tracker knows who they are.",
                 "TRACKER WAKE UP, WHO DO YOU WANNA TRACK?",
-                4.5f,
+<<<<<<< Updated upstream
+                2.1f,
+=======
+                1.1f,
+>>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -512,7 +725,7 @@ public class DataManager {
                 Token.TokenTypes.CLEAR_ON_NIGHT,
                 Power.PowerType.CONTINOUS,
                 Power.PowerPromptType.ALL_Alive_PLAYERS,
-                Role.Alliances.GOOD,
+                Role.Alliances.EVIL,
                 Role.Teams.MAFIA);
 
         LoadRole("Veteran",
@@ -543,12 +756,27 @@ public class DataManager {
                 Role.Alliances.EVIL,
                 Role.Teams.SELF);
 
+        LoadRole("Warlock",
+                "Stand up ANYTIME during the day and announce that you are choosing one Warlock Spell.",
+                "Wins if the Mafia are voted out",
+                "By the power vested in me I CAST THEE!",
+                "",
+                -1,
+                1,
+                1,
+                R.drawable.warlock,
+                Power.PowerType.PASSIVE,
+                Power.PowerPromptType.ALL_PLAYERS,
+                Role.Alliances.GOOD,
+                Role.Teams.TOWN);
+
+
         LoadRole("Witness",
                 "For one night they can try to peek and see who the Mafia is.",
                 "Wins if the Mafia get voted out",
                 "*stares into the middle distance*",
                 "WTNESS WAKE UP, DID YOU WITNESS ANYTHING?",
-                2.5f,
+                2.2f,
                 1,
                 1,
                 R.drawable.witness_puffle,
@@ -563,20 +791,20 @@ public class DataManager {
                 "Abracadabra",
                 "This player got their role switched with the wizard",
                 "WIZARD WAKE UP, WHO DO YOU WANNA SWITCH ROLES WITH?",
-                6,
+                10,
                 1,
                 1,
                 1,
                 R.drawable.wizard_puffle,
                 R.drawable.wizard_puffle,
                 Token.TokenTypes.CLEAR_NEVER,
-                Power.PowerType.ONETIMEUSE,
+                Power.PowerType.CONTINOUS,
                 Power.PowerPromptType.ALL_Alive_PLAYERS,
                 Role.Alliances.GOOD,
                 Role.Teams.TOWN);
 
         LoadRole("Zombie Good",
-                "Zombies cannot talk or raise their arms.  They can only grunt.",
+                "You are not allowed to talk only grunting is allowed. You are not allowed to use your arms. Your original role is negated.",
                 "Wins if the Mafia get voted out.",
                 "Grrr...",
                 "",
@@ -590,7 +818,7 @@ public class DataManager {
                 Role.Teams.TOWN);
 
         LoadRole("Zombie Evil",
-                "Zombies cannot talk or raise their arms.  They can only grunt.",
+                "You are not allowed to talk only grunting is allowed. You are not allowed to use your arms. Your original role is negated.",
                 "Wins if the Mafia equal half of the alive players",
                 "Brains....",
                 "",
