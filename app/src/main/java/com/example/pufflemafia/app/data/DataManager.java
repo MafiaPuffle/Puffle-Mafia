@@ -84,11 +84,7 @@ public class DataManager {
                 "Even justice has a price",
                 "Players with this will die during the vote no matter what.",
                 "JUDGE WAKE UP, who would you like to execute during the next day vote?",
-<<<<<<< Updated upstream
-                2.1f,
-=======
                 1.1f,
->>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -120,11 +116,7 @@ public class DataManager {
                "You have the right to remain silent",
                "This player could not vote this round",
                "COP WAKE UP, WHO WOULD YOU LIKE TO KEEP FROM VOTING THE NEXT DAY",
-<<<<<<< Updated upstream
-                2.1f,
-=======
                1.1f,
->>>>>>> Stashed changes
                1,
                1,
                1,
@@ -197,11 +189,7 @@ public class DataManager {
                 "I'm the best dentist in the world, never hear a customer complain",
                 "This player has been muted and cannot talk for the day",
                 "DENTIST WAKE UP, WHO DO YOU WANNA MUTE?",
-<<<<<<< Updated upstream
                 2.1f,
-=======
-                2,
->>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -268,13 +256,8 @@ public class DataManager {
                "Wins if the Mafia equal half of the alive players",
                "I like to plant spice crops for the town.",
                "You have the HOT POTATO!",
-<<<<<<< Updated upstream
                "Farmer wake up, who would you like to give the hot potato to or, kill the player with the hot potato?",
-                2.1f,
-=======
-               "Hot potato wake up, who would you like to give the hot potato to? Farmer wake up, would you like to kill the player with the hot potato?",
                1.1f,
->>>>>>> Stashed changes
                1,
                1,
                1,
@@ -366,11 +349,7 @@ public class DataManager {
                "Once per night, open your eyes during another players role call.",
                "Wins if the Mafia equal half of the alive players",
                "Hello ... Whose there?!",
-<<<<<<< Updated upstream
                "",
-=======
-               "INSOMNIAC WAKE UP, THESE ARE THE PLAYERS THAT USED THEIR ABILITY ON YOU THIS NIGHT.",
->>>>>>> Stashed changes
                -1,
                1,
                1,
@@ -386,11 +365,7 @@ public class DataManager {
                 "Let me guess who you are!",
                 "This player had their role guessed by the inquisitor",
                 "Inquisitor wake up, would you like to guess a player's role, what is their role?",
-<<<<<<< Updated upstream
-                2.1f,
-=======
                 1.1f,
->>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -426,11 +401,7 @@ public class DataManager {
                 "Its just part of the job",
                 "This player can't use their ability for the night or day",
                 "JAILKEEPER WAKE UP, WHO DO YOU WANT TO LOCKOUT FROM THEIR ROLE?",
-<<<<<<< Updated upstream
-                2.1f,
-=======
                 1.1f,
->>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -462,11 +433,7 @@ public class DataManager {
                 "I am the law",
                 "Is protected from being voted out",
                 "LAWYER WAKE UP, WHO DO YOU WANNA SAVE FROM BEING VOTED OUT? You cannot choose the same player twice.",
-<<<<<<< Updated upstream
-                2.1f,
-=======
                 1.1f,
->>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -498,11 +465,7 @@ public class DataManager {
                 "We own this town",
                 "This player will be killed",
                 "TEAM MAFIA WAKE UP, WHO DO YOU WANNA KILL?",
-<<<<<<< Updated upstream
-                2,
-=======
                 1,
->>>>>>> Stashed changes
                 1,
                 3,
                 1,
@@ -551,11 +514,7 @@ public class DataManager {
                "To enjoy the game and make everyone have fun!",
                "To enjoy the game and make everyone have fun!",
                "To enjoy the game and make everyone have fun!",
-<<<<<<< Updated upstream
-               0,
-=======
                -1,
->>>>>>> Stashed changes
                1,
                1,
                R.drawable.game_master,
@@ -589,11 +548,7 @@ public class DataManager {
                 "Open your eyes wide so I can see them!",
                 "This player must turn around or wear a blindfold on during the day.",
                 "Optometrist wake up, who would you like to blind?",
-<<<<<<< Updated upstream
                 2.1f,
-=======
-                2,
->>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -611,11 +566,7 @@ public class DataManager {
                 "HAHAHA vote for me and I will make your life better",
                 "This player votes the same as the Politician",
                 "POLITICIAN WAKE UP, WHOSE VOTE WOULD YOU LIKE TO STEAL?",
-<<<<<<< Updated upstream
-                2.1f,
-=======
                 1.1f,
->>>>>>> Stashed changes
                 1,
                 1,
                 1,
@@ -712,11 +663,7 @@ public class DataManager {
                 "I know what you did",
                 "This player is being tacked by the tracker.  The tracker knows who they are.",
                 "TRACKER WAKE UP, WHO DO YOU WANNA TRACK?",
-<<<<<<< Updated upstream
-                2.1f,
-=======
                 1.1f,
->>>>>>> Stashed changes
                 1,
                 1,
                 1,
