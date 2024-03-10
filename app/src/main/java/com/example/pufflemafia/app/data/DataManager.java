@@ -44,7 +44,7 @@ public class DataManager {
                 Role.Teams.SELF);
 
         LoadRole("Apprentice",
-                "Stand up ANYTIME during the day and announce that you are using one RANDOM Spell.",
+                "Stand up ANYTIME during the day and announce that you are using one RANDOM Spell. (One Time Only)",
                 "Wins if the Mafia are voted out",
                 "Bawk Bawk Baaaaaaawk",
                 "",
@@ -59,7 +59,7 @@ public class DataManager {
 
 
         LoadRole("Baker",
-                "Give bread to players at night.  If the Baker dies everyone without bread dies in 3 nights (1 night for every 5 players)",
+                "Bake two Croissants and give them to any player(s) (NOT SELF). If Baker dies, players without Croissants die after \"X\" nights. (\"X\" nights = 1 night per 4 players, 3 Max).",
                 "Wins if the Mafia are voted out",
                 "Bread is the giver of life",
                 "Players with this will not die once the Baker dies",
@@ -96,7 +96,7 @@ public class DataManager {
                 Role.Teams.MAFIA);
 
         LoadRole("Civilian",
-                "Has no special ability",
+                "Civilians have no special abilities.\n",
                 "Wins if the Mafia are voted out",
                 "I wish had an ability",
                 "NOTHING",
@@ -128,7 +128,7 @@ public class DataManager {
                 Role.Teams.MAFIA);
 
         LoadRole("Cup Bearer",
-                "At the start of the game choose one player; if they die you die instead.",
+                "Choose one player, if they die this round you die instead.",
                 "Wins if the Mafia are voted out",
                 "For the President!",
                 "Cup Bearer will die in the place of this player",
@@ -147,7 +147,7 @@ public class DataManager {
 
 
         LoadRole("Cupid",
-                "Links two players together, whatever happens to one happens to the other",
+                "Choose two players (not self) to link together. All effects will be applied to the linked players. (One Time Only)",
                 "Wins if the Mafia are voted out",
                 "I just love bringing people together",
                 "This player is linked to anther player with this same token,  whatever happens to one, happens to the other",
@@ -188,7 +188,7 @@ public class DataManager {
                 "I'm the best dentist in the world, never hear a customer complain",
                 "This player has been muted and cannot talk for the day",
                 "DENTIST WAKE UP, WHO DO YOU WANNA MUTE?",
-                2.1f,
+                2,
                 1,
                 1,
                 1,
@@ -201,7 +201,7 @@ public class DataManager {
                 Role.Teams.TOWN);
 
         LoadRole("Detective",
-                "Discovers the alliance of one player each night",
+                "Choose one player, know their Alliance. Thumbs up they are Good, thumbs down they are Evil (possibly Mafia).\n",
                 "Wins if the Mafia are voted out",
                 "Never had a case I couldn't solve, except that one time.  But that doesn't count.",
                 "The detective has learned this players alliance",
@@ -219,7 +219,7 @@ public class DataManager {
                 Role.Teams.TOWN);
 
         LoadRole("Doctor",
-                "Protect one player from the Mafia each night",
+                "Choose one player (self-included), save them from death by the Mafia. Cannot choose the same player twice in a row.",
                 "Wins if the Mafia are voted out",
                 "This town is always so bloody",
                 "This player has been protected from the mafia.  Protected players are not killed by Mafia.",
@@ -237,7 +237,7 @@ public class DataManager {
                 Role.Teams.TOWN);
 
         LoadRole("Doggie",
-                "Doggie cannot die. Cannot vote. Does not count towards the count for the win condition of Mafia.\n",
+                "Doggie cannot die. Cannot vote. Does not count towards the count for the win condition of Mafia.",
                 "Wins if the Mafia are voted out",
                 "Bark! Bark! *wags-tail*",
                 "",
@@ -270,7 +270,7 @@ public class DataManager {
 
 
         LoadRole("The Father",
-                "Everybody that died this round will come back to life",
+                "Everybody that died this round will come back to life. (One Time Only)",
                 "Wins if the Mafia are voted out",
                 "Let there be life!",
                 "THE FATHER WAKE UP, DO YOU WANNA BRING EVERYONE BACK TO LIFE TODAY?",
@@ -331,7 +331,7 @@ public class DataManager {
                 Role.Teams.SELF);
 
         LoadRole("Holy Spirit",
-                "All Town players can use their abilities twice this round",
+                "All Team Town players this round will have their ability activated twice. (One Time Only)",
                 "Wins if the Mafia are voted out",
                 "The Father and I are one",
                 "HOLY SPIRIT WAKE UP, DO YOU WANNA DOUBLE ALL TOWN POWERS?",
@@ -377,7 +377,7 @@ public class DataManager {
                 Role.Teams.MAFIA);
 
         LoadRole("J.O.A.T.",
-                "Can use one skill of the Town players each night.  You cannot use the same skill again until you have gone through each skill",
+                "Choose one skill from the current Town player list. You cannot use the same skill twice in a row.",
                 "Wins if the Mafia get voted out",
                 "I like to try a little of everything",
                 "The J.O.A.T. has used one of their abilities on this player",
@@ -413,7 +413,7 @@ public class DataManager {
                 Role.Teams.MAFIA);
 
         LoadRole("Jesus",
-                "Comes back to life after he dies",
+                "Jesus comes back to the game after \"X\" nights. WHEN DEAD CLOSE YOUR EYES!!! (\"X\" nights = 1 night per 4 players, 3 Max).",
                 "Wins if the Mafia get voted out",
                 "I am the way the truth and the life",
                 "",
@@ -445,11 +445,11 @@ public class DataManager {
                 Role.Teams.MAFIA);
 
         LoadRole("Lovers",
-                "Lovers are linked to each other, whatever happens to one happens to the other",
+                "Both Lovers are linked to each other. All effects will be applied to the linked players.",
                 "Wins if the Mafia are voted out",
                 "Romeo and Juliet got nothing on us",
                 "LOVERS WAKE UP, YOU ARE LINKED FOR THE REST OF THE GAME",
-                0.1f,
+                0.01f,
                 2,
                 2,
                 R.drawable.lover_puffle,
@@ -547,7 +547,7 @@ public class DataManager {
                 "Open your eyes wide so I can see them!",
                 "This player must turn around or wear a blindfold on during the day.",
                 "Optometrist wake up, who would you like to blind?",
-                2.1f,
+                2,
                 1,
                 1,
                 1,
@@ -578,7 +578,7 @@ public class DataManager {
                 Role.Teams.MAFIA);
 
         LoadRole("President",
-                "Once per game the President can veto one vote and vote out another player instead.",
+                "Stand up ANYTIME during the day and announce that you are the President, and kill one player. (Cancels all votes by other players) (One Time Only).",
                 "Wins if the Mafia are voted out",
                 "AMERICA!",
                 "",
@@ -614,7 +614,7 @@ public class DataManager {
                 "Wins if the Mafia equal half of the living players",
                 "I will be like the most High",
                 "SATAN WAKE UP, DO YOU WANNA DOUBLE ALL TEAM MAFIA POWERS?",
-                .99f,
+                .999f,
                 1,
                 1,
                 R.drawable.satan,
@@ -624,7 +624,7 @@ public class DataManager {
                 Role.Teams.MAFIA);
 
         LoadRole("Shotgun Granny",
-                "Decide if you will go on alert at night and kill anyone who uses their ability on you. Can only go on alert twice per game.\n",
+                "\"X\" times per game, decide if you will go on alert at night and kill anyone who uses their ability on you at night. (\"X\" times = 1 time per 4 players, 2 Max).",
                 "Wins if the Mafia are voted out",
                 "Blow em Up",
                 "Shotgun Granny Wake up, DO YOU WANNA GO on alert at night and kill anyone who uses their ability on you.",
@@ -644,7 +644,7 @@ public class DataManager {
                 "Viva la Revolution",
                 "This player will die if the Terrorist dies",
                 "TERRORIST WAKE UP, WHO DO YOU WANNA PLANT A BOMB ON?",
-                0.05f,
+                0.03f,
                 1,
                 1,
                 1,
@@ -675,7 +675,7 @@ public class DataManager {
                 Role.Teams.MAFIA);
 
         LoadRole("Veteran",
-                "If the Mafia tries to kill the Veteran the Mafia are killed instead",
+                "If Veteran is chosen to die by the Mafia for the first time, one random Mafia member dies instead. (One Time Only)",
                 "Wins if the Mafia are voted out",
                 "War, war never changes",
                 "",
@@ -703,7 +703,7 @@ public class DataManager {
                 Role.Teams.SELF);
 
         LoadRole("Warlock",
-                "Stand up ANYTIME during the day and announce that you are choosing one Warlock Spell.",
+                "Stand up ANYTIME during the day and announce that you are choosing one Warlock Spell. (One Time Only)",
                 "Wins if the Mafia are voted out",
                 "By the power vested in me I CAST THEE!",
                 "",
@@ -718,11 +718,11 @@ public class DataManager {
 
 
         LoadRole("Witness",
-                "For one night they can try to peek and see who the Mafia is.",
+                "Can open eyes to look for the Mafia. If a Mafia is discovered, Witness can't look anymore. If caught by Mafia, Witness dies.",
                 "Wins if the Mafia get voted out",
                 "*stares into the middle distance*",
                 "WTNESS WAKE UP, DID YOU WITNESS ANYTHING?",
-                2.2f,
+                1.2f,
                 1,
                 1,
                 R.drawable.witness_puffle,
@@ -732,7 +732,7 @@ public class DataManager {
                 Role.Teams.TOWN);
 
         LoadRole("Wizard",
-                "Switch roles with one player",
+                "Choose one person to switch roles with.",
                 "Wins if the Mafia are voted out",
                 "Abracadabra",
                 "This player got their role switched with the wizard",
